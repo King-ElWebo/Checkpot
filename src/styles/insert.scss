@@ -1,0 +1,103 @@
+$primary-color: #BE1819;
+$secondary-color: #d5ceca;
+$text-color: white;
+$font-family: 'Segoe Script', cursive;
+
+// Navbar Styles
+.navbar {
+  background-color: $primary-color !important;
+  color: $text-color;
+  font-family: $font-family;
+  min-height: 80px;
+
+  .navbar-brand {
+    color: $text-color;
+    font-size: 2rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .link {
+    margin-left: auto; // Positioniert den Zurück-Link rechts in der Navbar
+    color: $text-color;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid $text-color;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: $text-color;
+      color: $primary-color;
+    }
+  }
+}
+
+// Container Styles
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px); // Höhe des Viewports minus Navbar-Höhe
+  padding: 15px;
+
+  .wrapper {
+    background-color: white;
+    color: $text-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+
+    .wrapper-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: black;
+    }
+
+    .btn {
+      background-color: $primary-color !important;
+      color: $text-color;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: background-color 0.3s, transform 0.3s;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 15px;
+      border-color: $primary-color;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+// Responsivität für kleinere Bildschirme
+@media (max-width: 767.98px) {
+  .container {
+    height: calc(100vh - 60px); // Falls die Navbar auf kleinen Bildschirmen kleiner ist
+  }
+
+  .wrapper {
+    padding: 20px;
+
+    .wrapper-title {
+      font-size: 1.5rem;
+    }
+
+    .btn {
+      max-width: 100%;
+      padding: 12px 0;
+    }
+  }
+}
