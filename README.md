@@ -32,6 +32,8 @@ Neon and Drizzle are template decisions, not decisions repeated for every custom
 
 ## Start a customer project
 
+The complete human-and-agent operating manual is `docs/PROJECT-WORKFLOW.md`.
+
 1. Copy this folder and rename the new project.
 2. Create `.env.local` from `.env.example` and set a unique `AUTH_SECRET` and `ADMIN_PASSWORD`. `DATABASE_URL` may remain empty until backend integration.
 3. Follow `docs/ANTIGRAVITY_SETUP.md` once to connect the copied repository to Antigravity and Open Design.
@@ -51,6 +53,7 @@ Do not skip phase approvals. They keep customer facts, visual decisions, fronten
 | File | Purpose |
 | --- | --- |
 | `AGENTS.md` | Repository-wide instructions and source priority for AI agents |
+| `docs/PROJECT-WORKFLOW.md` | Complete customer workflow, phase detection, approvals, responsibilities, and restart procedure |
 | `OPEN_DESIGN.md` | Focused contract for complete frontend generation |
 | `docs/ANTIGRAVITY_SETUP.md` | Human setup guide and available slash workflows |
 | `docs/PROJECT-SPEC.md` | Approved customer requirements and page inventory |

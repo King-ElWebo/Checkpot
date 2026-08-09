@@ -39,3 +39,8 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Custom ignored directories
+/analytics & tag manager/
+/daten website alt/
+/grafiken/

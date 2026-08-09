@@ -20,6 +20,7 @@ Do not treat generated UI recommendations, fixture data, old reports, or existin
 
 ## Tool routing
 
+- End-to-end operating manual and phase detection: `docs/PROJECT-WORKFLOW.md`
 - Customer discovery: `.agents/workflows/discover-client.md`
 - Design-system generation: `.agents/skills/ui-ux-pro-max/SKILL.md`
 - Open Design preparation: `.agents/workflows/prepare-open-design.md`
@@ -28,7 +29,7 @@ Do not treat generated UI recommendations, fixture data, old reports, or existin
 - Security audit: `.agents/workflows/security-audit.md`
 - Release verification: `.agents/workflows/release-check.md`
 
-Antigravity-specific setup and slash commands are documented in `docs/ANTIGRAVITY_SETUP.md`.
+Antigravity-specific setup and slash commands are documented in `docs/ANTIGRAVITY_SETUP.md`. Every agent joining or resuming the project must read `docs/PROJECT-WORKFLOW.md` before selecting the next phase.
 
 ## Fixed technical baseline
 

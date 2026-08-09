@@ -34,6 +34,8 @@ Rule and workflow files must remain below Antigravity's 12,000-character limit.
 
 ## Daily workflow
 
+Read `docs/PROJECT-WORKFLOW.md` for the complete phase gates, required inputs, ownership, and restart procedure. The compact command order is:
+
 1. `/discover-client`
 2. `/generate-design-system`
 3. Complete `docs/SEO-SPEC.md`, then `/prepare-open-design`
