@@ -1,0 +1,7 @@
+interface:
+  display_name: "UI/UX Pro Max"
+  short_description: "Builds customer-specific web design systems"
+  default_prompt: "Use $ui-ux-pro-max to generate or refine this customer's approved web design system."
+
+policy:
+  allow_implicit_invocation: true
