@@ -2,207 +2,190 @@
 
 Status: `NOT_READY`
 
-Public frontend implementation is complete for the approved Open Design phase, but the frontend is not frozen. `FROZEN_FOR_BACKEND` remains reserved for the separate frontend-freeze workflow.
+The approved public frontend is implemented and has received a focused customer-facing revision. This document is not a freeze approval. `FROZEN_FOR_BACKEND` remains reserved for the separate frontend-freeze workflow.
 
-This handoff records the implemented public routes, serializable contracts, fixture boundaries, SEO artifacts, motion behavior, and verification status for backend integration planning. No production database, storage, email, analytics, consent, map, or third-party provider integration was added in this phase.
+No production database, storage, email, analytics, consent, map, or third-party provider integration was added. Fixtures remain replaceable at the documented composition boundaries and must not become production failure fallbacks.
 
 ## Implemented Routes
 
-| Route | Page component | Status | Notes |
-| --- | --- | --- | --- |
-| `/` | `src/app/(public)/page.tsx` | Implemented | Homepage with hero, boutique positioning, service highlights, brand preview, outfit preview, contact entry points, `LocalBusiness` JSON-LD. |
-| `/ueber-uns` | `src/app/(public)/ueber-uns/page.tsx` | Implemented | Final about route. Includes breadcrumbs, founder/store story, image-led sections, `BreadcrumbList` JSON-LD. |
-| `/mode` | `src/app/(public)/mode/page.tsx` | Implemented | Fashion/advice route with non-ecommerce editorial presentation and internal links to outfits, brands, and contact. |
-| `/outfits` | `src/app/(public)/outfits/page.tsx` | Implemented | Outfit inspiration using fixture cards plus empty/unpublished-content state. No product, offer, cart, or checkout behavior. |
-| `/marken` | `src/app/(public)/marken/page.tsx` | Implemented | Brand overview with active-brand cards, empty state, and internal route linking. |
-| `/marken/[slug]` | `src/app/(public)/marken/[slug]/page.tsx` | Implemented | Static brand detail pages with `generateStaticParams`, breadcrumbs, contact CTA, related brand links when fixture data provides them. |
-| `/fair-trade` | `src/app/(public)/fair-trade/page.tsx` | Implemented | Values route focused on personal curation and repair/reuse mindset. No unsupported certifications or availability claims. |
-| `/kontakt` | `src/app/(public)/kontakt/page.tsx` | Implemented | Address as visible text, external `Route planen` link, no embedded map provider, frontend-only contact form states, `LocalBusiness` and `BreadcrumbList` JSON-LD. |
-| `/impressum` | `src/app/(public)/impressum/page.tsx` | Implemented | `noindex` legal route with approved visible business contact facts and a legal-text completion note. |
-| `/datenschutz` | `src/app/(public)/datenschutz/page.tsx` | Implemented | `noindex` privacy route describing the current no-provider public frontend phase. |
+| Route | Page component | Presentation status |
+| --- | --- | --- |
+| `/` | `src/app/(public)/page.tsx` | Personal boutique homepage with compact hero, current outfits, typographic brand preview, visit information, and `LocalBusiness` JSON-LD. |
+| `/ueber-uns` | `src/app/(public)/ueber-uns/page.tsx` | Christa-focused about page with corrected portrait focal point, store gallery, breadcrumbs, and `BreadcrumbList` JSON-LD. |
+| `/mode` | `src/app/(public)/mode/page.tsx` | Seasonal editorial overview anchored by current collection imagery and links to outfits, brands, and contact. |
+| `/outfits` | `src/app/(public)/outfits/page.tsx` | Image-led lookbook with varied proportions, styling notes, conditional empty state, breadcrumbs, and internal links. |
+| `/marken` | `src/app/(public)/marken/page.tsx` | Compact editorial brand index using typographic cards instead of misleading generic brand photos. |
+| `/marken/[slug]` | `src/app/(public)/marken/[slug]/page.tsx` | Static brand detail pages with `generateStaticParams`, verified image use only where supported, related-brand links, contact CTA, and breadcrumbs. |
+| `/fair-trade` | `src/app/(public)/fair-trade/page.tsx` | Evidence-aware principles page with authentic store/textile imagery and restrained editorial hierarchy. |
+| `/kontakt` | `src/app/(public)/kontakt/page.tsx` | Visit-focused contact page with copyable address, phone, email, WhatsApp, external route-planning link, store image, frontend-only form states, `LocalBusiness`, and `BreadcrumbList`. |
+| `/impressum` | `src/app/(public)/impressum/page.tsx` | `noindex` legal route with visible business contact facts and concise legal completion notice. |
+| `/datenschutz` | `src/app/(public)/datenschutz/page.tsx` | `noindex` privacy route with factual completion notice and no internal implementation language. |
 
 ## Reusable Components And Contracts
 
-| Component/file | Props/type | Fixture source | Backend dependency |
-| --- | --- | --- | --- |
-| `src/lib/contracts/public.ts` | `PublicRoute`, `PublicImage`, `PublicLink`, `StoreDetails`, `Brand`, `Outfit`, `CollectionIntro`, `BreadcrumbItem`, `SeoRoute`, `ContactFormPayload`, `ContactFormState` | Type-only public contract layer | None. Serializable contracts only. |
-| `src/content/fixtures/checkpot.ts` | Typed fixture exports for store details, nav links, images, brands, outfits, collection intro, SEO route metadata | Approved Checkpot content and provided media assets | Replaceable at route composition boundaries. Never a production failure fallback. |
-| `src/components/public/layout/site-header.tsx` | `navigation: PublicLink[]` | `navigationLinks` | None. |
-| `src/components/public/layout/site-footer.tsx` | `navigation: PublicLink[]` | `navigationLinks`, `storeDetails` | None. |
-| `src/components/public/layout/breadcrumbs.tsx` | `items: BreadcrumbItem[]` | Route-local breadcrumb arrays | None. |
-| `src/components/public/sections/section-heading.tsx` | `eyebrow`, `title`, `intro`, `align` | Route copy | None. |
-| `src/components/public/sections/image-card.tsx` | `image: PublicImage`, `variant`, `priority`, `className` | `imageLibrary`, outfit/brand fixtures | None. |
-| `src/components/ui/cta-link.tsx` | Link-style props with internal/external handling | Route copy | None. |
-| `src/components/public/forms/contact-form.tsx` | Client-side `ContactFormPayload` state and UI state machine | Frontend-only fixture behavior | Future form mutation required. |
-| `src/components/public/seo/json-ld.tsx` | `data: JsonLdData` | Schema helpers | None. |
-| `src/components/public/seo/schema.ts` | `localBusinessJsonLd`, `breadcrumbJsonLd` | Visible page/store facts | None. |
-| `src/components/public/seo/metadata.ts` | `metadataFor(route)` | `seoRoutes`, `siteUrl`, `ogImage` | None. |
-| `src/components/public/motion/reveal-controller.tsx` | No props | CSS/DOM data attributes | None. Progressive enhancement only. |
+| File | Current public contract |
+| --- | --- |
+| `src/lib/contracts/public.ts` | Serializable public types: `PublicRoute`, `PublicImage`, `PublicLink`, `StoreDetails`, `Brand`, `Outfit`, `CollectionIntro`, `BreadcrumbItem`, `SeoRoute`, `ContactFormPayload`, `ContactFormState`. `PublicImage` includes optional `objectPosition` for verified focal points. |
+| `src/content/fixtures/checkpot.ts` | Approved Checkpot fixture source for store facts, navigation, imagery, outfits, brands, current collection, SEO routes, and focal points. |
+| `src/components/public/layout/site-header.tsx` | Compact responsive navigation with logo, accessible menu button, `aria-expanded`, Escape close, route-change close, visible focus, and mobile/tablet height reduction. |
+| `src/components/public/layout/site-footer.tsx` | Compact footer with address, opening hours, phone, email, route-planning access, and legal/contact links. |
+| `src/components/public/sections/image-card.tsx` | `image`, optional `title`, `text`, `ratio`, `reveal`, `sizes`, and `preload`. Uses `next/image`, stable aspect containers, focal points, and non-misleading fallback text. |
+| `src/components/public/forms/contact-form.tsx` | Frontend-only contact form with natural German labels, validation, submitting, success, server-error fixture state, and disabled controls while submitting. |
+| `src/components/public/motion/reveal-controller.tsx` | Progressive reveal enhancement only for explicit `data-reveal` elements. Content is visible by default, rescanned after client navigation, supports newly mounted nodes, and shows all content immediately for reduced motion or missing observer support. |
+| `src/components/public/seo/*` | Metadata, `LocalBusiness`, and `BreadcrumbList` helpers using visible approved facts only. |
+| `src/components/ui/cta-link.tsx` | Internal/external CTA link component with safe external-link behavior. |
+
+## Fixture And Media Usage
+
+Current fixture media is customer-owned project media under `public/customer/`. The focused revision added only two curated assets copied from the provided legacy/customer media folders:
+
+- `public/customer/store-sustainable-shelf.jpg`
+- `public/customer/textile-sorgenfri-detail.jpg`
+
+Media behavior:
+
+- Store, founder, outfit, textile, and social images use meaningful alt text where informative.
+- Brand overview and most brand detail pages use typographic brand treatments unless verified brand-specific imagery exists.
+- Sorgenfri detail uses the verified textile detail image; other brands do not reuse unrelated outfit/store photos as brand-specific proof.
+- Image focal points are recorded through `PublicImage.objectPosition`.
+- Above-the-fold homepage and logo imagery is prioritized; gallery images are lazy-loaded with layout-specific `sizes`.
+- Fallbacks say `Bild folgt` and do not misrepresent missing customer media.
+
+Remaining media requirements:
+
+- Customer approval of final hero and social-image crops.
+- Brand-specific photography if Checkpot wants photographic brand detail pages for more labels.
+- Final legal/privacy content approved by the responsible party before freeze.
+
+## Route-Specific Revision Notes
+
+- Homepage: hero proportions reduced on mobile, current outfits and brands now form a concise visit story, and repeated shop-negation copy was removed.
+- `/mode`: changed from a repeated gallery into a seasonal editorial overview with restrained collage imagery.
+- `/outfits`: made the route the primary lookbook; empty state now renders only when the outfit collection is actually empty.
+- `/marken`: changed to a compact brand index with clearer differentiation and no misleading generic images.
+- `/marken/[slug]`: removed fixture/implementation language and uses verified imagery only where appropriate.
+- `/fair-trade`: replaced large generic cards with concise principles and one authentic store/textile image treatment.
+- `/ueber-uns`: strengthened Christa as the focus, corrected portrait focal point, and removed relaunch wording.
+- `/kontakt`: rewritten as an invitation to visit, with visible copyable address and no map embed or delivery-provider language.
+- Footer: now includes address, hours, phone, email, and route planning without becoming a large sitemap.
 
 ## Future Reads
 
-| Consumer | Repository method | DTO/type | Parameters | Authorization | Empty/error behavior |
-| --- | --- | --- | --- | --- | --- |
-| Public shell/header/footer | `getPublicSiteSettings()` | `StoreDetails`, public nav DTO | None | Public | If unavailable after backend integration, fail closed at build/request boundary; do not silently fall back to fixtures in production. |
-| `/` | `getHomepageContent()` | Hero, intro, feature links, selected brand/outfit previews | Locale/site id if introduced | Public | Render approved empty sections only where content is intentionally unpublished. |
-| `/mode` | `getFashionEditorialContent()` | Fashion intro blocks, advisory copy, selected images | None | Public | Show curated empty state for unpublished editorial content. |
-| `/outfits` | `listPublishedOutfits()` | `Outfit[]` | Optional season/filter | Public | Existing empty-state component handles no published outfits. |
-| `/marken` | `listPublishedBrands()` | `Brand[]` | None | Public | Existing empty-state component handles no published brands. |
-| `/marken/[slug]` | `getPublishedBrandBySlug(slug)` and `listRelatedBrands(slug)` | `Brand`, `Brand[]` | `slug` | Public | 404 for missing/unpublished slug; do not show unpublished content. |
-| `/fair-trade` | `getValuesPageContent()` | Values-page copy/image DTOs | None | Public | Render approved static page structure only when records are published. |
-| `/kontakt` | `getPublicContactDetails()` | `StoreDetails`, contact channels | None | Public | Keep address visible and copyable; route link remains external only if configured. |
-| `/impressum` | `getLegalNotice()` | Legal notice content DTO | None | Public | Legal route must not publish incomplete required legal copy after backend handoff. |
-| `/datenschutz` | `getPrivacyPolicy()` | Privacy policy content DTO | None | Public | Legal route must not publish incomplete required privacy copy after backend handoff. |
+| Consumer | Future repository method | DTO/type | Empty/error behavior |
+| --- | --- | --- | --- |
+| Public shell/header/footer | `getPublicSiteSettings()` | `StoreDetails`, public nav DTO | Fail closed at backend boundary; do not silently fall back to fixtures in production. |
+| `/` | `getHomepageContent()` | Hero, intro, selected brand/outfit previews | Render only approved empty states where content is intentionally unpublished. |
+| `/mode` | `getFashionEditorialContent()` | Seasonal editorial copy/images | Show curated unpublished/empty state only if approved. |
+| `/outfits` | `listPublishedOutfits()` | `Outfit[]` | Existing empty state handles no published outfits. |
+| `/marken` | `listPublishedBrands()` | `Brand[]` | Existing empty state handles no published brands. |
+| `/marken/[slug]` | `getPublishedBrandBySlug(slug)`, `listRelatedBrands(slug)` | `Brand`, `Brand[]` | 404 for missing/unpublished slug. |
+| `/fair-trade` | `getValuesPageContent()` | Values-page copy/image DTOs | Publish only evidence-backed wording. |
+| `/kontakt` | `getPublicContactDetails()` | `StoreDetails`, contact channels | Keep address visible and copyable; route link remains external only if configured. |
+| `/impressum` | `getLegalNotice()` | Legal notice content DTO | Do not freeze with incomplete required legal copy. |
+| `/datenschutz` | `getPrivacyPolicy()` | Privacy policy content DTO | Do not freeze with incomplete required privacy copy. |
 
-## Future Mutations And Forms
+## Future Mutations And Revalidation
 
-| Form/action | Execution boundary | Payload | Validation | Success UI | Failure UI | Authorization |
-| --- | --- | --- | --- | --- | --- | --- |
-| Contact inquiry | Future Server Action or Route Handler | `ContactFormPayload` (`name`, `surname`, `email`, `message`) | Required name/email/message, email format, message length | Implemented frontend success confirmation | Implemented validation, submitting, disabled, and server-error fixture states | Public with server-side abuse protection/rate limits in backend phase. |
-| Admin-managed content publishing | Existing protected admin boundary or future modules | Brand, outfit, page copy, media metadata | Schema-specific validation required | Not part of public frontend | Public pages consume only published records | Protected admin only. |
+| Area | Future boundary | Notes |
+| --- | --- | --- |
+| Contact inquiry | Future Server Action or Route Handler using `ContactFormPayload` | Server-side validation, rate limiting, abuse protection, and email delivery still required. Current UI states are frontend-only. |
+| Brands | Protected admin/content module | Revalidate `/marken`, changed `/marken/[slug]`, sitemap, and any linked homepage preview. |
+| Outfits/lookbook | Protected admin/content module | Revalidate `/outfits`, `/mode`, `/`, sitemap if route presence changes. |
+| Store settings/contact | Protected admin/content module | Revalidate `/`, `/kontakt`, footer-bearing routes if rendered statically, `LocalBusiness`, sitemap/robots if applicable. |
+| Legal pages | Protected admin/content module | Revalidate `/impressum` or `/datenschutz` only. |
 
-## Data Model Mapping
-
-| Frontend contract/model | Future storage concept | Constraints/relations | Migration | Repository |
-| --- | --- | --- | --- | --- |
-| `StoreDetails` | Site settings/contact profile | Singleton per site; visible facts only for schema | Future backend phase | `getPublicSiteSettings`, `getPublicContactDetails` |
-| `Brand` | Brand records | Unique slug; active/published flag; related brand slugs must resolve to active records | Future backend phase | `listPublishedBrands`, `getPublishedBrandBySlug`, `listRelatedBrands` |
-| `Outfit` | Outfit/editorial inspiration records | Published flag; image metadata; optional season/tone tags | Future backend phase | `listPublishedOutfits` |
-| `CollectionIntro` | Page/collection editorial block | Published flag; image metadata | Future backend phase | `getHomepageContent`, `getFashionEditorialContent` |
-| `SeoRoute` | Route SEO settings | Canonical path, title, description, index/noindex, social image | Future backend phase or static config | `getPublicSeoSettings` if dynamic SEO is later approved |
-
-## Authentication And Admin
-
-- Included single-admin bootstrap: unchanged and sufficient for the public-frontend phase.
-- Required roles and ownership rules: no new roles added.
-- Required admin modules: none implemented in this phase.
-- Session or identity-provider changes: none.
-- Protected foundation verified unchanged: no edits to `src/db`, `drizzle`, `src/lib/auth`, `src/lib/repositories`, `src/proxy.ts`, `src/app/login`, `src/app/admin`, or `src/app/api/auth`.
+No blanket full-site revalidation is implemented or recommended for isolated future content changes.
 
 ## SEO Artifacts
 
-| Route/artifact | Implementation file | Metadata source | Dynamic dependency | Verified |
-| --- | --- | --- | --- | --- |
-| `/` | `src/app/(public)/page.tsx`, `src/components/public/seo/metadata.ts` | `docs/SEO-SPEC.md`, `seoRoutes` | Fixture SEO only | Type/lint verified; browser metadata verification blocked locally. |
-| Public subpages | Route-level `metadata` exports via `metadataFor(route)` | `docs/SEO-SPEC.md`, `seoRoutes` | Fixture SEO only | Type/lint verified; browser metadata verification blocked locally. |
-| `/marken/[slug]` | `generateMetadata` in `src/app/(public)/marken/[slug]/page.tsx` | Brand fixture title/description | Static fixture brand list | Type/lint verified. |
-| `LocalBusiness` | `src/components/public/seo/schema.ts` | Visible store facts | `storeDetails` fixture | Present on `/` and `/kontakt`; no reviews, ratings, geo, social URLs, or ecommerce data. |
-| `BreadcrumbList` | `src/components/public/seo/schema.ts` | Visible breadcrumbs | Route-local breadcrumb arrays | Present on public subpages. |
-| Sitemap | `src/app/sitemap.ts` | `seoRoutes`, active brand fixtures | Fixture brand list | Type/lint verified; runtime route verification blocked locally. |
-| Robots | `src/app/robots.ts` | `siteUrl` | None | Type/lint verified; runtime route verification blocked locally. |
-| Redirects | `next.config.ts` | Approved SEO redirect list | None | Only `/team -> /ueber-uns` and `/brands -> /marken` implemented as permanent redirects; runtime verification blocked locally. |
-| Icons | `src/app/favicon.ico`, `src/app/icon.png`, `src/app/apple-icon.png` | Provided Checkpot favicon/logo assets | None | Files present. |
-| Social image | `public/customer/og-image.jpg` | Provided Checkpot image asset | None | File present; final crop/customer approval still recommended. |
-
-## Internal Linking
-
-- Homepage links to `/marken`, `/outfits`, `/ueber-uns`, and `/kontakt`.
-- Footer links to `/kontakt`, `/impressum`, and `/datenschutz`.
-- Public subpages include visible breadcrumbs.
-- Brand overview links to each active brand detail route.
-- Each brand detail route links back to `/marken`.
-- Each brand detail route links to `/kontakt`.
-- Each brand detail route links to related brands where fixture data provides active related slugs.
-- Contact and content pages avoid map embeds and external provider loading.
+- Public metadata uses `metadataBase` and the approved title template `%s | Checkpot Hietzing`.
+- Homepage metadata comes from `metadataFor("/")` and does not contain `Admin Platform`.
+- Canonical URLs, robots directives, social image contract, noindex legal pages, sitemap, and robots behavior are implemented through the existing public SEO helpers/routes.
+- `LocalBusiness` JSON-LD is present on `/` and `/kontakt` using only visible store facts.
+- `BreadcrumbList` JSON-LD matches visible breadcrumbs on public subpages.
+- No `Product`, `Offer`, cart, checkout, review, rating, geo-coordinate, social-profile, or unsupported certification structured data is emitted.
+- `next.config.ts` contains only the approved 301 redirects: `/team -> /ueber-uns` and `/brands -> /marken`.
 
 ## Motion Implementation
 
-| Route | Section/element | Component/style | Trigger | Mobile/reduced fallback | Verified |
-| --- | --- | --- | --- | --- | --- |
-| All public routes | Buttons and text links | `src/app/(public)/public.css` | Hover/focus/active | Reduced motion keeps color/focus feedback without spatial movement | CSS/type/lint verified; browser verification blocked locally. |
-| All public routes | Image cards | `ImageCard`, `public.css` | Hover/focus-within | Reduced motion removes scale/transform | CSS/type/lint verified; browser verification blocked locally. |
-| Approved reveal sections | Elements with `data-reveal` | `RevealController`, `public.css` | IntersectionObserver progressive enhancement | Content visible without JS; reduced motion disables reveal movement and hides nothing | CSS/type/lint verified; browser verification blocked locally. |
-| Homepage hero | Hero image/content | `public.css` | Initial CSS animation only | Reduced motion removes transform/animation | CSS/type/lint verified; browser verification blocked locally. |
+- Content is visible without JavaScript.
+- Reveal motion is opt-in through explicit `data-reveal` only; no generic animation is applied to every section.
+- The revised controller rescans after client-side navigation and observes newly mounted elements.
+- Elements are never left hidden if the observer does not run; a timeout fallback reveals pending items.
+- `prefers-reduced-motion` removes spatial movement and scroll reveal behavior while preserving functional feedback.
+- No parallax, scroll hijacking, pinned scenes, bouncing UI, neon/glow effects, or autoplay spectacle was added.
 
-No generic fade-up was applied to every section. No parallax, scroll hijacking, pinned storytelling, autoplay spectacle, bouncing UI, neon/glow effects, or content-obscuring animation was added.
+## Responsive Navigation
 
-## Environment And External Services
-
-| Variable/service | Purpose | Required phase | Owner | Status |
-| --- | --- | --- | --- | --- |
-| `DATABASE_URL` | Neon connection | Backend | Backend integration | Not used by public presentation components. |
-| Resend/email provider | Contact inquiry delivery | Backend | Backend integration | Not connected. Frontend-only form states implemented. |
-| Vercel Blob/storage | Media storage | Backend/admin | Backend integration | Not connected. Local public assets used for frontend phase only. |
-| Analytics/tag manager | Measurement | Release or later if approved | Customer/implementation | Not connected. |
-| Map provider | Embedded maps | Not approved for this phase | N/A | Not connected. Contact page uses external route-planning link only. |
-| Consent provider | Consent management | Release or later if approved | Customer/implementation | Not connected. |
-
-## Media And Uploads
-
-- Required media types: store/founder photography, outfit/fashion photography, brand-support imagery, favicon/icon/social image.
-- Current frontend assets: copied to `public/customer/` from approved existing project media.
-- Maximum display dimensions: responsive CSS and `next/image` sizes are implemented per page layout; source files remain replaceable.
-- Alt-text ownership: frontend fixture owns current alt text; future CMS/admin media records should store alt text per image.
-- Upload/crop behavior: not implemented in this phase.
-- Deletion behavior: not implemented in this phase.
-- Remaining media requirement: customer should approve final hero/social-image crop and any final brand imagery before frontend freeze.
+- Closed mobile header target is compact at roughly 64-88px.
+- Tablet no longer uses a large sticky multi-row navigation.
+- Mobile menu button exposes an accessible name, `aria-expanded`, and menu relationship.
+- Menu can be opened/closed by keyboard, closes on Escape, and closes after internal navigation.
+- Desktop navigation remains calm and visible.
+- Primary visit CTA remains available without dominating the smallest viewport.
 
 ## UI State Coverage
 
-- [x] Loading states: route-level `src/app/(public)/loading.tsx` plus form submitting state.
-- [x] Empty states: brand/outfit empty-state sections for unpublished or absent fixture data.
-- [x] Validation errors: contact form required fields, email format, message length.
-- [x] External-service/server errors: contact form server-error fixture state without external service connection.
-- [x] Success confirmation: contact form success state.
-- [x] Disabled/submitting states: contact form submit button and fields.
-- [x] Hover/focus/active states: links, CTA links, image cards, nav, form fields.
-- [x] Keyboard and focus states: semantic links/buttons/inputs, skip link, visible focus styling.
-- [x] Reduced-motion behavior: CSS media query and `RevealController` gate.
-- [x] Approved scroll-motion behavior: only explicit reveal hooks, progressive enhancement.
-- [x] Metadata, canonicals, social previews, and structured data: implemented in route metadata and JSON-LD helpers.
-- [x] Sitemap, robots, and index/noindex behavior: implemented through Next metadata routes and route metadata.
-
-## Responsive And Accessibility Verification
-
-Target widths required by the approved contracts:
-
-- 390px
-- 768px
-- 1024px
-- 1440px
-- Representative wide screen: 1920px
-
-Implementation includes semantic landmarks, skip link, visible focus states, accessible labels and validation feedback, copyable address text, external-route link labeling, meaningful alt text for informative images, decorative-empty alt usage where applicable, sufficient contrast tokens, and touch-friendly controls.
-
-Local browser verification is blocked in this environment:
-
-- `npm run dev -- --hostname=127.0.0.1 --port=3000` fails during Next startup with `Error: spawn EPERM`.
-- `npm run build` compiles the application but fails at Next's internal "Running TypeScript ..." worker/process step with `spawn EPERM`.
-- The browser connector reports no browser is available.
-- Playwright packages are not installed in `node_modules`.
-- No local Chrome or Edge executable was discoverable from the shell.
-
-Manual source-level checks and repository checks completed where possible; full viewport/browser verification must be repeated in an environment that allows Next to spawn its worker processes and provides a browser.
+- Default, hover, focus, active states: links, CTA links, nav, menu button, image cards, form controls.
+- Loading states: public route `loading.tsx` plus contact form submitting state.
+- Empty states: brands and outfits render only when the corresponding collection is actually empty.
+- Validation errors: contact form required fields, email format, and message length.
+- Server-error fixture: contact form message containing the error trigger displays a natural fallback message.
+- Success state: contact form confirmation.
+- Disabled/submitting state: form fields and submit button.
+- Unavailable/unpublished content: represented through empty states only where fixture collections are absent.
 
 ## Verification Results
 
 | Check | Command/width | Result |
 | --- | --- | --- |
+| Public implementation wording scan | `rg "Frontend|Backend|Fixture|fixture|Admin-System|Resend|Relaunch|Frontend-Bestätigung|simuliert|implement|Phase" "src/app/(public)" "src/components/public"` | Passed for visible public page/component copy. Remaining fixture word only appears in private import paths if scanning fixture files. |
+| Shop-mechanic wording scan | `rg "Warenkorb|Online-Shop|Bestellung|nicht shop|Preis|Lager|Verfügbarkeit" "src/app/(public)" "src/components/public" "src/content/fixtures"` | Passed for targeted visible copy after revision. |
 | Public forbidden imports | `rg "@/db|@/lib/auth|@/lib/repositories|@neondatabase|drizzle" -- "src/app/(public)" "src/components/public" "src/content/fixtures" "src/lib/contracts"` | Passed: no matches. |
 | Protected foundation diff | `git diff --name-only -- src/db drizzle src/lib/auth src/lib/repositories src/proxy.ts src/app/login src/app/admin src/app/api/auth` | Passed: no protected foundation changes. |
-| Type check | `npm run typecheck` | Passed after regenerating/removing stale generated Next dev validator state. |
+| Type check | `npm run typecheck` | Passed. |
 | Lint | `npm run lint` | Passed. |
-| Production build | `npm run build` | Blocked: app compiles, then Next fails at internal TypeScript worker/process step with `spawn EPERM`. |
-| Dev server | `npm run dev -- --hostname=127.0.0.1 --port=3000` | Blocked: Next dev startup fails with `spawn EPERM`. |
-| Browser widths | 390, 768, 1024, 1440, 1920 | Blocked locally because no usable browser/dev server was available. |
+| Production build | `npm run build` | Blocked by environment after successful compilation: Next reaches `Running TypeScript ...`, then fails with `spawn EPERM`. Standalone `npm run typecheck` passes. |
+| Dev server | `npm run dev -- --hostname=127.0.0.1 --port=3000` | Blocked by environment: Next dev startup fails with `spawn EPERM`. |
+| Browser widths | 390, 768, 1024, 1440, 1920 | Not run locally because the dev server cannot start and no usable browser surface is available. |
+| Direct URLs and client navigation | All public routes | Not run locally because browser verification is blocked. |
 | Redirect runtime | `/team`, `/brands` | Implemented in `next.config.ts`; runtime verification blocked locally. |
 | Sitemap/robots runtime | `/sitemap.xml`, `/robots.txt` | Implemented; runtime verification blocked locally. |
 
+## Browser Verification Checklist For Freeze Environment
+
+Run on every public route at 390px, 768px, 1024px, 1440px, and 1920px:
+
+- Direct URL load.
+- Client-side navigation from another public route.
+- Cards visible after internal navigation.
+- No element permanently `opacity: 0`.
+- No hydration mismatch, React error, Next overlay, or console runtime error.
+- No unexplained blank images; visible images complete successfully.
+- No horizontal overflow.
+- Mobile menu open, close, Escape close, and visible focus.
+- Keyboard navigation and touch target checks.
+- Reduced-motion behavior.
+- Correct heading hierarchy.
+- Correct homepage title and route metadata.
+- Visible breadcrumbs and matching `BreadcrumbList`.
+- Contact form validation, submitting, success, server-error, and disabled states.
+- Populated and empty collection behavior.
+- Redirects, sitemap, and robots.
+
 ## Frontend Freeze Readiness
 
-- Visual approval: pending customer/frontend-freeze workflow.
-- Responsive verification: implementation complete; real-browser verification blocked locally by `spawn EPERM` and unavailable browser.
-- Known visual issues: none found through source review; browser pass still required.
-- Content still awaiting customer approval: final legal notice/privacy copy, final social-image crop, final media selection/crops, optional full legacy URL migration inventory.
-- Changes allowed during backend integration: replace fixtures with repository DTOs at route composition boundaries only; preserve public presentation component props and serializable contracts unless freeze workflow approves a contract change.
+- Visual/customer approval: pending.
+- Real-browser viewport verification: pending unless a browser-capable environment can run it.
+- Known source-level visual issues: none identified after the focused revision.
+- Content still awaiting customer approval: final legal notice, final privacy policy, final social-image crop, final media/crop selection.
+- Changes allowed during backend integration: replace fixtures with repository DTOs at route composition boundaries only; preserve public presentation props unless the freeze workflow approves a contract change.
 - Protected foundation verified unchanged: yes.
-- SEO specification verified: implemented for approved current routes and explicit redirects only.
-- Motion plan verified: implemented source-level; browser verification still required.
 
 ## Unresolved Issues
 
-- Local environment blocks full production build completion and dev-server/browser verification with `spawn EPERM`.
-- Full real-browser verification at 390px, 768px, 1024px, 1440px, and 1920px still needs to run in an environment with a working browser.
-- Final legal text for `/impressum` and `/datenschutz` should be customer/legal approved before freeze.
-- Final social-image/hero imagery should be customer approved before freeze.
-- Complete legacy URL inventory remains a downstream SEO migration task; only `/team` and `/brands` redirects were implemented in this phase.
+- Full real-browser verification at 390px, 768px, 1024px, 1440px, and 1920px still must run before frontend freeze.
+- If the local `spawn EPERM` process restriction persists, production build completion and dev-server/browser verification must be repeated in an environment that permits Next worker processes.
+- Final legal and privacy copy still need responsible customer/legal approval.
+- Additional verified brand-specific imagery is still required if photographic brand detail pages are desired for more brands.
+- Complete legacy URL inventory remains a downstream SEO migration task; only `/team` and `/brands` redirects are in scope here.

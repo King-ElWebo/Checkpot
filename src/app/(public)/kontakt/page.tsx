@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { Breadcrumbs } from "@/components/public/layout/breadcrumbs";
 import { ContactForm } from "@/components/public/forms/contact-form";
@@ -6,7 +7,7 @@ import { JsonLd } from "@/components/public/seo/json-ld";
 import { breadcrumbJsonLd, localBusinessJsonLd } from "@/components/public/seo/schema";
 import { metadataFor } from "@/components/public/seo/metadata";
 import { CtaLink } from "@/components/ui/cta-link";
-import { storeDetails } from "@/content/fixtures/checkpot";
+import { imagery, storeDetails } from "@/content/fixtures/checkpot";
 
 const breadcrumbs = [
   { label: "Start", href: "/" },
@@ -27,14 +28,25 @@ export default function ContactPage() {
         <p className="public-eyebrow">Besuch planen</p>
         <h1>Kontakt & Öffnungszeiten</h1>
         <p className="lead">
-          Adresse, Öffnungszeiten und direkte Kontaktwege bleiben sichtbar und kopierbar. Der Routenlink öffnet extern;
-          es wird keine Karte auf der Website geladen.
+          Kommen Sie vorbei, rufen Sie an oder schreiben Sie eine Nachricht. Die Adresse bleibt gut lesbar und der
+          Routenlink öffnet die Planung extern.
         </p>
       </section>
       <section className="section">
         <div className="container contact-layout">
           <div className="contact-card">
             <h2>Checkpot Hietzing</h2>
+            <div className="contact-photo">
+              <span aria-hidden="true">Bild folgt</span>
+              <Image
+                alt={imagery.storeDetails[0].alt}
+                fill
+                loading="lazy"
+                sizes="(max-width: 980px) 100vw, 34vw"
+                src={imagery.storeDetails[0].src}
+                style={{ objectPosition: imagery.storeDetails[0].objectPosition }}
+              />
+            </div>
             <dl className="contact-list">
               <div>
                 <dt>Adresse</dt>
@@ -53,7 +65,7 @@ export default function ContactPage() {
               <div>
                 <dt>WhatsApp</dt>
                 <dd>
-                  <a href={storeDetails.whatsappHref} rel="noreferrer" target="_blank">
+                  <a href={storeDetails.whatsappHref} rel="noopener noreferrer" target="_blank">
                     {storeDetails.whatsapp}
                   </a>
                 </dd>
@@ -73,8 +85,8 @@ export default function ContactPage() {
           <div className="contact-card">
             <h2>Nachricht schreiben</h2>
             <p>
-              Das Formular bildet die spätere Kontaktstrecke mit Validierung, Erfolg, Fehler und deaktiviertem
-              Sendezustand ab. Versand per Resend wird erst in der Backend-Phase angebunden.
+              Haben Sie eine Frage zu einem Look, einer Marke oder einem Besuch im Geschäft? Schreiben Sie kurz, worum
+              es geht.
             </p>
             <ContactForm />
           </div>

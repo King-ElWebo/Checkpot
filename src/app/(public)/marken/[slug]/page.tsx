@@ -8,7 +8,7 @@ import { breadcrumbJsonLd } from "@/components/public/seo/schema";
 import { ImageCard } from "@/components/public/sections/image-card";
 import { SectionHeading } from "@/components/public/sections/section-heading";
 import { CtaLink } from "@/components/ui/cta-link";
-import { brands, getBrandBySlug, getRelatedBrands, siteUrl } from "@/content/fixtures/checkpot";
+import { brands, getBrandBySlug, getRelatedBrands, imagery, siteUrl } from "@/content/fixtures/checkpot";
 
 type BrandPageProps = {
   params: Promise<{ slug: string }>;
@@ -67,6 +67,7 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
     { label: brand.name, href: `/marken/${brand.slug}` },
   ] as const;
   const relatedBrands = getRelatedBrands(brand);
+  const verifiedBrandImage = brand.slug === "sorgenfri" ? imagery.textileDetail : null;
 
   return (
     <div className="public-page">
@@ -75,14 +76,32 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
         <Breadcrumbs items={[...breadcrumbs]} />
       </div>
       <section className="container brand-detail">
-        <ImageCard image={brand.image} ratio="portrait" title={`${brand.name} bei Checkpot`} text={brand.note} />
+        {verifiedBrandImage ? (
+          <ImageCard
+            image={verifiedBrandImage}
+            ratio="portrait"
+            title={`${brand.name} bei Checkpot`}
+            text={brand.note}
+            sizes="(max-width: 980px) 100vw, 38vw"
+          />
+        ) : (
+          <div className="brand-tile brand-detail-tile" aria-label={`${brand.name} bei Checkpot`}>
+            <span className="brand-initial" aria-hidden="true">
+              {brand.name.slice(0, 1)}
+            </span>
+            <span>
+              <strong>{brand.name}</strong>
+              <p>{brand.summary}</p>
+            </span>
+          </div>
+        )}
         <div className="brand-detail-copy">
           <p className="public-eyebrow">Marke</p>
           <h1>{brand.name} bei Checkpot</h1>
           <p className="lead">{brand.detail}</p>
-          <p>{brand.note} Checkpot zeigt hier keine Preise, keine Lagerbestände und keine Online-Bestellung.</p>
+          <p>{brand.note} Am besten lässt sich die Auswahl bei Checkpot direkt anprobieren und mit Christa abstimmen.</p>
           <div className="inline-actions">
-            <CtaLink href="/mode" label="Aktuelle Kollektion ansehen" />
+            <CtaLink href="/mode" label="Aktuelle Auswahl ansehen" />
             <CtaLink href="/kontakt" label="Geschäft besuchen" variant="secondary" />
           </div>
         </div>
@@ -91,12 +110,18 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
         <section className="section section-muted">
           <div className="container">
             <SectionHeading title="Passende Marken">
-              <p>Diese Labels passen in der aktuellen Fixture-Auswahl thematisch zu {brand.name}.</p>
+              <p>Diese Labels liegen in der Checkpot-Auswahl nahe bei {brand.name} und können gut im Gespräch verglichen werden.</p>
             </SectionHeading>
-            <div className="grid-3">
+            <div className="brand-index">
               {relatedBrands.map((related) => (
-                <Link className="brand-card" href={`/marken/${related.slug}`} key={related.slug}>
-                  <ImageCard image={related.image} title={related.name} text={related.summary} ratio="landscape" />
+                <Link className="brand-tile" href={`/marken/${related.slug}`} key={related.slug}>
+                  <span className="brand-initial" aria-hidden="true">
+                    {related.name.slice(0, 1)}
+                  </span>
+                  <span>
+                    <strong>{related.name}</strong>
+                    <p>{related.summary}</p>
+                  </span>
                 </Link>
               ))}
             </div>

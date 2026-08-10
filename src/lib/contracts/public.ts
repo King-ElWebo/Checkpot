@@ -16,6 +16,7 @@ export type PublicImage = {
   src: string;
   alt: string;
   caption?: string;
+  objectPosition?: string;
 };
 
 export type PublicLink = {

@@ -12,7 +12,12 @@ export function CtaLink({ href, label, external = false, variant = "primary" }: 
 
   if (external || !hrefValue.startsWith("/")) {
     return (
-      <a className={className} href={hrefValue} rel={hrefValue.startsWith("http") ? "noreferrer" : undefined} target={hrefValue.startsWith("http") ? "_blank" : undefined}>
+      <a
+        className={className}
+        href={hrefValue}
+        rel={hrefValue.startsWith("http") ? "noopener noreferrer" : undefined}
+        target={hrefValue.startsWith("http") ? "_blank" : undefined}
+      >
         {label}
       </a>
     );

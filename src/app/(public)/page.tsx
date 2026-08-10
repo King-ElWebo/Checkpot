@@ -25,12 +25,11 @@ export default function HomePage() {
           <h1>Willkommen bei Checkpot Hietzing</h1>
           <p>
             Hochwertige feminine Mode, persönliche typgerechte Beratung und ausgewählte Marken in einem Geschäft,
-            das zum Entdecken einlädt.
+            das zum Anprobieren, Kombinieren und Wiederkommen einlädt.
           </p>
           <div className="hero-actions">
             <CtaLink href="/outfits" label="Outfits ansehen" />
-            <CtaLink href="/marken" label="Marken entdecken" variant="secondary" />
-            <CtaLink href="/kontakt" label="Geschäft besuchen" variant="text" />
+            <CtaLink href="/kontakt" label="Geschäft besuchen" variant="secondary" />
           </div>
           <div className="hero-note" aria-label="Kurzprofil">
             <span>Seit 2009 in Hietzing</span>
@@ -45,6 +44,7 @@ export default function HomePage() {
             preload
             sizes="(max-width: 980px) 100vw, 45vw"
             src={imagery.hero.src}
+            style={{ objectPosition: imagery.hero.objectPosition }}
           />
         </div>
       </section>
@@ -54,8 +54,8 @@ export default function HomePage() {
           <div>
             <SectionHeading eyebrow="Beratung" title="Mode, die im Gespräch entsteht">
               <p>
-                Checkpot ist kein Online-Shop. Die Website zeigt eine Auswahl, der eigentliche Moment passiert im
-                Geschäft: Farben sehen, Stoffe fühlen, Proportionen prüfen und gemeinsam kombinieren.
+                Die Website gibt einen ersten Eindruck. Im Geschäft geht es um das, was online schwer zu spüren ist:
+                Farben sehen, Stoffe fühlen, Proportionen prüfen und gemeinsam kombinieren.
               </p>
             </SectionHeading>
             <div className="inline-actions">
@@ -77,9 +77,9 @@ export default function HomePage() {
               <ImageCard
                 key={outfit.title}
                 image={outfit.image}
-                reveal
                 title={outfit.title}
                 text={`${outfit.season} · ${outfit.note}`}
+                sizes="(max-width: 720px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
             ))}
           </div>
@@ -94,14 +94,22 @@ export default function HomePage() {
         <div className="container">
           <SectionHeading eyebrow="Marken" title="Ausgewählte Labels, persönlich erklärt">
             <p>
-              Die Markenübersicht hilft bei der Orientierung. Verfügbarkeit, Größen und passende Kombinationen werden
-              bewusst im Geschäft geklärt.
+              Die Markenübersicht hilft bei der Orientierung. Im Geschäft zeigt Christa, welche Farben, Schnitte und
+              Kombinationen zu Ihnen passen.
             </p>
           </SectionHeading>
-          <div className="brand-grid">
+          <div className="brand-index">
             {featuredBrands.map((brand) => (
-              <Link className="brand-card" data-reveal="item" href={`/marken/${brand.slug}`} key={brand.slug}>
-                <ImageCard image={brand.image} title={brand.name} text={brand.summary} ratio="landscape" />
+              <Link className="brand-tile" data-reveal="item" href={`/marken/${brand.slug}`} key={brand.slug}>
+                <span>
+                  <span className="brand-initial" aria-hidden="true">
+                    {brand.name.slice(0, 1)}
+                  </span>
+                </span>
+                <span>
+                  <strong>{brand.name}</strong>
+                  <p>{brand.summary}</p>
+                </span>
               </Link>
             ))}
           </div>
@@ -128,10 +136,10 @@ export default function HomePage() {
           </div>
           <div className="card">
             <p className="public-eyebrow">Nachhaltiger einkaufen</p>
-            <h2>Bewusst auswählen statt schnell bestellen</h2>
+            <h2>Bewusst auswählen, länger Freude haben</h2>
             <p>
               Checkpot zeigt fair und nachhaltig orientierte Mode nur dort als konkrete Eigenschaft, wo sie zur Marke
-              oder zum Stück belegt ist. Im Geschäft wird erklärt, was aktuell gilt.
+              oder zum Stück belegt ist. Im Gespräch wird erklärt, was aktuell gilt und gut zu Ihnen passt.
             </p>
             <CtaLink href="/fair-trade" label="Prinzipien lesen" variant="text" />
           </div>

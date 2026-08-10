@@ -24,14 +24,13 @@ export default function PrivacyPage() {
         <article className="legal-content">
           <h1>Datenschutz</h1>
           <p>
-            Die finale Datenschutzerklärung wird vom Auftraggeber mit den tatsächlich eingesetzten Diensten
-            bereitgestellt. In dieser Frontend-Phase werden keine Analytics-, Meta-, reCAPTCHA-, Karten-, E-Mail- oder
-            sonstigen externen Dienste geladen.
+            Die finale Datenschutzerklärung wird mit den tatsächlich eingesetzten Diensten bereitgestellt. Bis zur
+            Veröffentlichung gilt: Externe Dienste werden nicht ohne die dafür vorgesehene Zustimmung geladen.
           </p>
           <h2>Kontaktformular</h2>
           <p>
-            Das sichtbare Formular ist eine Frontend-Darstellung der späteren Eingaben Vorname, Nachname, E-Mail und
-            Nachricht. Es sendet in dieser Phase keine Daten an einen externen Dienst.
+            Das Kontaktformular fragt Vorname, Nachname, E-Mail-Adresse und Nachricht ab. Die endgültige Verarbeitung
+            wird in der freigegebenen Datenschutzerklärung beschrieben.
           </p>
           <h2>Externe Links</h2>
           <p>

@@ -4,8 +4,10 @@ import { Breadcrumbs } from "@/components/public/layout/breadcrumbs";
 import { JsonLd } from "@/components/public/seo/json-ld";
 import { breadcrumbJsonLd } from "@/components/public/seo/schema";
 import { metadataFor } from "@/components/public/seo/metadata";
+import { ImageCard } from "@/components/public/sections/image-card";
 import { SectionHeading } from "@/components/public/sections/section-heading";
 import { CtaLink } from "@/components/ui/cta-link";
+import { imagery } from "@/content/fixtures/checkpot";
 
 const breadcrumbs = [
   { label: "Start", href: "/" },
@@ -30,27 +32,20 @@ export default function FairTradePage() {
         </p>
       </section>
       <section className="section">
-        <div className="container grid-3">
-          <div className="card">
-            <h2>Auswahl statt Masse</h2>
-            <p>
-              Die Website zeigt kein endloses Sortiment. Im Geschäft wird erklärt, welche Stücke zur Saison, zur
-              Kundin und zu vorhandenen Lieblingsstücken passen.
-            </p>
-          </div>
-          <div className="card">
-            <h2>Belegte Aussagen</h2>
-            <p>
-              Begriffe wie fair trade, 100% Baumwolle oder Global Organic Textile Standard (GOTS) werden nur dort
-              verwendet, wo sie für Marke, Kollektion oder Kleidungsstück aktuell belegbar sind.
-            </p>
-          </div>
-          <div className="card">
-            <h2>Länger tragbar</h2>
-            <p>
-              Gute Beratung hilft, Fehlkäufe zu vermeiden: Farben, Materialgefühl, Schnitt und Kombination werden vor
-              Ort geprüft.
-            </p>
+        <div className="container brand-context">
+          <ImageCard image={imagery.sustainabilityShelf} ratio="portrait" sizes="(max-width: 980px) 100vw, 42vw" />
+          <div>
+            <SectionHeading title="Drei einfache Prinzipien">
+              <p>
+                Nachhaltigkeit bleibt bei Checkpot konkret: nicht als pauschales Versprechen, sondern als sorgfältige
+                Auswahl und ehrliche Beratung zu den jeweiligen Stücken.
+              </p>
+            </SectionHeading>
+            <ul className="principle-list">
+              <li>Weniger Masse, mehr Auswahl mit Blick auf Tragegefühl, Farbe und Kombinierbarkeit.</li>
+              <li>Begriffe wie fair trade, 100% Baumwolle oder Global Organic Textile Standard (GOTS) nur dort, wo sie aktuell belegbar sind.</li>
+              <li>Persönliche Beratung, damit ein Stück häufiger getragen wird und lange Freude macht.</li>
+            </ul>
           </div>
         </div>
       </section>

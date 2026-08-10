@@ -8,17 +8,33 @@ type ImageCardProps = {
   text?: string;
   ratio?: "portrait" | "landscape" | "square";
   reveal?: boolean;
+  sizes?: string;
+  preload?: boolean;
 };
 
-export function ImageCard({ image, title, text, ratio = "portrait", reveal = false }: ImageCardProps) {
+export function ImageCard({
+  image,
+  title,
+  text,
+  ratio = "portrait",
+  reveal = false,
+  sizes = "(max-width: 720px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  preload = false,
+}: ImageCardProps) {
   return (
     <figure className={`image-card image-card-${ratio}`} data-reveal={reveal ? "item" : undefined}>
       <span className="image-card-media">
+        <span aria-hidden="true" className="image-card-fallback">
+          Bild folgt
+        </span>
         <Image
           fill
           alt={image.alt}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          loading={preload ? undefined : "lazy"}
+          preload={preload}
+          sizes={sizes}
           src={image.src}
+          style={{ objectPosition: image.objectPosition ?? "50% 50%" }}
         />
       </span>
       {title || text || image.caption ? (

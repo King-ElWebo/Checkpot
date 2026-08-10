@@ -12,6 +12,14 @@ export function SiteFooter() {
           <p>
             {storeDetails.hours.map((hour) => `${hour.label} ${hour.value}`).join(" · ")}
           </p>
+          <p>
+            <a href={storeDetails.phoneHref}>{storeDetails.phone}</a> · <a href={storeDetails.emailHref}>{storeDetails.email}</a>
+          </p>
+          <p>
+            <a href={storeDetails.routePlanningHref} rel="noopener noreferrer" target="_blank">
+              Route planen
+            </a>
+          </p>
         </div>
         <nav aria-label="Footer Navigation">
           {navigationLinks.slice(0, 5).map((item) => (

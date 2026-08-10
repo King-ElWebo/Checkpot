@@ -33,7 +33,13 @@ export default function AboutPage() {
       </section>
       <section className="section">
         <div className="container split">
-          <ImageCard image={imagery.founder} ratio="portrait" title="Christa Hausmair" text="Gründerin und persönliche Ansprechpartnerin." />
+          <ImageCard
+            image={imagery.founder}
+            ratio="portrait"
+            title="Christa Hausmair"
+            text="Gründerin und persönliche Ansprechpartnerin."
+            sizes="(max-width: 980px) 100vw, 38vw"
+          />
           <div>
             <SectionHeading title="Beratung mit Ruhe und Blick fürs Detail">
               <p>
@@ -43,8 +49,8 @@ export default function AboutPage() {
               </p>
             </SectionHeading>
             <p className="lead">
-              Der Relaunch zeigt dieses reale Geschäft: keine Shop-Raster, keine künstliche Inszenierung, sondern
-              Menschen, Outfits, Materialien und ein Ort, an dem Beratung zählt.
+              Wer Checkpot besucht, bekommt keine fertige Formel. Christa schaut auf Farbe, Schnitt, Anlass und das,
+              was Kundinnen bereits gerne tragen.
             </p>
             <div className="inline-actions">
               <CtaLink href="/mode" label="Aktuelle Mode ansehen" />
@@ -54,10 +60,11 @@ export default function AboutPage() {
         </div>
       </section>
       <section className="section section-muted">
-        <div className="container grid-2">
+        <div className="container store-gallery">
           {imagery.storeDetails.map((image) => (
-            <ImageCard key={image.src} image={image} ratio="landscape" />
+            <ImageCard key={image.src} image={image} ratio="landscape" sizes="(max-width: 720px) 100vw, 50vw" />
           ))}
+          <ImageCard image={imagery.sustainabilityShelf} ratio="landscape" sizes="(max-width: 720px) 100vw, 50vw" />
         </div>
       </section>
     </div>

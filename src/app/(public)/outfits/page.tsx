@@ -27,37 +27,40 @@ export default function OutfitsPage() {
         <p className="public-eyebrow">Inspiration</p>
         <h1>Outfit-Inspirationen</h1>
         <p className="lead">
-          Komplette Looks zeigen, wie neue Stücke getragen und kombiniert werden können. Die Auswahl bleibt bewusst
-          redaktionell, nicht verkäuferisch.
+          Komplette Looks zeigen, wie Farben, Schnitte und Schichten zusammenwirken. Im Geschäft lässt sich alles in
+          Ruhe anprobieren und mit eigenen Lieblingsstücken weiterdenken.
         </p>
       </section>
       <section className="section">
         <div className="container">
-          <div className="outfit-grid">
-            {outfits.map((outfit) => (
-              <ImageCard
-                key={outfit.title}
-                image={outfit.image}
-                reveal
-                title={outfit.title}
-                text={`${outfit.season} · ${outfit.note}`}
-              />
-            ))}
-          </div>
-          <div className="inline-actions">
-            <CtaLink href="/mode" label="Aktuelle Kollektion" variant="secondary" />
-            <CtaLink href="/kontakt" label="Zum Outfit anfragen" />
-          </div>
-        </div>
-      </section>
-      <section className="section section-muted">
-        <div className="container empty-state">
-          <SectionHeading title="Wenn ein Outfit nicht mehr verfügbar ist">
-            <p>
-              Unveröffentlichte oder nicht mehr aktuelle Looks werden später über das Admin-System ausgeblendet. Die
-              Seite bleibt mit einer klaren leeren Ansicht stabil, falls keine Outfits veröffentlicht sind.
-            </p>
-          </SectionHeading>
+          {outfits.length > 0 ? (
+            <>
+              <div className="lookbook-grid">
+                {outfits.map((outfit, index) => (
+                  <ImageCard
+                    key={outfit.title}
+                    image={outfit.image}
+                    reveal
+                    ratio={index === 1 ? "landscape" : "portrait"}
+                    title={outfit.title}
+                    text={`${outfit.season} · ${outfit.note}`}
+                    sizes="(max-width: 720px) 100vw, (max-width: 1200px) 50vw, 32vw"
+                  />
+                ))}
+              </div>
+              <div className="inline-actions">
+                <CtaLink href="/mode" label="Aktuelle Kollektion" variant="secondary" />
+                <CtaLink href="/kontakt" label="Outfit besprechen" />
+              </div>
+            </>
+          ) : (
+            <div className="empty-state">
+              <SectionHeading title="Neue Looks folgen">
+                <p>Christa stellt die nächste Auswahl gerade zusammen. Für aktuelle Kombinationen lohnt sich der Besuch im Geschäft.</p>
+              </SectionHeading>
+              <CtaLink href="/kontakt" label="Besuch planen" />
+            </div>
+          )}
         </div>
       </section>
     </div>

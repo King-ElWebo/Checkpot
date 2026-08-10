@@ -25,8 +25,8 @@ export default function ImprintPage() {
         <article className="legal-content">
           <h1>Impressum</h1>
           <p>
-            Die finalen österreichischen Anbieterangaben werden vom Auftraggeber bereitgestellt und vor Veröffentlichung
-            manuell gepflegt. Bis dahin werden nur bereits freigegebene öffentliche Kontaktdaten angezeigt.
+            Die finalen österreichischen Anbieterangaben werden vor Veröffentlichung ergänzt. Bis dahin werden nur die
+            bereits freigegebenen öffentlichen Kontaktdaten angezeigt.
           </p>
           <h2>Kontakt</h2>
           <p>{storeDetails.name}</p>
@@ -37,7 +37,7 @@ export default function ImprintPage() {
             E-Mail: <a href={storeDetails.emailHref}>{storeDetails.email}</a>
           </p>
           <h2>Rechtsträgerangaben</h2>
-          <p>Finale Rechtsträger-, Behörden- und Kammerangaben werden mit den freigegebenen Rechtstexten ergänzt.</p>
+          <p>Rechtsträger-, Behörden- und Kammerangaben folgen mit den freigegebenen Rechtstexten.</p>
           <div className="inline-actions">
             <CtaLink href="/kontakt" label="Kontakt" variant="secondary" />
             <CtaLink href="/datenschutz" label="Datenschutz" variant="text" />

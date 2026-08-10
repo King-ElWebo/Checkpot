@@ -134,14 +134,14 @@ export function ContactForm() {
         {errors.message ? <small id="message-error">{errors.message}</small> : null}
       </label>
       <div aria-live="polite" className="form-status">
-        {state === "success" ? "Danke. Ihre Nachricht ist als Frontend-Bestätigung sichtbar vorbereitet." : null}
+        {state === "success" ? "Danke für Ihre Nachricht. Wir melden uns so bald wie möglich." : null}
         {state === "server-error"
           ? "Die Nachricht konnte gerade nicht gesendet werden. Telefon, E-Mail und WhatsApp bleiben als Alternativen sichtbar."
           : null}
         {state === "validation-error" && hasErrors ? "Bitte prüfen Sie die markierten Felder." : null}
       </div>
       <button className="public-button" disabled={isSubmitting} type="submit">
-        {isSubmitting ? "Wird gesendet ..." : "Nachricht vorbereiten"}
+        {isSubmitting ? "Wird gesendet ..." : "Nachricht senden"}
       </button>
     </form>
   );
