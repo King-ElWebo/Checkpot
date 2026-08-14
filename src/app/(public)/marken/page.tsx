@@ -2,20 +2,23 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { StaggeredList } from "@/components/public/motion/staggered-list";
-import { brands, seoRoutes } from "@/content/fixtures/checkpot";
+import { listPublishedBrands } from "@/lib/repositories/brands";
+import { siteUrl } from "@/content/fixtures/checkpot";
 
-const seo = seoRoutes.find((r) => r.route === "/marken")!;
+const TITLE = "Unsere Marken | Checkpot Hietzing";
+const DESCRIPTION = "Ausgewählte, faire und nachhaltige Modemarken bei Checkpot Hietzing.";
+const CANONICAL = "/marken";
 
 export const metadata: Metadata = {
-  title: seo.title,
-  description: seo.description,
+  title: "Unsere Marken",
+  description: DESCRIPTION,
   alternates: {
-    canonical: seo.canonical,
+    canonical: CANONICAL,
   },
 };
 
-export default function MarkenPage() {
-  const activeBrands = brands.filter((b) => b.active);
+export default async function MarkenPage() {
+  const activeBrands = await listPublishedBrands();
 
   return (
     <div className="flex flex-col">

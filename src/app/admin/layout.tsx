@@ -20,8 +20,13 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
         <Link className="admin-brand" href="/admin">
           Admin Platform
         </Link>
-        <nav aria-label="Admin-Navigation">
+        <nav aria-label="Admin-Navigation" style={{ flexWrap: "wrap" }}>
           <Link href="/admin">Übersicht</Link>
+          <Link href="/admin/media">Medien</Link>
+          <Link href="/admin/brands">Marken</Link>
+          <Link href="/admin/collections">Kollektionen</Link>
+          <Link href="/admin/outfits">Outfits</Link>
+          <Link href="/admin/pages">Seiten</Link>
           <LogoutButton />
         </nav>
       </header>

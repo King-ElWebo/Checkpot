@@ -236,10 +236,15 @@ button:disabled {
 }
 
 .status-card,
-.workflow-panel {
+.workflow-panel,
+.admin-panel {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+}
+
+.admin-panel {
+  overflow: hidden;
 }
 
 .status-card {
@@ -362,3 +367,90 @@ button:disabled {
     animation-iteration-count: 1 !important;
   }
 }
+
+.admin-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th {
+  padding: 16px 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-subtle);
+}
+
+.admin-table td {
+  padding: 20px 24px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 150ms ease;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover td {
+  background: var(--surface-subtle);
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.table-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.table-action-btn:hover {
+  background: var(--border);
+}
+
+.table-action-delete {
+  color: #b91c1c;
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.table-action-delete:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.badge-featured {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--accent);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
