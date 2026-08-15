@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { storeDetails, seoRoutes, siteUrl, imagery } from "@/content/fixtures/checkpot";
 
@@ -38,11 +39,12 @@ export default function KontaktPage() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      
       <div className="mx-auto w-full max-w-[1400px] px-4 pt-12 lg:px-6">
         <Breadcrumbs
           items={[
@@ -52,130 +54,185 @@ export default function KontaktPage() {
         />
       </div>
 
+      {/* 1. CONTACT OPENING (Practical info first) */}
       <section className="mx-auto w-full max-w-[1400px] px-4 py-16 lg:px-6 lg:py-24">
-        <div className="mb-16 lg:mb-24">
-          <span className="mb-4 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#4A5568]">
-            Besuch & Beratung
-          </span>
-          <h1 className="text-4xl font-normal leading-[1.1] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl">
-            Kontakt & Öffnungszeiten
+        
+        <div className="mb-12 lg:mb-20">
+          <h1 className="font-display text-5xl lg:text-7xl text-[#1A1A1A] tracking-tight mb-6">
+            Besuchen Sie uns
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[#4A5568] sm:text-xl">
-            Wir freuen uns auf Ihren Besuch in unserer Boutique oder auf Ihre Nachricht.
+          <p className="text-xl text-[#4A5568] max-w-2xl leading-relaxed">
+            Wir freuen uns darauf, Sie persönlich in unserer Boutique in Hietzing zu beraten.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="flex flex-col lg:col-span-5 lg:col-start-1">
-            <div className="rounded-md bg-[#F9F9F8] p-8 lg:p-12">
-              <h2 className="mb-6 text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">Besuchen Sie uns</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          
+          <div className="lg:col-span-5 lg:col-start-1">
+            <div className="bg-[#F9F9F8] p-8 lg:p-12 rounded-sm mb-8">
+              <h2 className="font-display text-2xl text-[#1A1A1A] mb-6">{storeDetails.name}</h2>
               
-              <address className="space-y-1 not-italic text-[15px] leading-relaxed text-[#4A5568]">
-                <p className="font-medium text-[#1A1A1A]">{storeDetails.name}</p>
-                <p>{storeDetails.address.street}</p>
-                <p>{storeDetails.address.postalCode} {storeDetails.address.city}</p>
-                <p>Österreich</p>
+              <address className="not-italic text-[17px] text-[#4A5568] leading-relaxed mb-10">
+                {storeDetails.address.street}<br />
+                {storeDetails.address.postalCode} {storeDetails.address.city}<br />
+                Österreich
               </address>
 
-              <div className="mt-8 space-y-3 text-[15px] text-[#4A5568]">
-                <p>
-                  <span className="font-medium text-[#1A1A1A]">Telefon:</span>{" "}
-                  <a href={storeDetails.phoneHref} className="transition-colors hover:text-[#C01718]">{storeDetails.phone}</a>
-                </p>
-                <p>
-                  <span className="font-medium text-[#1A1A1A]">WhatsApp:</span>{" "}
-                  <a href={storeDetails.whatsappHref} className="transition-colors hover:text-[#C01718]">{storeDetails.whatsapp}</a>
-                </p>
-                <p>
-                  <span className="font-medium text-[#1A1A1A]">E-Mail:</span>{" "}
-                  <a href={storeDetails.emailHref} className="transition-colors hover:text-[#C01718]">{storeDetails.email}</a>
-                </p>
-              </div>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] mb-3">Öffnungszeiten</h3>
+                  <dl className="space-y-2 text-[15px] text-[#4A5568]">
+                    {storeDetails.hours.map((hour) => (
+                      <div key={hour.label} className="flex justify-between">
+                        <dt>{hour.label}</dt>
+                        <dd className="font-medium text-[#1A1A1A]">{hour.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
 
-              <div className="mt-12">
-                <a
-                  href={storeDetails.routePlanningHref}
-                  className="inline-flex items-center justify-center rounded-md bg-[#C01718] px-8 py-3.5 text-[15px] font-medium text-white transition-colors duration-150 ease-out hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
-                >
-                  Route planen (Maps)
-                </a>
+                <div className="pt-6 border-t border-[#E2E8F0]">
+                  <h3 className="text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] mb-3">Direkter Kontakt</h3>
+                  <div className="space-y-3 text-[15px]">
+                    <a href={storeDetails.phoneHref} className="flex items-center text-[#4A5568] hover:text-[#C01718] transition-colors">
+                      <span className="w-24">Telefon:</span>
+                      <span className="font-medium text-[#1A1A1A]">{storeDetails.phone}</span>
+                    </a>
+                    <a href={storeDetails.emailHref} className="flex items-center text-[#4A5568] hover:text-[#C01718] transition-colors">
+                      <span className="w-24">E-Mail:</span>
+                      <span className="font-medium text-[#1A1A1A]">{storeDetails.email}</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="mt-8 rounded-md border border-[#E2E8F0] p-8 lg:p-12">
-              <h2 className="mb-8 text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">Öffnungszeiten</h2>
-              <dl className="space-y-4 text-[15px] text-[#4A5568]">
-                {storeDetails.hours.map((hour) => (
-                  <div key={hour.label} className="flex justify-between border-b border-[#E2E8F0] pb-4 last:border-0 last:pb-0">
-                    <dt className="font-medium text-[#1A1A1A]">{hour.label}</dt>
-                    <dd>{hour.value}</dd>
-                  </div>
-                ))}
-              </dl>
+            {/* 2. ACTIONS: WhatsApp & Route */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href={storeDetails.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center rounded-sm bg-[#C01718] px-6 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+              >
+                Auf WhatsApp schreiben
+              </a>
+              <a
+                href={storeDetails.routePlanningHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-6 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#333333] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A] focus-visible:ring-offset-2"
+              >
+                Route planen
+              </a>
             </div>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7 lg:pt-8">
-            <h2 className="mb-10 text-3xl font-normal tracking-tight text-[#1A1A1A]">Schreiben Sie uns</h2>
-            <form className="space-y-8" action="/kontakt">
-              <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                    Vorname
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    autoComplete="given-name"
-                    className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-2 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px] sm:leading-6"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="surname" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                    Nachname
-                  </label>
-                  <input
-                    type="text"
-                    name="surname"
-                    id="surname"
-                    autoComplete="family-name"
-                    className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-2 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px] sm:leading-6"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label htmlFor="email" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                    E-Mail
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    autoComplete="email"
-                    className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-2 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px] sm:leading-6"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label htmlFor="message" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                    Ihre Nachricht
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows={4}
-                    className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-2 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px] sm:leading-6"
-                  />
-                </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <div className="relative aspect-square lg:aspect-[4/5] w-full overflow-hidden rounded-sm bg-[#E2E8F0]">
+              <Image
+                src={imagery.sustainabilityShelf.src}
+                alt={imagery.sustainabilityShelf.alt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+                style={{ objectPosition: imagery.sustainabilityShelf.objectPosition }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. CONTACT FORM */}
+      <section className="bg-[#F9F9F8] border-y border-[#E2E8F0] px-4 py-20 lg:px-6 lg:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            
+            <div className="lg:col-span-5">
+              <h2 className="font-display text-4xl text-[#1A1A1A] mb-6">Nachricht senden</h2>
+              <p className="text-[17px] text-[#4A5568] leading-relaxed mb-8">
+                Haben Sie eine Frage zu unserer Kollektion oder möchten Sie wissen, ob ein bestimmtes Stück vorrätig ist? Schreiben Sie uns einfach eine Nachricht.
+              </p>
+              
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#E2E8F0] mt-12 hidden lg:block">
+                <Image
+                  src={imagery.storeDetails[0].src}
+                  alt={imagery.storeDetails[0].alt}
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                  style={{ objectPosition: imagery.storeDetails[0].objectPosition }}
+                />
               </div>
-              <div className="pt-8">
-                <button
-                  type="button"
-                  className="inline-flex cursor-pointer items-center justify-center rounded-md bg-[#1A1A1A] px-8 py-3.5 text-[15px] font-medium text-white transition-colors duration-150 ease-out hover:bg-[#333333] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A] focus-visible:ring-offset-2"
-                >
-                  Nachricht senden
-                </button>
-              </div>
-            </form>
+            </div>
+
+            <div className="lg:col-span-6 lg:col-start-7 bg-white p-8 lg:p-12 rounded-sm border border-[#E2E8F0]">
+              <form className="space-y-8" action="/kontakt">
+                <div className="space-y-8">
+                  <div>
+                    <label htmlFor="name" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      autoComplete="name"
+                      required
+                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px]"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
+                      E-Mail
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      autoComplete="email"
+                      required
+                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px]"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
+                      Telefon <span className="text-[#A0AEC0] font-normal normal-case">(optional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      autoComplete="tel"
+                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px]"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
+                      Nachricht
+                    </label>
+                    <textarea
+                      name="message"
+                      id="message"
+                      rows={5}
+                      required
+                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px] resize-y"
+                    />
+                  </div>
+                </div>
+                
+                <div className="pt-6">
+                  <button
+                    type="submit"
+                    className="w-full inline-flex cursor-pointer items-center justify-center rounded-sm bg-[#1A1A1A] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+                  >
+                    Nachricht senden
+                  </button>
+                </div>
+              </form>
+            </div>
+
           </div>
         </div>
       </section>

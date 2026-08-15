@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { FadeIn } from "@/components/public/motion/fade-in";
 import { storeDetails, imagery, seoRoutes } from "@/content/fixtures/checkpot";
 
 const seo = seoRoutes.find((r) => r.route === "/ueber-uns")!;
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function UeberUnsPage() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-[#F9F9F8]">
       <div className="mx-auto w-full max-w-[1400px] px-4 pt-12 lg:px-6">
         <Breadcrumbs
           items={[
@@ -27,86 +26,129 @@ export default function UeberUnsPage() {
         />
       </div>
 
-      <section className="mx-auto w-full max-w-[1400px] px-4 py-20 lg:px-6 lg:py-28">
+      {/* 1. OPENING */}
+      <section className="mx-auto w-full max-w-[1400px] px-4 py-16 lg:px-6 lg:py-24">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <FadeIn className="lg:col-span-5 lg:col-start-2">
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md bg-[#F9F9F8]">
+          <div className="lg:col-span-6 lg:col-start-1">
+            <h1 className="font-display text-5xl lg:text-7xl text-[#1A1A1A] tracking-tight mb-8">
+              Zeit für Ihren Stil
+            </h1>
+            <p className="text-xl lg:text-2xl text-[#1A1A1A] font-medium leading-relaxed mb-6">
+              Hier wird nicht einfach nur Kleidung verkauft. Wir nehmen uns die Zeit, um herauszufinden, was wirklich zu Ihnen passt.
+            </p>
+            <p className="text-[17px] text-[#4A5568] leading-relaxed">
+              Willkommen bei {storeDetails.name} – Ihrer Boutique für persönliche, ehrliche und kompetente Stilberatung in Wien.
+            </p>
+          </div>
+          <div className="lg:col-span-6">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#E2E8F0]">
               <Image
-                src={imagery.founder.src}
-                alt={imagery.founder.alt}
+                src={imagery.hero.src}
+                alt={imagery.hero.alt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
-                style={{ objectPosition: imagery.founder.objectPosition }}
+                style={{ objectPosition: imagery.hero.objectPosition }}
               />
             </div>
-          </FadeIn>
-          
-          <FadeIn delay={150} className="flex flex-col justify-center lg:col-span-5 lg:col-start-8">
-            <span className="mb-4 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#4A5568]">
-              Unsere Geschichte
-            </span>
-            <h1 className="mb-8 text-4xl font-normal leading-[1.1] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl">
-              Über Checkpot & Christa
-            </h1>
-            <div className="space-y-6 text-lg text-[#4A5568]">
-              <p>
-                Checkpot wurde von {storeDetails.owner} im Jahr 2009 mit einer klaren Vision
-                gegründet: Eine Boutique zu schaffen, in der Frauen nicht einfach nur
-                einkaufen, sondern sich gut beraten und rundum wohl fühlen.
-              </p>
-              <p>
-                Mode ist für uns mehr als nur Kleidung – sie ist Ausdruck der Persönlichkeit.
-                Deshalb nehmen wir uns für jede Kundin Zeit, hören zu und suchen gemeinsam nach
-                Stücken, die nicht nur schön aussehen, sondern auch zum Leben und Alltag
-                passen.
-              </p>
-              <p>
-                In einer Zeit, in der fast alles online bestellt wird, glauben wir an den
-                Wert der persönlichen Begegnung. Stoffe muss man fühlen, Schnitte muss man
-                anprobieren.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center justify-center rounded-md bg-[#C01718] px-8 py-3.5 text-[15px] font-medium text-white transition-colors duration-150 ease-out hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
-              >
-                Besuchen Sie uns
-              </Link>
-              <Link
-                href="/mode"
-                className="inline-flex items-center justify-center rounded-md bg-[#F9F9F8] px-8 py-3.5 text-[15px] font-medium text-[#1A1A1A] transition-colors duration-150 ease-out hover:bg-[#E2E8F0] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A] focus-visible:ring-offset-2"
-              >
-                Mode entdecken
-              </Link>
-            </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
-      <section className="bg-[#F9F9F8] px-4 py-20 lg:px-6 lg:py-28">
+      {/* 2. CONSULTATION PHILOSOPHY */}
+      <section className="bg-white border-y border-[#E2E8F0] px-4 py-20 lg:px-6 lg:py-32">
         <div className="mx-auto max-w-[1400px]">
-          <div className="mb-12 text-center lg:mb-16">
-            <h2 className="text-3xl font-normal tracking-tight text-[#1A1A1A] sm:text-4xl lg:text-5xl">
-              Eindrücke aus der Boutique
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div className="lg:col-span-5">
+              <span className="mb-4 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#C01718]">
+                Unsere Philosophie
+              </span>
+              <h2 className="font-display text-4xl lg:text-5xl text-[#1A1A1A] leading-[1.1] mb-8">
+                Mode, die Ihre Persönlichkeit unterstreicht
+              </h2>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7 prose prose-lg prose-p:text-[#4A5568] prose-p:leading-relaxed">
+              <p className="text-xl text-[#1A1A1A] font-medium mb-8">
+                „Bei uns finden Sie nicht die gängigen Trends, die alle tragen – sondern hochwertige, feminine Mode, die wir durch einfühlsame, persönliche Stilberatung perfekt auf den Typ der Kundin abstimmen.“
+              </p>
+              <p>
+                Mode ist für uns mehr als nur Kleidung – sie ist Ausdruck der eigenen Identität. In einer Zeit, in der fast alles online bestellt und zurückgeschickt wird, glauben wir fest an den Wert der persönlichen Begegnung. Stoffe muss man fühlen, Schnitte muss man anprobieren.
+              </p>
+              <p>
+                „Es gibt wenige Frauen, denen alle Farben passen“, weiß Christa Hausmair aus langjähriger Erfahrung. „Stures Festkrallen an Modemagazin-Vorgaben gibt es bei mir nicht. Es geht immer darum, die jeweilige Persönlichkeit zu verstärken.“ 
+              </p>
+              <p>
+                Wir beraten Sie ehrlich zu Farben, Proportionen und Kombinationen – auch in Verbindung mit Ihren vorhandenen Lieblingsstücken. Das Ziel ist immer, dass Sie sich in Ihrer Kleidung rundum wohl und authentisch fühlen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. CHRISTA & 4. PHOTOGRAPHIC STORY */}
+      <section className="mx-auto w-full max-w-[1400px] px-4 py-20 lg:px-6 lg:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <div className="lg:col-span-5 lg:order-2">
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[#E2E8F0] mb-8">
+              <Image
+                src={imagery.founder.src}
+                alt={imagery.founder.alt}
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+                style={{ objectPosition: imagery.founder.objectPosition }}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4 lg:gap-8">
+              {imagery.storeDetails.map((img) => (
+                <div key={img.src} className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-[#E2E8F0]">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 1024px) 20vw, 50vw"
+                    className="object-cover"
+                    style={{ objectPosition: img.objectPosition }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 lg:col-start-1 lg:order-1">
+            <span className="mb-4 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#4A5568]">
+              Das Gesicht hinter Checkpot
+            </span>
+            <h2 className="font-display text-4xl lg:text-5xl text-[#1A1A1A] mb-8">
+              {storeDetails.owner}
             </h2>
+            <div className="space-y-6 text-[17px] text-[#4A5568] leading-relaxed">
+              <p>
+                Christa Hausmair lebt ihre Liebe zum geschmackvollen Textilen seit 2009 mit großer Freude in ihrem Geschäft in Hietzing aus. Mit viel Leidenschaft und einem sicheren Blick für Stil und Qualität wählt sie jede Saison die Kollektionen persönlich aus.
+              </p>
+              <p>
+                Ein besonderes Herzensanliegen ist es ihr, Mode anzubieten, die unter fairen und nachhaltigen Bedingungen hergestellt wird – bevorzugt aus Europa.
+              </p>
+            </div>
+            
+            <div className="mt-16 rounded-sm bg-white p-10 border border-[#E2E8F0]">
+              <h3 className="font-display text-2xl text-[#1A1A1A] mb-4">
+                Wir freuen uns auf Sie
+              </h3>
+              <p className="text-[15px] text-[#4A5568] leading-relaxed mb-8">
+                Besuchen Sie uns in unserer Boutique in {storeDetails.address.city} Hietzing. Wir nehmen uns gerne Zeit für Sie und finden gemeinsam Mode, die wirklich zu Ihnen passt.
+              </p>
+              <Link
+                href="/kontakt"
+                className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+              >
+                Besuchen Sie uns in Hietzing
+              </Link>
+            </div>
           </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-16">
-            {imagery.storeDetails.map((img, i) => (
-              <FadeIn key={img.src} delay={i * 150} className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-white">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 ease-out hover:scale-[1.02]"
-                  style={{ objectPosition: img.objectPosition }}
-                />
-              </FadeIn>
-            ))}
-          </div>
+
         </div>
       </section>
     </div>
