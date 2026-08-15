@@ -3,7 +3,7 @@ import { storeDetails } from "@/content/fixtures/checkpot";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-[#E2E8F0] bg-[#F9F9F8]">
+    <footer className="border-t border-[#E2E8F0] bg-[#F9F9F8]">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
