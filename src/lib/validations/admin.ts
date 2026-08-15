@@ -20,6 +20,21 @@ export const collectionSchema = z.object({
   sortOrder: z.number().int().min(0).max(10000).default(0),
 });
 
+export const outfitCategoryGroupSchema = z.object({
+  name: z.string().trim().min(1, "Name ist erforderlich").max(100, "Name zu lang"),
+  slug: z.string().trim().min(1, "Slug ist erforderlich").regex(/^[a-z0-9-]+$/, "Slug darf nur aus Kleinbuchstaben, Zahlen und Bindestrichen bestehen").max(100, "Slug zu lang"),
+  active: z.boolean().default(true),
+  sortOrder: z.number().int().min(0).max(10000).default(0),
+});
+
+export const outfitCategorySchema = z.object({
+  groupId: z.string().uuid("Ungültige Gruppen-ID"),
+  name: z.string().trim().min(1, "Name ist erforderlich").max(100, "Name zu lang"),
+  slug: z.string().trim().min(1, "Slug ist erforderlich").regex(/^[a-z0-9-]+$/, "Slug darf nur aus Kleinbuchstaben, Zahlen und Bindestrichen bestehen").max(100, "Slug zu lang"),
+  active: z.boolean().default(true),
+  sortOrder: z.number().int().min(0).max(10000).default(0),
+});
+
 export const outfitSchema = z.object({
   title: z.string().trim().min(1, "Titel ist erforderlich").max(100, "Titel zu lang"),
   note: z.string().trim().max(300, "Notiz zu lang").nullable().optional().transform(v => v || null),
@@ -30,6 +45,7 @@ export const outfitSchema = z.object({
   mediaId: z.string().uuid("Ungültige Media-ID").nullable().optional().transform(v => v || null),
   collectionId: z.string().uuid("Ungültige Kollektions-ID").nullable().optional().transform(v => v || null),
   brandIds: z.array(z.string().uuid("Ungültige Marken-ID")).transform(arr => Array.from(new Set(arr))),
+  categoryIds: z.array(z.string().uuid("Ungültige Kategorie-ID")).default([]).transform(arr => Array.from(new Set(arr))),
 });
 
 export const pageContentSchema = z.object({

@@ -10,11 +10,12 @@ export default async function OutfitEditPage({ params }: { params: Promise<{ id:
   const isNew = id === "new";
   const database = getDatabase();
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let item: any = null;
   if (!isNew) {
     item = await database.query.outfits.findFirst({
       where: eq(outfits.id, id),
-      with: { outfitBrands: true }
+      with: { outfitBrands: true, outfitCategoryAssignments: true }
     });
     if (!item) redirect("/admin/outfits");
   }
@@ -22,8 +23,16 @@ export default async function OutfitEditPage({ params }: { params: Promise<{ id:
   const allMedia = await database.query.media.findMany({ orderBy: [desc(media.createdAt)] });
   const allCollections = await database.query.collections.findMany();
   const allBrands = await database.query.brands.findMany();
+  
+  const categoryGroups = await database.query.outfitCategoryGroups.findMany({
+    with: { categories: true },
+    orderBy: (groups, { asc }) => [asc(groups.sortOrder)]
+  });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const selectedBrandIds = item?.outfitBrands?.map((ob: any) => ob.brandId) || [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const selectedCategoryIds = item?.outfitCategoryAssignments?.map((oca: any) => oca.categoryId) || [];
 
   async function handleSave(formData: FormData) {
     "use server";
@@ -85,6 +94,30 @@ export default async function OutfitEditPage({ params }: { params: Promise<{ id:
                   {b.name}
                 </label>
               ))}
+            </div>
+          </div>
+
+          <div className="field-group">
+            <label>Kategorien</label>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px", padding: "16px", border: "1px solid var(--border)", borderRadius: "10px", background: "var(--surface)" }}>
+              {categoryGroups.map(group => (
+                <div key={group.id} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  <div style={{ fontWeight: 600, fontSize: "0.9rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    {group.name}
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                    {group.categories.sort((a, b) => a.sortOrder - b.sortOrder).map(cat => (
+                      <label key={cat.id} style={{ display: "flex", gap: "8px", fontWeight: "normal", fontSize: "1rem" }}>
+                        <input type="checkbox" name="categoryIds" value={cat.id} defaultChecked={selectedCategoryIds.includes(cat.id)} style={{ width: "20px", height: "20px", margin: 0, padding: 0 }} />
+                        {cat.name}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              {categoryGroups.length === 0 && (
+                <div style={{ color: "var(--muted)", fontStyle: "italic" }}>Keine Kategorien vorhanden.</div>
+              )}
             </div>
           </div>
 

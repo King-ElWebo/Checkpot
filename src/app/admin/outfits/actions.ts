@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { getDatabase } from "@/db";
 import { outfits, outfitBrands, brands } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth/require-admin";
+import { saveOutfitAtomic } from "@/lib/services/outfits";
 
 import { outfitSchema } from "@/lib/validations/admin";
 import crypto from "crypto";
@@ -22,6 +23,7 @@ export async function saveOutfitAction(id: string | null, formData: FormData) {
     mediaId: formData.get("mediaId"),
     collectionId: formData.get("collectionId"),
     brandIds: formData.getAll("brandIds"),
+    categoryIds: formData.getAll("categoryIds"),
   });
 
   if (!parsed.success) {
@@ -30,6 +32,7 @@ export async function saveOutfitAction(id: string | null, formData: FormData) {
 
   const data = parsed.data;
   const brandIds = data.brandIds;
+  const categoryIds = data.categoryIds;
   const outfitData = {
     title: data.title,
     note: data.note,
@@ -41,36 +44,9 @@ export async function saveOutfitAction(id: string | null, formData: FormData) {
     collectionId: data.collectionId,
   };
 
+  await saveOutfitAtomic(id, outfitData, brandIds, categoryIds);
+
   const database = getDatabase();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const queries: any[] = [];
-  
-  let finalOutfitId = id;
-
-  if (id && id !== "new") {
-    queries.push(database.update(outfits).set(outfitData).where(eq(outfits.id, id)));
-  } else {
-    finalOutfitId = crypto.randomUUID();
-    queries.push(database.insert(outfits).values({ id: finalOutfitId, ...outfitData }));
-  }
-
-  if (finalOutfitId) {
-    queries.push(database.delete(outfitBrands).where(eq(outfitBrands.outfitId, finalOutfitId)));
-    if (brandIds.length > 0) {
-      queries.push(
-        database.insert(outfitBrands).values(
-          brandIds.map(brandId => ({
-            outfitId: finalOutfitId as string,
-            brandId
-          }))
-        )
-      );
-    }
-  }
-
-  // Execute atomically
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  await database.batch(queries as any);
 
   // Revalidate public routes
   revalidatePath("/admin/outfits");

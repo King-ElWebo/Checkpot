@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { boolean, index, integer, jsonb, pgTable, primaryKey, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, index, integer, jsonb, pgTable, primaryKey, text, timestamp, uuid, unique } from "drizzle-orm/pg-core";
 
 export const systemSettings = pgTable(
   "system_settings",
@@ -106,6 +106,38 @@ export const pageContent = pgTable("page_content", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
+export const outfitCategoryGroups = pgTable("outfit_category_groups", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const outfitCategories = pgTable("outfit_categories", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  groupId: uuid("group_id").notNull().references(() => outfitCategoryGroups.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  slug: text("slug").notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  index("outfit_categories_group_id_idx").on(table.groupId),
+  unique("outfit_categories_group_slug_idx").on(table.groupId, table.slug)
+]);
+
+export const outfitCategoryAssignments = pgTable("outfit_category_assignments", {
+  outfitId: uuid("outfit_id").notNull().references(() => outfits.id, { onDelete: "cascade" }),
+  categoryId: uuid("category_id").notNull().references(() => outfitCategories.id, { onDelete: "cascade" }),
+}, (table) => [
+  primaryKey({ columns: [table.outfitId, table.categoryId] }),
+  index("outfit_category_assignments_category_id_idx").on(table.categoryId)
+]);
+
 // Relations
 export const brandsRelations = relations(brands, ({ one, many }) => ({
   logo: one(media, { fields: [brands.logoMediaId], references: [media.id] }),
@@ -117,6 +149,21 @@ export const outfitsRelations = relations(outfits, ({ one, many }) => ({
   media: one(media, { fields: [outfits.mediaId], references: [media.id] }),
   collection: one(collections, { fields: [outfits.collectionId], references: [collections.id] }),
   outfitBrands: many(outfitBrands),
+  outfitCategoryAssignments: many(outfitCategoryAssignments),
+}));
+
+export const outfitCategoryGroupsRelations = relations(outfitCategoryGroups, ({ many }) => ({
+  categories: many(outfitCategories),
+}));
+
+export const outfitCategoriesRelations = relations(outfitCategories, ({ one, many }) => ({
+  group: one(outfitCategoryGroups, { fields: [outfitCategories.groupId], references: [outfitCategoryGroups.id] }),
+  outfitCategoryAssignments: many(outfitCategoryAssignments),
+}));
+
+export const outfitCategoryAssignmentsRelations = relations(outfitCategoryAssignments, ({ one }) => ({
+  outfit: one(outfits, { fields: [outfitCategoryAssignments.outfitId], references: [outfits.id] }),
+  category: one(outfitCategories, { fields: [outfitCategoryAssignments.categoryId], references: [outfitCategories.id] }),
 }));
 
 export const outfitBrandsRelations = relations(outfitBrands, ({ one }) => ({
