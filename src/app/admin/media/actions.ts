@@ -5,9 +5,9 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 
 import { getDatabase } from "@/db";
-import { media, brands, outfits } from "@/db/schema";
+import { media } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth/require-admin";
-
+import { getMediaUsage, MediaDto } from "@/lib/repositories/media";
 import { mediaMetadataSchema } from "@/lib/validations/admin";
 import crypto from "crypto";
 
@@ -27,7 +27,7 @@ async function verifyImageFile(file: File): Promise<string | null> {
   return null;
 }
 
-export async function uploadMediaAction(formData: FormData) {
+export async function uploadMediaAction(formData: FormData): Promise<{ success: boolean; media: MediaDto }> {
   await requireAdmin();
 
   const file = formData.get("file") as File;
@@ -53,7 +53,7 @@ export async function uploadMediaAction(formData: FormData) {
   });
 
   if (!parsed.success) {
-    throw new Error(`Validierungsfehler: ${parsed.error.issues.map((e: { message: string }) => e.message).join(", ")}`);
+    throw new Error(`Validierungsfehler: ${parsed.error.issues.map((e) => e.message).join(", ")}`);
   }
 
   const data = parsed.data;
@@ -77,34 +77,105 @@ export async function uploadMediaAction(formData: FormData) {
   }).returning();
 
   revalidatePath("/admin/media");
-  return { success: true, media: newMedia };
+  return {
+    success: true,
+    media: {
+      id: newMedia.id,
+      url: newMedia.url,
+      title: newMedia.title,
+      alt: newMedia.alt,
+      rights: newMedia.rights,
+      focalPoint: newMedia.focalPoint,
+      season: newMedia.season,
+      createdAt: newMedia.createdAt,
+    },
+  };
 }
 
-export async function deleteMediaAction(id: string, clientUrl: string) {
+export async function updateMediaMetadataAction(id: string, formData: FormData) {
+  await requireAdmin();
+
+  const parsed = mediaMetadataSchema.safeParse({
+    alt: formData.get("alt"),
+    title: formData.get("title"),
+    rights: formData.get("rights"),
+    focalPoint: formData.get("focalPoint"),
+    season: formData.get("season"),
+  });
+
+  if (!parsed.success) {
+    throw new Error(`Validierungsfehler: ${parsed.error.issues.map((e) => e.message).join(", ")}`);
+  }
+
+  const data = parsed.data;
+  const database = getDatabase();
+
+  const [updated] = await database
+    .update(media)
+    .set({
+      alt: data.alt || null,
+      title: data.title || null,
+      rights: data.rights || null,
+      focalPoint: data.focalPoint || null,
+      season: data.season || null,
+    })
+    .where(eq(media.id, id))
+    .returning();
+
+  if (!updated) {
+    throw new Error("Medium nicht gefunden.");
+  }
+
+  // Revalidate affected views
+  revalidatePath("/admin/media");
+  revalidatePath("/admin/brands");
+  revalidatePath("/admin/outfits");
+  revalidatePath("/");
+  revalidatePath("/marken");
+  revalidatePath("/outfits");
+  revalidatePath("/mode");
+
+  return { success: true, media: updated };
+}
+
+export async function checkMediaUsageAction(id: string) {
+  await requireAdmin();
+  return getMediaUsage(id);
+}
+
+export async function deleteMediaAction(id: string, force = false) {
   await requireAdmin();
 
   const database = getDatabase();
 
   const dbMedia = await database.query.media.findFirst({
-    where: eq(media.id, id)
+    where: eq(media.id, id),
   });
 
   if (!dbMedia) {
     throw new Error("Medium nicht in der Datenbank gefunden.");
   }
 
-  // Find related entities to revalidate BEFORE deleting
+  // Check usage
+  const usage = await getMediaUsage(id);
+  if (usage.totalCount > 0 && !force) {
+    throw new Error(
+      `Dieses Bild wird derzeit bei ${usage.totalCount} Element(en) verwendet und kann nur mit expliziter Bestätigung gelöscht werden.`
+    );
+  }
+
+  // Find related entities to revalidate before deleting
   const relatedBrands = await database.query.brands.findMany({
-    where: (brands, { eq, or }) => or(eq(brands.logoMediaId, id), eq(brands.imageMediaId, id)),
-    columns: { slug: true }
+    where: (b, { eq, or }) => or(eq(b.logoMediaId, id), eq(b.imageMediaId, id)),
+    columns: { slug: true },
   });
 
-  const relatedOutfits = await database.query.outfits.findMany({
-    where: eq(outfits.mediaId, id)
-  });
-
-  // Delete from Vercel Blob using DB URL as source of truth
-  await del(dbMedia.url);
+  // Delete from Vercel Blob
+  try {
+    await del(dbMedia.url);
+  } catch (err) {
+    console.error("Vercel Blob deletion error:", err);
+  }
 
   // Delete from DB
   await database.delete(media).where(eq(media.id, id));
@@ -114,7 +185,7 @@ export async function deleteMediaAction(id: string, clientUrl: string) {
   revalidatePath("/admin/outfits");
 
   // Revalidate public routes
-  if (relatedBrands.length > 0 || relatedOutfits.length > 0) {
+  if (relatedBrands.length > 0 || usage.outfits.length > 0) {
     revalidatePath("/");
     revalidatePath("/marken");
     revalidatePath("/outfits");
@@ -124,4 +195,6 @@ export async function deleteMediaAction(id: string, clientUrl: string) {
   for (const b of relatedBrands) {
     revalidatePath(`/marken/${b.slug}`, "page");
   }
+
+  return { success: true };
 }

@@ -19,7 +19,7 @@ export default function MediaUploadPage() {
     try {
       const formData = new FormData(e.currentTarget);
       const file = formData.get("file") as File;
-      
+
       if (!file || file.size === 0) {
         throw new Error("Bitte ein Bild auswählen.");
       }
@@ -30,8 +30,9 @@ export default function MediaUploadPage() {
 
       await uploadMediaAction(formData);
       router.push("/admin/media");
-    } catch (err: any) {
-      setError(err.message || "Fehler beim Upload.");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Fehler beim Upload.";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -46,7 +47,6 @@ export default function MediaUploadPage() {
 
       <section className="login-panel" style={{ width: "100%", maxWidth: "600px" }}>
         <form onSubmit={handleSubmit} className="login-form" style={{ marginTop: 0 }}>
-          
           <div className="field-group">
             <label htmlFor="file">Bilddatei *</label>
             <input type="file" id="file" name="file" accept="image/*" required style={{ paddingTop: "12px" }} />
@@ -67,7 +67,7 @@ export default function MediaUploadPage() {
             <label htmlFor="rights">Bildrechte / Fotograf</label>
             <input type="text" id="rights" name="rights" />
           </div>
-          
+
           {error && <p className="form-error">{error}</p>}
 
           <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>

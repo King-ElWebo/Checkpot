@@ -9,13 +9,15 @@ export default async function CollectionEditPage({ params }: { params: Promise<{
   const { id } = await params;
   const isNew = id === "new";
   const database = getDatabase();
-  
-  let item: any = null;
-  if (!isNew) {
-    item = await database.query.collections.findFirst({
-      where: eq(collections.id, id),
-    });
-    if (!item) redirect("/admin/collections");
+
+  const item = !isNew
+    ? (await database.query.collections.findFirst({
+        where: eq(collections.id, id),
+      })) ?? null
+    : null;
+
+  if (!isNew && !item) {
+    redirect("/admin/collections");
   }
 
   async function handleSave(formData: FormData) {
@@ -33,7 +35,6 @@ export default async function CollectionEditPage({ params }: { params: Promise<{
 
       <section className="login-panel" style={{ width: "100%", maxWidth: "800px" }}>
         <form action={handleSave} className="login-form" style={{ marginTop: 0 }}>
-          
           <div className="field-group">
             <label htmlFor="title">Titel *</label>
             <input type="text" id="title" name="title" defaultValue={item?.title || ""} required />
@@ -46,10 +47,10 @@ export default async function CollectionEditPage({ params }: { params: Promise<{
 
           <div className="field-group">
             <label htmlFor="intro">Einleitungstext</label>
-            <textarea 
-              id="intro" 
-              name="intro" 
-              defaultValue={item?.intro || ""} 
+            <textarea
+              id="intro"
+              name="intro"
+              defaultValue={item?.intro || ""}
               rows={5}
               style={{ width: "100%", border: "1px solid #d6d3d1", borderRadius: "10px", padding: "14px", background: "var(--surface)", fontFamily: "inherit" }}
             />

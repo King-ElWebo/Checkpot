@@ -5,7 +5,22 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { savePageAction } from "../actions";
 
-export default function PageEditClient({ isNew, id, initialData }: { isNew: boolean, id: string, initialData: any }) {
+interface PageData {
+  id?: string;
+  routeKey?: string;
+  content?: Record<string, unknown>;
+  visibility?: boolean;
+}
+
+export default function PageEditClient({
+  isNew,
+  id,
+  initialData,
+}: {
+  isNew: boolean;
+  id: string;
+  initialData: PageData | null;
+}) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
@@ -16,23 +31,26 @@ export default function PageEditClient({ isNew, id, initialData }: { isNew: bool
       const formData = new FormData(e.currentTarget);
       await savePageAction(isNew ? null : id, formData);
       router.push("/admin/pages");
-    } catch (err: any) {
-      setError(err.message || "Fehler beim Speichern.");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Fehler beim Speichern.";
+      setError(message);
     }
   }
 
   return (
     <div className="dashboard-stack">
       <section className="page-intro">
-        <div className="eyebrow">Seiteninhalte</div>
-        <h1>{isNew ? "Neue Seite" : "Seite bearbeiten"}</h1>
+        <div className="eyebrow">Seiteninhalte (Erweitert)</div>
+        <h1>{isNew ? "Neuen Seiteninhalt anlegen" : `Seite: ${initialData?.routeKey || "Bearbeiten"}`}</h1>
+        <p className="text-xs text-[#b45309] bg-[#fef3c7] p-2.5 rounded-lg border border-[#fde68a] mt-2">
+          Hinweis: Diese strukturierten JSON-Inhalte werden von den aktuellen öffentlichen Seiten nicht direkt verwendet.
+        </p>
       </section>
 
       <section className="login-panel" style={{ width: "100%", maxWidth: "800px" }}>
         <form onSubmit={handleSubmit} className="login-form" style={{ marginTop: 0 }}>
-          
           <div className="field-group">
-            <label htmlFor="routeKey">Route Key (z.B. "home", "ueber-uns") *</label>
+            <label htmlFor="routeKey">Route Key (z.B. &quot;home&quot;, &quot;ueber-uns&quot;) *</label>
             <input type="text" id="routeKey" name="routeKey" defaultValue={initialData?.routeKey || ""} required />
           </div>
 
@@ -43,10 +61,10 @@ export default function PageEditClient({ isNew, id, initialData }: { isNew: bool
 
           <div className="field-group">
             <label htmlFor="content">Inhalts-Blöcke (JSON Format)</label>
-            <textarea 
-              id="content" 
-              name="content" 
-              defaultValue={initialData?.content ? JSON.stringify(initialData.content, null, 2) : "{\n  \"title\": \"\",\n  \"blocks\": []\n}"} 
+            <textarea
+              id="content"
+              name="content"
+              defaultValue={initialData?.content ? JSON.stringify(initialData.content, null, 2) : "{\n  \"title\": \"\",\n  \"blocks\": []\n}"}
               rows={15}
               style={{ width: "100%", border: "1px solid #d6d3d1", borderRadius: "10px", padding: "14px", background: "var(--surface)", fontFamily: "monospace", fontSize: "0.85rem" }}
             />

@@ -18,16 +18,22 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
     <div className="admin-shell">
       <header className="admin-header">
         <Link className="admin-brand" href="/admin">
-          Admin Platform
+          Checkpot Admin
         </Link>
-        <nav aria-label="Admin-Navigation" style={{ flexWrap: "wrap" }}>
+        <nav aria-label="Admin-Navigation" style={{ flexWrap: "wrap", gap: "6px" }}>
           <Link href="/admin">Übersicht</Link>
-          <Link href="/admin/media">Medien</Link>
+          <Link href="/admin/outfits">Outfits</Link>
           <Link href="/admin/brands">Marken</Link>
           <Link href="/admin/collections">Kollektionen</Link>
-          <Link href="/admin/outfits">Outfits</Link>
           <Link href="/admin/outfit-categories">Taxonomie</Link>
-          <Link href="/admin/pages">Seiten</Link>
+          <Link href="/admin/media">Mediathek</Link>
+          <Link
+            href="/admin/pages"
+            style={{ opacity: 0.6, fontSize: "0.8rem" }}
+            title="Technische Inhaltsblöcke (wird von öffentlichen Seiten nicht verwendet)"
+          >
+            Seiten (Erweitert)
+          </Link>
           <LogoutButton />
         </nav>
       </header>

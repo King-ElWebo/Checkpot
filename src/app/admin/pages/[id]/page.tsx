@@ -8,13 +8,15 @@ export default async function PageEditPage({ params }: { params: Promise<{ id: s
   const { id } = await params;
   const isNew = id === "new";
   const database = getDatabase();
-  
-  let item: any = null;
-  if (!isNew) {
-    item = await database.query.pageContent.findFirst({
-      where: eq(pageContent.id, id),
-    });
-    if (!item) redirect("/admin/pages");
+
+  const item = !isNew
+    ? (await database.query.pageContent.findFirst({
+        where: eq(pageContent.id, id),
+      })) ?? null
+    : null;
+
+  if (!isNew && !item) {
+    redirect("/admin/pages");
   }
 
   return <PageEditClient isNew={isNew} id={id} initialData={item} />;
