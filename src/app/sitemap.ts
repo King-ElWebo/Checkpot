@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 
-import { brands, seoRoutes, siteUrl } from "@/content/fixtures/checkpot";
+import { seoRoutes, siteUrl } from "@/content/fixtures/checkpot";
+import { listPublishedBrands } from "@/lib/repositories/brands";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-08-09T00:00:00.000Z");
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const lastModified = new Date();
   const staticRoutes = seoRoutes
     .filter((route) => route.index)
     .map((route) => ({
@@ -13,14 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: route.route === "/" ? 1 : 0.75,
     }));
 
-  const brandRoutes = brands
-    .filter((brand) => brand.active)
-    .map((brand) => ({
-      url: new URL(`/marken/${brand.slug}`, siteUrl).toString(),
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.65,
-    }));
+  const dbBrands = await listPublishedBrands();
+  const brandRoutes = dbBrands.map((brand) => ({
+    url: new URL(`/marken/${brand.slug}`, siteUrl).toString(),
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
 
   return [...staticRoutes, ...brandRoutes];
 }

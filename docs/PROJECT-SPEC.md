@@ -166,9 +166,16 @@ The resolved visual and section-level motion system will be recorded in `docs/DE
 - Framework: Next.js 16 App Router
 - Database: Neon PostgreSQL
 - ORM and migrations: Drizzle ORM and versioned SQL under `drizzle/`
-- Data-access boundary: server-only business repositories under `src/lib/repositories/`
+- Data-access boundary: Hybrid approach (server-only business repositories under `src/lib/repositories/` for reusable/public domain reads and complex operations; direct Drizzle usage allowed for simple, local, protected Admin CRUD)
 - Admin bootstrap: one environment-backed administrator with signed `jose` session, protected by
   `src/proxy.ts` and server-side verification
+
+### Architectural Decision: Hybrid Data-Access Approach
+Checkpot uses a hybrid data-access model:
+- Checkpot is a small, single-admin content system.
+- For simple protected CRUD (e.g., in Admin Server Actions), an additional repository indirection can add complexity without enough benefit. Direct Drizzle usage is permitted here provided it is validated, server-only, and securely authorized.
+- Repositories/services remain explicitly required where they materially improve reuse, consistency, atomicity, or domain clarity (such as public data reads, or complex multi-table mutations).
+- This decision can be revisited if the system grows to multiple admins, richer permissions, more integrations, or significantly more complex domain behavior.
 
 ### Customer-specific decisions
 

@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { boolean, index, integer, jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { boolean, index, integer, jsonb, pgTable, primaryKey, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const systemSettings = pgTable(
   "system_settings",
@@ -92,7 +92,7 @@ export const outfitBrands = pgTable("outfit_brands", {
   outfitId: uuid("outfit_id").notNull().references(() => outfits.id, { onDelete: "cascade" }),
   brandId: uuid("brand_id").notNull().references(() => brands.id, { onDelete: "cascade" }),
 }, (table) => [
-  index("outfit_brands_outfit_id_idx").on(table.outfitId),
+  primaryKey({ columns: [table.outfitId, table.brandId] }),
   index("outfit_brands_brand_id_idx").on(table.brandId)
 ]);
 

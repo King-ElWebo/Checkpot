@@ -6,48 +6,74 @@ import { getDatabase } from "@/db";
 import { brands } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth/require-admin";
 
+import { brandSchema } from "@/lib/validations/admin";
+
 export async function saveBrandAction(id: string | null, formData: FormData) {
   await requireAdmin();
 
-  const name = formData.get("name") as string;
-  const slug = formData.get("slug") as string;
-  const summary = formData.get("summary") as string;
-  const description = formData.get("description") as string;
-  const active = formData.get("active") === "true";
-  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0;
-  
-  const logoMediaId = formData.get("logoMediaId") as string;
-  const imageMediaId = formData.get("imageMediaId") as string;
+  // Validate input
+  const parsed = brandSchema.safeParse({
+    name: formData.get("name"),
+    slug: formData.get("slug"),
+    summary: formData.get("summary"),
+    description: formData.get("description"),
+    active: formData.get("active") === "true",
+    sortOrder: parseInt(formData.get("sortOrder") as string) || 0,
+    logoMediaId: formData.get("logoMediaId"),
+    imageMediaId: formData.get("imageMediaId"),
+  });
 
-  if (!name || !slug) {
-    throw new Error("Name und Slug sind Pflichtfelder.");
+  if (!parsed.success) {
+    throw new Error(`Validierungsfehler: ${parsed.error.issues.map((e: { message: string }) => e.message).join(", ")}`);
   }
 
+  const data = parsed.data;
   const database = getDatabase();
 
-  const data = {
-    name,
-    slug,
-    summary,
-    description,
-    active,
-    sortOrder,
-    logoMediaId: logoMediaId || null,
-    imageMediaId: imageMediaId || null,
-  };
+  let oldSlug: string | undefined;
 
   if (id && id !== "new") {
+    // Fetch old brand to see if slug changed
+    const oldBrand = await database.query.brands.findFirst({
+      where: eq(brands.id, id),
+      columns: { slug: true }
+    });
+    if (oldBrand && oldBrand.slug !== data.slug) {
+      oldSlug = oldBrand.slug;
+    }
+    
     await database.update(brands).set(data).where(eq(brands.id, id));
   } else {
     await database.insert(brands).values(data);
   }
 
+  // Revalidations
   revalidatePath("/admin/brands");
+  revalidatePath("/marken");
+  revalidatePath(`/marken/${data.slug}`, "page");
+  if (oldSlug) {
+    revalidatePath(`/marken/${oldSlug}`, "page");
+  }
+  revalidatePath("/");
+  revalidatePath("/sitemap.xml");
 }
 
 export async function deleteBrandAction(id: string) {
   await requireAdmin();
   const database = getDatabase();
+
+  const brand = await database.query.brands.findFirst({
+    where: eq(brands.id, id),
+    columns: { slug: true }
+  });
+
   await database.delete(brands).where(eq(brands.id, id));
+  
   revalidatePath("/admin/brands");
+  revalidatePath("/marken");
+  revalidatePath("/");
+  revalidatePath("/sitemap.xml");
+  if (brand) {
+    revalidatePath(`/marken/${brand.slug}`, "page");
+  }
 }

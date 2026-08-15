@@ -36,7 +36,7 @@ Antigravity-specific setup and slash commands are documented in `docs/ANTIGRAVIT
 - Next.js 16 App Router with Turbopack, React 19, TypeScript strict mode, and Tailwind CSS 4.
 - Neon PostgreSQL through `@neondatabase/serverless` and Drizzle ORM is the fixed database stack.
 - Database definitions live in `src/db/schema.ts`; generated, reviewed SQL migrations live in `drizzle/`.
-- Business data access lives in server-only modules under `src/lib/repositories/`.
+- Public/complex business data access lives in server-only modules under `src/lib/repositories/`; simple local admin CRUD may use Drizzle directly if validated and authorized.
 - The neutral single-admin bootstrap uses signed `jose` sessions, `src/proxy.ts` for optimistic route filtering, and a server-side verifier at protected boundaries.
 - Open Design builds the customer-specific public frontend while preserving the existing database, authentication, login, and admin foundation.
 
@@ -45,7 +45,7 @@ Do not introduce Prisma, a second ORM, a runtime database-provider switch, or an
 ## Universal boundaries
 
 - Public presentation components receive typed serializable props and do not import Drizzle, `@/db`, auth internals, or external provider SDKs.
-- Production database access goes through `src/lib/repositories/`; Route Handlers, Server Actions, pages, and components do not contain raw Drizzle queries.
+- Public production database access goes through `src/lib/repositories/`. Client components and shared presentation components must not contain Drizzle/database logic.
 - External storage, email, payment, analytics, CMS, and other services are selected per approved project specification.
 - Fixtures are for frontend development and tests, never production failure fallback.
 - Backend integration preserves the approved frontend and replaces data only at composition boundaries.
