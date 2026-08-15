@@ -16,42 +16,35 @@ export const metadata: Metadata = {
 };
 
 const getOutfitLayout = (index: number) => {
-  const mod = index % 5;
+  const mod = index % 4;
   switch (mod) {
-    case 0: // Large left
+    case 0: // Large Left
       return {
         gridClass: "col-span-1 md:col-span-7 lg:col-span-7",
-        aspectClass: "aspect-[4/5] lg:aspect-[4/3]",
+        aspectClass: "aspect-[4/5] lg:aspect-[3/4]",
         sizes: "(min-width: 1024px) 60vw, (min-width: 768px) 60vw, 100vw",
         textClass: "lg:w-3/4"
       };
-    case 1: // Small right
+    case 1: // Small Right (staggered down)
       return {
         gridClass: "col-span-1 md:col-span-5 lg:col-span-4 lg:col-start-9 md:mt-16 lg:mt-32",
         aspectClass: "aspect-[3/4]",
         sizes: "(min-width: 1024px) 33vw, (min-width: 768px) 40vw, 100vw",
         textClass: ""
       };
-    case 2: // Med left
+    case 2: // Small Left
       return {
-        gridClass: "col-span-1 md:col-span-5 lg:col-span-5",
+        gridClass: "col-span-1 md:col-span-5 lg:col-span-4 lg:col-start-2",
         aspectClass: "aspect-[3/4]",
-        sizes: "(min-width: 1024px) 40vw, (min-width: 768px) 40vw, 100vw",
+        sizes: "(min-width: 1024px) 33vw, (min-width: 768px) 40vw, 100vw",
         textClass: ""
       };
-    case 3: // Large right
+    case 3: // Large Right (pulled up to close the gap)
       return {
-        gridClass: "col-span-1 md:col-span-7 lg:col-span-6 lg:col-start-7 md:-mt-12 lg:-mt-24",
-        aspectClass: "aspect-[4/5]",
-        sizes: "(min-width: 1024px) 50vw, (min-width: 768px) 60vw, 100vw",
-        textClass: ""
-      };
-    case 4: // Wide center
-      return {
-        gridClass: "col-span-1 md:col-span-12 lg:col-span-10 lg:col-start-2 lg:mt-12",
-        aspectClass: "aspect-[4/5] md:aspect-[16/9] lg:aspect-[2/1]",
-        sizes: "(min-width: 1024px) 80vw, 100vw",
-        textClass: "md:w-2/3 lg:w-1/2 mx-auto text-center"
+        gridClass: "col-span-1 md:col-span-7 lg:col-span-7 lg:col-start-6 md:-mt-16 lg:-mt-24",
+        aspectClass: "aspect-[4/5] lg:aspect-[3/4]",
+        sizes: "(min-width: 1024px) 60vw, (min-width: 768px) 60vw, 100vw",
+        textClass: "lg:w-3/4 lg:ml-auto"
       };
   }
   return { gridClass: "", aspectClass: "", sizes: "", textClass: "" };
@@ -62,7 +55,7 @@ export default async function OutfitsPage() {
 
   return (
     <div className="flex flex-col bg-[#F9F9F8]">
-      <div className="mx-auto w-full max-w-[1400px] px-4 pt-12 lg:px-6">
+      <div className="mx-auto w-full max-w-[1400px] px-4 pt-8 lg:px-6">
         <Breadcrumbs
           items={[
             { label: "Startseite", href: "/" },
@@ -71,12 +64,12 @@ export default async function OutfitsPage() {
         />
       </div>
 
-      <section className="mx-auto w-full max-w-[1400px] px-4 py-12 lg:px-6 lg:py-20">
+      <section className="mx-auto w-full max-w-[1400px] px-4 py-8 lg:px-6 lg:py-12">
         
         {/* Strong but concise opening */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 lg:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-12 lg:mb-20">
           <div className="lg:col-span-6">
-            <h1 className="font-display text-5xl lg:text-7xl text-[#1A1A1A] tracking-tight mb-6">
+            <h1 className="font-display text-5xl lg:text-7xl text-[#1A1A1A] tracking-tight mb-4">
               Unsere Looks
             </h1>
             <p className="text-xl text-[#1A1A1A] font-medium leading-relaxed">
@@ -91,13 +84,15 @@ export default async function OutfitsPage() {
         </div>
 
         {dbOutfits.length > 0 ? (
-          <div className="grid grid-cols-1 gap-y-20 gap-x-8 md:grid-cols-12 lg:gap-y-32 lg:gap-x-12">
+          <div className="grid grid-cols-1 gap-y-16 gap-x-8 md:grid-cols-12 lg:gap-y-20 lg:gap-x-12">
             {dbOutfits.map((outfit, index) => {
               const { gridClass, aspectClass, sizes, textClass } = getOutfitLayout(index);
               
               const activeBrands = outfit.outfitBrands
                 ?.map(ob => ob.brand)
                 .filter(b => b?.active) || [];
+
+              const hasMeaningfulSeason = outfit.collection?.season && !/^\d{4}$/.test(outfit.collection.season.trim());
 
               return (
                 <div key={outfit.id} className={`group flex flex-col ${gridClass}`}>
@@ -114,10 +109,10 @@ export default async function OutfitsPage() {
                     )}
                   </div>
                   
-                  <div className={`flex flex-col items-start ${textClass} ${index % 5 === 4 ? 'items-center' : ''}`}>
-                    {outfit.collection?.season && (
-                      <span className="mb-4 text-[12px] font-medium uppercase tracking-[0.08em] text-[#C01718]">
-                        {outfit.collection.season}
+                  <div className={`flex flex-col items-start ${textClass}`}>
+                    {hasMeaningfulSeason && (
+                      <span className="mb-3 text-[12px] font-medium uppercase tracking-[0.08em] text-[#C01718]">
+                        {outfit.collection!.season}
                       </span>
                     )}
                     
@@ -126,19 +121,19 @@ export default async function OutfitsPage() {
                     </h2>
                     
                     {outfit.note && (
-                      <p className="text-[15px] leading-relaxed text-[#4A5568] mb-6">
+                      <p className="text-[15px] leading-relaxed text-[#4A5568] mb-5">
                         {outfit.note}
                       </p>
                     )}
 
                     {outfit.availabilityNote && (
-                      <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] mb-6 border-l-2 border-[#C01718] pl-3 py-1 bg-white">
+                      <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] mb-5 border-l-2 border-[#C01718] pl-3 py-1 bg-white">
                         {outfit.availabilityNote}
                       </p>
                     )}
                     
                     {activeBrands.length > 0 && (
-                      <div className="mt-auto text-[14px] text-[#4A5568]">
+                      <div className="mt-auto text-[15px] text-[#1A1A1A] font-medium">
                         Mit {activeBrands.map((b, i) => {
                           const isLast = i === activeBrands.length - 1;
                           const isSecondToLast = i === activeBrands.length - 2;
@@ -162,19 +157,41 @@ export default async function OutfitsPage() {
             })}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center rounded-sm border border-dashed border-[#E2E8F0] bg-white py-32 text-center">
-            <h2 className="mb-4 font-display text-3xl text-[#1A1A1A]">
+          <div className="flex flex-col items-center justify-center rounded-sm bg-white py-24 text-center">
+            <h2 className="mb-4 font-display text-3xl lg:text-4xl text-[#1A1A1A]">
               Neue Outfits in Vorbereitung
             </h2>
-            <p className="mb-8 text-lg text-[#4A5568] max-w-lg">
-              Wir stellen gerade neue Kombinationen für Sie zusammen. Besuchen Sie uns in der Zwischenzeit gerne im Geschäft, um die neuesten Stücke zu entdecken.
+            <p className="mb-8 text-[15px] leading-relaxed text-[#4A5568] max-w-md">
+              Wir stellen gerade neue Kombinationen für Sie zusammen. Besuchen Sie uns in der Zwischenzeit gerne im Geschäft in Hietzing.
             </p>
             <Link
               href="/kontakt"
-              className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-sm bg-[#C01718] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A] focus-visible:ring-offset-2"
             >
               Besuch planen
             </Link>
+          </div>
+        )}
+
+        {dbOutfits.length > 0 && (
+          <div className="mt-20 lg:mt-32 border-t border-[#E2E8F0] pt-12 lg:pt-20 flex flex-col items-center text-center">
+            <p className="text-xl lg:text-2xl text-[#1A1A1A] font-display mb-8 max-w-2xl">
+              Mehr Kombinationen entdecken Sie direkt bei uns in Hietzing.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/kontakt"
+                className="inline-flex items-center justify-center rounded-sm bg-[#C01718] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A] focus-visible:ring-offset-2"
+              >
+                Besuch planen
+              </Link>
+              <Link
+                href="/mode"
+                className="inline-flex items-center justify-center rounded-sm bg-white border border-[#E2E8F0] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-[#1A1A1A] transition-colors duration-200 ease-out hover:border-[#1A1A1A] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+              >
+                Aktuelle Mode
+              </Link>
+            </div>
           </div>
         )}
       </section>
