@@ -105,7 +105,7 @@ export default async function HomePage() {
         {/* 2. FASHION / OUTFIT EXPERIENCE */}
         <section id="discovery" className="bg-white px-4 py-16 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-[1400px]">
-            <div className="mb-12 max-w-2xl flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:max-w-none">
+            <div className="mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
               <div className="max-w-2xl">
                 <h2 className="mb-6 font-display text-4xl font-normal tracking-tight text-[#1A1A1A] sm:text-5xl">
                   Ausgesuchte Mode<br />mit Persönlichkeit
@@ -126,56 +126,35 @@ export default async function HomePage() {
             </div>
             
             {featuredOutfits.length > 0 ? (
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8 lg:gap-12">
-                {/* Asymmetric composition */}
-                {featuredOutfits[0] && (
-                  <Link href={`/outfits`} className="group md:col-span-7 flex flex-col focus:outline-hidden">
-                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[#F9F9F8]">
-                      {featuredOutfits[0].media && (
+              <div className={`grid gap-8 lg:gap-12 ${
+                featuredOutfits.length === 1 ? "grid-cols-1 max-w-md mx-auto" :
+                featuredOutfits.length === 2 ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto" :
+                "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              }`}>
+                {featuredOutfits.map((outfit) => (
+                  <div key={outfit.id} className="group flex flex-col gap-4 transition-transform duration-[400ms] ease-out hover:-translate-y-[3px] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                    <Link href="/outfits" className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[#F9F9F8] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A]">
+                      {outfit.media && (
                         <Image
-                          src={featuredOutfits[0].media.url}
-                          alt={featuredOutfits[0].media.alt || featuredOutfits[0].title}
+                          src={outfit.media.url}
+                          alt={outfit.media.alt || outfit.title}
                           fill
-                          sizes="(min-width: 768px) 60vw, 100vw"
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                          style={featuredOutfits[0].media.focalPoint ? { objectPosition: featuredOutfits[0].media.focalPoint } : {}}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                          style={outfit.media.focalPoint ? { objectPosition: outfit.media.focalPoint } : {}}
                         />
                       )}
-                    </div>
-                    <div className="mt-5 flex flex-col items-start">
-                      <h3 className="font-display text-2xl text-[#1A1A1A] transition-colors group-hover:text-[#C01718]">
-                        {featuredOutfits[0].title}
-                      </h3>
-                      {featuredOutfits[0].note && (
-                        <p className="mt-1 text-[17px] text-[#4A5568]">{featuredOutfits[0].note}</p>
-                      )}
-                    </div>
-                  </Link>
-                )}
-                
-                <div className="flex flex-col gap-8 md:col-span-5 md:mt-16">
-                  {featuredOutfits.slice(1, 3).map((outfit) => (
-                    <Link key={outfit.id} href={`/outfits`} className="group flex flex-col focus:outline-hidden">
-                      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-[#F9F9F8]">
-                        {outfit.media && (
-                          <Image
-                            src={outfit.media.url}
-                            alt={outfit.media.alt || outfit.title}
-                            fill
-                            sizes="(min-width: 768px) 40vw, 100vw"
-                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                            style={outfit.media.focalPoint ? { objectPosition: outfit.media.focalPoint } : {}}
-                          />
-                        )}
-                      </div>
-                      <div className="mt-4 flex flex-col items-start">
-                        <h3 className="font-display text-xl text-[#1A1A1A] transition-colors group-hover:text-[#C01718]">
+                    </Link>
+                    
+                    <div className="flex flex-col items-start gap-1">
+                      <Link href="/outfits" className="focus:outline-hidden">
+                        <h3 className="font-display text-xl font-medium text-[#1A1A1A] transition-colors duration-300 group-hover:text-[#C01718]">
                           {outfit.title}
                         </h3>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
               </div>
             ) : (
               <div className="py-20 text-center text-lg text-[#4A5568] bg-[#F9F9F8] rounded-sm">
@@ -186,9 +165,9 @@ export default async function HomePage() {
             <div className="mt-12 text-center lg:hidden">
               <Link
                 href="/outfits"
-                className="inline-flex items-center text-[14px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors"
+                className="inline-flex items-center justify-center rounded-sm border border-[#E2E8F0] bg-white px-8 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] transition-colors duration-200 ease-out hover:bg-[#F3F2EE] hover:border-[#1A1A1A] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A]"
               >
-                Alle Outfits ansehen <span className="ml-2">→</span>
+                Alle Outfits ansehen
               </Link>
             </div>
           </div>

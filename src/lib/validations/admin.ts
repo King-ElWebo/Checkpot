@@ -1,5 +1,11 @@
 import { z } from "zod";
 
+const emptyStringToNull = (val: unknown) =>
+  typeof val === "string" && val.trim() === "" ? null : val;
+
+const optionalUuid = (errorMessage: string) =>
+  z.preprocess(emptyStringToNull, z.string().uuid(errorMessage).nullable().optional()).transform((v) => v ?? null);
+
 export const brandSchema = z.object({
   name: z.string().trim().min(1, "Name ist erforderlich").max(100, "Name zu lang"),
   slug: z.string().trim().min(1, "Slug ist erforderlich").regex(/^[a-z0-9-]+$/, "Slug darf nur aus Kleinbuchstaben, Zahlen und Bindestrichen bestehen").max(100, "Slug zu lang"),
@@ -7,8 +13,8 @@ export const brandSchema = z.object({
   description: z.string().trim().max(5000, "Beschreibung zu lang").nullable().optional().transform(v => v || null),
   active: z.boolean().default(false),
   sortOrder: z.number().int().min(0).max(10000).default(0),
-  logoMediaId: z.string().uuid("Ungültige Logo-ID").nullable().optional().transform(v => v || null),
-  imageMediaId: z.string().uuid("Ungültige Bild-ID").nullable().optional().transform(v => v || null),
+  logoMediaId: optionalUuid("Ungültige Logo-ID"),
+  imageMediaId: optionalUuid("Ungültige Bild-ID"),
 });
 
 export const collectionSchema = z.object({
@@ -42,10 +48,16 @@ export const outfitSchema = z.object({
   active: z.boolean().default(false),
   featured: z.boolean().default(false),
   sortOrder: z.number().int().min(0).max(10000).default(0),
-  mediaId: z.string().uuid("Ungültige Media-ID").nullable().optional().transform(v => v || null),
-  collectionId: z.string().uuid("Ungültige Kollektions-ID").nullable().optional().transform(v => v || null),
-  brandIds: z.array(z.string().uuid("Ungültige Marken-ID")).transform(arr => Array.from(new Set(arr))),
-  categoryIds: z.array(z.string().uuid("Ungültige Kategorie-ID")).default([]).transform(arr => Array.from(new Set(arr))),
+  mediaId: optionalUuid("Ungültige Media-ID"),
+  collectionId: optionalUuid("Ungültige Kollektions-ID"),
+  brandIds: z.preprocess(
+    (val) => (Array.isArray(val) ? val.filter((v) => typeof v === "string" && v.trim() !== "") : []),
+    z.array(z.string().uuid("Ungültige Marken-ID")).default([]).transform(arr => Array.from(new Set(arr)))
+  ),
+  categoryIds: z.preprocess(
+    (val) => (Array.isArray(val) ? val.filter((v) => typeof v === "string" && v.trim() !== "") : []),
+    z.array(z.string().uuid("Ungültige Kategorie-ID")).default([]).transform(arr => Array.from(new Set(arr)))
+  ),
 });
 
 export const pageContentSchema = z.object({
@@ -71,6 +83,9 @@ export const mediaMetadataSchema = z.object({
   alt: z.string().trim().max(100, "Alt-Text zu lang").nullable().optional().transform(v => v || null),
   title: z.string().trim().max(100, "Titel zu lang").nullable().optional().transform(v => v || null),
   rights: z.string().trim().max(100, "Rechte-Info zu lang").nullable().optional().transform(v => v || null),
-  focalPoint: z.string().regex(/^(?:(?:100|\d{1,2})%\s+(?:100|\d{1,2})%|top|bottom|left|right|center)(?:\s+(?:top|bottom|left|right|center))?$/, "Ungültiger Focal Point").nullable().optional().transform(v => v || null),
+  focalPoint: z.preprocess(
+    emptyStringToNull,
+    z.string().regex(/^(?:(?:100|\d{1,2})%\s+(?:100|\d{1,2})%|top|bottom|left|right|center)(?:\s+(?:top|bottom|left|right|center))?$/, "Ungültiger Focal Point").nullable().optional()
+  ).transform((v) => v ?? null),
   season: z.string().trim().max(50, "Saison zu lang").nullable().optional().transform(v => v || null),
 });
