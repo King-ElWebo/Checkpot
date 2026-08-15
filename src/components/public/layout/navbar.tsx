@@ -12,13 +12,12 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-white">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
         <Link
           href="/"
           className="flex items-center space-x-2 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
         >
-          {/* Logo as an image since we saw checkpot-logo.svg in the directory */}
           <div className="relative h-10 w-32">
             <Image
               src="/customer/checkpot-logo.svg"
@@ -41,6 +40,7 @@ export function Navbar() {
                 className={`text-[13px] uppercase tracking-wider font-medium transition-colors hover:text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] ${
                   isActive ? "text-[#C01718]" : "text-[#1A1A1A]"
                 }`}
+                aria-current={isActive ? "page" : undefined}
               >
                 {link.label}
               </Link>
@@ -55,6 +55,8 @@ export function Navbar() {
             className="text-[#1A1A1A] hover:text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Hauptmenü umschalten"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             <svg
               className="h-6 w-6"
@@ -62,6 +64,7 @@ export function Navbar() {
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               {isOpen ? (
                 <path
@@ -85,7 +88,7 @@ export function Navbar() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="border-t border-[#E2E8F0] bg-white md:hidden">
+        <div id="mobile-menu" className="border-t border-[#E2E8F0] bg-white md:hidden">
           <nav className="flex flex-col space-y-4 px-6 py-6">
             {navigationLinks.map((link) => {
               const isActive = pathname === link.href;
