@@ -91,7 +91,7 @@ export const seoRoutes: SeoRoute[] = [
   {
     route: "/marken",
     title: "Unsere Marken",
-    description: "Ausgewählte Modemarken und europäische Modelabels bei Checkpot in Wien Hietzing entdecken.",
+    description: "Ausgewählte Modemarken bei Checkpot in Wien Hietzing entdecken.",
     canonical: "/marken",
     index: true,
   },

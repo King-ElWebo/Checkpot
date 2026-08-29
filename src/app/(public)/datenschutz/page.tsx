@@ -47,12 +47,6 @@ export default async function DatenschutzPage() {
             Wenn Sie per Formular auf der Website oder per E-Mail Kontakt mit uns aufnehmen, werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
           </p>
 
-          <div className="bg-[#F9F9F8] border-l-4 border-[#C01718] p-6 my-10 rounded-r-sm">
-            <p className="text-[15px] m-0 text-[#1A1A1A]">
-              <strong>Hinweis für die Inhaberin:</strong> Die vollständige Datenschutzerklärung (Server-Logs, Cookies, Analysetools, Webfonts etc.) muss entsprechend der finalen technischen Konfiguration der Website rechtlich abgestimmt und hier eingefügt werden.
-            </p>
-          </div>
-
           <h2>Ihre Rechte</h2>
           <p>
             Im Sinne des Artikel 13 DSGVO wird ausdrücklich auf das Bestehen folgender Betroffenenrechte hingewiesen:

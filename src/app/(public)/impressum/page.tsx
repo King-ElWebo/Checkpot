@@ -50,12 +50,6 @@ export default async function ImpressumPage() {
             E-Mail: {storeDetails.email}
           </p>
 
-          <div className="bg-[#F9F9F8] border-l-4 border-[#C01718] p-6 my-10 rounded-r-sm">
-            <p className="text-[15px] m-0 text-[#1A1A1A]">
-              <strong>Hinweis für die Inhaberin:</strong> Weitere rechtliche Pflichtangaben (wie UID-Nummer, Firmenbuchnummer, Kammerzugehörigkeit, Aufsichtsbehörde) müssen nach rechtlicher Prüfung hier noch ergänzt werden.
-            </p>
-          </div>
-
           <h2>1. Inhalt des Onlineangebotes</h2>
           <p>
             Der Autor übernimmt keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit oder Qualität der bereitgestellten Informationen. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.

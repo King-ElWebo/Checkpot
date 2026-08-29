@@ -26,6 +26,23 @@ export const auditLogs = pgTable(
   (table) => [index("audit_logs_created_at_idx").on(table.createdAt)],
 );
 
+export const rateLimits = pgTable(
+  "rate_limits",
+  {
+    key: text("key").primaryKey(),
+    scope: text("scope").notNull(),
+    subjectHash: text("subject_hash").notNull(),
+    windowStart: timestamp("window_start", { withTimezone: true }).notNull(),
+    requestCount: integer("request_count").default(1).notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [
+    index("rate_limits_scope_subject_idx").on(table.scope, table.subjectHash),
+    index("rate_limits_expires_at_idx").on(table.expiresAt),
+  ],
+);
+
 // ----------------------------------------------------------------------
 // Checkpot Domain Models
 // ----------------------------------------------------------------------

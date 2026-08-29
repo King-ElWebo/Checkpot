@@ -3,31 +3,10 @@
 import { headers } from "next/headers";
 import { Resend } from "resend";
 import { contactSchema, type ContactActionState } from "@/lib/validations/contact";
+import { checkAndIncrementRateLimit } from "@/lib/rate-limiter";
 
 const SENDER_EMAIL = "Checkpot Website <website@checkpot-hietzing.at>";
 const RECIPIENT_EMAIL = "christa.hausmair@outlook.at";
-
-// Simple burst rate limiter: max 5 requests per 10 minutes per IP
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const MAX_REQUESTS_PER_WINDOW = 5;
-const ipSubmissions = new Map<string, { count: number; expiresAt: number }>();
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = ipSubmissions.get(ip);
-
-  if (!entry || now > entry.expiresAt) {
-    ipSubmissions.set(ip, { count: 1, expiresAt: now + RATE_LIMIT_WINDOW_MS });
-    return false;
-  }
-
-  if (entry.count >= MAX_REQUESTS_PER_WINDOW) {
-    return true;
-  }
-
-  entry.count += 1;
-  return false;
-}
 
 function escapeHtml(text: string): string {
   return text
@@ -42,17 +21,29 @@ export async function sendContactMessageAction(
   prevState: ContactActionState,
   formData: FormData
 ): Promise<ContactActionState> {
-  // 1. Extract IP for rate limiting
+  // 1. Extract IP and apply durable rate limiting (max 5 requests per 10 minutes per subject)
   const headerList = await headers();
   const forwardedFor = headerList.get("x-forwarded-for");
-  const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : "unknown-ip";
+  const realIp = headerList.get("x-real-ip");
+  const clientIp = (forwardedFor ? forwardedFor.split(",")[0].trim() : realIp) || "unknown-client";
 
-  if (clientIp !== "unknown-ip" && isRateLimited(clientIp)) {
-    return {
-      success: false,
-      message:
-        "Zu viele Anfragen in kurzer Zeit. Bitte warten Sie einige Minuten oder kontaktieren Sie uns direkt telefonisch.",
-    };
+  try {
+    const rateLimit = await checkAndIncrementRateLimit({
+      scope: "contact",
+      rawSubject: clientIp,
+      limit: 5,
+      windowSeconds: 600, // 10 minutes
+    });
+
+    if (!rateLimit.allowed) {
+      return {
+        success: false,
+        message:
+          "Zu viele Anfragen in kurzer Zeit. Bitte versuchen Sie es etwas später erneut oder kontaktieren Sie uns telefonisch.",
+      };
+    }
+  } catch (rateLimitErr) {
+    console.error("[Contact Form Action] Rate limiting check error (allowing request through):", rateLimitErr);
   }
 
   // 2. Parse & Validate FormData with Zod

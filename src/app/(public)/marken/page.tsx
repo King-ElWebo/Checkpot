@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { StaggeredList } from "@/components/public/motion/staggered-list";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 
-const DESCRIPTION = "Ausgewählte Modemarken und europäische Modelabels bei Checkpot in Wien Hietzing entdecken.";
+const DESCRIPTION = "Ausgewählte Modemarken bei Checkpot in Wien Hietzing entdecken.";
 const CANONICAL = "/marken";
 
 export const metadata: Metadata = {
