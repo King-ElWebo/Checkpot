@@ -2,14 +2,14 @@
 
 ## Last audited & updated
 - Date: 2026-08-29
-- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 Security Hardening & Release Backend Preparation completed
-- Branch: `main`
+- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 Release Preparation & SEO Migration Complete
+- Branch: `main` (synchronized with `origin/main`)
 
 ---
 
 ## 1. Executive Summary
 
-Phases 1, 2, 3A, 3B, and 4 of the backend completion are **COMPLETE**:
+Phases 1 through 5 of the backend completion are **COMPLETE**:
 1. **Central Store Settings & Single Source of Truth (Phase 1)**: Business facts are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
 2. **Central SITE_URL Configuration (Phase 1)**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
 3. **Contact Form Backend & Email Delivery (Phase 2)**: Submissions are processed by a dedicated Server Action with Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data is persisted to Neon.
@@ -26,75 +26,66 @@ Phases 1, 2, 3A, 3B, and 4 of the backend completion are **COMPLETE**:
    - Pseudonymous privacy: subjects are hashed via `HMAC-SHA256(RATE_LIMIT_SECRET, clientIp)` — zero raw IP addresses are persisted or logged.
    - Privacy & Consent Audit: Verified that no tracking scripts, pixels, non-essential cookies, or third-party embeds exist. **Consent manager not currently required by implemented public functionality.**
    - Legal Cleanup: Removed developer placeholder callout boxes from `/impressum` and `/datenschutz`. Legal pages are technically clean but pending final customer/legal review.
-   - Copy Correction: Removed unsupported geographic claim *"europäische Modelabels"* from `/marken` metadata and fixtures.
-
-Remaining items for subsequent phases:
-- **Phase 2.5 (Deferred)**: Controlled Resend inbox delivery verification (upon customer API key provisioning).
-- **Release Phase**: Legacy URL redirect & 410 mapping inventory in `next.config.ts`, Vercel production deployment in Frankfurt (`fra1`).
-
----
-
-## 2. Working (Fully Implemented & DB-Connected)
-
-- **Abuse Protection & Rate Limiting (Phase 4 Completed)**:
-  - Server-only durable rate limiter in [`src/lib/rate-limiter.ts`](file:///c:/Users/wilkb/Desktop/Projekte/checkpot/website/src/lib/rate-limiter.ts).
-  - Backed by Neon PostgreSQL `rate_limits` table (`drizzle/0004_cool_brother_voodoo.sql` applied).
-  - Concurrency-safe atomic SQL `ON CONFLICT DO UPDATE SET request_count = request_count + 1`.
-  - Privacy-preserving `HMAC-SHA256` hashing of client identifiers with fallback to `AUTH_SECRET`.
-  - Admin login brute-force blocker (429 status code on 5+ failed attempts, automatically reset on valid authentication).
-  - Public contact form rate limiter (friendly Austrian German message on 5+ requests in 10 minutes).
-- **Brand Module & SEO / Claims (Phase 3B Completed)**:
-  - Strongly typed `BrandSeoMetadata` schema with length limits (title: 70 chars, description: 180 chars).
-  - Admin Brand editor with dedicated "5. SEO & Suchmaschinen" and "4. Verifizierte Hinweise" sections.
-  - Slug modification warning banner (*"⚠️ Änderungen am Slug verändern die öffentliche Marken-URL"*).
-  - Multi-path targeted cache invalidation on save (`/marken`, `/marken/{new-slug}`, `/marken/{old-slug}`, `/`, `/sitemap.xml`).
-  - Hierarchical `generateMetadata` resolution on `/marken/[slug]`:
-    - Title: `seoMetadata.title` $\rightarrow$ `${brand.name} bei Checkpot`
-    - Description: `seoMetadata.description` $\rightarrow$ `brand.summary` $\rightarrow$ `${brand.name} bei Checkpot in Wien Hietzing entdecken.`
-    - OpenGraph: `seoMetadata.ogTitle` / `seoMetadata.ogDescription` / `brand.image.url`
-  - Verified claims rendering under *"Gut zu wissen"* on `/marken/[slug]` with zero empty boxes when omitted.
-  - Deterministic `getAdditionalPublishedBrands(brand.id, 3)` wrapping around the assortment in `sortOrder`.
-- **Media Management & Transparency Preservation (Phase 3A Completed)**:
-  - Client-side image compression (`src/lib/image-compression.ts`) preserves PNG alpha transparency and WebP formats.
-  - JPEG compression optimizes photographic imagery without affecting PNG logos.
-  - Server-side magic-byte verification enforces `image/jpeg`, `image/png`, and `image/webp`.
-  - Multi-upload, focal point picking, safe deletion with usage checks, and `MediaPicker` UI.
-- **Contact Form Backend (Phase 2 Completed)**:
-  - Server Action `sendContactMessageAction` with Zod validation, honeypot protection, durable rate limiting, and zero DB persistence.
-  - Resend email dispatch with sanitized plain-text and HTML templates (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at`).
-  - Accessible Client Component `ContactForm` with `aria-invalid`, `aria-describedby`, and live-region feedback.
-- **Store Settings & Business Facts (Phase 1 Completed)**:
-  - Database-backed via `systemSettings` (`key = "store_details"`).
-  - Server-only repository `src/lib/repositories/store-settings.ts` deduplicated per-request with React `cache()`.
-  - Dedicated Admin UI `/admin/store` ("Geschäftsdaten").
-  - Public integration across Layout, Footer, Home, `/kontakt`, `/ueber-uns`, `/impressum`, `/datenschutz`, and `LocalBusiness` JSON-LD.
-- **Central SITE_URL Management (Phase 1 Completed)**:
-  - `src/lib/site-config.ts` (`getSiteUrl()`, `absoluteUrl()`).
-  - Integrated into root layout `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph, Breadcrumbs, and JSON-LD.
-- **Admin Authentication**: JWT session with `jose`, `timingSafeEqual` password check, `requireAdmin()` verifier on Server Actions, and `src/proxy.ts` middleware route protection.
-- **Outfits & Lookbook Module**: Full Admin CRUD with multi-brand and multi-category assignment; public `/outfits` Lookbook with taxonomy filter bar.
-- **Outfit Taxonomy (Categories & Groups)**: Admin CRUD for taxonomy groups and categories.
-- **Collections & Mode Module**: Admin CRUD for seasonal collections; public `/mode` page.
-- **Quality Gates**:
-  - `npm run typecheck`: PASS (0 errors)
-  - `npm run lint`: PASS (0 warnings/errors)
-  - `npm run build`: PASS (35 static & dynamic routes compiled with Turbopack)
+8. **Release Preparation, Git Push & Legacy SEO Migration (Phase 5)**:
+   - Synchronized all previous commits to remote repository (`origin/main`).
+   - Audited all verified historical URLs from GSC and GA4 exports.
+   - Configured 21 verified permanent `301` redirects in `next.config.ts` (handling historical `/home/*`, `/ueber_uns/*`, `/kontakt/*`, `/mode/*`, and `/marken/*` aliases).
+   - Configured 8 explicit `410 Gone` responses in `src/proxy.ts` for permanently obsolete URLs (`zilch-wien`, `adini-wien`, `happy-rainy-days-wien`, `hatley`, `thought-braintree-wien`, `herbstwinter-kollektion-2023-`, `herbst-winter-2018`, `schrankcheck`).
+   - Created SEO source of truth artifact: `seo_analysis/legacy_url_migration.csv`.
+   - Created customer checklist artifact: `docs/LEGAL-INPUTS-NEEDED.md`.
 
 ---
 
-## 3. Privacy & Third-Party Service Technical Inventory
+## 2. Release Readiness Classification
 
-| Service / Integration | Interaction Layer | Data Transmitted | Client Cookies / Storage Set? | Consent Required? |
-|---|---|---|---|---|
-| **Vercel Hosting** | Server Infrastructure | HTTP request metadata (IP, User-Agent, Path) processed for routing | None (Zero non-essential cookies) | No (Strictly necessary hosting) |
-| **Neon PostgreSQL** | Server Backend | Store settings, brand/outfit content, pseudonymous rate-limit hashes | None | No (Internal server storage) |
-| **Vercel Blob** | Server Upload / CDN | Uploaded media files (PNG, JPG, WebP) served via static CDN URLs | None | No (Media delivery) |
-| **Resend** | Server Action | Contact form payload (`name`, `email`, `phone`, `message`, `timestamp`) | None | No (User-initiated contact request) |
-| **WhatsApp Outbound Link** | Client User Click | User navigates to `https://wa.me/43...` upon clicking link | None prior to click | No (External hyperlink) |
-| **Google Maps Outbound Link** | Client User Click | User navigates to Google Maps route planning upon clicking link | None prior to click | No (External hyperlink) |
-| **Next.js Google Fonts** | Build-time self-hosting | Fonts (`Outfit`, `Inter`) downloaded during build; served locally | None | No (Zero external font requests) |
+| Area | Status | Notes / Next Steps |
+|---|---|---|
+| **Code Architecture** | **READY** | All routes, components, Server Actions, and repositories typed and validated. |
+| **Database & Migrations** | **READY** | Drizzle migrations (`0000` through `0004`) applied to Neon PostgreSQL. |
+| **Security & Rate Limiting** | **READY** | Durable login and contact rate limiters active with atomic SQL upserts. |
+| **SEO & URL Migration** | **READY** | 21 redirects (301) and 8 gone routes (410) active; sitemap & robots verified. |
+| **Consent Management** | **READY** | Audited: no non-essential cookies, trackers or third-party embeds. Banner not required. |
+| **Environment Configuration** | **PARTIAL** | Local `.env.local` configured; production variables must be verified in Vercel dashboard. |
+| **Email Delivery (Phase 2.5)** | **DEFERRED** | Awaiting customer provisioning of `RESEND_API_KEY` for controlled verification. |
+| **Legal Content** | **PARTIAL** | Technically clean; awaiting customer review and factual inputs (`docs/LEGAL-INPUTS-NEEDED.md`). |
+| **Editorial Brand Content**| **PARTIAL** | 15 active brands present in DB; marketing text/claims to be populated by customer in Admin. |
+| **Frontend Design** | **FROZEN** | Design system frozen for backend delivery; no visual regressions introduced. |
 
-**Consent Decision:** Consent manager not currently required by implemented public functionality.
+---
+
+## 3. Legacy URL Migration Inventory (`seo_analysis/legacy_url_migration.csv`)
+
+| Old Path | Action | Target Path | Rationale / Evidence |
+|---|---|---|---|
+| `/team` | 301 | `/ueber-uns` | Core consolidation to about page |
+| `/brands` | 301 | `/marken` | Core consolidation to brand overview |
+| `/home` | 301 | `/` | Legacy homepage alias |
+| `/home/checkpot_damenmoden_1130_wien_` | 301 | `/` | Legacy homepage long slug alias |
+| `/ueber_uns` | 301 | `/ueber-uns` | Underscore slug alias |
+| `/ueber_uns/unser_team` | 301 | `/ueber-uns` | Subpage consolidated into about |
+| `/ueber_uns/fotos-vom-geschaeft` | 301 | `/ueber-uns` | Subpage consolidated into about |
+| `/kontakt/kontakt` | 301 | `/kontakt` | Redundant nested contact slug |
+| `/kontakt/impressum` | 301 | `/impressum` | Nested impressum alias |
+| `/kontakt/datenschutz` | 301 | `/datenschutz` | Nested datenschutz alias |
+| `/mode/unsere-marken` | 301 | `/marken` | Legacy brand link under mode |
+| `/mode/fair_trade` | 301 | `/fair-trade` | Underscore slug alias |
+| `/mode/vorschau-auf-herbst-winter-2025` | 301 | `/mode` | Seasonal archive consolidated |
+| `/mode/vorschau-auf-fruehjahr-sommer-2026` | 301 | `/mode` | Seasonal archive consolidated |
+| `/mode/vorschau-auf-fruehling-sommer-2025` | 301 | `/mode` | Seasonal archive consolidated |
+| `/marken/king-louie-wien` | 301 | `/marken/king-louie` | Brand slug normalized |
+| `/marken/madness-wien` | 301 | `/marken/madness` | Brand slug normalized |
+| `/marken/angels-wien` | 301 | `/marken/angels` | Brand slug normalized |
+| `/marken/sorgenfri-wien` | 301 | `/marken/sorgenfri` | Brand slug normalized |
+| `/marken/emily-van-den-bergh-wien` | 301 | `/marken/emily-van-den-berg` | Brand slug normalized (historical spelling with 'h') |
+| `/marken/nomads-clothing-` | 301 | `/marken/nomads` | Trailing hyphen slug normalized |
+| `/marken/zilch-wien` | 410 | *(none)* | Inactive legacy brand permanently removed |
+| `/marken/adini-wien` | 410 | *(none)* | Inactive legacy brand permanently removed |
+| `/marken/happy-rainy-days-wien` | 410 | *(none)* | Inactive legacy brand permanently removed |
+| `/marken/hatley` | 410 | *(none)* | Inactive legacy brand permanently removed |
+| `/marken/thought-braintree-wien` | 410 | *(none)* | Inactive legacy brand permanently removed |
+| `/mode/herbstwinter-kollektion-2023-` | 410 | *(none)* | Obsolete 2023 seasonal archive |
+| `/mode/herbst-winter-2018` | 410 | *(none)* | Obsolete 2018 seasonal archive |
+| `/schrankcheck-alt/schrankcheck` | 410 | *(none)* | Discontinued service |
 
 ---
 
@@ -102,8 +93,8 @@ Remaining items for subsequent phases:
 
 | Variable | Required for Build? | Required at Runtime? | Server Only? | Purpose | Current `.env.example` Status |
 |---|---|---|---|---|---|
-| `DATABASE_URL` | Yes (for static SSG paths) | Yes | Yes | Neon PostgreSQL connection string (pooled) | Documented |
-| `SITE_URL` | No (has fallback) | Yes (recommended) | Yes | Central canonical domain (`https://checkpot-hietzing.at`) | Documented |
+| `DATABASE_URL` | Yes (for static SSG paths) | Yes | Yes | Neon PostgreSQL pooled connection string | Documented |
+| `SITE_URL` | No (has fallback) | Yes | Yes | Central canonical domain (`https://checkpot-hietzing.at`) | Documented |
 | `AUTH_SECRET` | No (fails on auth) | Yes (for admin) | Yes | 32+ char secret for signing HS256 admin JWT sessions | Documented |
 | `ADMIN_PASSWORD` | No (fails on login) | Yes (for admin) | Yes | Passphrase for single-admin bootstrap login | Documented |
 | `BLOB_READ_WRITE_TOKEN`| No | Yes (for media uploads) | Yes | Read/write token for Vercel Blob storage | Documented |
@@ -112,36 +103,17 @@ Remaining items for subsequent phases:
 
 ---
 
-## 5. Legal Page Technical Status
+## 5. Phase 2.5 Pending Checklist (Email Delivery Verification)
 
-- **`/impressum`**: Developer callout box removed. Layout and business details rendered from DB (`store_details`). **Status: TECHNICALLY CLEAN BUT LEGAL REVIEW PENDING (Customer must provide/verify UID, Firmenbuch, etc.).**
-- **`/datenschutz`**: Developer callout box removed. Layout and contact references rendered from DB (`store_details`). **Status: TECHNICALLY CLEAN BUT LEGAL REVIEW PENDING (Customer must review against final third-party inventory).**
-
----
-
-## 6. Brand Content Completeness Matrix (All 15 Approved Brands)
-
-| # | Brand Name | Slug | Summary | Description | Verified Claims | SEO Title | SEO Desc | Logo | Title Image | Outfits | Content Readiness |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Sorgenfri | `sorgenfri` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 1 Outfit | Content Pending |
-| 2 | Lykka du Nord | `lykka-du-nord` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 3 | Seasalt | `seasalt` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 4 | Pretty Vacant | `pretty-vacant` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 5 | Cissi och Selma | `cissi-och-selma` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 6 | Danefae | `danefae` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 7 | LaLamour | `lalamour` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 8 | Nomads | `nomads` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 9 | Circus | `circus` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 10 | Angels | `angels` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
-| 11 | Stehmann | `stehmann` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 12 | Emily van den Berg | `emily-van-den-berg` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
-| 13 | Madness | `madness` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
-| 14 | Heidekönigin | `heidekoenigin` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
-| 15 | King Louie | `king-louie` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
+- [ ] Customer provisions `RESEND_API_KEY` in Vercel dashboard.
+- [ ] Verify `checkpot-hietzing.at` sender domain in Resend dashboard (DNS TXT/MX records).
+- [ ] Trigger one real test submission via `/kontakt`.
+- [ ] Confirm email received at `christa.hausmair@outlook.at`.
+- [ ] Confirm `Reply-To` header correctly routes replies to the visitor's email address.
 
 ---
 
-## 7. Quality Gates Verification
+## 6. Verification Summary
 
 ```text
 > npm run typecheck

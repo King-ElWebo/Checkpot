@@ -1,0 +1,30 @@
+old_url,old_path,decision,target_path,evidence,implemented,notes
+https://checkpot-hietzing.at/team,/team,301,/ueber-uns,SEO-SPEC.md,yes,Consolidation to about route
+https://checkpot-hietzing.at/brands,/brands,301,/marken,SEO-SPEC.md,yes,Consolidation to brands overview
+https://checkpot-hietzing.at/home,/home,301,/,GSC / GA4,yes,Legacy homepage alias
+https://checkpot-hietzing.at/home/checkpot_damenmoden_1130_wien_,/home/checkpot_damenmoden_1130_wien_,301,/,GSC / GA4,yes,Legacy homepage long slug alias
+https://checkpot-hietzing.at/ueber_uns,/ueber_uns,301,/ueber-uns,GSC / GA4,yes,Legacy about overview slug with underscore
+https://checkpot-hietzing.at/ueber_uns/unser_team,/ueber_uns/unser_team,301,/ueber-uns,GSC / GA4,yes,Legacy team subpage consolidated to about
+https://checkpot-hietzing.at/ueber_uns/fotos-vom-geschaeft,/ueber_uns/fotos-vom-geschaeft,301,/ueber-uns,GSC / GA4,yes,Legacy store photos subpage consolidated to about
+https://checkpot-hietzing.at/kontakt/kontakt,/kontakt/kontakt,301,/kontakt,GSC / GA4,yes,Legacy nested contact slug
+https://checkpot-hietzing.at/kontakt/impressum,/kontakt/impressum,301,/impressum,GSC / GA4,yes,Legacy nested impressum slug
+https://checkpot-hietzing.at/kontakt/datenschutz,/kontakt/datenschutz,301,/datenschutz,GSC / GA4,yes,Legacy nested datenschutz slug
+https://checkpot-hietzing.at/mode/unsere-marken,/mode/unsere-marken,301,/marken,GSC / GA4,yes,Legacy brand overview under mode
+https://checkpot-hietzing.at/mode/fair_trade,/mode/fair_trade,301,/fair-trade,GSC / GA4,yes,Legacy fair trade slug with underscore
+https://checkpot-hietzing.at/mode/vorschau-auf-herbst-winter-2025,/mode/vorschau-auf-herbst-winter-2025,301,/mode,GSC / GA4,yes,Seasonal preview consolidated to mode
+https://checkpot-hietzing.at/mode/vorschau-auf-fruehjahr-sommer-2026,/mode/vorschau-auf-fruehjahr-sommer-2026,301,/mode,GSC / GA4,yes,Seasonal preview consolidated to mode
+https://checkpot-hietzing.at/mode/vorschau-auf-fruehling-sommer-2025,/mode/vorschau-auf-fruehling-sommer-2025,301,/mode,GSC / GA4,yes,Seasonal preview consolidated to mode
+https://checkpot-hietzing.at/marken/king-louie-wien,/marken/king-louie-wien,301,/marken/king-louie,GSC / GA4,yes,Active brand slug normalized
+https://checkpot-hietzing.at/marken/madness-wien,/marken/madness-wien,301,/marken/madness,GSC / GA4,yes,Active brand slug normalized
+https://checkpot-hietzing.at/marken/angels-wien,/marken/angels-wien,301,/marken/angels,GSC / GA4,yes,Active brand slug normalized
+https://checkpot-hietzing.at/marken/sorgenfri-wien,/marken/sorgenfri-wien,301,/marken/sorgenfri,GSC / GA4,yes,Active brand slug normalized
+https://checkpot-hietzing.at/marken/emily-van-den-bergh-wien,/marken/emily-van-den-bergh-wien,301,/marken/emily-van-den-berg,GSC / GA4,yes,Active brand slug normalized (historical spelling with 'h')
+https://checkpot-hietzing.at/marken/nomads-clothing-,/marken/nomads-clothing-,301,/marken/nomads,GSC / GA4,yes,Active brand slug normalized
+https://checkpot-hietzing.at/marken/zilch-wien,/marken/zilch-wien,410,,GSC / GA4,yes,Legacy brand removed from assortment
+https://checkpot-hietzing.at/marken/adini-wien,/marken/adini-wien,410,,GSC / GA4,yes,Legacy brand removed from assortment
+https://checkpot-hietzing.at/marken/happy-rainy-days-wien,/marken/happy-rainy-days-wien,410,,GSC / GA4,yes,Legacy brand removed from assortment
+https://checkpot-hietzing.at/marken/hatley,/marken/hatley,410,,GSC / GA4,yes,Legacy brand removed from assortment
+https://checkpot-hietzing.at/marken/thought-braintree-wien,/marken/thought-braintree-wien,410,,GSC / GA4,yes,Legacy brand removed from assortment
+https://checkpot-hietzing.at/mode/herbstwinter-kollektion-2023-,/mode/herbstwinter-kollektion-2023-,410,,GSC,yes,Obsolete 2023 seasonal archive
+https://checkpot-hietzing.at/mode/herbst-winter-2018,/mode/herbst-winter-2018,410,,GSC,yes,Obsolete 2018 seasonal archive
+https://checkpot-hietzing.at/schrankcheck-alt/schrankcheck,/schrankcheck-alt/schrankcheck,410,,GSC,yes,Obsolete discontinued service
