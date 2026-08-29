@@ -97,7 +97,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               initialMedia={brand?.logo}
               allMedia={allMedia}
               aspect="logo"
-              helpText="Empfohlen: Freigestelltes PNG/SVG"
+              helpText="Empfohlen: PNG mit transparentem Hintergrund"
             />
 
             {/* Title Image Picker */}

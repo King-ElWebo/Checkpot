@@ -49,8 +49,8 @@ export default function MediaUploadPage() {
         <form onSubmit={handleSubmit} className="login-form" style={{ marginTop: 0 }}>
           <div className="field-group">
             <label htmlFor="file">Bilddatei *</label>
-            <input type="file" id="file" name="file" accept="image/*" required style={{ paddingTop: "12px" }} />
-            <p style={{ fontSize: "0.75rem", color: "var(--muted)", margin: 0 }}>Bilder werden automatisch im Browser verkleinert und komprimiert.</p>
+            <input type="file" id="file" name="file" accept="image/jpeg,image/png,image/webp" required style={{ paddingTop: "12px" }} />
+            <p style={{ fontSize: "0.75rem", color: "var(--muted)", margin: 0 }}>Unterstützte Formate: PNG, JPG oder WebP. Logos vorzugsweise als transparentes PNG.</p>
           </div>
 
           <div className="field-group">

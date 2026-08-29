@@ -1,15 +1,34 @@
 /**
- * Compresses an image file in the browser before uploading.
+ * Compresses/resizes an image file in the browser before uploading.
+ * Preserves format characteristics:
+ * - PNG: Resized if needed, output as image/png preserving full alpha transparency.
+ * - JPEG/JPG: Resized and compressed as image/jpeg.
+ * - WebP: Resized and compressed as image/webp.
+ *
  * @param file The original image file
  * @param maxWidth The maximum width of the image (default 1920)
- * @param quality The JPEG quality 0-1 (default 0.75)
- * @returns A compressed File object
+ * @param quality The JPEG/WebP quality 0-1 (default 0.8)
+ * @returns A compressed/resized File object matching the source format
  */
-export async function compressImage(file: File, maxWidth = 1920, quality = 0.75): Promise<File> {
-  // If not an image or is an SVG, skip compression
-  if (!file.type.startsWith("image/") || file.type === "image/svg+xml") {
+export async function compressImage(file: File, maxWidth = 1920, quality = 0.8): Promise<File> {
+  const fileType = file.type.toLowerCase();
+
+  // If not a recognized raster image type, return as-is
+  if (
+    !fileType.startsWith("image/") ||
+    fileType === "image/svg+xml" ||
+    fileType === "image/gif"
+  ) {
     return file;
   }
+
+  const isPng = fileType === "image/png" || file.name.toLowerCase().endsWith(".png");
+  const isWebp = fileType === "image/webp" || file.name.toLowerCase().endsWith(".webp");
+  const isJpeg =
+    fileType === "image/jpeg" ||
+    fileType === "image/jpg" ||
+    file.name.toLowerCase().endsWith(".jpg") ||
+    file.name.toLowerCase().endsWith(".jpeg");
 
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -36,11 +55,30 @@ export async function compressImage(file: File, maxWidth = 1920, quality = 0.75)
           return;
         }
 
-        // Fill background if converting from PNG with transparency to JPEG
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, width, height);
+        // For JPEG, fill background with white (JPEG has no alpha channel)
+        // For PNG and WebP, clear canvas to preserve full transparent alpha channel
+        if (isJpeg) {
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, width, height);
+        } else {
+          ctx.clearRect(0, 0, width, height);
+        }
 
         ctx.drawImage(img, 0, 0, width, height);
+
+        let outputMimeType = "image/jpeg";
+        let outputExtension = ".jpg";
+        let outputQuality: number | undefined = quality;
+
+        if (isPng) {
+          outputMimeType = "image/png";
+          outputExtension = ".png";
+          outputQuality = undefined;
+        } else if (isWebp) {
+          outputMimeType = "image/webp";
+          outputExtension = ".webp";
+          outputQuality = quality;
+        }
 
         canvas.toBlob(
           (blob) => {
@@ -48,19 +86,18 @@ export async function compressImage(file: File, maxWidth = 1920, quality = 0.75)
               resolve(file); // fallback
               return;
             }
-            
-            // Create a new File with the original name but potentially changed extension
-            const originalName = file.name;
-            const newName = originalName.replace(/\.[^/.]+$/, "") + ".jpg";
-            
-            const compressedFile = new File([blob], newName, {
-              type: "image/jpeg",
+
+            const originalBase = file.name.replace(/\.[^/.]+$/, "");
+            const newFilename = `${originalBase}${outputExtension}`;
+
+            const compressedFile = new File([blob], newFilename, {
+              type: outputMimeType,
               lastModified: Date.now(),
             });
             resolve(compressedFile);
           },
-          "image/jpeg",
-          quality
+          outputMimeType,
+          outputQuality
         );
       };
       img.onerror = (error) => reject(error);
