@@ -2,20 +2,20 @@
 
 ## Last audited & updated
 - Date: 2026-08-29
-- Commit SHA: `cc0e6b0e2e47a97fe03539a125398b64e1342ccf` ("backend update") + Phase 1 Store Settings & SITE_URL implementation
+- Commit SHA: Phase 1 committed (`85adcc4`), Phase 2 Contact Form Backend completed
 - Branch: `main`
 
 ---
 
 ## 1. Executive Summary
 
-Phase 1 of the backend completion is **COMPLETE**:
-1. **Central Store Settings & Single Source of Truth**: Business facts (store name, owner, street, postal code, city, country, phone, WhatsApp, email, structured opening hours) are now stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via a dedicated Admin route `/admin/store` ("Geschäftsdaten").
-2. **Public Frontend Integration**: All public pages (Homepage, Footer, `/kontakt`, `/ueber-uns`, `/impressum`, `/datenschutz`, and Schema.org `LocalBusiness` JSON-LD) now consume the centralized, cached `getStoreDetails()` repository DTO. Technical contact hrefs (`phoneHref`, `whatsappHref`, `emailHref`, `routePlanningHref`, `displayAddress`, `hours`) are derived server-side.
-3. **Central SITE_URL Configuration**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
+Phase 1 and Phase 2 of the backend completion are **COMPLETE**:
+1. **Central Store Settings & Single Source of Truth (Phase 1)**: Business facts (store name, owner, street, postal code, city, country, phone, WhatsApp, email, structured opening hours) are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
+2. **Central SITE_URL Configuration (Phase 1)**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
+3. **Contact Form Backend & Email Delivery (Phase 2)**: The `/kontakt` form is fully functional. Submissions are processed by a dedicated Server Action with strict Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data is persisted to Neon.
+4. **Accessible Client Form UX (Phase 2)**: Replaced the static HTML form with a focused Client Component (`src/app/(public)/kontakt/contact-form.tsx`) providing pending loading indicators, inline field validation feedback, and clear success/failure states with screen reader accessibility.
 
 Remaining items for subsequent phases:
-- **Phase 2**: Contact Form Backend (Resend integration, Server Action, Zod validation, honeypot, accessible client UX).
 - **Phase 3**: Media format handling (SVG upload support, PNG transparency preservation), brand SEO metadata connection, legacy URL redirect inventory.
 - **Phase 4**: Legal cleanup (removal of developer placeholder boxes on `/impressum` and `/datenschutz`), login rate limiting, consent management.
 
@@ -23,12 +23,21 @@ Remaining items for subsequent phases:
 
 ## 2. Working (Fully Implemented & DB-Connected)
 
+- **Contact Form Backend (Phase 2 Completed)**:
+  - Form fields: `name`, `email`, `phone` (optional), `message`, and hidden `companyWebsite` honeypot.
+  - Dedicated Zod schema in `src/lib/validations/contact.ts`.
+  - Server Action `sendContactMessageAction` in `src/app/(public)/kontakt/actions.ts`.
+  - Honeypot bot trap (silently returns success without dispatching email).
+  - Sliding-window burst rate limiter (max 5 requests per 10 minutes per IP).
+  - Strict non-persistence of personal inquiry data in Neon (no DB table, no CRM, no audit logs).
+  - Resend email dispatch with sanitized plain-text and HTML templates (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at`, `replyTo: visitor email`).
+  - Accessible Client Component `ContactForm` with `aria-invalid`, `aria-describedby`, pending spinner, and `role="status"` live region confirmation.
 - **Store Settings & Business Facts (Phase 1 Completed)**:
   - Database-backed via `systemSettings` (`key = "store_details"`).
   - Pure contracts & default constants in `src/lib/contracts/store-defaults.ts`.
   - Server-only repository `src/lib/repositories/store-settings.ts` deduplicated per-request with React `cache()`.
-  - Dedicated Admin UI `/admin/store` with 4 structured sections (Geschäft & Inhaberin, Standort & Adresse, Kontaktdaten, Reguläre Öffnungszeiten mit Von/Bis/Geschlossen).
-  - Protected Server Action `saveStoreSettingsAction` with `requireAdmin()`, `storeSettingsSchema` Zod validation, and targeted layout-level revalidation.
+  - Dedicated Admin UI `/admin/store` with 4 structured sections (Geschäft & Inhaberin, Standort & Adresse, Kontaktdaten, Reguläre Öffnungszeiten).
+  - Protected Server Action `saveStoreSettingsAction` with `requireAdmin()`, `storeSettingsSchema` Zod validation, and layout-level revalidation.
   - Public integration across Layout, Footer, Home, `/kontakt`, `/ueber-uns`, `/impressum`, `/datenschutz`, and `LocalBusiness` JSON-LD.
 - **Central SITE_URL Management (Phase 1 Completed)**:
   - `src/lib/site-config.ts` (`getSiteUrl()`, `absoluteUrl()`).
@@ -69,6 +78,7 @@ Remaining items for subsequent phases:
 
 ## 3. Partially Implemented
 
+- **Email Delivery Verification**: Code and templates are complete; real inbox delivery test remains pending entry of customer `RESEND_API_KEY` in production/staging.
 - **Collections / Mode Gallery Relation**: Collections rely on outfits referencing the collection (`outfits.collectionId`). No direct gallery image relation.
 - **Brand SEO & Claims**: `brands.seoMetadata` and `brands.verifiedClaims` exist in the database schema, but are neither editable in Admin nor consumed by `generateMetadata` or public brand pages.
 - **Related Brands**: `/marken/[slug]` generates related brands by taking a random slice of other brands rather than using explicit relationships.
@@ -81,12 +91,6 @@ Remaining items for subsequent phases:
 
 ## 4. Missing (Gaps for Subsequent Phases)
 
-- **Contact Form Backend (Phase 2)**:
-  - Server Action with Zod validation.
-  - Email sending via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at`).
-  - Honeypot spam protection.
-  - Accessible pending, success, and error states.
-  - Strict non-persistence of inquiry data in Neon.
 - **Consent Management (Phase 4)**:
   - Category-based consent manager (for future tracking/third-party scripts).
 - **Legal Content Review (Phase 4)**:
@@ -97,9 +101,8 @@ Remaining items for subsequent phases:
 
 ## 5. Launch Blockers (P0)
 
-1. **Contact Form Non-Functional**: Submitting `/kontakt` triggers a GET query reload without sending emails (Scheduled for Phase 2).
-2. **Visible Developer Placeholders**: Prominent alert boxes with "Hinweis für die Inhaberin" appear on public `/impressum` and `/datenschutz` (Scheduled for Phase 4).
-3. **Vercel Deployment Environment Configuration**: Vercel environment variables (`DATABASE_URL`, `BLOB_READ_WRITE_TOKEN`, `AUTH_SECRET`, `ADMIN_PASSWORD`, `RESEND_API_KEY`, `SITE_URL`) must be configured and verified in Frankfurt (`fra1`).
+1. **Visible Developer Placeholders**: Prominent alert boxes with "Hinweis für die Inhaberin" appear on public `/impressum` and `/datenschutz` (Scheduled for Phase 4).
+2. **Vercel Deployment Environment Configuration**: Vercel environment variables (`DATABASE_URL`, `BLOB_READ_WRITE_TOKEN`, `AUTH_SECRET`, `ADMIN_PASSWORD`, `RESEND_API_KEY`, `SITE_URL`) must be configured and verified in Frankfurt (`fra1`).
 
 ---
 
@@ -114,9 +117,9 @@ Remaining items for subsequent phases:
 | `/marken/[slug]` | DB-backed | Full | No | Yes (Store info box copy) | Partial (Brand data from DB; `seoMetadata` & `verifiedClaims` ignored) | Yes | `generateMetadata` (name + summary) | `seoMetadata` stored in DB is ignored. Related brands is random slice. |
 | `/ueber-uns` | Hybrid | **Yes (Store Details)** | Yes (`imagery`, `seoRoutes`) | Yes (Story text, quotes, layout images) | **Yes (Store facts)** | Yes (via layout) | `seoRoutes` fixture | None for store facts. |
 | `/fair-trade` | Fixtures & Static | No | Yes (`seoRoutes`, `imagery`) | Yes (All principles text, layout image) | No | No | `seoRoutes` fixture | Entire page is static/fixture-driven. Claims require customer verification. |
-| `/kontakt` | Hybrid | **Yes (Store Details)** | Yes (`seoRoutes`, `imagery`) | Yes (Static layout images) | **Yes (Store facts)** | Yes | `LocalBusiness` JSON-LD from `getStoreDetails()`; `seoRoutes` fixture | Contact form backend (Phase 2). |
+| `/kontakt` | Hybrid | **Yes (Store Details & Contact Action)** | Yes (`seoRoutes`, `imagery`) | Yes (Static layout images) | **Yes (Store facts)** | Yes | `LocalBusiness` JSON-LD from `getStoreDetails()`; `seoRoutes` fixture | None. Contact form fully integrated. |
 | `/impressum` | Hybrid | **Yes (Store Details)** | Yes (`seoRoutes`) | Yes (Legal text, placeholder box) | **Yes (Store facts)** | Yes | `seoRoutes` fixture (`robots: noindex`) | Visible developer placeholder note. Missing tax/legal entity data. |
-| `/datenschutz` | Hybrid | **Yes (Store Details)** | Yes (`seoRoutes`) | Yes (Privacy text, placeholder box) | **Yes (Store facts)** | Yes | `seoRoutes` fixture (`robots: noindex`) | Visible developer placeholder note. Mismatch regarding form data persistence. |
+| `/datenschutz` | Hybrid | **Yes (Store Details)** | Yes (`seoRoutes`) | Yes (Privacy text, placeholder box) | **Yes (Store facts)** | Yes | `seoRoutes` fixture (`robots: noindex`) | Visible developer placeholder note. |
 
 ---
 
@@ -124,12 +127,13 @@ Remaining items for subsequent phases:
 
 - **Auth Verification**: Strong. All admin mutations call `await requireAdmin()` directly inside Server Actions. `src/proxy.ts` acts as optimistic route filter.
 - **Session Tokens**: Signed JWT using `jose` HS256 with 8-hour expiry, `httpOnly`, `sameSite: "lax"`, and `secure` in production.
-- **Input Validation**: Strict Zod schemas used for all admin forms, including `storeSettingsSchema`.
+- **Input Validation**: Strict Zod schemas used for all admin forms and public contact forms.
 - **Upload Hardening**: Server-side magic-number verification prevents MIME-type spoofing; files stored with `crypto.randomUUID()`.
-- **Security Gaps**:
-  - No rate limiting on `/api/auth/login`.
-  - Contact form requires honeypot/rate limiting once activated.
-  - Personal inquiry data must never be written to Neon (confirmed by design).
+- **Contact Form Privacy & Anti-Spam**:
+  - Honeypot hidden input traps automated spam bots without alerting them.
+  - Sliding-window rate limiter restricts rapid IP bursts.
+  - Zero database persistence of inquiry text or personal visitor details.
+  - HTML body sanitized with character escaping to prevent injection.
 
 ---
 
@@ -144,7 +148,7 @@ Remaining items for subsequent phases:
   - `AUTH_SECRET` (JWT signing secret, min 32 chars)
   - `ADMIN_PASSWORD` (Single-admin bootstrap password)
   - `BLOB_READ_WRITE_TOKEN` (Vercel Blob token)
-  - `RESEND_API_KEY` (Required for Phase 2)
+  - `RESEND_API_KEY` (Required for contact form email delivery)
 
 ---
 
@@ -164,11 +168,6 @@ next build -> Exit code 0 (PASS, 28 static & dynamic routes compiled)
 ---
 
 ## 10. Prioritized Action Items
-
-- **Phase 2 (P0 - Immediate Next Step)**:
-  1. Install `resend` and add `RESEND_API_KEY` to environment configuration.
-  2. Implement Contact Form Server Action with Zod validation, honeypot protection, and email delivery (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at`).
-  3. Wire accessible pending, success, and error feedback in `/kontakt`.
 
 - **Phase 3 (P1 - Required Backend Completion)**:
   1. Fix media upload to support SVG files (for vector brand logos) and preserve PNG transparency during client compression.

@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { seoRoutes, imagery } from "@/content/fixtures/checkpot";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
 import { getSiteUrl } from "@/lib/site-config";
+import { ContactForm } from "./contact-form";
 
 const seo = seoRoutes.find((r) => r.route === "/kontakt")!;
 
@@ -174,69 +175,7 @@ export default async function KontaktPage() {
             </div>
 
             <div className="lg:col-span-6 lg:col-start-7 bg-white p-8 lg:p-12 rounded-sm border border-[#E2E8F0]">
-              <form className="space-y-8" action="/kontakt">
-                <div className="space-y-8">
-                  <div>
-                    <label htmlFor="name" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      autoComplete="name"
-                      required
-                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px]"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                      E-Mail
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      autoComplete="email"
-                      required
-                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px]"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                      Telefon <span className="text-[#A0AEC0] font-normal normal-case">(optional)</span>
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      id="phone"
-                      autoComplete="tel"
-                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px]"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
-                      Nachricht
-                    </label>
-                    <textarea
-                      name="message"
-                      id="message"
-                      rows={5}
-                      required
-                      className="block w-full border-0 border-b border-[#E2E8F0] bg-transparent py-3 px-0 text-[#1A1A1A] focus:border-[#C01718] focus:ring-0 sm:text-[15px] resize-y"
-                    />
-                  </div>
-                </div>
-                
-                <div className="pt-6">
-                  <button
-                    type="submit"
-                    className="w-full inline-flex cursor-pointer items-center justify-center rounded-sm bg-[#1A1A1A] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
-                  >
-                    Nachricht senden
-                  </button>
-                </div>
-              </form>
+              <ContactForm />
             </div>
 
           </div>
