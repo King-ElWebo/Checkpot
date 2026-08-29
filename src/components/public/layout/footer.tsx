@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { storeDetails } from "@/content/fixtures/checkpot";
+import type { StoreDetails } from "@/lib/contracts/public";
 
-export function Footer() {
+export function Footer({ storeDetails }: { storeDetails: StoreDetails }) {
   return (
     <footer className="border-t border-[#E2E8F0] bg-[#F9F9F8]">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
@@ -15,7 +15,7 @@ export function Footer() {
               <br />
               {storeDetails.address.postalCode} {storeDetails.address.city}
               <br />
-              Österreich
+              {storeDetails.address.country === "AT" ? "Österreich" : storeDetails.address.country}
             </p>
           </div>
           <div>
@@ -68,3 +68,4 @@ export function Footer() {
     </footer>
   );
 }
+

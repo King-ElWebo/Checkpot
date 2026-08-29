@@ -4,7 +4,8 @@ import { Inter, Outfit } from "next/font/google";
 import "./public.css";
 import { Navbar } from "@/components/public/layout/navbar";
 import { Footer } from "@/components/public/layout/footer";
-import { siteUrl } from "@/content/fixtures/checkpot";
+import { getSiteUrl } from "@/lib/site-config";
+import { getStoreDetails } from "@/lib/repositories/store-settings";
 
 const fontHeading = Outfit({
   subsets: ["latin"],
@@ -17,6 +18,8 @@ const fontBody = Inter({
   variable: "--font-body",
   display: "swap",
 });
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -51,12 +54,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
+export default async function PublicLayout({ children }: { children: React.ReactNode }) {
+  const storeDetails = await getStoreDetails();
+
   return (
     <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
       <Navbar />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <Footer storeDetails={storeDetails} />
     </div>
   );
 }
+

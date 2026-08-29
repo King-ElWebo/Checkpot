@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 
-import { siteUrl } from "@/content/fixtures/checkpot";
+import { getSiteUrl } from "@/lib/site-config";
 
 export default function robots(): MetadataRoute.Robots {
+  const siteUrl = getSiteUrl();
   return {
     rules: {
       userAgent: "*",
@@ -13,3 +14,4 @@ export default function robots(): MetadataRoute.Robots {
     host: siteUrl,
   };
 }
+

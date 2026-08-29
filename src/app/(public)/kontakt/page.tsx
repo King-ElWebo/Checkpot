@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { storeDetails, seoRoutes, siteUrl, imagery } from "@/content/fixtures/checkpot";
+import { seoRoutes, imagery } from "@/content/fixtures/checkpot";
+import { getStoreDetails } from "@/lib/repositories/store-settings";
+import { getSiteUrl } from "@/lib/site-config";
 
 const seo = seoRoutes.find((r) => r.route === "/kontakt")!;
 
@@ -13,7 +15,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function KontaktPage() {
+export default async function KontaktPage() {
+  const storeDetails = await getStoreDetails();
+  const siteUrl = getSiteUrl();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -29,7 +34,7 @@ export default function KontaktPage() {
       addressCountry: storeDetails.address.country,
     },
     openingHoursSpecification: storeDetails.hours
-      .filter((h) => h.schemaDays)
+      .filter((h) => h.schemaDays && h.schemaDays.length > 0)
       .map((h) => ({
         "@type": "OpeningHoursSpecification",
         dayOfWeek: h.schemaDays,
@@ -37,6 +42,7 @@ export default function KontaktPage() {
         closes: h.closes,
       })),
   };
+
 
   return (
     <div className="flex flex-col bg-white">

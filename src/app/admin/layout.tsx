@@ -27,6 +27,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
           <Link href="/admin/collections">Kollektionen</Link>
           <Link href="/admin/outfit-categories">Taxonomie</Link>
           <Link href="/admin/media">Mediathek</Link>
+          <Link href="/admin/store">Geschäftsdaten</Link>
           <Link
             href="/admin/pages"
             style={{ opacity: 0.6, fontSize: "0.8rem" }}

@@ -55,7 +55,7 @@ export default async function AdminPage() {
       </section>
 
       {/* Quick Action Cards */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <Link
           href="/admin/outfits/new"
           className="group flex flex-col p-6 bg-white border border-[#e7e5e4] hover:border-[#C01718] hover:shadow-md rounded-2xl transition-all"
@@ -64,10 +64,10 @@ export default async function AdminPage() {
             +
           </div>
           <h3 className="font-bold text-base text-[#1c1917] group-hover:text-[#C01718] transition-colors">
-            Neues Outfit anlegen
+            Neues Outfit
           </h3>
           <p className="text-xs text-[#78716c] mt-1">
-            Foto hochladen, Marken und Filter zuweisen und im Lookbook veröffentlichen.
+            Foto hochladen, Marken und Filter zuweisen.
           </p>
         </Link>
 
@@ -79,10 +79,10 @@ export default async function AdminPage() {
             +
           </div>
           <h3 className="font-bold text-base text-[#1c1917] group-hover:text-[#C01718] transition-colors">
-            Neue Marke anlegen
+            Neue Marke
           </h3>
           <p className="text-xs text-[#78716c] mt-1">
-            Logo und Beschreibung für eine Modemarke hinzufügen.
+            Logo und Beschreibung für ein Label hinzufügen.
           </p>
         </Link>
 
@@ -94,10 +94,25 @@ export default async function AdminPage() {
             📁
           </div>
           <h3 className="font-bold text-base text-[#1c1917] group-hover:text-[#C01718] transition-colors">
-            Mediathek öffnen
+            Mediathek
           </h3>
           <p className="text-xs text-[#78716c] mt-1">
-            Mehrere Bilder per Drag & Drop hochladen und Bildfokus anpassen.
+            Fotos per Drag & Drop hochladen und Bildfokus setzen.
+          </p>
+        </Link>
+
+        <Link
+          href="/admin/store"
+          className="group flex flex-col p-6 bg-white border border-[#e7e5e4] hover:border-[#C01718] hover:shadow-md rounded-2xl transition-all"
+        >
+          <div className="w-10 h-10 rounded-xl bg-[#f5f5f4] text-[#1c1917] flex items-center justify-center font-bold text-lg mb-3 group-hover:scale-105 transition-transform">
+            🕒
+          </div>
+          <h3 className="font-bold text-base text-[#1c1917] group-hover:text-[#C01718] transition-colors">
+            Geschäftsdaten
+          </h3>
+          <p className="text-xs text-[#78716c] mt-1">
+            Öffnungszeiten, Telefon, Adresse und E-Mail anpassen.
           </p>
         </Link>
       </section>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { storeDetails, seoRoutes } from "@/content/fixtures/checkpot";
+import { seoRoutes } from "@/content/fixtures/checkpot";
+import { getStoreDetails } from "@/lib/repositories/store-settings";
 
 const seo = seoRoutes.find((r) => r.route === "/datenschutz")!;
 
@@ -16,7 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DatenschutzPage() {
+export default async function DatenschutzPage() {
+  const storeDetails = await getStoreDetails();
+
   return (
     <div className="flex flex-col bg-white">
       <div className="mx-auto w-full max-w-3xl px-4 pt-12 lg:px-6">

@@ -89,3 +89,24 @@ export const mediaMetadataSchema = z.object({
   ).transform((v) => v ?? null),
   season: z.string().trim().max(50, "Saison zu lang").nullable().optional().transform(v => v || null),
 });
+
+const timeRegex = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+export const storeSettingsSchema = z.object({
+  name: z.string().trim().min(1, "Geschäftsname ist erforderlich").max(100, "Geschäftsname zu lang"),
+  owner: z.string().trim().min(1, "Inhaberin ist erforderlich").max(100, "Name zu lang"),
+  street: z.string().trim().min(1, "Straße ist erforderlich").max(150, "Straße zu lang"),
+  postalCode: z.string().trim().min(1, "PLZ ist erforderlich").max(20, "PLZ zu lang"),
+  city: z.string().trim().min(1, "Ort ist erforderlich").max(100, "Ort zu lang"),
+  country: z.string().trim().min(2, "Ungültiges Land").max(10, "Ungültiges Land").default("AT"),
+  phone: z.string().trim().min(3, "Telefonnummer ist erforderlich").max(50, "Telefonnummer zu lang"),
+  whatsapp: z.string().trim().min(3, "WhatsApp-Nummer ist erforderlich").max(50, "WhatsApp-Nummer zu lang"),
+  email: z.string().trim().email("Ungültige E-Mail-Adresse").max(100, "E-Mail zu lang"),
+  weekdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 10:00)").default("10:00"),
+  weekdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 18:00)").default("18:00"),
+  weekdayClosed: z.boolean().default(false),
+  saturdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 10:00)").default("10:00"),
+  saturdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 14:00)").default("14:00"),
+  saturdayClosed: z.boolean().default(false),
+});
+

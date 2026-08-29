@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 
-import { seoRoutes, siteUrl } from "@/content/fixtures/checkpot";
+import { seoRoutes } from "@/content/fixtures/checkpot";
+import { getSiteUrl } from "@/lib/site-config";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const siteUrl = getSiteUrl();
   const lastModified = new Date();
   const staticRoutes = seoRoutes
     .filter((route) => route.index)
@@ -24,3 +26,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [...staticRoutes, ...brandRoutes];
 }
+

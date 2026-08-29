@@ -1,8 +1,9 @@
 import Link from "next/link";
 import type { BreadcrumbItem } from "@/lib/contracts/public";
-import { siteUrl } from "@/content/fixtures/checkpot";
+import { getSiteUrl } from "@/lib/site-config";
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+  const siteUrl = getSiteUrl();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -13,6 +14,7 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
       item: new URL(item.href, siteUrl).toString(),
     })),
   };
+
 
   return (
     <>

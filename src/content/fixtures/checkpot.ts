@@ -5,10 +5,11 @@ import type {
   PublicImage,
   PublicLink,
   SeoRoute,
-  StoreDetails,
 } from "@/lib/contracts/public";
+import { getSiteUrl } from "@/lib/site-config";
+import { DEFAULT_STORE_DETAILS } from "@/lib/contracts/store-defaults";
 
-export const siteUrl = "https://checkpot-hietzing.at";
+export const siteUrl = getSiteUrl();
 
 export const navigationLinks: PublicLink[] = [
   { href: "/", label: "Startseite" },
@@ -20,41 +21,8 @@ export const navigationLinks: PublicLink[] = [
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-export const storeDetails: StoreDetails = {
-  name: "Checkpot Hietzing",
-  owner: "Christa Hausmair",
-  address: {
-    street: "Hietzinger Hauptstraße 10-16",
-    postalCode: "1130",
-    city: "Wien",
-    country: "AT",
-    display: "Hietzinger Hauptstraße 10-16, 1130 Wien",
-  },
-  phone: "(01) 877 58 87",
-  phoneHref: "tel:+4318775887",
-  whatsapp: "0676 3772514",
-  whatsappHref: "https://wa.me/436763772514",
-  email: "store@checkpot-hietzing.at",
-  emailHref: "mailto:store@checkpot-hietzing.at",
-  routePlanningHref:
-    "https://www.google.com/maps/search/?api=1&query=Hietzinger%20Hauptstra%C3%9Fe%2010-16%2C%201130%20Wien",
-  hours: [
-    {
-      label: "Montag bis Freitag",
-      value: "10:00-18:00",
-      schemaDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "10:00",
-      closes: "18:00",
-    },
-    {
-      label: "Samstag",
-      value: "10:00-14:00",
-      schemaDays: ["Saturday"],
-      opens: "10:00",
-      closes: "14:00",
-    },
-  ],
-};
+export const storeDetails = DEFAULT_STORE_DETAILS;
+
 
 export const imagery = {
   hero: {

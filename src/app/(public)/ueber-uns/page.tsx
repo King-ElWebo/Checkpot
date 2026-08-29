@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { storeDetails, imagery, seoRoutes } from "@/content/fixtures/checkpot";
+import { imagery, seoRoutes } from "@/content/fixtures/checkpot";
+import { getStoreDetails } from "@/lib/repositories/store-settings";
 
 const seo = seoRoutes.find((r) => r.route === "/ueber-uns")!;
 
@@ -14,7 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function UeberUnsPage() {
+export default async function UeberUnsPage() {
+  const storeDetails = await getStoreDetails();
+
   return (
     <div className="flex flex-col bg-[#F9F9F8]">
       <div className="mx-auto w-full max-w-[1400px] px-4 pt-12 lg:px-6">

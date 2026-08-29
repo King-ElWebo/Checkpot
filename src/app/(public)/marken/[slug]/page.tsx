@@ -6,7 +6,8 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { FadeIn } from "@/components/public/motion/fade-in";
 import { getPublishedBrandBySlug, listPublishedBrands } from "@/lib/repositories/brands";
 import { getOutfitsByBrandId } from "@/lib/repositories/outfits";
-import { siteUrl } from "@/content/fixtures/checkpot";
+import { getSiteUrl } from "@/lib/site-config";
+
 
 export async function generateStaticParams() {
   const brands = await listPublishedBrands();
@@ -53,6 +54,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
   // making sure they are not the current brand.
   const allBrands = await listPublishedBrands();
   const relatedBrands = allBrands.filter(b => b.id !== brand.id).slice(0, 3);
+  const siteUrl = getSiteUrl();
 
   const jsonLd = {
     "@context": "https://schema.org",

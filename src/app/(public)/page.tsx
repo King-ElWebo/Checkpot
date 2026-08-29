@@ -1,17 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeIn } from "@/components/public/motion/fade-in";
-import { storeDetails, siteUrl } from "@/content/fixtures/checkpot";
+import { getStoreDetails } from "@/lib/repositories/store-settings";
+import { getSiteUrl } from "@/lib/site-config";
 import { listFeaturedOutfits } from "@/lib/repositories/outfits";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 import { BrandBookshelf } from "@/components/public/brand-bookshelf";
 
 export default async function HomePage() {
-  const dbOutfits = await listFeaturedOutfits();
-  const dbBrands = await listPublishedBrands();
+  const [storeDetails, dbOutfits, dbBrands] = await Promise.all([
+    getStoreDetails(),
+    listFeaturedOutfits(),
+    listPublishedBrands(),
+  ]);
+
+  const siteUrl = getSiteUrl();
   
   const featuredOutfits = dbOutfits.slice(0, 3);
   const featuredBrands = dbBrands; // Use all published brands for robustness
+
 
   const jsonLd = {
     "@context": "https://schema.org",
