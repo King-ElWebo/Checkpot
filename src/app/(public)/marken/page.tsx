@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { StaggeredList } from "@/components/public/motion/staggered-list";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 
-const DESCRIPTION = "Ausgewählte, faire und nachhaltige Modemarken bei Checkpot Hietzing.";
+const DESCRIPTION = "Ausgewählte Modemarken und europäische Modelabels bei Checkpot in Wien Hietzing entdecken.";
 const CANONICAL = "/marken";
 
 export const metadata: Metadata = {
@@ -39,8 +39,8 @@ export default async function MarkenPage() {
             Unsere Marken
           </h1>
           <p className="mt-8 text-lg leading-relaxed text-[#4A5568] sm:text-xl">
-            Wir wählen unsere Labels sorgfältig nach Qualität, Passform und Stil aus. Viele 
-            unserer Marken produzieren zudem nachhaltig und fair in Europa.
+            Wir wählen unsere Modelabels sorgfältig nach Qualität, Passform und individuellem Stil aus.
+            Entdecken Sie unsere Markenauswahl direkt vor Ort in Wien Hietzing.
           </p>
         </div>
 

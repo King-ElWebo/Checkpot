@@ -12,11 +12,27 @@ export async function saveBrandAction(id: string | null, formData: FormData) {
   await requireAdmin();
 
   // Validate input
+  const rawSeoTitle = formData.get("seoTitle");
+  const rawSeoDescription = formData.get("seoDescription");
+  const rawSeoOgTitle = formData.get("seoOgTitle");
+  const rawSeoOgDescription = formData.get("seoOgDescription");
+
+  const hasSeoInput = Boolean(rawSeoTitle || rawSeoDescription || rawSeoOgTitle || rawSeoOgDescription);
+
   const parsed = brandSchema.safeParse({
     name: formData.get("name"),
     slug: formData.get("slug"),
     summary: formData.get("summary"),
     description: formData.get("description"),
+    verifiedClaims: formData.get("verifiedClaims"),
+    seoMetadata: hasSeoInput
+      ? {
+          title: rawSeoTitle,
+          description: rawSeoDescription,
+          ogTitle: rawSeoOgTitle,
+          ogDescription: rawSeoOgDescription,
+        }
+      : null,
     active: formData.get("active") === "true",
     sortOrder: parseInt(formData.get("sortOrder") as string) || 0,
     logoMediaId: formData.get("logoMediaId"),
@@ -33,16 +49,23 @@ export async function saveBrandAction(id: string | null, formData: FormData) {
   let oldSlug: string | undefined;
 
   if (id && id !== "new") {
-    // Fetch old brand to see if slug changed
+    // Fetch old brand to see if slug changed and preserve any existing custom seoMetadata keys
     const oldBrand = await database.query.brands.findFirst({
       where: eq(brands.id, id),
-      columns: { slug: true }
     });
+
     if (oldBrand && oldBrand.slug !== data.slug) {
       oldSlug = oldBrand.slug;
     }
-    
-    await database.update(brands).set(data).where(eq(brands.id, id));
+
+    const mergedSeo = oldBrand?.seoMetadata && typeof oldBrand.seoMetadata === "object"
+      ? { ...oldBrand.seoMetadata, ...(data.seoMetadata || {}) }
+      : data.seoMetadata;
+
+    await database.update(brands).set({
+      ...data,
+      seoMetadata: mergedSeo,
+    }).where(eq(brands.id, id));
   } else {
     await database.insert(brands).values(data);
   }

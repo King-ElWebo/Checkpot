@@ -2,35 +2,44 @@
 
 ## Last audited & updated
 - Date: 2026-08-29
-- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A Brand Reconciliation & Media Transparency Fixes
+- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B Brand SEO & Verified Claims completed
 - Branch: `main`
 
 ---
 
 ## 1. Executive Summary
 
-Phases 1, 2, and 3A of the backend completion are **COMPLETE**:
+Phases 1, 2, 3A, and 3B of the backend completion are **COMPLETE**:
 1. **Central Store Settings & Single Source of Truth (Phase 1)**: Business facts are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
 2. **Central SITE_URL Configuration (Phase 1)**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
 3. **Contact Form Backend & Email Delivery (Phase 2)**: Submissions are processed by a dedicated Server Action with Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data is persisted to Neon.
-4. **Media Upload & PNG Transparency Fix (Phase 3A)**: Client-side compression in `src/lib/image-compression.ts` no longer flattens transparent PNG logos to white JPEGs. PNG images maintain their native `image/png` MIME type and full alpha transparency. SVG upload is intentionally unsupported on the server for security hardening; UI recommendations now clearly specify `"PNG mit transparentem Hintergrund"`.
+4. **Media Upload & PNG Transparency Fix (Phase 3A)**: Client-side compression in `src/lib/image-compression.ts` preserves PNG alpha transparency and WebP formats. SVG upload is intentionally unsupported on the server for security hardening; UI recommendations specify `"PNG mit transparentem Hintergrund"`.
 5. **Brand Assortment Reconciliation (Phase 3A)**: Reconciled the Neon database against the 15 approved Checkpot brands with defined sort order (10–150). Inactive legacy brands (`Zilch`, `Happy Rainy Days`, `Adini`) are deactivated (`active = false`) without deleting records or outfit relations.
+6. **Brand SEO, Claims & Public Data Integration (Phase 3B)**:
+   - `brands.seoMetadata` is strictly typed (`BrandSeoMetadata`), editable in Admin, and consumed by `generateMetadata` in `/marken/[slug]` with hierarchical fallbacks.
+   - `brands.verifiedClaims` is safely validated, editable line-by-line in Admin, and rendered under *"Gut zu wissen"* on `/marken/[slug]`.
+   - Replaced random "related brand" slice with deterministic assortment wrap-around helper `getAdditionalPublishedBrands()`.
+   - Audited and eliminated dead legacy business fixtures (`brands[]`, `outfits[]`, `currentCollection`, `getBrandBySlug()`, `getRelatedBrands()`) from `src/content/fixtures/checkpot.ts`.
 
 Remaining items for subsequent phases:
-- **Phase 3B**: Brand SEO metadata connection (`brand.seoMetadata` in `generateMetadata`), curated related brands, and legacy URL redirect/410 inventory.
 - **Phase 4**: Legal cleanup (removal of developer placeholder boxes on `/impressum` and `/datenschutz`), login rate limiting, consent management.
+- **Release Phase**: Legacy URL redirect & 410 mapping inventory, production environment deployment verification in Frankfurt (`fra1`).
 
 ---
 
 ## 2. Working (Fully Implemented & DB-Connected)
 
-- **Brand Assortment & Public Brand Routes (Phase 3A Completed)**:
-  - 15 active approved brands with normalized slugs and sort orders in Neon PostgreSQL.
-  - Legacy brands (`Adini`, `Zilch`, `Happy Rainy Days`) deactivated cleanly (`active = false`), preserving outfit relationships and database IDs.
-  - Public `/marken` grid renders all 15 active brands with responsive featured layouts.
-  - Public `/marken/[slug]` generates static pages for all 15 active brands with defensive fallbacks for missing logos, images, descriptions, or outfits.
-  - Homepage `BrandBookshelf` dynamically renders active brands with fallback typographic branding and logo isolation.
-  - Dynamic `sitemap.ts` includes all 15 active brand detail URLs and excludes inactive brands.
+- **Brand Module & SEO / Claims (Phase 3B Completed)**:
+  - Strongly typed `BrandSeoMetadata` schema with length limits (title: 70 chars, description: 180 chars).
+  - Admin Brand editor with dedicated "5. SEO & Suchmaschinen" and "4. Verifizierte Hinweise" sections.
+  - Slug modification warning banner (*"⚠️ Änderungen am Slug verändern die öffentliche Marken-URL"*).
+  - Multi-path targeted cache invalidation on save (`/marken`, `/marken/{new-slug}`, `/marken/{old-slug}`, `/`, `/sitemap.xml`).
+  - Hierarchical `generateMetadata` resolution on `/marken/[slug]`:
+    - Title: `seoMetadata.title` $\rightarrow$ `${brand.name} bei Checkpot`
+    - Description: `seoMetadata.description` $\rightarrow$ `brand.summary` $\rightarrow$ `${brand.name} bei Checkpot in Wien Hietzing entdecken.`
+    - OpenGraph: `seoMetadata.ogTitle` / `seoMetadata.ogDescription` / `brand.image.url`
+  - Verified claims rendering under *"Gut zu wissen"* on `/marken/[slug]` with zero empty boxes when omitted.
+  - Deterministic `getAdditionalPublishedBrands(brand.id, 3)` wrapping around the assortment in `sortOrder`.
 - **Media Management & Transparency Preservation (Phase 3A Completed)**:
   - Client-side image compression (`src/lib/image-compression.ts`) preserves PNG alpha transparency and WebP formats.
   - JPEG compression optimizes photographic imagery without affecting PNG logos.
@@ -59,49 +68,61 @@ Remaining items for subsequent phases:
 
 ---
 
-## 3. Brand Content Completeness Matrix (Phase 3A)
+## 3. Brand Content Completeness Matrix (All 15 Approved Brands)
 
-| # | Brand Name | Slug | Sort | Active | Logo | Title Image | Summary / Desc | Outfits | Assortment Status |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | Sorgenfri | `sorgenfri` | 10 | Yes | MISSING | YES | MISSING | 1 Outfit | Content Incomplete |
-| 2 | Lykka du Nord | `lykka-du-nord` | 20 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 3 | Seasalt | `seasalt` | 30 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 4 | Pretty Vacant | `pretty-vacant` | 40 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 5 | Cissi och Selma | `cissi-och-selma` | 50 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 6 | Danefae | `danefae` | 60 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 7 | LaLamour | `lalamour` | 70 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 8 | Nomads | `nomads` | 80 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 9 | Circus | `circus` | 90 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 10 | Angels | `angels` | 100 | Yes | MISSING | YES | MISSING | 0 Outfits | Content Incomplete |
-| 11 | Stehmann | `stehmann` | 110 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 12 | Emily van den Berg | `emily-van-den-berg` | 120 | Yes | MISSING | YES | MISSING | 0 Outfits | Content Incomplete |
-| 13 | Madness | `madness` | 130 | Yes | MISSING | YES | MISSING | 0 Outfits | Content Incomplete |
-| 14 | Heidekönigin | `heidekoenigin` | 140 | Yes | MISSING | MISSING | MISSING | 0 Outfits | Content Incomplete |
-| 15 | King Louie | `king-louie` | 150 | Yes | MISSING | YES | MISSING | 0 Outfits | Content Incomplete |
-| - | *Zilch (Legacy)* | `zilch` | 1 | No | NONE | YES | NONE | 1 Outfit | Deactivated |
-| - | *Happy Rainy Days (Legacy)* | `happy-rainy-days` | 5 | No | NONE | YES | NONE | 0 Outfits | Deactivated |
-| - | *Adini (Legacy)* | `adini` | 0 | No | NONE | YES | NONE | 0 Outfits | Deactivated |
+| # | Brand Name | Slug | Summary | Description | Verified Claims | SEO Title | SEO Desc | Logo | Title Image | Outfits | Content Readiness |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Sorgenfri | `sorgenfri` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 1 Outfit | Content Pending |
+| 2 | Lykka du Nord | `lykka-du-nord` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 3 | Seasalt | `seasalt` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 4 | Pretty Vacant | `pretty-vacant` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 5 | Cissi och Selma | `cissi-och-selma` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 6 | Danefae | `danefae` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 7 | LaLamour | `lalamour` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 8 | Nomads | `nomads` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 9 | Circus | `circus` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 10 | Angels | `angels` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
+| 11 | Stehmann | `stehmann` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 12 | Emily van den Berg | `emily-van-den-berg` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
+| 13 | Madness | `madness` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
+| 14 | Heidekönigin | `heidekoenigin` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | MISSING | 0 Outfits | Content Pending |
+| 15 | King Louie | `king-louie` | MISSING | MISSING | NONE | AUTO | AUTO | MISSING | YES | 0 Outfits | Content Pending |
 
 ---
 
-## 4. Partially Implemented / Gaps for Subsequent Phases
+## 4. Fixture Inventory Audit
 
-- **Brand SEO & Claims (Phase 3B)**: `brands.seoMetadata` and `brands.verifiedClaims` exist in the database schema, but are not yet wired to `generateMetadata` or public brand pages.
-- **Related Brands (Phase 3B)**: `/marken/[slug]` generates related brands by taking a slice of other active brands rather than explicit relationships.
-- **Legacy URL Redirects (Phase 3B)**: Complete SEO redirect mapping for historical Checkpot URLs.
+- **Removed Dead Legacy Business Fixtures:**
+  - `brands[]` (8 legacy hardcoded brand definitions removed)
+  - `outfits[]` (4 legacy hardcoded outfit definitions removed)
+  - `currentCollection` (hardcoded collection intro removed)
+  - `getBrandBySlug()` and `getRelatedBrands()` (legacy helper functions removed)
+- **Intentionally Retained Static Data in `src/content/fixtures/checkpot.ts`:**
+  - `siteUrl`: Dynamically resolved via `getSiteUrl()`
+  - `storeDetails`: Dynamically referenced via `DEFAULT_STORE_DETAILS`
+  - `navigationLinks`: Central header navigation routes
+  - `imagery`: Static photography assets for `/ueber-uns`, `/fair-trade`, and `/kontakt`
+  - `seoRoutes`: Static route SEO metadata records for static pages
+
+---
+
+## 5. Partially Implemented / Gaps for Subsequent Phases
+
 - **Legal Content Review (Phase 4)**: Removal of developer placeholder alert boxes from `/impressum` and `/datenschutz`.
 - **Consent Management (Phase 4)**: Category-based consent manager (for future tracking/third-party scripts).
+- **Legacy URL Redirects (Release Phase)**: Complete SEO redirect mapping for historical Checkpot URLs in `next.config.ts`.
+- **Email Delivery Verification (Phase 2.5 Deferred)**: Controlled test email once customer provisions `RESEND_API_KEY`.
 
 ---
 
-## 5. Launch Blockers (P0)
+## 6. Launch Blockers (P0)
 
 1. **Visible Developer Placeholders**: Prominent alert boxes with "Hinweis für die Inhaberin" appear on public `/impressum` and `/datenschutz` (Scheduled for Phase 4).
 2. **Vercel Deployment Environment Configuration**: Vercel environment variables (`DATABASE_URL`, `BLOB_READ_WRITE_TOKEN`, `AUTH_SECRET`, `ADMIN_PASSWORD`, `RESEND_API_KEY`, `SITE_URL`) must be configured and verified in Frankfurt (`fra1`).
 
 ---
 
-## 6. Verification Summary
+## 7. Verification Summary
 
 ```text
 > npm run typecheck

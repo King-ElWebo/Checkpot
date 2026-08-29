@@ -4,10 +4,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { FadeIn } from "@/components/public/motion/fade-in";
-import { getPublishedBrandBySlug, listPublishedBrands } from "@/lib/repositories/brands";
+import { getPublishedBrandBySlug, listPublishedBrands, getAdditionalPublishedBrands } from "@/lib/repositories/brands";
 import { getOutfitsByBrandId } from "@/lib/repositories/outfits";
 import { getSiteUrl } from "@/lib/site-config";
-
 
 export async function generateStaticParams() {
   const brands = await listPublishedBrands();
@@ -26,14 +25,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  // Avoid "Aktuelle Kollektion" unless verified.
+  const title = brand.seoMetadata?.title?.trim() || `${brand.name} bei Checkpot`;
+  const description =
+    brand.seoMetadata?.description?.trim() ||
+    brand.summary?.trim() ||
+    `${brand.name} bei Checkpot in Wien Hietzing entdecken.`;
+
+  const ogTitle = brand.seoMetadata?.ogTitle?.trim() || title;
+  const ogDescription = brand.seoMetadata?.ogDescription?.trim() || description;
+
   return {
-    title: `${brand.name} bei Checkpot`,
-    description: brand.summary || `${brand.name} bei Checkpot in Wien Hietzing entdecken.`,
+    title,
+    description,
     alternates: {
       canonical: `/marken/${brand.slug}`,
     },
     openGraph: {
+      title: ogTitle,
+      description: ogDescription,
       images: brand.image ? [{ url: brand.image.url }] : undefined,
     },
   };
@@ -48,12 +57,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
   }
 
   const relatedOutfits = await getOutfitsByBrandId(brand.id);
-
-  // We need to fetch all brands for the "Related Brands" section.
-  // We'll just take 3 random/other brands for now to fulfill the 2-4 requirement,
-  // making sure they are not the current brand.
-  const allBrands = await listPublishedBrands();
-  const relatedBrands = allBrands.filter(b => b.id !== brand.id).slice(0, 3);
+  const additionalBrands = await getAdditionalPublishedBrands(brand.id, 3);
   const siteUrl = getSiteUrl();
 
   const jsonLd = {
@@ -128,15 +132,31 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
             )}
 
             {brand.description && (
-              <div className="prose prose-lg prose-p:text-[#4A5568] prose-p:leading-relaxed mb-12">
-                {/* Fallback to simple formatting since we don't have rich text */}
+              <div className="prose prose-lg prose-p:text-[#4A5568] prose-p:leading-relaxed mb-8">
                 {brand.description.split('\n').map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>
                 ))}
               </div>
             )}
 
-            <div className="mt-8 rounded-sm bg-white p-8 border border-[#E2E8F0]">
+            {/* Verified Claims / Gut zu wissen */}
+            {brand.verifiedClaims && brand.verifiedClaims.length > 0 && (
+              <div className="mb-8 rounded-sm bg-[#F3F1EC] p-6 border border-[#E2E0D8]">
+                <h3 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A]">
+                  Gut zu wissen
+                </h3>
+                <ul className="space-y-2 text-[14px] text-[#4A5568] leading-relaxed list-none p-0 m-0">
+                  {brand.verifiedClaims.map((claim, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#1A1A1A] font-bold select-none">•</span>
+                      <span>{claim}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="mt-4 rounded-sm bg-white p-8 border border-[#E2E8F0]">
               <h3 className="mb-4 text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]">
                 Checkpot Hietzing
               </h3>
@@ -188,7 +208,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
           {relatedOutfits.length > 0 ? (
             <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
               {relatedOutfits.map((outfit, index) => {
-                const isFeatured = index % 4 === 0 && relatedOutfits.length > 3; // Feature occasionally if many outfits
+                const isFeatured = index % 4 === 0 && relatedOutfits.length > 3;
                 return (
                   <Link
                     key={outfit.id}
@@ -239,32 +259,32 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
         </div>
       </section>
 
-      {/* F. RELATED BRANDS */}
-      {relatedBrands.length > 0 && (
+      {/* F. ADDITIONAL BRANDS (Deterministic next 3 brands in sort order) */}
+      {additionalBrands.length > 0 && (
         <section className="bg-[#F9F9F8] border-t border-[#E2E8F0] px-4 py-20 lg:px-6 lg:py-24">
           <div className="mx-auto max-w-[1400px]">
             <h2 className="mb-12 font-display text-3xl text-[#1A1A1A] lg:text-4xl text-center">
               Weitere Marken entdecken
             </h2>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {relatedBrands.map((relatedBrand) => (
+              {additionalBrands.map((additionalBrand) => (
                 <Link
-                  key={relatedBrand.slug}
-                  href={`/marken/${relatedBrand.slug}`}
+                  key={additionalBrand.slug}
+                  href={`/marken/${additionalBrand.slug}`}
                   className="group flex flex-col items-center justify-center rounded-sm bg-white p-12 text-center transition-shadow hover:shadow-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
                 >
-                  {relatedBrand.logo ? (
+                  {additionalBrand.logo ? (
                     <div className="relative mb-6 h-12 w-full max-w-[140px] opacity-70 transition-opacity group-hover:opacity-100">
                       <Image
-                        src={relatedBrand.logo.url}
-                        alt={relatedBrand.logo.alt || relatedBrand.name}
+                        src={additionalBrand.logo.url}
+                        alt={additionalBrand.logo.alt || additionalBrand.name}
                         fill
                         className="object-contain object-center"
                       />
                     </div>
                   ) : (
                     <h3 className="mb-4 font-display text-2xl text-[#1A1A1A] transition-colors group-hover:text-[#C01718]">
-                      {relatedBrand.name}
+                      {additionalBrand.name}
                     </h3>
                   )}
                   <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-[#4A5568] transition-colors group-hover:text-[#C01718]">

@@ -6,11 +6,57 @@ const emptyStringToNull = (val: unknown) =>
 const optionalUuid = (errorMessage: string) =>
   z.preprocess(emptyStringToNull, z.string().uuid(errorMessage).nullable().optional()).transform((v) => v ?? null);
 
+export interface BrandSeoMetadata {
+  title?: string | null;
+  description?: string | null;
+  ogTitle?: string | null;
+  ogDescription?: string | null;
+}
+
+export const brandSeoMetadataSchema = z.object({
+  title: z
+    .preprocess(emptyStringToNull, z.string().trim().max(70, "SEO-Titel darf maximal 70 Zeichen lang sein").nullable().optional())
+    .transform((v) => v ?? null),
+  description: z
+    .preprocess(emptyStringToNull, z.string().trim().max(180, "Meta-Beschreibung darf maximal 180 Zeichen lang sein").nullable().optional())
+    .transform((v) => v ?? null),
+  ogTitle: z
+    .preprocess(emptyStringToNull, z.string().trim().max(70, "OG-Titel darf maximal 70 Zeichen lang sein").nullable().optional())
+    .transform((v) => v ?? null),
+  ogDescription: z
+    .preprocess(emptyStringToNull, z.string().trim().max(180, "OG-Beschreibung darf maximal 180 Zeichen lang sein").nullable().optional())
+    .transform((v) => v ?? null),
+});
+
+export const verifiedClaimsSchema = z.preprocess(
+  (val) => {
+    if (typeof val === "string") {
+      return val
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0);
+    }
+    if (Array.isArray(val)) {
+      return val
+        .filter((item): item is string => typeof item === "string")
+        .map((item) => item.trim())
+        .filter((item) => item.length > 0);
+    }
+    return [];
+  },
+  z
+    .array(z.string().max(250, "Ein Hinweis darf maximal 250 Zeichen lang sein"))
+    .max(10, "Maximal 10 Hinweise erlaubt")
+    .transform((arr) => Array.from(new Set(arr)))
+);
+
 export const brandSchema = z.object({
   name: z.string().trim().min(1, "Name ist erforderlich").max(100, "Name zu lang"),
   slug: z.string().trim().min(1, "Slug ist erforderlich").regex(/^[a-z0-9-]+$/, "Slug darf nur aus Kleinbuchstaben, Zahlen und Bindestrichen bestehen").max(100, "Slug zu lang"),
   summary: z.string().trim().max(300, "Zusammenfassung zu lang").nullable().optional().transform(v => v || null),
   description: z.string().trim().max(5000, "Beschreibung zu lang").nullable().optional().transform(v => v || null),
+  verifiedClaims: verifiedClaimsSchema.default([]),
+  seoMetadata: brandSeoMetadataSchema.nullable().optional().transform(v => v || null),
   active: z.boolean().default(false),
   sortOrder: z.number().int().min(0).max(10000).default(0),
   logoMediaId: optionalUuid("Ungültige Logo-ID"),

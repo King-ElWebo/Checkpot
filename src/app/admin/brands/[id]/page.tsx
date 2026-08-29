@@ -75,6 +75,9 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
                 placeholder="z.B. king-louie"
                 required
               />
+              <p className="text-xs text-[#b45309] mt-1 font-medium">
+                ⚠️ Änderungen am Slug verändern die öffentliche Marken-URL.
+              </p>
             </div>
           </div>
         </section>
@@ -153,10 +156,90 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
           </div>
         </section>
 
-        {/* Card 4: Veröffentlichung & Sortierung */}
+        {/* Card 4: Verifizierte Hinweise */}
         <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
           <div>
-            <h2 className="text-lg font-bold text-[#1c1917]">4. Veröffentlichung</h2>
+            <h2 className="text-lg font-bold text-[#1c1917]">4. Verifizierte Hinweise (Gut zu wissen)</h2>
+            <p className="text-xs text-[#78716c] mt-0.5">
+              Faktische Produkt-, Material- oder Herkunftsmerkmale. Eine Aussage pro Zeile.
+            </p>
+          </div>
+
+          <div className="field-group">
+            <label htmlFor="verifiedClaims">Hinweise & Fakten (Zeilenweise)</label>
+            <textarea
+              id="verifiedClaims"
+              name="verifiedClaims"
+              defaultValue={(brand?.verifiedClaims || []).join("\n")}
+              placeholder={"z.B. Faire Produktion in Portugal\nz.B. Zertifizierte Bio-Baumwolle (GOTS)"}
+              rows={4}
+              style={{
+                width: "100%",
+                border: "1px solid #d6d3d1",
+                borderRadius: "10px",
+                padding: "14px",
+                background: "var(--surface)",
+                fontFamily: "inherit",
+              }}
+            />
+            <p className="text-xs text-[#78716c] mt-1">
+              Nur belegte Aussagen eintragen. Keine Nachhaltigkeits-, Zertifizierungs- oder Produktionsclaims ohne verlässliche Quelle.
+            </p>
+          </div>
+        </section>
+
+        {/* Card 5: SEO & Metadaten */}
+        <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
+          <div>
+            <h2 className="text-lg font-bold text-[#1c1917]">5. SEO & Suchmaschinen</h2>
+            <p className="text-xs text-[#78716c] mt-0.5">
+              Optionale Optimierung für Google & Social Sharing.
+            </p>
+          </div>
+
+          <div className="field-group">
+            <label htmlFor="seoTitle">SEO-Titel (Title Tag)</label>
+            <input
+              type="text"
+              id="seoTitle"
+              name="seoTitle"
+              defaultValue={(brand?.seoMetadata as Record<string, string> | null)?.title || ""}
+              placeholder="z.B. King Louie Kleider in Wien Hietzing | Checkpot"
+              maxLength={70}
+            />
+            <p className="text-xs text-[#78716c] mt-1">
+              Optional (max. 70 Zeichen). Wenn leer, wird automatisch &bdquo;{brand?.name || "Markenname"} bei Checkpot&ldquo; verwendet.
+            </p>
+          </div>
+
+          <div className="field-group">
+            <label htmlFor="seoDescription">Meta-Beschreibung (Description Tag)</label>
+            <textarea
+              id="seoDescription"
+              name="seoDescription"
+              defaultValue={(brand?.seoMetadata as Record<string, string> | null)?.description || ""}
+              placeholder="z.B. Entdecken Sie die farbenfrohe Vintage-Kollektion von King Louie bei Checkpot in Wien Hietzing..."
+              rows={3}
+              maxLength={180}
+              style={{
+                width: "100%",
+                border: "1px solid #d6d3d1",
+                borderRadius: "10px",
+                padding: "14px",
+                background: "var(--surface)",
+                fontFamily: "inherit",
+              }}
+            />
+            <p className="text-xs text-[#78716c] mt-1">
+              Optional (max. 180 Zeichen). Wenn leer, wird automatisch die Kurzbeschreibung bzw. ein neutraler Standardtext verwendet.
+            </p>
+          </div>
+        </section>
+
+        {/* Card 6: Veröffentlichung & Sortierung */}
+        <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
+          <div>
+            <h2 className="text-lg font-bold text-[#1c1917]">6. Veröffentlichung</h2>
             <p className="text-xs text-[#78716c] mt-0.5">
               Status und Reihenfolge in der Website-Darstellung.
             </p>
