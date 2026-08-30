@@ -2,14 +2,14 @@
 
 ## Last audited & updated
 - Date: 2026-08-30
-- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 (`948098f`), Phase 6 (`e8108c5`), Phase 7A Content Structure & Taxonomy Complete (local)
+- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 (`948098f`), Phase 6 (`e8108c5`), Phase 7A (`f7c7254`), Phase 7A.1 Content Consistency Cleanup Complete (local)
 - Branch: `main` (synchronized baseline with `origin/main` at `948098f`)
 
 ---
 
 ## 1. Executive Summary
 
-Phases 1 through 7A of the backend completion are **COMPLETE**:
+Phases 1 through 7A.1 of the backend completion are **COMPLETE**:
 1. **Central Store Settings & Single Source of Truth (Phase 1)**: Business facts are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
 2. **Central SITE_URL Configuration (Phase 1)**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
 3. **Contact Form Backend & Email Delivery (Phase 2)**: Submissions are processed by a dedicated Server Action with Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data is persisted to Neon.
@@ -37,13 +37,14 @@ Phases 1 through 7A of the backend completion are **COMPLETE**:
    - Audited all 11 database tables in Neon PostgreSQL: 0 foreign key violations, 0 dangling join rows.
    - Verified end-to-end CRUD, atomic relation persistence, delete safety, and targeted cache revalidation across Store Settings, Brands, Media, Outfits, Collections, and Taxonomy.
    - Created full CMS readiness report: `docs/CMS-READINESS.md`.
-10. **Content Structure, Taxonomy & Existing Asset Assignment (Phase 7A)**:
-   - Created 3-group outfit taxonomy in Neon (`Saison`, `Stil`, `Farbwelt`) with 11 clear categories.
-   - Categorized all 6 existing outfits with evidence-based seasonal, style, and colorway tags.
-   - Connected evidenced Outfit $\rightarrow$ Brand relationships (`Sorgenfri`, `Zilch`).
-   - Resolved media metadata gaps: 100% alt texts on photographic assets, focal points initialized to `50% 50%`.
-   - Generated `docs/CONTENT-MAP.md` mapping taxonomy, outfits, collections, and brand assets.
-   - Updated `docs/CONTENT-BACKLOG.md` for editorial brand content population (Phase 7B).
+10. **Content Structure, Taxonomy & Consistency Cleanup (Phase 7A & 7A.1)**:
+   - Filtered inactive brand links from public outfit DTOs (`src/lib/repositories/outfits.ts`), preventing broken `/marken/zilch` links while preserving historical DB relations.
+   - Resolved outfit duplicate pairs (`Musterkleid Sommer` and `Blauer Winter Look` retained as active canonicals; prototype duplicates deactivated without hard deletion).
+   - Normalized Featured outfits: exactly 3 active unique outfits flagged as `featured = true`.
+   - Corrected collection assignments: Autumn Layer assigned to `"Herbst / Winter"`.
+   - Dynamically filtered zero-usage taxonomy categories from public views while preserving them in DB for Admin management.
+   - Reviewed media focal points: preserved custom framing, reverted mechanical values to standard center default.
+   - Updated `docs/CONTENT-MAP.md` and `docs/CONTENT-BACKLOG.md`.
 
 ---
 
@@ -53,7 +54,7 @@ Phases 1 through 7A of the backend completion are **COMPLETE**:
 |---|---|---|
 | **Code Architecture** | **READY** | All routes, components, Server Actions, and repositories typed and validated. |
 | **Database & Migrations** | **READY** | Drizzle migrations (`0000` through `0004`) applied to Neon PostgreSQL. Integrity verified. |
-| **Outfit Taxonomy & Filter**| **READY** | 3 groups, 11 categories in DB; OR within group, AND across groups verified on `/outfits`. |
+| **Outfit Taxonomy & Filter**| **READY** | 3 groups, 11 categories in DB; public filter shows only active categories (OR within group, AND across groups). |
 | **Admin CMS & Workflows** | **READY** | Full CRUD, relation persistence, delete safety, and revalidation operational. |
 | **Security & Rate Limiting** | **READY** | Durable login and contact rate limiters active with atomic SQL upserts. |
 | **SEO & URL Migration** | **READY** | 21 redirects (301) and 8 gone routes (410) active; sitemap & robots verified. |

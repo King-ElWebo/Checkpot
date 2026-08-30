@@ -8,7 +8,7 @@
 
 | Marke | Sort | Status | Logo | Titelbild | Kurzbeschreibung (Summary) | Ausführlicher Text (Description) | Belegte Merkmale (Claims) | SEO Override | Zugeordnete Outfits |
 |---|---|---|---|---|---|---|---|---|---|
-| **Sorgenfri** | 10 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | MISSING | MISSING | MISSING | OPTIONAL | 2 Looks (Blauer Winter Look, Outfit 3) |
+| **Sorgenfri** | 10 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | MISSING | MISSING | MISSING | OPTIONAL | 1 aktiver Look (Blauer Winter Look) |
 | **Lykka du Nord** | 20 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Seasalt** | 30 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Pretty Vacant** | 40 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
@@ -33,16 +33,14 @@
 
 ---
 
-## 2. Outfits & Lookbook (Aktueller Bestand: 6 Outfits)
+## 2. Outfits & Lookbook (Aktiver Bestand: 4 kanonische Outfits)
 
 | Outfit-Titel | Kollektion | Bild vorhanden | Zugeordnete Marken | Filter-Kategorien | Redaktioneller Handlungsbedarf |
 |---|---|---|---|---|---|
-| **Musterkleid Sommer** | Frühjahr / Sommer | Ja | `Zilch` *(Legacy-Marke)* | Frühling/Sommer, Feminin, Muster | Mit Outfit 4 konsolidieren oder Marke auf aktives Sortiment anpassen |
-| **Blauer Winter Look** | Herbst / Winter | Ja | `Sorgenfri` | Herbst/Winter, Klassisch, Kräftige Farben | Mit Outfit 3 konsolidieren |
-| **Outfit 1: Autumn Layer** | Frühlingserwachen | Ja | *(Keine)* | Herbst/Winter, Lässig, Naturtöne | Reale Marke(n) zuweisen |
+| **Musterkleid Sommer** | Frühjahr / Sommer | Ja | `Zilch` *(Legacy-Marke)* | Frühling/Sommer, Feminin, Muster | Reale Marke bei nächstem Lookbook-Update zuweisen |
+| **Blauer Winter Look** | Herbst / Winter | Ja | `Sorgenfri` | Herbst/Winter, Klassisch, Kräftige Farben | Kanonischer Winter-Look |
+| **Outfit 1: Autumn Layer** | Herbst / Winter | Ja | *(Keine)* | Herbst/Winter, Lässig, Naturtöne | Reale Marke(n) zuweisen |
 | **Outfit 2: Blue Summer** | Frühlingserwachen | Ja | *(Keine)* | Frühling/Sommer, Lässig, Kräftige Farben | Reale Marke(n) zuweisen |
-| **Outfit 3: Blue Winter** | Frühlingserwachen | Ja | `Sorgenfri` | Herbst/Winter, Klassisch, Kräftige Farben | Look verifiziert |
-| **Outfit 4: Summer Pattern**| Frühlingserwachen | Ja | `Zilch` *(Legacy-Marke)* | Frühling/Sommer, Feminin, Muster | Look verifiziert |
 
 ### To-Dos für Outfits:
 - [ ] Outfits 1 & 2 mit den tatsächlich abgebildeten Marken verknüpfen.
@@ -52,18 +50,17 @@
 
 ## 3. Kollektionen
 
-| Kollektion | Saison | Aktiv | Startseite (Featured) | Zugeordnete Outfits | Redaktioneller Handlungsbedarf |
+| Kollektion | Saison | Aktiv | Startseite (Featured) | Zugeordnete aktive Outfits | Redaktioneller Handlungsbedarf |
 |---|---|---|---|---|---|
-| **Frühjahr / Sommer** | 2026 | Ja | Ja | 1 | Intro-Text prüfen |
-| **Herbst / Winter** | 2026 | Ja | Nein | 1 | Für Herbst-Saison vorbereiten |
-| **Frühlingserwachen in Hietzing** | Frühjahr 2026 | Ja | Ja | 4 | Aktuelle Haupt-Kollektion |
+| **Frühjahr / Sommer** | 2026 | Ja | Ja | 1 (`Musterkleid Sommer`) | Sortiment Frühjahr/Sommer |
+| **Herbst / Winter** | 2026 | Ja | Nein | 2 (`Blauer Winter Look`, `Outfit 1: Autumn Layer`) | Sortiment Herbst/Winter |
+| **Frühlingserwachen in Hietzing** | Frühjahr 2026 | Ja | Ja | 1 (`Outfit 2: Blue Summer`) | Aktuelle Haupt-Kollektion |
 
 ---
 
 ## 4. Mediathek & Bildrechte
 
 - **Gesamtanzahl Bilder:** 16
-- **Verwendete Bilder:** 14
 - **Alt-Texte:** 100% gepflegt
-- **Fokus-Punkte:** 100% gepflegt
+- **Fokus-Punkte:** Gepflegt (standardmäßige Zentrierung greift; spezifische Fokus-Punkte nur bei individuellem Bedarf)
 - **Urheber- / Bildrechte:** 16 / 16 ausstehend (Klärung der Bildquellen / Fotografenrechte durch Inhaberin).

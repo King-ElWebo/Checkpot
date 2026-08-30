@@ -34,11 +34,13 @@ export async function listPublishedOutfits() {
     availabilityNote: row.availabilityNote,
     media: row.media,
     collection: row.collection,
-    brands: row.outfitBrands.map(ob => ({
-      id: ob.brand.id,
-      name: ob.brand.name,
-      slug: ob.brand.slug
-    })),
+    brands: row.outfitBrands
+      .filter((ob) => ob.brand && ob.brand.active)
+      .map((ob) => ({
+        id: ob.brand.id,
+        name: ob.brand.name,
+        slug: ob.brand.slug,
+      })),
     categories: row.outfitCategoryAssignments
       .filter(oca => oca.category && oca.category.active && oca.category.group.active)
       .map(oca => ({
