@@ -7,6 +7,9 @@ import { listFeaturedOutfits } from "@/lib/repositories/outfits";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 import { BrandBookshelf } from "@/components/public/brand-bookshelf";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function HomePage() {
   const [storeDetails, dbOutfits, dbBrands] = await Promise.all([
     getStoreDetails(),

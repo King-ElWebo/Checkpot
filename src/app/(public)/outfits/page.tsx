@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description: "Entdecke aktuelle Looks und Styling-Ideen von Checkpot.",
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function OutfitsPage() {
   const outfits = await listPublishedOutfits();
   const taxonomy = await listActiveTaxonomy();

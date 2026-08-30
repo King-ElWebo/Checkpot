@@ -8,6 +8,9 @@ import { getPublishedBrandBySlug, listPublishedBrands, getAdditionalPublishedBra
 import { getOutfitsByBrandId } from "@/lib/repositories/outfits";
 import { getSiteUrl } from "@/lib/site-config";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const brands = await listPublishedBrands();
   return brands.map((brand) => ({

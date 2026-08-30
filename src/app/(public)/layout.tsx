@@ -19,6 +19,9 @@ const fontBody = Inter({
   display: "swap",
 });
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {

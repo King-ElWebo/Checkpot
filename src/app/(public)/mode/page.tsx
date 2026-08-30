@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function ModePage() {
   const collections = await listPublishedCollections();
   const currentCollection = collections.find(c => c.featured) || collections[0];
