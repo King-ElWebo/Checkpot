@@ -244,32 +244,40 @@ export default async function OutfitEditPage({ params }: { params: Promise<{ id:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-            <div className="field-group" style={{ flexDirection: "row", alignItems: "center", display: "flex", gap: "10px" }}>
-              <input
-                type="checkbox"
-                id="active"
-                name="active"
-                value="true"
-                defaultChecked={item?.active ?? false}
-                style={{ width: "22px", minHeight: "22px" }}
-              />
-              <label htmlFor="active" style={{ fontSize: "0.95rem", cursor: "pointer" }}>
-                Veröffentlicht
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 items-start">
+            <div className="field-group">
+              <label htmlFor="active">Sichtbarkeit</label>
+              <label
+                htmlFor="active"
+                className="h-[46px] min-h-[46px] px-3.5 bg-[#fafaf9] hover:bg-[#f5f5f4] border border-[#d6d3d1] hover:border-[#a8a29e] rounded-xl flex items-center gap-3 cursor-pointer transition-colors"
+              >
+                <input
+                  type="checkbox"
+                  id="active"
+                  name="active"
+                  value="true"
+                  defaultChecked={item?.active ?? false}
+                  className="w-4 h-4 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
+                />
+                <span className="text-sm font-medium text-[#1c1917]">Veröffentlicht</span>
               </label>
             </div>
 
-            <div className="field-group" style={{ flexDirection: "row", alignItems: "center", display: "flex", gap: "10px" }}>
-              <input
-                type="checkbox"
-                id="featured"
-                name="featured"
-                value="true"
-                defaultChecked={item?.featured ?? false}
-                style={{ width: "22px", minHeight: "22px" }}
-              />
-              <label htmlFor="featured" style={{ fontSize: "0.95rem", cursor: "pointer" }}>
-                Startseite (Featured)
+            <div className="field-group">
+              <label htmlFor="featured">Hervorhebung</label>
+              <label
+                htmlFor="featured"
+                className="h-[46px] min-h-[46px] px-3.5 bg-[#fafaf9] hover:bg-[#f5f5f4] border border-[#d6d3d1] hover:border-[#a8a29e] rounded-xl flex items-center gap-3 cursor-pointer transition-colors"
+              >
+                <input
+                  type="checkbox"
+                  id="featured"
+                  name="featured"
+                  value="true"
+                  defaultChecked={item?.featured ?? false}
+                  className="w-4 h-4 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
+                />
+                <span className="text-sm font-medium text-[#1c1917]">Startseite (Featured)</span>
               </label>
             </div>
 
@@ -280,6 +288,7 @@ export default async function OutfitEditPage({ params }: { params: Promise<{ id:
                 id="sortOrder"
                 name="sortOrder"
                 defaultValue={item?.sortOrder || 0}
+                placeholder="0"
               />
             </div>
           </div>
@@ -289,13 +298,13 @@ export default async function OutfitEditPage({ params }: { params: Promise<{ id:
         <div className="flex items-center gap-3 pt-2">
           <button
             type="submit"
-            className="flex-1 py-3 px-6 rounded-xl bg-[#292524] text-white font-bold hover:bg-[#44403c] transition-colors shadow-sm cursor-pointer"
+            className="flex-1 h-12 py-0 px-6 rounded-xl bg-[#292524] text-white font-bold hover:bg-[#44403c] transition-colors shadow-sm cursor-pointer flex items-center justify-center text-sm"
           >
             Outfit speichern
           </button>
           <Link
             href="/admin/outfits"
-            className="secondary-button py-3 px-6 rounded-xl font-semibold flex items-center justify-center text-center"
+            className="h-12 py-0 px-6 rounded-xl border border-[#d6d3d1] hover:border-[#a8a29e] bg-white hover:bg-[#fafaf9] text-[#1c1917] font-semibold flex items-center justify-center text-center transition-colors text-sm"
           >
             Abbrechen
           </Link>

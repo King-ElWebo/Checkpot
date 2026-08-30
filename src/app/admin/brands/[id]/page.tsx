@@ -229,21 +229,29 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
-            <div className="p-4 bg-[#fafaf9] border border-[#e7e5e4] rounded-xl flex items-center gap-3">
-              <input
-                type="checkbox"
-                id="active"
-                name="active"
-                value="true"
-                defaultChecked={brand?.active}
-                className="w-5 h-5 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
-              />
-              <label htmlFor="active" className="text-sm font-semibold text-[#1c1917] cursor-pointer">
-                Veröffentlicht (Auf Website sichtbar)
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
+            {/* Status Toggle Box */}
+            <div className="field-group">
+              <label htmlFor="active">Sichtbarkeits-Status</label>
+              <label
+                htmlFor="active"
+                className="h-[46px] min-h-[46px] px-3.5 bg-[#fafaf9] hover:bg-[#f5f5f4] border border-[#d6d3d1] hover:border-[#a8a29e] rounded-xl flex items-center gap-3 cursor-pointer transition-colors"
+              >
+                <input
+                  type="checkbox"
+                  id="active"
+                  name="active"
+                  value="true"
+                  defaultChecked={brand?.active}
+                  className="w-4 h-4 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
+                />
+                <span className="text-sm font-medium text-[#1c1917]">
+                  Veröffentlicht (Auf Website sichtbar)
+                </span>
               </label>
             </div>
 
+            {/* Sort Order Input */}
             <div className="field-group">
               <label htmlFor="sortOrder">Sortierreihenfolge</label>
               <input
@@ -261,13 +269,13 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
         <div className="flex items-center gap-3 pt-2">
           <button
             type="submit"
-            className="flex-1 py-3 px-6 rounded-xl bg-[#292524] text-white font-bold hover:bg-[#44403c] transition-colors shadow-sm cursor-pointer"
+            className="flex-1 h-12 py-0 px-6 rounded-xl bg-[#292524] text-white font-bold hover:bg-[#44403c] transition-colors shadow-sm cursor-pointer flex items-center justify-center text-sm"
           >
             Marke speichern
           </button>
           <Link
             href="/admin/brands"
-            className="secondary-button py-3 px-6 rounded-xl font-semibold flex items-center justify-center text-center"
+            className="h-12 py-0 px-6 rounded-xl border border-[#d6d3d1] hover:border-[#a8a29e] bg-white hover:bg-[#fafaf9] text-[#1c1917] font-semibold flex items-center justify-center text-center transition-colors text-sm"
           >
             Abbrechen
           </Link>
