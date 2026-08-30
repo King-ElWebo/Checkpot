@@ -259,15 +259,15 @@
 
 ---
 
-## 12. Emily van den Berg
+## 12. Emily van den Bergh
 
 ### Logo
 - **Current in DB:** `NULL`
 - **Candidate:** Offizielles Blusen-Wortmarken-Logo
 - **Source:** Just E GmbH / Etori Handelsportal
-- **Usage basis:** Handelsmaterial
+- **Usage basis:** Autorisierte Fachhandelsnutzung
 - **Rights confidence:** **MEDIUM**
-- **Decision:** **REVIEW** *(Status: ASSET FOUND — IDENTITY CONFIRMATION REQUIRED)*
+- **Decision:** **REVIEW** *(Download aus B2B-Handelsportal durch Inhaberin)*
 
 ### Title Image
 - **Current in DB:** `42c97f46-e817-4af4-9859-241798dbf7da` (Generisches Foto des Storefronts/Verkaufsraums)
@@ -278,7 +278,7 @@
 - **Decision:** **KEEP_TEMPORARILY** *(Status: REPLACE BEFORE LAUNCH)*
 
 ### Notes
-- Namensschreibweise (*Emily van den Berg* vs *Emily van den Bergh*) muss vor Zuweisung endgültig bestätigt werden.
+- Offizielle Markenschreibweise *Emily van den Bergh* durch Inhaberin bestätigt. Text- und SEO-Daten in Phase 8 erfolgreich importiert.
 
 ---
 

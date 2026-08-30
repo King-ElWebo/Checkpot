@@ -415,21 +415,21 @@ Stehmann Hosen bei Checkpot in Wien-Hietzing: Die berühmte Schlupfhose Ina und 
 
 ---
 
-## 12. Emily van den Berg
+## 12. Emily van den Bergh
 
 ### STATUS
-**HUMAN REVIEW REQUIRED**
+**READY FOR CMS**
 
 ### CMS IMPORT STATUS
-**HELD FOR REVIEW** *(Nicht importiert – Prüfung der Schreibweise durch Inhaberin ausstehend)*
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
-Farbenprächtige Blusen- und Tuniken-Vielfalt: Emily van den Berg veredelt die Damengarderobe mit exklusiven Paisley-, Blumen- und Grafikmustern.
+Farbenprächtige Blusen- und Tuniken-Vielfalt: Emily van den Bergh veredelt die Damengarderobe mit exklusiven Paisley-, Blumen- und Grafikmustern.
 
 ### DESCRIPTION
-Eine ausdrucksstarke Bluse verwandelt selbst schlichte Hosen im Handumdrehen in einen stilvollen Hingucker. Das deutsche Label Emily van den Berg hat sich auf moderne Blusen und Tuniken spezialisiert, die mit detailverliebten Mustern und fein abgestimmten Farbwelten begeistern.
+Eine ausdrucksstarke Bluse verwandelt selbst schlichte Hosen im Handumdrehen in einen stilvollen Hingucker. Das deutsche Label Emily van den Bergh hat sich auf moderne Blusen und Tuniken spezialisiert, die mit detailverliebten Mustern und fein abgestimmten Farbwelten begeistern.
 
-Für unsere Kundinnen bei Checkpot ist Emily van den Berg die erste Adresse, wenn es um frische Blusenmuster geht: Vom klassischen Hemdkragen bis zur verspielten Tunika mit Schluppe reicht die Auswahl, die durch geschmeidige Baumwoll- und Viskosegewebe einen edlen Fall garantiert.
+Für unsere Kundinnen bei Checkpot ist Emily van den Bergh die erste Adresse, wenn es um frische Blusenmuster geht: Vom klassischen Hemdkragen bis zur verspielten Tunika mit Schluppe reicht die Auswahl, die durch geschmeidige Baumwoll- und Viskosegewebe einen edlen Fall garantiert.
 
 Kombinieren Sie diese vielseitigen Blusen im Büro unter einem schlichten Blazer oder tragen Sie sie leger zur Jeans – die Stücke passen sich Ihrem Alltag flexibel an.
 
@@ -439,16 +439,16 @@ Kombinieren Sie diese vielseitigen Blusen im Büro unter einem schlichten Blazer
 - Weich fließende Viskose- und Baumwollqualitäten mit angenehmem Griff
 
 ### SEO TITLE
-Emily van den Berg in Wien | Checkpot Hietzing
+Emily van den Bergh in Wien | Checkpot Hietzing
 
 ### SEO DESCRIPTION
-Emily van den Berg Blusen bei Checkpot in Wien-Hietzing: Farbenfrohe Musterblusen, edle Tuniken und moderne Schnitte mit persönlicher Beratung.
+Emily van den Bergh Blusen bei Checkpot in Wien-Hietzing: Farbenfrohe Musterblusen, edle Tuniken und moderne Schnitte mit persönlicher Beratung.
 
 ### REMOVED / DOWNGRADED CLAIMS
 - *Keine Öko-Zertifikate erfunden:* Fokus strikt auf Produktspezialisierung, Muster und Schnittführungen gelegt.
 
 ### SOURCE CONFIDENCE
-**MEDIUM** *(Handels- und Großhandelsquellen via Etori / Just E GmbH belegen Produktfokus; Schreibweise im Großhandel lautet teilweise Emily van den Bergh; vor CMS-Import Bestätigung durch Inhaberin empfohlen).*
+**HIGH** *(Handels- und Großhandelsquellen via Etori / Just E GmbH belegen Produktfokus; offizielle Schreibweise Emily van den Bergh durch Inhaberin bestätigt).*
 
 ---
 

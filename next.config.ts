@@ -41,7 +41,8 @@ const nextConfig: NextConfig = {
       { source: "/marken/madness-wien", destination: "/marken/madness", statusCode: 301 },
       { source: "/marken/angels-wien", destination: "/marken/angels", statusCode: 301 },
       { source: "/marken/sorgenfri-wien", destination: "/marken/sorgenfri", statusCode: 301 },
-      { source: "/marken/emily-van-den-bergh-wien", destination: "/marken/emily-van-den-berg", statusCode: 301 },
+      { source: "/marken/emily-van-den-berg", destination: "/marken/emily-van-den-bergh", statusCode: 301 },
+      { source: "/marken/emily-van-den-bergh-wien", destination: "/marken/emily-van-den-bergh", statusCode: 301 },
       { source: "/marken/nomads-clothing-", destination: "/marken/nomads", statusCode: 301 },
     ];
   },

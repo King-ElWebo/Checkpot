@@ -19,7 +19,7 @@
 | **Circus** | 90 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
 | **Angels** | 100 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
 | **Stehmann** | 110 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Emily van den Berg** | 120 | Aktiv | MISSING (Hold) | KEEP TEMPORARILY (Boutique-Foto) | *REVIEW* | *REVIEW* | *REVIEW* | *REVIEW* | 0 Looks |
+| **Emily van den Bergh** | 120 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
 | **Madness** | 130 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (4 Claims) | **DONE** | 0 Looks |
 | **Heidekönigin** | 140 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
 | **King Louie** | 150 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
@@ -27,8 +27,7 @@
 ### Ausstehende Aufgaben für Marken (Details siehe `docs/BRAND-ASSETS-HUMAN-REVIEW.md`):
 - [ ] **15 Marken-Logos bereitstellen & hochladen:** Freigestellte PNG-Dateien mit transparentem Hintergrund über B2B-Händlerportale beziehen und über `/admin/media` hochladen.
 - [ ] **10 fehlende Lookbook-Titelbilder ergänzen:** Für `Lykka du Nord`, `Seasalt`, `Pretty Vacant`, `Cissi och Selma`, `Danefae`, `LaLamour`, `Nomads`, `Circus`, `Stehmann`, `Heidekönigin`.
-- [ ] **5 bestehende generische Titelbilder austauschen:** Für `Sorgenfri`, `Angels`, `Emily van den Berg`, `Madness`, `King Louie` durch herstellereigene Lookbook-Fotos im Format 3:4 ersetzen.
-- [ ] **Emily van den Berg Schreibweise bestätigen:** Inhaberin prüft, ob die Marke im Text als *Emily van den Berg* oder *Emily van den Bergh* genannt werden soll. Anschließend Import der vorbereiteten Texte über `/admin/brands`.
+- [ ] **5 bestehende generische Titelbilder austauschen:** Für `Sorgenfri`, `Angels`, `Emily van den Bergh`, `Madness`, `King Louie` durch herstellereigene Lookbook-Fotos im Format 3:4 ersetzen.
 
 ---
 
