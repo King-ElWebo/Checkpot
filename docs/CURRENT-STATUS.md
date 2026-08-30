@@ -61,7 +61,7 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
    - Added permanent single-hop redirect `/marken/emily-van-den-berg` -> `/marken/emily-van-den-bergh`.
    - Audited all 12 database tables: 0 foreign key violations, 0 dangling joins, 0 invalid references.
    - Verified authentication, durable rate limiting, media upload security, public repository contracts, SEO redirects, and fail-closed secret boundaries.
-   - Classificaton: **BACKEND READY TO FREEZE**.
+   - Classification: **BACKEND STABLE / FEATURE COMPLETE (ITERATIVE CHANGES ALLOWED)**.
 
 ---
 
@@ -69,12 +69,12 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
 
 | Area | Status | Notes / Next Steps |
 |---|---|---|
-| **Backend & Application Logic** | **READY TO FREEZE** | Complete, typed, validated, and audited. Full acceptance report in `docs/BACKEND-ACCEPTANCE.md`. |
-| **Database & Migrations** | **READY TO FREEZE** | Neon PostgreSQL schema integrity verified (12 tables, 15 active brands, 4 active outfits). |
-| **Admin CMS & Workflows** | **READY TO FREEZE** | Full CRUD, relation persistence, delete safety, and revalidation operational. |
-| **Security & Rate Limiting** | **READY TO FREEZE** | Durable login and contact rate limiters active with atomic SQL upserts. |
-| **SEO & URL Migration** | **READY TO FREEZE** | 22 redirects (301) and 8 gone routes (410) active; sitemap & robots verified. |
-| **Consent Management** | **READY TO FREEZE** | Audited: no non-essential cookies, trackers or third-party embeds. Banner not required. |
+| **Backend & Application Logic** | **STABLE / FEATURE COMPLETE** | Complete, typed, validated, and audited. Iterative adjustments allowed. Full acceptance report in `docs/BACKEND-ACCEPTANCE.md`. |
+| **Database & Migrations** | **STABLE** | Neon PostgreSQL schema integrity verified (12 tables, 15 active brands, 4 active outfits). |
+| **Admin CMS & Workflows** | **STABLE** | Full CRUD, relation persistence, delete safety, and revalidation operational. |
+| **Security & Rate Limiting** | **STABLE** | Durable login and contact rate limiters active with atomic SQL upserts. |
+| **SEO & URL Migration** | **STABLE** | 22 redirects (301) and 8 gone routes (410) active; sitemap & robots verified. |
+| **Consent Management** | **STABLE** | Audited: no non-essential cookies, trackers or third-party embeds. Banner not required. |
 | **Editorial Brand Content**| **15 / 15 LIVE** | 100% of the 15 active partner brands have fact-checked text, claims, and SEO metadata live in Neon DB. |
 | **Brand Assets (Logos/Photos)**| **REVIEW / PENDING** | Actionable upload package prepared (`docs/BRAND-ASSETS-HUMAN-REVIEW.md`); 15 logos + 10 lookbooks pending B2B download. |
 | **Legal Content** | **PARTIAL** | Technically clean; awaiting customer review and factual inputs (`docs/LEGAL-INPUTS-NEEDED.md`). |

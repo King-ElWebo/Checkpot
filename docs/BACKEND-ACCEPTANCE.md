@@ -1,7 +1,7 @@
 # Checkpot Backend Acceptance
 
 > Stand: 2026-08-30 (Phase 8 Final Technical Acceptance Audit)  
-> Status: **BACKEND READY TO FREEZE**
+> Status: **BACKEND STABLE / FEATURE COMPLETE (ITERATIVE CHANGES ALLOWED)**
 
 ---
 
@@ -175,6 +175,8 @@
 
 ## 21. Final Decision
 
-# **BACKEND READY TO FREEZE**
+# **BACKEND STABLE / FEATURE COMPLETE**
 
-Das gesamte Backend, die Datenbankarchitektur, die Sicherheitsmechanismen, das Admin-CMS und die öffentlichen Datenpipelines sind technisch fehlerfrei, verifiziert und abnahmebereit für den Freeze.
+**Status:** Iterative changes allowed.
+
+Die Kernarchitektur des Backends, die Datenbankstruktur, die Sicherheitsmechanismen, das Admin-CMS und die öffentlichen Datenpipelines sind technisch fehlerfrei, verifiziert, feature-complete und stabil. Punktuelle Anpassungen an CMS, UX oder Datenmodellen sowie Bugfixes bleiben bei Bedarf uneingeschränkt möglich. Unnötige Refactorings ohne fachliche Notwendigkeit werden vermieden.
