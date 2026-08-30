@@ -1,15 +1,18 @@
 # Checkpot Brand Content Approval
 
-> Stand: 2026-08-30 (Phase 7B.1 Fact-Check Audit)  
-> Status: **Geprüfte Freigabevorlage für den CMS-Import (Phase 7C)**  
-> *Wichtig: Alle Aussagen wurden in einer zweiten Prüfschleife gegen Primärquellen auditiert. Es wurden noch keine Daten in die Neon-Datenbank geschrieben.*
+> Stand: 2026-08-30 (Phase 7C CMS Import)  
+> Status: **14 genehmigte Marken-Pakete erfolgreich in Neon PostgreSQL importiert (1 Marke zur Prüfung zurückgestellt)**  
+> *Hinweis: Alle Texte, Claims und SEO-Metadaten entsprechen exakt den auditierten Freigaben.*
 
 ---
 
 ## 1. Sorgenfri
 
 ### STATUS
-**READY FOR CMS** *(Bild- & Logo-Upload im Backlog vormerken)*
+**READY FOR CMS**
+
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
 Skandinavisch inspirierte Damenmode mit maritimer Note: Sorgenfri verbindet romantische florale Dessins und anschmiegsame Strickkreationen zu zeitlos entspannten Lieblingsstücken.
@@ -44,7 +47,10 @@ Entdecken Sie Sorgenfri bei Checkpot in Wien-Hietzing: Skandinavisch inspirierte
 ## 2. Lykka du Nord
 
 ### STATUS
-**READY FOR CMS** *(Bild- & Logo-Upload im Backlog vormerken)*
+**READY FOR CMS**
+
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
 Farbenfrohe Leichtigkeit und skandinavisches Glück: Lykka du Nord begeistert mit lebendigen Mustern, natürlichen Tragequalitäten und herrlich femininen Schnittformen.
@@ -80,6 +86,9 @@ Lykka du Nord bei Checkpot in Wien-Hietzing: Frische skandinavische Damenmode, b
 ### STATUS
 **READY FOR CMS**
 
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
+
 ### SUMMARY
 Zeitlose britische Mode von der Küste Cornwalls: Seasalt verbindet handgezeichnete maritime Dessins, wetterfeste Stoffe und zertifizierte Naturmaterialien.
 
@@ -114,10 +123,13 @@ Seasalt Cornwall bei Checkpot in Wien-Hietzing: Britische Küstenmode, handgezei
 ### STATUS
 **READY FOR CMS**
 
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
+
 ### SUMMARY
 Britischer Vintage-Chic mit moderner Note: Pretty Vacant interpretiert klassische Silhouetten der 1940er bis 1970er Jahre mit GOTS-zertifizierter Bio-Baumwolle.
 
-### Description
+### DESCRIPTION
 In der südenglischen Küstenstadt Brighton entworfen, erweckt Pretty Vacant den Charme vergangener Mode-Epochen zu neuem Leben. Von schwingenden Tellerröcken bis zu eleganten Hemdblusenkleidern: Die Schnitte betonen eine feminine Silhouette und versprühen zeitlosen Retro-Charme.
 
 Für Checkpot passt Pretty Vacant perfekt in unser Sortiment, weil die Stücke Persönlichkeit und Stilbewusstsein ausstrahlen, ohne verkleidet zu wirken. Die handgezeichneten Muster und lebendigen Farben verleihen jedem Outfit eine unverwechselbare Note.
@@ -148,6 +160,9 @@ Pretty Vacant bei Checkpot in Wien-Hietzing: Vintage-inspirierte Damenkleider, b
 ### STATUS
 **READY FOR CMS**
 
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
+
 ### SUMMARY
 Farbenfrohe schwedische Slow-Fashion aus Stockholm: Cissi och Selma begeistert mit ausdrucksstarken 60er- und 70er-Jahre-Retromustern in europäischer Fertigung.
 
@@ -166,7 +181,7 @@ Designed in Schweden und gefertigt in ausgewählten europäischen Partnerbetrieb
 ### SEO TITLE
 Cissi och Selma in Wien | Checkpot Hietzing
 
-### SEO Description
+### SEO DESCRIPTION
 Cissi och Selma bei Checkpot in Wien-Hietzing: Farbenfrohe schwedische Retro-Kleider, 70s-Muster und nachhaltige Slow Fashion mit persönlicher Beratung.
 
 ### REMOVED / DOWNGRADED CLAIMS
@@ -181,6 +196,9 @@ Cissi och Selma bei Checkpot in Wien-Hietzing: Farbenfrohe schwedische Retro-Kle
 
 ### STATUS
 **READY FOR CMS**
+
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
 Wetterfeste skandinavische Damenmode aus Kopenhagen: Danefae kombiniert funktionale Outdoor-Qualitäten, markante Streifendesigns und nordische Fröhlichkeit.
@@ -216,6 +234,9 @@ Danefae bei Checkpot in Wien-Hietzing: Wetterfeste dänische Funktionsjacken, fa
 ### STATUS
 **READY FOR CMS**
 
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
+
 ### SUMMARY
 Extravagante niederländische Retro-Damenmode: LaLamour steht für feminine Wickelkleider, kunstvolle Grafikmuster und anschmiegsame Wohlfühlstoffe.
 
@@ -249,6 +270,9 @@ LaLamour bei Checkpot in Wien-Hietzing: Niederländische Retro-Damenkleider, far
 
 ### STATUS
 **READY FOR CMS**
+
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
 Traditionelles Textilhandwerk aus Cornwall: Nomads begeistert mit handbedruckten Naturfasern, harmonischen Erdtönen und entspannter Bohème-Eleganz.
@@ -284,6 +308,9 @@ Nomads bei Checkpot in Wien-Hietzing: Ethische Naturmode aus Cornwall, tradition
 ### STATUS
 **READY FOR CMS**
 
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
+
 ### SUMMARY
 Irischer Modern-Vintage-Stil aus Dublin: Circus interpretiert klassische Schnittsilhouetten der 1940er bis 1960er Jahre mit über 90 % natürlichen Fasern.
 
@@ -317,7 +344,10 @@ Circus bei Checkpot in Wien-Hietzing: Irische Modern-Vintage-Damenmode, feminine
 ## 10. Angels
 
 ### STATUS
-**READY FOR CMS** *(Bild- & Logo-Upload im Backlog vormerken)*
+**READY FOR CMS**
+
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
 Deutsche Hosen- und Denim-Kompetenz aus dem Schwarzwald: Angels überzeugt seit 1980 mit langlebiger Passformtreue und europäischer Produktion.
@@ -353,6 +383,9 @@ Angels Jeans bei Checkpot in Wien-Hietzing: Perfekt sitzende Damenhosen aus euro
 ### STATUS
 **READY FOR CMS**
 
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
+
 ### SUMMARY
 Der Inbegriff bequemer Eleganz aus Franken: Stehmann fertigt moderne Stretch- und Schlupfhosen mit herausragendem Tragekomfort und europäischer Qualität.
 
@@ -385,7 +418,10 @@ Stehmann Hosen bei Checkpot in Wien-Hietzing: Die berühmte Schlupfhose Ina und 
 ## 12. Emily van den Berg
 
 ### STATUS
-**HUMAN REVIEW REQUIRED** *(Schreibweisen-Entscheidung durch Inhaberin vor CMS-Import)*
+**HUMAN REVIEW REQUIRED**
+
+### CMS IMPORT STATUS
+**HELD FOR REVIEW** *(Nicht importiert – Prüfung der Schreibweise durch Inhaberin ausstehend)*
 
 ### SUMMARY
 Farbenprächtige Blusen- und Tuniken-Vielfalt: Emily van den Berg veredelt die Damengarderobe mit exklusiven Paisley-, Blumen- und Grafikmustern.
@@ -419,7 +455,10 @@ Emily van den Berg Blusen bei Checkpot in Wien-Hietzing: Farbenfrohe Musterbluse
 ## 13. Madness
 
 ### STATUS
-**READY FOR CMS** *(Bild- & Logo-Upload im Backlog vormerken)*
+**READY FOR CMS**
+
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
 Ökologische Naturtextil-Pionierin seit 1994: Madness kreiert entspannte Damenmode aus GOTS-zertifizierter Bio-Baumwolle und kbT-Schurwolle.
@@ -456,6 +495,9 @@ Madness Naturmode bei Checkpot in Wien-Hietzing: GOTS-zertifizierte Bio-Kleidung
 ### STATUS
 **READY FOR CMS**
 
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
+
 ### SUMMARY
 Naturverbundene Mode aus der Lüneburger Heide: Heidekönigin verzaubert unter dem Motto „besonders.anders“ mit bunten Prints und europäischer Fertigung.
 
@@ -488,7 +530,10 @@ Heidekönigin Mode bei Checkpot in Wien-Hietzing: Farbenfrohe Kleider aus europ�
 ## 15. King Louie
 
 ### STATUS
-**READY FOR CMS** *(Bild- & Logo-Upload im Backlog vormerken)*
+**READY FOR CMS**
+
+### CMS IMPORT STATUS
+**IMPORTED** (2026-08-30 in Neon DB übernommen)
 
 ### SUMMARY
 Amsterdamer Vintage-Kultmarke mit ikonischen Mustern: King Louie steht für zeitlose Retro-Kleider, kräftige Farben und GOTS-zertifizierte Bio-Baumwolle.

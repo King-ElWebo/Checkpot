@@ -2,14 +2,14 @@
 
 ## Last audited & updated
 - Date: 2026-08-30
-- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 (`948098f`), Phase 6 (`e8108c5`), Phase 7A (`f7c7254`), Phase 7A.1 (`03429d5`), Phase 7B (`988cb5d`), Phase 7B.1 Brand Claim Fact-Check & Approval Prep Complete (local)
+- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 (`948098f`), Phase 6 (`e8108c5`), Phase 7A (`f7c7254`), Phase 7A.1 (`03429d5`), Phase 7B (`988cb5d`), Phase 7B.1 (`82e6f99`), Phase 7C Approved Brand Content CMS Import Complete (local)
 - Branch: `main` (synchronized baseline with `origin/main` at `948098f`)
 
 ---
 
 ## 1. Executive Summary
 
-Phases 1 through 7B.1 of the backend completion, content preparation, and fact-checking are **COMPLETE**:
+Phases 1 through 7C of the backend completion and brand editorial population are **COMPLETE**:
 1. **Central Store Settings & Single Source of Truth (Phase 1)**: Business facts are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
 2. **Central SITE_URL Configuration (Phase 1)**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
 3. **Contact Form Backend & Email Delivery (Phase 2)**: Submissions are processed by a dedicated Server Action with Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data is persisted to Neon.
@@ -45,16 +45,16 @@ Phases 1 through 7B.1 of the backend completion, content preparation, and fact-c
    - Dynamically filtered zero-usage taxonomy categories from public views while preserving them in DB for Admin management.
    - Reviewed media focal points: preserved custom framing, reverted mechanical values to standard center default.
    - Normalized active Outfit `sortOrder` values to 10, 20, 30, 40.
-11. **Brand Research & Editorial Content Draft (Phase 7B)**:
+11. **Brand Research & Editorial Content Draft (Phase 7B & 7B.1)**:
    - Researched primary sources (official websites, about pages, sustainability reports) for all 15 active partner brands.
-   - Drafted brand-by-brand German editorial texts in formal "Sie" using Checkpot's warm, knowledgeable boutique voice.
-   - Created `docs/BRAND-RESEARCH.md`, `docs/BRAND-CONTENT-DRAFT.md`, `docs/BRAND-CONTENT-REVIEW.csv`.
-12. **Brand Claim Fact-Check & Editorial Approval Prep (Phase 7B.1)**:
+   - Drafted and strictly audited brand-by-brand German editorial texts in formal "Sie" using Checkpot's warm, knowledgeable boutique voice.
    - Audited all 48 claim candidates against primary source evidence and scope rules.
-   - Sanitized BSCI / SEDEX / GOTS wordings (differentiating social audits, platform participation, and material programs from blanket certifications).
-   - Removed time-fragile percentages and future targets from public claim formulations.
-   - Created `docs/BRAND-CLAIM-AUDIT.csv` and `docs/BRAND-CONTENT-APPROVAL.md`.
-   - Neon `brands` table remains 100% untouched pending final approval.
+   - Created `docs/BRAND-RESEARCH.md`, `docs/BRAND-CLAIM-AUDIT.csv`, `docs/BRAND-CONTENT-APPROVAL.md`.
+12. **Approved Brand Content CMS Import (Phase 7C)**:
+   - Successfully imported 14 approved editorial packages (`summary`, `description`, `verifiedClaims`, `seoMetadata`) into Neon PostgreSQL.
+   - `Emily van den Berg` safely skipped (held for human name review due to trade spelling *van den Bergh*).
+   - Zero identity, asset, active state, or outfit relationship changes.
+   - Snapshot diff verified: exactly 56 expected field changes, 0 unexpected changes.
 
 ---
 
@@ -72,7 +72,8 @@ Phases 1 through 7B.1 of the backend completion, content preparation, and fact-c
 | **Environment Configuration** | **PARTIAL** | Local `.env.local` configured; production variables must be added in Vercel dashboard. |
 | **Email Delivery (Phase 2.5)** | **DEFERRED** | Awaiting customer provisioning of `RESEND_API_KEY` for controlled verification. |
 | **Legal Content** | **PARTIAL** | Technically clean; awaiting customer review and factual inputs (`docs/LEGAL-INPUTS-NEEDED.md`). |
-| **Editorial Brand Content**| **AUDITED (APPROVAL PREP)** | All 15 brand packages fact-checked in `docs/BRAND-CONTENT-APPROVAL.md`; ready for CMS import upon approval. |
+| **Editorial Brand Content**| **14 LIVE / 1 REVIEW**| 14 brand packages live in Neon DB; `Emily van den Berg` pending name confirmation by owner. |
+| **Brand Assets (Logos/Photos)**| **PARTIAL** | 15 brand logos missing; 10 title images missing, 5 generic store photos pending real lookbook replacement. |
 | **Frontend Design** | **FROZEN** | Design system frozen for backend delivery; no visual regressions introduced. |
 
 ---
