@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { StaggeredList } from "@/components/public/motion/staggered-list";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 
 const DESCRIPTION = "Ausgewählte Modemarken bei Checkpot in Wien Hietzing entdecken.";
@@ -65,10 +64,7 @@ export default async function MarkenPage() {
         </div>
 
         {/* 12-Column Responsive Grid */}
-        <StaggeredList
-          className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-24"
-          staggerDelay={40}
-        >
+        <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-24">
           {activeBrands.map((brand, index) => {
             const isFeature = FEATURE_INDICES.has(index) && Boolean(brand.image);
 
@@ -76,15 +72,19 @@ export default async function MarkenPage() {
               <Link
                 key={brand.slug}
                 href={`/marken/${brand.slug}`}
-                className={`group flex flex-col focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm ${
-                  isFeature ? "lg:col-span-8 md:col-span-1 col-span-1" : "lg:col-span-4 md:col-span-1 col-span-1"
-                }`}
+                className={
+                  isFeature
+                    ? "group flex flex-col focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm col-span-1 md:col-span-1 lg:col-span-8"
+                    : "group flex flex-col focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm col-span-1 md:col-span-1 lg:col-span-4"
+                }
               >
                 {/* Visual Area */}
                 <div
-                  className={`relative w-full overflow-hidden rounded-sm bg-[#F7F6F3] border border-[#ECEAE4] ${
-                    isFeature ? "aspect-[16/9]" : "aspect-[16/10]"
-                  }`}
+                  className={
+                    isFeature
+                      ? "relative w-full overflow-hidden rounded-sm bg-[#F7F6F3] border border-[#ECEAE4] aspect-[16/9]"
+                      : "relative w-full overflow-hidden rounded-sm bg-[#F7F6F3] border border-[#ECEAE4] aspect-[16/10]"
+                  }
                 >
                   {brand.image ? (
                     <Image
@@ -119,9 +119,11 @@ export default async function MarkenPage() {
 
                   {brand.summary && (
                     <p
-                      className={`mt-2.5 leading-relaxed text-[#4A5568] text-[15px] sm:text-[16px] ${
-                        isFeature ? "max-w-[640px]" : "max-w-[440px]"
-                      }`}
+                      className={
+                        isFeature
+                          ? "mt-2.5 leading-relaxed text-[#4A5568] text-[15px] sm:text-[16px] max-w-[640px]"
+                          : "mt-2.5 leading-relaxed text-[#4A5568] text-[15px] sm:text-[16px] max-w-[440px]"
+                      }
                     >
                       {brand.summary}
                     </p>
@@ -139,7 +141,7 @@ export default async function MarkenPage() {
               </Link>
             );
           })}
-        </StaggeredList>
+        </div>
       </section>
     </div>
   );
