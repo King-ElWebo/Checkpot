@@ -75,9 +75,9 @@ export default async function CategoriesPage() {
                 </form>
                 <Link
                   href={`/admin/outfit-categories/categories/new?groupId=${group.id}`}
-                  className="table-action-btn table-action-primary"
+                  className="table-action-btn table-action-success"
                 >
-                  <span style={{ color: "#ffffff" }}>+ Kategorie</span>
+                  + Kategorie
                 </Link>
               </div>
             </div>
