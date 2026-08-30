@@ -46,20 +46,9 @@ export default async function OutfitsPage() {
         </div>
         <Link
           href="/admin/outfits/new"
-          className="login-form button"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            textDecoration: "none",
-            padding: "0 20px",
-            background: "var(--accent)",
-            color: "white",
-            borderRadius: "12px",
-            minHeight: "44px",
-            fontWeight: 700,
-          }}
+          className="admin-primary-btn"
         >
-          + Neues Outfit anlegen
+          <span style={{ color: "#ffffff" }}>+ Neues Outfit anlegen</span>
         </Link>
       </section>
 

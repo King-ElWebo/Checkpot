@@ -19,8 +19,8 @@ export default async function PagesPage() {
           <div className="eyebrow">Seiteninhalte</div>
           <h1>Statische Seiten bearbeiten</h1>
         </div>
-        <Link href="/admin/pages/new" className="login-form button" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", padding: "0 18px", background: "var(--accent)", color: "white", borderRadius: "10px", minHeight: "44px", fontWeight: 700 }}>
-          Seite hinzufügen
+        <Link href="/admin/pages/new" className="admin-primary-btn">
+          <span style={{ color: "#ffffff" }}>+ Seite hinzufügen</span>
         </Link>
       </section>
 

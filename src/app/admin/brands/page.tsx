@@ -29,20 +29,9 @@ export default async function BrandsPage() {
         </div>
         <Link
           href="/admin/brands/new"
-          className="login-form button"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            textDecoration: "none",
-            padding: "0 20px",
-            background: "var(--accent)",
-            color: "white",
-            borderRadius: "12px",
-            minHeight: "44px",
-            fontWeight: 700,
-          }}
+          className="admin-primary-btn"
         >
-          + Neue Marke anlegen
+          <span style={{ color: "#ffffff" }}>+ Neue Marke anlegen</span>
         </Link>
       </section>
 

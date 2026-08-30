@@ -19,8 +19,8 @@ export default async function CollectionsPage() {
           <div className="eyebrow">Kollektionen</div>
           <h1>Alle Kollektionen</h1>
         </div>
-        <Link href="/admin/collections/new" className="login-form button" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", padding: "0 18px", background: "var(--accent)", color: "white", borderRadius: "10px", minHeight: "44px", fontWeight: 700 }}>
-          Kollektion hinzufügen
+        <Link href="/admin/collections/new" className="admin-primary-btn">
+          <span style={{ color: "#ffffff" }}>+ Kollektion hinzufügen</span>
         </Link>
       </section>
 

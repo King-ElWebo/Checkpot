@@ -25,9 +25,9 @@ export default async function CategoriesPage() {
         </div>
         <Link
           href="/admin/outfit-categories/groups/new"
-          className="inline-flex items-center justify-center px-4 py-2.5 bg-[#292524] hover:bg-[#44403c] text-white text-xs font-bold rounded-xl shadow-xs transition-colors cursor-pointer self-start sm:self-auto"
+          className="admin-primary-btn"
         >
-          + Gruppe hinzufügen
+          <span style={{ color: "#ffffff" }}>+ Gruppe hinzufügen</span>
         </Link>
       </section>
 
@@ -53,10 +53,10 @@ export default async function CategoriesPage() {
               </div>
 
               {/* Group Action Buttons */}
-              <div className="flex items-center gap-2">
+              <div className="table-actions">
                 <Link
                   href={`/admin/outfit-categories/groups/${group.id}`}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-[#d6d3d1] hover:bg-[#f5f5f4] text-[#1c1917] transition-colors cursor-pointer"
+                  className="table-action-btn"
                 >
                   Gruppe bearbeiten
                 </Link>
@@ -68,16 +68,16 @@ export default async function CategoriesPage() {
                 >
                   <button
                     type="submit"
-                    className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-red-50 border border-red-200 hover:bg-red-100 text-red-700 transition-colors cursor-pointer"
+                    className="table-action-btn table-action-delete"
                   >
                     Löschen
                   </button>
                 </form>
                 <Link
                   href={`/admin/outfit-categories/categories/new?groupId=${group.id}`}
-                  className="px-3 py-1.5 text-xs font-bold rounded-lg bg-[#292524] hover:bg-[#44403c] text-white shadow-xs transition-colors cursor-pointer flex items-center gap-1"
+                  className="table-action-btn table-action-primary"
                 >
-                  + Kategorie
+                  <span style={{ color: "#ffffff" }}>+ Kategorie</span>
                 </Link>
               </div>
             </div>
@@ -122,10 +122,10 @@ export default async function CategoriesPage() {
                             </div>
                           </td>
                           <td>
-                            <div className="flex items-center gap-2">
+                            <div className="table-actions">
                               <Link
                                 href={`/admin/outfit-categories/categories/${cat.id}`}
-                                className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-white border border-[#d6d3d1] hover:bg-[#f5f5f4] text-[#1c1917] transition-colors cursor-pointer"
+                                className="table-action-btn"
                               >
                                 Bearbeiten
                               </Link>
@@ -137,7 +137,7 @@ export default async function CategoriesPage() {
                               >
                                 <button
                                   type="submit"
-                                  className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-red-50 border border-red-200 hover:bg-red-100 text-red-700 transition-colors cursor-pointer"
+                                  className="table-action-btn table-action-delete"
                                 >
                                   Löschen
                                 </button>
