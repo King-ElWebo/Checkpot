@@ -33,20 +33,20 @@ export function StoreForm({ initialData }: StoreFormProps) {
   const [hoursNote, setHoursNote] = useState(initialData.hoursNote || "");
 
   // Compact schedule
-  const [weekday, setWeekday] = useState({
+  const [weekday, setWeekdayState] = useState({
     opens: initialData.hours.weekday?.opens || "09:30",
     closes: initialData.hours.weekday?.closes || "18:00",
     closed: Boolean(initialData.hours.weekday?.closed),
   });
 
-  const [saturday, setSaturday] = useState({
+  const [saturday, setSaturdayState] = useState({
     opens: initialData.hours.saturday?.opens || "09:30",
     closes: initialData.hours.saturday?.closes || "13:00",
     closed: Boolean(initialData.hours.saturday?.closed),
   });
 
   // Detailed schedule
-  const [detailedDays, setDetailedDays] = useState<Record<DayKey, { opens: string; closes: string; closed: boolean }>>({
+  const [detailedDays, setDetailedDaysState] = useState<Record<DayKey, { opens: string; closes: string; closed: boolean }>>({
     monday: {
       opens: initialData.hours.monday?.opens || initialData.hours.weekday?.opens || "09:30",
       closes: initialData.hours.monday?.closes || initialData.hours.weekday?.closes || "18:00",
@@ -84,11 +84,53 @@ export function StoreForm({ initialData }: StoreFormProps) {
     },
   });
 
+  // Synchronized state setters
+  const updateWeekday = (updater: (prev: typeof weekday) => typeof weekday) => {
+    setWeekdayState((prev) => {
+      const next = updater(prev);
+      setDetailedDaysState((dPrev) => ({
+        ...dPrev,
+        monday: { ...next },
+        tuesday: { ...next },
+        wednesday: { ...next },
+        thursday: { ...next },
+        friday: { ...next },
+      }));
+      return next;
+    });
+  };
+
+  const updateSaturday = (updater: (prev: typeof saturday) => typeof saturday) => {
+    setSaturdayState((prev) => {
+      const next = updater(prev);
+      setDetailedDaysState((dPrev) => ({
+        ...dPrev,
+        saturday: { ...next },
+      }));
+      return next;
+    });
+  };
+
+  const updateDetailedDay = (dayKey: DayKey, partial: Partial<{ opens: string; closes: string; closed: boolean }>) => {
+    setDetailedDaysState((prev) => {
+      const updatedDay = { ...prev[dayKey], ...partial };
+      const next = { ...prev, [dayKey]: updatedDay };
+
+      if (dayKey === "saturday") {
+        setSaturdayState(updatedDay);
+      } else if (dayKey === "monday") {
+        setWeekdayState(updatedDay);
+      }
+
+      return next;
+    });
+  };
+
   // Presets
   const applyCheckpotStandardPreset = () => {
-    setWeekday({ opens: "09:30", closes: "18:00", closed: false });
-    setSaturday({ opens: "09:30", closes: "13:00", closed: false });
-    setDetailedDays({
+    setWeekdayState({ opens: "09:30", closes: "18:00", closed: false });
+    setSaturdayState({ opens: "09:30", closes: "13:00", closed: false });
+    setDetailedDaysState({
       monday: { opens: "09:30", closes: "18:00", closed: false },
       tuesday: { opens: "09:30", closes: "18:00", closed: false },
       wednesday: { opens: "09:30", closes: "18:00", closed: false },
@@ -101,13 +143,14 @@ export function StoreForm({ initialData }: StoreFormProps) {
 
   const copyMondayToWeekdays = () => {
     const mo = detailedDays.monday;
-    setDetailedDays((prev) => ({
+    setDetailedDaysState((prev) => ({
       ...prev,
       tuesday: { ...mo },
       wednesday: { ...mo },
       thursday: { ...mo },
       friday: { ...mo },
     }));
+    setWeekdayState({ ...mo });
   };
 
   // Compute live preview list
@@ -190,19 +233,39 @@ export function StoreForm({ initialData }: StoreFormProps) {
     formData.set("hoursMode", hoursMode);
     formData.set("hoursNote", hoursNote);
 
-    // Set compact fields
-    formData.set("weekdayOpens", weekday.opens);
-    formData.set("weekdayCloses", weekday.closes);
-    formData.set("weekdayClosed", String(weekday.closed));
-    formData.set("saturdayOpens", saturday.opens);
-    formData.set("saturdayCloses", saturday.closes);
-    formData.set("saturdayClosed", String(saturday.closed));
+    if (hoursMode === "compact") {
+      // 1. Send compact values
+      formData.set("weekdayOpens", weekday.opens);
+      formData.set("weekdayCloses", weekday.closes);
+      formData.set("weekdayClosed", String(weekday.closed));
+      formData.set("saturdayOpens", saturday.opens);
+      formData.set("saturdayCloses", saturday.closes);
+      formData.set("saturdayClosed", String(saturday.closed));
 
-    // Set detailed fields
-    for (const day of DAYS) {
-      formData.set(`${day.key}Opens`, detailedDays[day.key].opens);
-      formData.set(`${day.key}Closes`, detailedDays[day.key].closes);
-      formData.set(`${day.key}Closed`, String(detailedDays[day.key].closed));
+      // 2. Synchronize detailed individual days for consistency
+      for (const day of ["monday", "tuesday", "wednesday", "thursday", "friday"] as const) {
+        formData.set(`${day}Opens`, weekday.opens);
+        formData.set(`${day}Closes`, weekday.closes);
+        formData.set(`${day}Closed`, String(weekday.closed));
+      }
+      formData.set("sundayOpens", detailedDays.sunday.opens);
+      formData.set("sundayCloses", detailedDays.sunday.closes);
+      formData.set("sundayClosed", String(detailedDays.sunday.closed));
+    } else {
+      // Detailed mode: send all 7 individual days
+      for (const day of DAYS) {
+        formData.set(`${day.key}Opens`, detailedDays[day.key].opens);
+        formData.set(`${day.key}Closes`, detailedDays[day.key].closes);
+        formData.set(`${day.key}Closed`, String(detailedDays[day.key].closed));
+      }
+
+      // Compact fallback
+      formData.set("weekdayOpens", detailedDays.monday.opens);
+      formData.set("weekdayCloses", detailedDays.monday.closes);
+      formData.set("weekdayClosed", String(detailedDays.monday.closed));
+      formData.set("saturdayOpens", detailedDays.saturday.opens);
+      formData.set("saturdayCloses", detailedDays.saturday.closes);
+      formData.set("saturdayClosed", String(detailedDays.saturday.closed));
     }
 
     startTransition(async () => {
@@ -464,7 +527,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                     type="time"
                     disabled={weekday.closed}
                     value={weekday.opens}
-                    onChange={(e) => setWeekday((prev) => ({ ...prev, opens: e.target.value }))}
+                    onChange={(e) => updateWeekday((prev) => ({ ...prev, opens: e.target.value }))}
                     className="px-2.5 py-1.5 bg-white border border-[#d6d3d1] rounded-lg text-xs font-semibold text-[#1c1917] disabled:bg-[#e7e5e4] disabled:text-[#a8a29e] cursor-pointer"
                   />
                 </div>
@@ -475,7 +538,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                     type="time"
                     disabled={weekday.closed}
                     value={weekday.closes}
-                    onChange={(e) => setWeekday((prev) => ({ ...prev, closes: e.target.value }))}
+                    onChange={(e) => updateWeekday((prev) => ({ ...prev, closes: e.target.value }))}
                     className="px-2.5 py-1.5 bg-white border border-[#d6d3d1] rounded-lg text-xs font-semibold text-[#1c1917] disabled:bg-[#e7e5e4] disabled:text-[#a8a29e] cursor-pointer"
                   />
                 </div>
@@ -484,7 +547,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                   <input
                     type="checkbox"
                     checked={weekday.closed}
-                    onChange={(e) => setWeekday((prev) => ({ ...prev, closed: e.target.checked }))}
+                    onChange={(e) => updateWeekday((prev) => ({ ...prev, closed: e.target.checked }))}
                     className="w-4 h-4 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
                   />
                   <span>Geschlossen</span>
@@ -512,7 +575,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                     type="time"
                     disabled={saturday.closed}
                     value={saturday.opens}
-                    onChange={(e) => setSaturday((prev) => ({ ...prev, opens: e.target.value }))}
+                    onChange={(e) => updateSaturday((prev) => ({ ...prev, opens: e.target.value }))}
                     className="px-2.5 py-1.5 bg-white border border-[#d6d3d1] rounded-lg text-xs font-semibold text-[#1c1917] disabled:bg-[#e7e5e4] disabled:text-[#a8a29e] cursor-pointer"
                   />
                 </div>
@@ -523,7 +586,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                     type="time"
                     disabled={saturday.closed}
                     value={saturday.closes}
-                    onChange={(e) => setSaturday((prev) => ({ ...prev, closes: e.target.value }))}
+                    onChange={(e) => updateSaturday((prev) => ({ ...prev, closes: e.target.value }))}
                     className="px-2.5 py-1.5 bg-white border border-[#d6d3d1] rounded-lg text-xs font-semibold text-[#1c1917] disabled:bg-[#e7e5e4] disabled:text-[#a8a29e] cursor-pointer"
                   />
                 </div>
@@ -532,7 +595,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                   <input
                     type="checkbox"
                     checked={saturday.closed}
-                    onChange={(e) => setSaturday((prev) => ({ ...prev, closed: e.target.checked }))}
+                    onChange={(e) => updateSaturday((prev) => ({ ...prev, closed: e.target.checked }))}
                     className="w-4 h-4 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
                   />
                   <span>Geschlossen</span>
@@ -576,12 +639,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                         type="time"
                         disabled={data.closed}
                         value={data.opens}
-                        onChange={(e) =>
-                          setDetailedDays((prev) => ({
-                            ...prev,
-                            [day.key]: { ...prev[day.key], opens: e.target.value },
-                          }))
-                        }
+                        onChange={(e) => updateDetailedDay(day.key, { opens: e.target.value })}
                         className="px-2.5 py-1 bg-white border border-[#d6d3d1] rounded-lg text-xs font-semibold text-[#1c1917] disabled:bg-[#e7e5e4] disabled:text-[#a8a29e] cursor-pointer"
                       />
                     </div>
@@ -592,12 +650,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                         type="time"
                         disabled={data.closed}
                         value={data.closes}
-                        onChange={(e) =>
-                          setDetailedDays((prev) => ({
-                            ...prev,
-                            [day.key]: { ...prev[day.key], closes: e.target.value },
-                          }))
-                        }
+                        onChange={(e) => updateDetailedDay(day.key, { closes: e.target.value })}
                         className="px-2.5 py-1 bg-white border border-[#d6d3d1] rounded-lg text-xs font-semibold text-[#1c1917] disabled:bg-[#e7e5e4] disabled:text-[#a8a29e] cursor-pointer"
                       />
                     </div>
@@ -606,12 +659,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
                       <input
                         type="checkbox"
                         checked={data.closed}
-                        onChange={(e) =>
-                          setDetailedDays((prev) => ({
-                            ...prev,
-                            [day.key]: { ...prev[day.key], closed: e.target.checked },
-                          }))
-                        }
+                        onChange={(e) => updateDetailedDay(day.key, { closed: e.target.checked })}
                         className="w-4 h-4 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
                       />
                       <span>Geschlossen</span>
