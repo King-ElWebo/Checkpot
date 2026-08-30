@@ -18,20 +18,6 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-/**
- * Editorial Feature indices on desktop (12-column grid).
- * Only applied if the brand at this index has an actual image.
- *
- * Deterministic rhythm for 15 brands:
- * Row 1: [0 (Feature 8)] [1 (Regular 4)]               -> 12 cols
- * Row 2: [2 (Regular 4)] [3 (Regular 4)] [4 (Reg 4)]   -> 12 cols
- * Row 3: [5 (Regular 4)] [6 (Regular 4)] [7 (Reg 4)]   -> 12 cols
- * Row 4: [8 (Regular 4)] [9 (Feature 8)]               -> 12 cols
- * Row 5: [10 (Regular 4)] [11 (Feature 8)]             -> 12 cols
- * Row 6: [12 (Regular 4)] [13 (Regular 4)] [14 (Reg 4)] -> 12 cols
- */
-const FEATURE_INDICES = new Set([0, 9, 11]);
-
 export default async function MarkenPage() {
   const activeBrands = await listPublishedBrands();
 
@@ -63,84 +49,60 @@ export default async function MarkenPage() {
           </p>
         </div>
 
-        {/* 12-Column Responsive Grid */}
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-24">
-          {activeBrands.map((brand, index) => {
-            const isFeature = FEATURE_INDICES.has(index) && Boolean(brand.image);
-
-            return (
-              <Link
-                key={brand.slug}
-                href={`/marken/${brand.slug}`}
-                className={
-                  isFeature
-                    ? "group flex flex-col focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm col-span-1 md:col-span-1 lg:col-span-8"
-                    : "group flex flex-col focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm col-span-1 md:col-span-1 lg:col-span-4"
-                }
-              >
-                {/* Visual Area */}
-                <div
-                  className={
-                    isFeature
-                      ? "relative w-full overflow-hidden rounded-sm bg-[#F7F6F3] border border-[#ECEAE4] aspect-[16/9]"
-                      : "relative w-full overflow-hidden rounded-sm bg-[#F7F6F3] border border-[#ECEAE4] aspect-[16/10]"
-                  }
-                >
-                  {brand.image ? (
-                    <Image
-                      src={brand.image.url}
-                      alt={brand.image.alt || brand.name}
-                      fill
-                      sizes={
-                        isFeature
-                          ? "(min-width: 1024px) 66vw, (min-width: 768px) 50vw, 100vw"
-                          : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      }
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                      style={{ objectPosition: brand.image.focalPoint || "center" }}
-                    />
-                  ) : (
-                    <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center select-none">
-                      <span className="font-display text-2xl tracking-tight text-[#1A1A1A]/75 transition-colors duration-300 group-hover:text-[#C01718] sm:text-[26px]">
-                        {brand.name}
-                      </span>
-                      <span className="mt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-[#718096]/70">
-                        Kollektion in Hietzing
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Identity & Content */}
-                <div className="mt-6 flex flex-1 flex-col items-start">
-                  <h2 className="font-display text-2xl font-normal tracking-tight text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718] sm:text-[26px] lg:text-[28px]">
-                    {brand.name}
-                  </h2>
-
-                  {brand.summary && (
-                    <p
-                      className={
-                        isFeature
-                          ? "mt-2.5 leading-relaxed text-[#4A5568] text-[15px] sm:text-[16px] max-w-[640px]"
-                          : "mt-2.5 leading-relaxed text-[#4A5568] text-[15px] sm:text-[16px] max-w-[440px]"
-                      }
-                    >
-                      {brand.summary}
-                    </p>
-                  )}
-
-                  <div className="mt-6 pt-1">
-                    <span className="inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718]">
-                      Kollektion ansehen{" "}
-                      <span aria-hidden="true" className="ml-2 transition-transform duration-200 group-hover:translate-x-1">
-                        →
-                      </span>
+        {/* 3-Column Responsive Grid */}
+        <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-24">
+          {activeBrands.map((brand) => (
+            <Link
+              key={brand.slug}
+              href={`/marken/${brand.slug}`}
+              className="group flex flex-col focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm"
+            >
+              {/* Visual Area */}
+              <div className="relative w-full overflow-hidden rounded-sm bg-[#F7F6F3] border border-[#ECEAE4] aspect-[16/10]">
+                {brand.image ? (
+                  <Image
+                    src={brand.image.url}
+                    alt={brand.image.alt || brand.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    style={{ objectPosition: brand.image.focalPoint || "center" }}
+                  />
+                ) : (
+                  <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center select-none">
+                    <span className="font-display text-2xl tracking-tight text-[#1A1A1A]/75 transition-colors duration-300 group-hover:text-[#C01718] sm:text-[26px]">
+                      {brand.name}
+                    </span>
+                    <span className="mt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-[#718096]/70">
+                      Kollektion in Hietzing
                     </span>
                   </div>
+                )}
+              </div>
+
+              {/* Identity & Content */}
+              <div className="mt-6 flex flex-1 flex-col items-start">
+                <h2 className="font-display text-2xl font-normal tracking-tight text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718] sm:text-[26px] lg:text-[28px]">
+                  {brand.name}
+                </h2>
+
+                {brand.summary && (
+                  <p className="mt-2.5 leading-relaxed text-[#4A5568] text-[15px] sm:text-[16px] max-w-[440px]">
+                    {brand.summary}
+                  </p>
+                )}
+
+                <div className="mt-6 pt-1">
+                  <span className="inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718]">
+                    Kollektion ansehen{" "}
+                    <span aria-hidden="true" className="ml-2 transition-transform duration-200 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </span>
                 </div>
-              </Link>
-            );
-          })}
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </div>
