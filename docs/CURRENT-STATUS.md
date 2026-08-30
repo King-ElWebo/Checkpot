@@ -1,15 +1,15 @@
 # Checkpot Current Technical Status
 
 ## Last audited & updated
-- Date: 2026-08-29
-- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 Release Preparation & SEO Migration Complete
-- Branch: `main` (synchronized with `origin/main`)
+- Date: 2026-08-30
+- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 (`948098f`), Phase 6 CMS Readiness & Data Integrity Complete (local)
+- Branch: `main` (synchronized baseline with `origin/main` at `948098f`)
 
 ---
 
 ## 1. Executive Summary
 
-Phases 1 through 5 of the backend completion are **COMPLETE**:
+Phases 1 through 6 of the backend completion are **COMPLETE**:
 1. **Central Store Settings & Single Source of Truth (Phase 1)**: Business facts are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
 2. **Central SITE_URL Configuration (Phase 1)**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
 3. **Contact Form Backend & Email Delivery (Phase 2)**: Submissions are processed by a dedicated Server Action with Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data is persisted to Neon.
@@ -27,12 +27,19 @@ Phases 1 through 5 of the backend completion are **COMPLETE**:
    - Privacy & Consent Audit: Verified that no tracking scripts, pixels, non-essential cookies, or third-party embeds exist. **Consent manager not currently required by implemented public functionality.**
    - Legal Cleanup: Removed developer placeholder callout boxes from `/impressum` and `/datenschutz`. Legal pages are technically clean but pending final customer/legal review.
 8. **Release Preparation, Git Push & Legacy SEO Migration (Phase 5)**:
-   - Synchronized all previous commits to remote repository (`origin/main`).
+   - Synchronized previous commits to remote repository (`origin/main` at `948098f`).
    - Audited all verified historical URLs from GSC and GA4 exports.
    - Configured 21 verified permanent `301` redirects in `next.config.ts` (handling historical `/home/*`, `/ueber_uns/*`, `/kontakt/*`, `/mode/*`, and `/marken/*` aliases).
    - Configured 8 explicit `410 Gone` responses in `src/proxy.ts` for permanently obsolete URLs (`zilch-wien`, `adini-wien`, `happy-rainy-days-wien`, `hatley`, `thought-braintree-wien`, `herbstwinter-kollektion-2023-`, `herbst-winter-2018`, `schrankcheck`).
    - Created SEO source of truth artifact: `seo_analysis/legacy_url_migration.csv`.
    - Created customer checklist artifact: `docs/LEGAL-INPUTS-NEEDED.md`.
+9. **CMS Readiness, Data Integrity & Admin Workflow QA (Phase 6)**:
+   - Audited all 11 database tables in Neon PostgreSQL: 0 foreign key violations, 0 dangling join rows.
+   - Verified end-to-end CRUD, atomic relation persistence, delete safety, and targeted cache revalidation across Store Settings, Brands, Media, Outfits, Collections, and Taxonomy.
+   - Audited lookbook taxonomy filter logic on `/outfits`: verified OR within group, AND across groups, correct exclusion of uncategorized looks when active.
+   - Created actionable content entry backlog checklist: `docs/CONTENT-BACKLOG.md`.
+   - Created full CMS readiness report: `docs/CMS-READINESS.md`.
+   - Cleaned all temporary QA records from database; confirmed 0 residual dummy data.
 
 ---
 
@@ -41,14 +48,15 @@ Phases 1 through 5 of the backend completion are **COMPLETE**:
 | Area | Status | Notes / Next Steps |
 |---|---|---|
 | **Code Architecture** | **READY** | All routes, components, Server Actions, and repositories typed and validated. |
-| **Database & Migrations** | **READY** | Drizzle migrations (`0000` through `0004`) applied to Neon PostgreSQL. |
+| **Database & Migrations** | **READY** | Drizzle migrations (`0000` through `0004`) applied to Neon PostgreSQL. Integrity verified. |
+| **Admin CMS & Workflows** | **READY** | Full CRUD, relation persistence, delete safety, and revalidation operational. |
 | **Security & Rate Limiting** | **READY** | Durable login and contact rate limiters active with atomic SQL upserts. |
 | **SEO & URL Migration** | **READY** | 21 redirects (301) and 8 gone routes (410) active; sitemap & robots verified. |
 | **Consent Management** | **READY** | Audited: no non-essential cookies, trackers or third-party embeds. Banner not required. |
-| **Environment Configuration** | **PARTIAL** | Local `.env.local` configured; production variables must be verified in Vercel dashboard. |
+| **Environment Configuration** | **PARTIAL** | Local `.env.local` configured; production variables must be added in Vercel dashboard. |
 | **Email Delivery (Phase 2.5)** | **DEFERRED** | Awaiting customer provisioning of `RESEND_API_KEY` for controlled verification. |
 | **Legal Content** | **PARTIAL** | Technically clean; awaiting customer review and factual inputs (`docs/LEGAL-INPUTS-NEEDED.md`). |
-| **Editorial Brand Content**| **PARTIAL** | 15 active brands present in DB; marketing text/claims to be populated by customer in Admin. |
+| **Editorial Brand Content**| **PARTIAL** | 15 active brands present in DB; marketing text/claims to be populated by customer in Admin (`docs/CONTENT-BACKLOG.md`). |
 | **Frontend Design** | **FROZEN** | Design system frozen for backend delivery; no visual regressions introduced. |
 
 ---
