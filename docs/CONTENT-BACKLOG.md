@@ -8,28 +8,28 @@
 
 | Marke | Sort | Status | Logo | Titelbild | Kurzbeschreibung (Summary) | Ausführlicher Text (Description) | Belegte Merkmale (Claims) | SEO Override | Zugeordnete Outfits |
 |---|---|---|---|---|---|---|---|---|---|
-| **Sorgenfri** | 10 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 1 aktiver Look (Blauer Winter Look) |
-| **Lykka du Nord** | 20 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Seasalt** | 30 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Pretty Vacant** | 40 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Cissi och Selma** | 50 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Danefae** | 60 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **LaLamour** | 70 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Nomads** | 80 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Circus** | 90 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Angels** | 100 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Stehmann** | 110 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Emily van den Berg** | 120 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **Madness** | 130 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | DRAFTED | DRAFTED | DRAFTED (4 Claims) | DRAFTED | 0 Looks |
-| **Heidekönigin** | 140 | Aktiv | MISSING | MISSING | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
-| **King Louie** | 150 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | DRAFTED | DRAFTED | DRAFTED (3 Claims) | DRAFTED | 0 Looks |
+| **Sorgenfri** | 10 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 1 aktiver Look (Blauer Winter Look) |
+| **Lykka du Nord** | 20 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Seasalt** | 30 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Pretty Vacant** | 40 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Cissi och Selma** | 50 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Danefae** | 60 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **LaLamour** | 70 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Nomads** | 80 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Circus** | 90 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Angels** | 100 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Stehmann** | 110 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **Emily van den Berg** | 120 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | AUDITED (REVIEW) | AUDITED (REVIEW) | AUDITED (3 Claims) | AUDITED (REVIEW) | 0 Looks |
+| **Madness** | 130 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | AUDITED (READY) | AUDITED (READY) | AUDITED (4 Claims) | AUDITED (READY) | 0 Looks |
+| **Heidekönigin** | 140 | Aktiv | MISSING | MISSING | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
+| **King Louie** | 150 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | AUDITED (READY) | AUDITED (READY) | AUDITED (3 Claims) | AUDITED (READY) | 0 Looks |
 
-### To-Dos für Marken (Phase 7B / 7C):
-- [ ] **Redaktionelle Freigabe der Entwürfe:** Prüfung der ausgearbeiteten Texte in `docs/BRAND-CONTENT-DRAFT.md` durch Inhaberin.
+### To-Dos für Marken:
+- [ ] **CMS-Eintragung (Phase 7C):** Übernahme der auditierten Texte, Merkmale und SEO-Metadaten aus `docs/BRAND-CONTENT-APPROVAL.md` in Neon PostgreSQL.
 - [ ] **15 Marken-Logos bereitstellen & hochladen:** Freigestellte PNG-Dateien mit transparentem Hintergrund über `/admin/media` hochladen und den Marken in `/admin/brands/[id]` zuweisen.
 - [ ] **10 fehlende Titelbilder ergänzen:** Für `Lykka du Nord`, `Seasalt`, `Pretty Vacant`, `Cissi och Selma`, `Danefae`, `LaLamour`, `Nomads`, `Circus`, `Stehmann`, `Heidekönigin`.
 - [ ] **5 bestehende generische Titelbilder prüfen:** Entscheiden, ob die Store-Bilder durch herstellereigene Lookbook-Fotos ersetzt werden.
-- [ ] **CMS-Eintragung (Phase 7C):** Nach Freigabe durch Inhaberin Übernahme der Texte, Merkmale und SEO-Metadaten in Neon PostgreSQL.
+- [ ] **Emily van den Berg Schreibweise bestätigen:** Inhaberin prüft, ob die Marke im Text als *Emily van den Berg* oder *Emily van den Bergh* genannt werden soll.
 
 ---
 

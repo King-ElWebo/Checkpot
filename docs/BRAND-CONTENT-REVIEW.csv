@@ -1,16 +1,16 @@
 brand,summary_status,description_status,verified_claims_count,seo_title_status,seo_description_status,research_confidence,human_review_required,notes
-Sorgenfri,READY,READY,3,READY,READY,HIGH,REVIEW,Generisches Store-Titelbild ersetzen; Logo bereitstellen
-Lykka du Nord,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen
-Seasalt,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen (B Corp verifiziert)
-Pretty Vacant,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen (GOTS verifiziert)
-Cissi och Selma,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen (Stockholm Design / EU Fertigung)
-Danefae,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen (Fluorcarbonfrei / BSCI)
-LaLamour,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen (GOTS Bio-Baumwolle)
-Nomads,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen (GOTS / TENCEL / Blockprint)
-Circus,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen (Dublin Design / SEDEX Fertigung)
-Angels,READY,READY,3,READY,READY,HIGH,REVIEW,Generisches Store-Titelbild ersetzen; Logo bereitstellen; Passformkompetenz Nagold
-Stehmann,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen; Ina-Schlupfhosenkompetenz Fürth
-Emily van den Berg,READY,READY,3,READY,READY,HIGH,REVIEW,Generisches Store-Titelbild ersetzen; Logo bereitstellen; Schreibweise im System prüfen
-Madness,READY,READY,4,READY,READY,HIGH,REVIEW,Generisches Store-Titelbild ersetzen; Logo bereitstellen; GOTS & Fair Wear Pionier
-Heidekönigin,READY,READY,3,READY,READY,HIGH,REVIEW,Titelbild und Logo bereitstellen; 100% europäische Fertigung & GOTS
-King Louie,READY,READY,3,READY,READY,HIGH,REVIEW,Generisches Store-Titelbild ersetzen; Logo bereitstellen; GOTS & BSCI
+Sorgenfri,READY,READY,3,READY,READY,MEDIUM,NO,Text und 3 Claims auditiert; Titelbild & Logo im Asset-Backlog
+Lykka du Nord,READY,READY,3,READY,READY,MEDIUM,NO,Text und 3 Claims auditiert; Titelbild & Logo im Asset-Backlog
+Seasalt,READY,READY,3,READY,READY,HIGH,NO,B Corp & GOTS primärbelegt; Titelbild & Logo im Asset-Backlog
+Pretty Vacant,READY,READY,3,READY,READY,HIGH,NO,GOTS & Soil Association primärbelegt; Titelbild & Logo im Asset-Backlog
+Cissi och Selma,READY,READY,3,READY,READY,HIGH,NO,Stockholm Design & EU-Partner primärbelegt; Titelbild & Logo im Asset-Backlog
+Danefae,READY,READY,3,READY,READY,HIGH,NO,Fluorcarbonfrei & amfori BSCI Audit auditiert; Titelbild & Logo im Asset-Backlog
+LaLamour,READY,READY,3,READY,READY,HIGH,NO,GOTS-Baumwolle primärbelegt; Titelbild & Logo im Asset-Backlog
+Nomads,READY,READY,3,READY,READY,HIGH,NO,Blockprint GOTS TENCEL primärbelegt; Titelbild & Logo im Asset-Backlog
+Circus,READY,READY,3,READY,READY,HIGH,NO,Naturfasern & SEDEX-Audit auditiert; Titelbild & Logo im Asset-Backlog
+Angels,READY,READY,3,READY,READY,HIGH,NO,ANGELS Cares & Nagold Endprüfung primärbelegt; Titelbild & Logo im Asset-Backlog
+Stehmann,READY,READY,3,READY,READY,HIGH,NO,Ina-Modell & amfori BSCI primärbelegt; Titelbild & Logo im Asset-Backlog
+Emily van den Berg,READY,READY,3,READY,READY,MEDIUM,YES,Schreibweise im Großhandel lautet teils Emily van den Bergh; Inhaberin-Prüfung vor CMS-Import
+Madness,READY,READY,4,READY,READY,HIGH,NO,GOTS seit 2012 & Fair Wear Member lückenlos primärbelegt; Titelbild & Logo im Asset-Backlog
+Heidekönigin,READY,READY,3,READY,READY,HIGH,NO,100% EU-Produktion & GOTS primärbelegt; Titelbild & Logo im Asset-Backlog
+King Louie,READY,READY,3,READY,READY,HIGH,NO,GOTS seit 2017 & Retraced & amfori BSCI auditiert; Titelbild & Logo im Asset-Backlog
