@@ -1,4 +1,4 @@
-import { and, asc, eq, inArray } from "drizzle-orm";
+import { and, asc, desc, eq, inArray } from "drizzle-orm";
 import { getDatabase } from "@/db";
 import { outfits, outfitBrands } from "@/db/schema";
 
@@ -58,6 +58,18 @@ export async function listFeaturedOutfits() {
   return db.query.outfits.findMany({
     where: and(eq(outfits.featured, true), eq(outfits.active, true)),
     orderBy: [asc(outfits.sortOrder)],
+    with: {
+      media: true,
+    },
+  });
+}
+
+export async function listHomepageOutfits(limit = 10) {
+  const db = getDatabase();
+  return db.query.outfits.findMany({
+    where: eq(outfits.active, true),
+    orderBy: [desc(outfits.featured), asc(outfits.sortOrder)],
+    limit,
     with: {
       media: true,
     },
