@@ -15,49 +15,74 @@ export default async function CategoriesPage() {
 
   return (
     <div className="dashboard-stack">
-      <section className="page-intro" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <section className="page-intro flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="eyebrow">Taxonomie</div>
           <h1>Outfit-Kategorien</h1>
+          <p className="text-xs text-[#78716c] mt-1">
+            Verwalten Sie Filtergruppen (z.B. Saison, Stil, Farbwelt) und die zugehörigen Kategorien für das Lookbook.
+          </p>
         </div>
-        <Link href="/admin/outfit-categories/groups/new" className="login-form button" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", padding: "0 18px", background: "var(--accent)", color: "white", borderRadius: "10px", minHeight: "44px", fontWeight: 700 }}>
-          Gruppe hinzufügen
+        <Link
+          href="/admin/outfit-categories/groups/new"
+          className="inline-flex items-center justify-center px-4 py-2.5 bg-[#292524] hover:bg-[#44403c] text-white text-xs font-bold rounded-xl shadow-xs transition-colors cursor-pointer self-start sm:self-auto"
+        >
+          + Gruppe hinzufügen
         </Link>
       </section>
 
       {groups.length === 0 ? (
-        <section className="admin-panel" style={{ padding: "40px", textAlign: "center", color: "var(--muted)" }}>
+        <section className="admin-panel p-10 text-center text-[#78716c] text-sm">
           Keine Kategorie-Gruppen gefunden.
         </section>
       ) : (
-        groups.map(group => (
-          <section key={group.id} className="admin-panel" style={{ marginBottom: "32px" }}>
-            <div style={{ padding: "20px", borderBottom: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface)" }}>
+        groups.map((group) => (
+          <section key={group.id} className="admin-panel mb-8 overflow-hidden">
+            {/* Group Header */}
+            <div className="p-5 border-b border-[#e7e5e4] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#fafaf9]">
               <div>
-                <h2 style={{ fontSize: "1.2rem", margin: "0 0 4px 0", display: "flex", alignItems: "center", gap: "8px" }}>
+                <h2 className="text-base font-bold text-[#1c1917] flex items-center gap-2 m-0">
                   {group.name}
-                  {!group.active && <span className="badge-featured" style={{ fontSize: "0.7rem", background: "#fecaca", color: "#991b1b" }}>Inaktiv</span>}
+                  {!group.active && (
+                    <span className="px-2 py-0.5 text-[11px] font-semibold rounded-md bg-red-100 text-red-800">
+                      Inaktiv
+                    </span>
+                  )}
                 </h2>
-                <div style={{ fontSize: "0.9rem", color: "var(--muted)" }}>Slug: {group.slug}</div>
+                <div className="text-xs text-[#78716c] mt-0.5">Slug: {group.slug}</div>
               </div>
-              <div className="table-actions">
-                <Link href={`/admin/outfit-categories/groups/${group.id}`} className="table-action-btn">
+
+              {/* Group Action Buttons */}
+              <div className="flex items-center gap-2">
+                <Link
+                  href={`/admin/outfit-categories/groups/${group.id}`}
+                  className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-[#d6d3d1] hover:bg-[#f5f5f4] text-[#1c1917] transition-colors cursor-pointer"
+                >
                   Gruppe bearbeiten
                 </Link>
-                <form action={async () => {
-                  "use server";
-                  await deleteGroupAction(group.id);
-                }}>
-                  <button type="submit" className="table-action-btn table-action-delete">
+                <form
+                  action={async () => {
+                    "use server";
+                    await deleteGroupAction(group.id);
+                  }}
+                >
+                  <button
+                    type="submit"
+                    className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-red-50 border border-red-200 hover:bg-red-100 text-red-700 transition-colors cursor-pointer"
+                  >
                     Löschen
                   </button>
                 </form>
-                <Link href={`/admin/outfit-categories/categories/new?groupId=${group.id}`} className="table-action-btn" style={{ background: "var(--foreground)", color: "white" }}>
+                <Link
+                  href={`/admin/outfit-categories/categories/new?groupId=${group.id}`}
+                  className="px-3 py-1.5 text-xs font-bold rounded-lg bg-[#292524] hover:bg-[#44403c] text-white shadow-xs transition-colors cursor-pointer flex items-center gap-1"
+                >
                   + Kategorie
                 </Link>
               </div>
             </div>
-            
+
+            {/* Categories Table */}
             <div className="admin-table-container">
               <table className="admin-table">
                 <thead>
@@ -72,37 +97,55 @@ export default async function CategoriesPage() {
                 <tbody>
                   {group.categories.length === 0 ? (
                     <tr>
-                      <td colSpan={5} style={{ textAlign: "center", color: "var(--muted)" }}>Keine Kategorien in dieser Gruppe.</td>
+                      <td colSpan={5} className="text-center text-[#78716c] py-6 text-xs">
+                        Keine Kategorien in dieser Gruppe.
+                      </td>
                     </tr>
                   ) : (
-                    group.categories.sort((a, b) => a.sortOrder - b.sortOrder).map(cat => (
-                      <tr key={cat.id}>
-                        <td style={{ fontWeight: 600 }}>{cat.name}</td>
-                        <td style={{ color: "var(--muted)" }}>{cat.slug}</td>
-                        <td style={{ color: "var(--muted)" }}>{cat.sortOrder}</td>
-                        <td>
-                          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                            <div className={`status-dot ${cat.active ? "status-dot-ready" : "status-dot-pending"}`}></div>
-                            {cat.active ? "Aktiv" : "Inaktiv"}
-                          </div>
-                        </td>
-                        <td>
-                          <div className="table-actions">
-                            <Link href={`/admin/outfit-categories/categories/${cat.id}`} className="table-action-btn">
-                              Bearbeiten
-                            </Link>
-                            <form action={async () => {
-                              "use server";
-                              await deleteCategoryAction(cat.id);
-                            }}>
-                              <button type="submit" className="table-action-btn table-action-delete">
-                                Löschen
-                              </button>
-                            </form>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
+                    group.categories
+                      .sort((a, b) => a.sortOrder - b.sortOrder)
+                      .map((cat) => (
+                        <tr key={cat.id}>
+                          <td className="font-semibold text-[#1c1917]">{cat.name}</td>
+                          <td className="text-[#78716c] font-mono text-xs">{cat.slug}</td>
+                          <td className="text-[#78716c]">{cat.sortOrder}</td>
+                          <td>
+                            <div className="flex items-center gap-2">
+                              <div
+                                className={`w-2 h-2 rounded-full ${
+                                  cat.active ? "bg-emerald-500" : "bg-amber-500"
+                                }`}
+                              ></div>
+                              <span className="text-xs font-medium text-[#1c1917]">
+                                {cat.active ? "Aktiv" : "Inaktiv"}
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="flex items-center gap-2">
+                              <Link
+                                href={`/admin/outfit-categories/categories/${cat.id}`}
+                                className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-white border border-[#d6d3d1] hover:bg-[#f5f5f4] text-[#1c1917] transition-colors cursor-pointer"
+                              >
+                                Bearbeiten
+                              </Link>
+                              <form
+                                action={async () => {
+                                  "use server";
+                                  await deleteCategoryAction(cat.id);
+                                }}
+                              >
+                                <button
+                                  type="submit"
+                                  className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-red-50 border border-red-200 hover:bg-red-100 text-red-700 transition-colors cursor-pointer"
+                                >
+                                  Löschen
+                                </button>
+                              </form>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
                   )}
                 </tbody>
               </table>
