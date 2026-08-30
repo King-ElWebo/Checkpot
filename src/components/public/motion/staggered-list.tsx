@@ -43,11 +43,18 @@ export function StaggeredList({
     <div ref={ref} className={className}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;
+        const childProps = child.props as { className?: string };
+        const childClass = childProps?.className || "";
+        // Forward col-span classes to the grid item wrapper
+        const colSpanMatches = childClass.match(/(?:(?:sm|md|lg|xl|2xl):)?col-span-\d+/g) || [];
+        const colSpanClass = colSpanMatches.join(" ");
+
         return (
           <div
+            className={`flex flex-col ${colSpanClass}`}
             style={{
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(10px)",
+              transform: isVisible ? "translateY(0)" : "translateY(12px)",
               transition: `opacity 500ms ease-out ${index * staggerDelay}ms, transform 500ms ease-out ${index * staggerDelay}ms`,
             }}
           >

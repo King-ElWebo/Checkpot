@@ -19,12 +19,27 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+/**
+ * Editorial Feature indices on desktop (12-column grid).
+ * Only applied if the brand at this index has an actual image.
+ *
+ * Deterministic rhythm for 15 brands:
+ * Row 1: [0 (Feature 8)] [1 (Regular 4)]               -> 12 cols
+ * Row 2: [2 (Regular 4)] [3 (Regular 4)] [4 (Reg 4)]   -> 12 cols
+ * Row 3: [5 (Regular 4)] [6 (Regular 4)] [7 (Reg 4)]   -> 12 cols
+ * Row 4: [8 (Regular 4)] [9 (Feature 8)]               -> 12 cols
+ * Row 5: [10 (Regular 4)] [11 (Feature 8)]             -> 12 cols
+ * Row 6: [12 (Regular 4)] [13 (Regular 4)] [14 (Reg 4)] -> 12 cols
+ */
+const FEATURE_INDICES = new Set([0, 9, 11]);
+
 export default async function MarkenPage() {
   const activeBrands = await listPublishedBrands();
 
   return (
-    <div className="flex flex-col">
-      <div className="mx-auto w-full max-w-[1400px] px-4 pt-12 lg:px-6">
+    <div className="flex flex-col bg-white">
+      {/* Top Breadcrumb Navigation */}
+      <div className="mx-auto w-full max-w-[1240px] px-6 pt-8 sm:px-8 lg:pt-12">
         <Breadcrumbs
           items={[
             { label: "Startseite", href: "/" },
@@ -33,85 +48,93 @@ export default async function MarkenPage() {
         />
       </div>
 
-      <section className="mx-auto w-full max-w-[1400px] px-4 py-16 lg:px-6 lg:py-24">
-        <div className="mx-auto mb-16 max-w-3xl text-center lg:mb-24">
-          <span className="mb-4 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#4A5568]">
-            Unsere Partner
+      {/* Main Brands Section */}
+      <section className="mx-auto w-full max-w-[1240px] px-6 pb-20 pt-8 sm:px-8 lg:pb-32 lg:pt-12">
+        {/* Editorial Heading */}
+        <div className="mx-auto mb-16 max-w-2xl text-center lg:mb-24">
+          <span className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#C01718]">
+            Boutique Wien-Hietzing
           </span>
-          <h1 className="text-4xl font-normal leading-[1.1] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl">
+          <h1 className="font-display text-4xl font-normal leading-[1.1] tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl">
             Unsere Marken
           </h1>
-          <p className="mt-8 text-lg leading-relaxed text-[#4A5568] sm:text-xl">
+          <p className="mt-6 text-lg leading-relaxed text-[#4A5568] sm:text-xl">
             Wir wählen unsere Modelabels sorgfältig nach Qualität, Passform und individuellem Stil aus.
             Entdecken Sie unsere Markenauswahl direkt vor Ort in Wien Hietzing.
           </p>
         </div>
 
-        <StaggeredList className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-24" staggerDelay={50}>
+        {/* 12-Column Responsive Grid */}
+        <StaggeredList
+          className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-24"
+          staggerDelay={40}
+        >
           {activeBrands.map((brand, index) => {
-            const isFeatured = index % 5 === 0;
+            const isFeature = FEATURE_INDICES.has(index) && Boolean(brand.image);
+
             return (
               <Link
                 key={brand.slug}
                 href={`/marken/${brand.slug}`}
-                className={`group flex focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm ${
-                  isFeatured 
-                    ? "flex-col md:col-span-2 md:flex-row items-start md:items-center gap-8 lg:gap-16" 
-                    : "flex-col items-start gap-6"
+                className={`group flex flex-col focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 rounded-sm ${
+                  isFeature ? "lg:col-span-8 md:col-span-1 col-span-1" : "lg:col-span-4 md:col-span-1 col-span-1"
                 }`}
               >
-                {/* Visual Container */}
-                <div className={`relative overflow-hidden bg-[#F9F9F8] rounded-sm shrink-0 w-full ${
-                  isFeatured ? "md:w-[55%] aspect-[4/5] lg:aspect-[4/5]" : "aspect-[3/4]"
-                }`}>
+                {/* Visual Area */}
+                <div
+                  className={`relative w-full overflow-hidden rounded-sm bg-[#F7F6F3] border border-[#ECEAE4] ${
+                    isFeature ? "aspect-[16/9]" : "aspect-[16/10]"
+                  }`}
+                >
                   {brand.image ? (
                     <Image
                       src={brand.image.url}
                       alt={brand.image.alt || brand.name}
                       fill
-                      sizes={isFeatured ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"}
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      sizes={
+                        isFeature
+                          ? "(min-width: 1024px) 66vw, (min-width: 768px) 50vw, 100vw"
+                          : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      }
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       style={{ objectPosition: brand.image.focalPoint || "center" }}
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center p-12 text-center">
-                      {brand.logo ? (
-                        <div className="relative w-full h-16 opacity-40 transition-opacity duration-300 group-hover:opacity-80">
-                          <Image src={brand.logo.url} alt={brand.logo.alt || brand.name} fill className="object-contain object-center" />
-                        </div>
-                      ) : (
-                        <span className="font-display text-4xl text-[#1A1A1A]/30">{brand.name}</span>
-                      )}
+                    <div className="flex h-full w-full flex-col items-center justify-center p-6 text-center select-none">
+                      <span className="font-display text-2xl tracking-tight text-[#1A1A1A]/75 transition-colors duration-300 group-hover:text-[#C01718] sm:text-[26px]">
+                        {brand.name}
+                      </span>
+                      <span className="mt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-[#718096]/70">
+                        Kollektion in Hietzing
+                      </span>
                     </div>
                   )}
                 </div>
 
-                {/* Text / Identity */}
-                <div className={`flex flex-col items-start ${isFeatured ? "md:w-[45%] py-4 md:py-0" : "w-full"}`}>
-                  {brand.logo ? (
-                    <div className={`relative mb-6 w-3/4 max-w-[180px] ${isFeatured ? 'h-12' : 'h-10'}`}>
-                      <Image 
-                        src={brand.logo.url} 
-                        alt={brand.logo.alt || brand.name} 
-                        fill 
-                        className="object-contain object-left" 
-                      />
-                    </div>
-                  ) : (
-                    <h2 className={`mb-4 font-display text-[#1A1A1A] transition-colors group-hover:text-[#C01718] ${isFeatured ? 'text-4xl lg:text-5xl' : 'text-3xl'}`}>
-                      {brand.name}
-                    </h2>
-                  )}
-                  
+                {/* Identity & Content */}
+                <div className="mt-6 flex flex-1 flex-col items-start">
+                  <h2 className="font-display text-2xl font-normal tracking-tight text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718] sm:text-[26px] lg:text-[28px]">
+                    {brand.name}
+                  </h2>
+
                   {brand.summary && (
-                    <p className={`mb-8 leading-relaxed text-[#4A5568] ${isFeatured ? 'text-lg line-clamp-4' : 'text-[15px] line-clamp-3'}`}>
+                    <p
+                      className={`mt-2.5 leading-relaxed text-[#4A5568] text-[15px] sm:text-[16px] ${
+                        isFeature ? "max-w-[640px]" : "max-w-[440px]"
+                      }`}
+                    >
                       {brand.summary}
                     </p>
                   )}
 
-                  <span className="mt-auto inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] transition-colors group-hover:text-[#C01718]">
-                    Kollektion ansehen <span aria-hidden="true" className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                  </span>
+                  <div className="mt-6 pt-1">
+                    <span className="inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718]">
+                      Kollektion ansehen{" "}
+                      <span aria-hidden="true" className="ml-2 transition-transform duration-200 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </span>
+                  </div>
                 </div>
               </Link>
             );
@@ -121,3 +144,4 @@ export default async function MarkenPage() {
     </div>
   );
 }
+
