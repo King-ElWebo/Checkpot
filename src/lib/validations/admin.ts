@@ -148,11 +148,40 @@ export const storeSettingsSchema = z.object({
   phone: z.string().trim().min(3, "Telefonnummer ist erforderlich").max(50, "Telefonnummer zu lang"),
   whatsapp: z.string().trim().min(3, "WhatsApp-Nummer ist erforderlich").max(50, "WhatsApp-Nummer zu lang"),
   email: z.string().trim().email("Ungültige E-Mail-Adresse").max(100, "E-Mail zu lang"),
-  weekdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 10:00)").default("10:00"),
+  hoursMode: z.enum(["compact", "detailed"]).default("compact"),
+  hoursNote: z.string().trim().max(300, "Hinweis darf maximal 300 Zeichen lang sein").nullable().optional().transform((v) => v || null),
+
+  // Compact mode fields
+  weekdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 09:30)").default("09:30"),
   weekdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 18:00)").default("18:00"),
   weekdayClosed: z.boolean().default(false),
-  saturdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 10:00)").default("10:00"),
-  saturdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 14:00)").default("14:00"),
+  saturdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 09:30)").default("09:30"),
+  saturdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM (z.B. 13:00)").default("13:00"),
   saturdayClosed: z.boolean().default(false),
+
+  // Detailed individual day fields
+  mondayOpens: z.string().trim().regex(timeRegex, "Format HH:MM").default("09:30"),
+  mondayCloses: z.string().trim().regex(timeRegex, "Format HH:MM").default("18:00"),
+  mondayClosed: z.boolean().default(false),
+
+  tuesdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM").default("09:30"),
+  tuesdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM").default("18:00"),
+  tuesdayClosed: z.boolean().default(false),
+
+  wednesdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM").default("09:30"),
+  wednesdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM").default("18:00"),
+  wednesdayClosed: z.boolean().default(false),
+
+  thursdayOpens: z.string().trim().regex(timeRegex, "Format HH:MM").default("09:30"),
+  thursdayCloses: z.string().trim().regex(timeRegex, "Format HH:MM").default("18:00"),
+  thursdayClosed: z.boolean().default(false),
+
+  fridayOpens: z.string().trim().regex(timeRegex, "Format HH:MM").default("09:30"),
+  fridayCloses: z.string().trim().regex(timeRegex, "Format HH:MM").default("18:00"),
+  fridayClosed: z.boolean().default(false),
+
+  sundayOpens: z.string().trim().regex(timeRegex, "Format HH:MM").default("10:00"),
+  sundayCloses: z.string().trim().regex(timeRegex, "Format HH:MM").default("18:00"),
+  sundayClosed: z.boolean().default(true),
 });
 

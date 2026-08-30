@@ -51,6 +51,7 @@ export type StoreDetails = {
   emailHref: string;
   routePlanningHref: string;
   hours: StoreHours[];
+  hoursNote?: string;
 };
 
 export type Brand = {

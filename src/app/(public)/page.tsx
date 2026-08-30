@@ -285,6 +285,11 @@ export default async function HomePage() {
                           {hour.value}
                         </p>
                       ))}
+                      {storeDetails.hoursNote && (
+                        <p className="text-[14px] leading-relaxed text-white/70 italic pt-1">
+                          {storeDetails.hoursNote}
+                        </p>
+                      )}
                     </div>
                   </div>
                   

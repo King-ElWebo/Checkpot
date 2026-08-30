@@ -96,6 +96,11 @@ export default async function KontaktPage() {
                       </div>
                     ))}
                   </dl>
+                  {storeDetails.hoursNote && (
+                    <p className="mt-3 text-[13px] text-[#718096] italic">
+                      {storeDetails.hoursNote}
+                    </p>
+                  )}
                 </div>
 
                 <div className="pt-6 border-t border-[#E2E8F0]">
