@@ -7,6 +7,8 @@ import { saveBrandAction } from "../actions";
 import { listAllMediaForAdmin } from "@/lib/repositories/media";
 import { MediaPicker } from "@/components/admin/media-picker";
 
+export const dynamic = "force-dynamic";
+
 export default async function BrandEditPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const isNew = id === "new";
@@ -40,9 +42,12 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
       <section className="page-intro">
         <div className="eyebrow">Marken</div>
         <h1>{isNew ? "Neue Marke anlegen" : `Marke: ${brand?.name || "Bearbeiten"}`}</h1>
+        <p className="text-xs text-[#78716c] mt-1">
+          Pflegen Sie Markennamen, Bildmaterial, Beschreibungen und verifizierte Produktfakten.
+        </p>
       </section>
 
-      <form action={handleSave} className="flex flex-col gap-8 max-w-[840px]">
+      <form action={handleSave} className="flex flex-col gap-8 max-w-[880px]">
         {/* Card 1: Basis & Identität */}
         <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
           <div>
@@ -52,7 +57,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
             <div className="field-group">
               <label htmlFor="name">Markenname *</label>
               <input
@@ -75,7 +80,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
                 placeholder="z.B. king-louie"
                 required
               />
-              <p className="text-xs text-[#b45309] mt-1 font-medium">
+              <p className="text-[11px] text-[#b45309] mt-0.5 font-medium leading-tight">
                 ⚠️ Änderungen am Slug verändern die öffentliche Marken-URL.
               </p>
             </div>
@@ -91,7 +96,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
             {/* Logo Picker */}
             <MediaPicker
               name="logoMediaId"
@@ -100,7 +105,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               initialMedia={brand?.logo}
               allMedia={allMedia}
               aspect="logo"
-              helpText="Empfohlen: PNG mit transparentem Hintergrund"
+              helpText="Empfohlen: Freigestelltes PNG mit transparentem Hintergrund"
             />
 
             {/* Title Image Picker */}
@@ -111,7 +116,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               initialMedia={brand?.image}
               allMedia={allMedia}
               aspect="photo"
-              helpText="Wird groß auf der Markenseite gezeigt"
+              helpText="Wird als Hauptmotiv auf der Markendetailseite angezeigt"
             />
           </div>
         </section>
@@ -143,15 +148,8 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               name="description"
               defaultValue={brand?.description || ""}
               placeholder="Ausführliche Information über die Marke, Philosophie, Passformen und Stilberatung bei Checkpot..."
-              rows={5}
-              style={{
-                width: "100%",
-                border: "1px solid #d6d3d1",
-                borderRadius: "10px",
-                padding: "14px",
-                background: "var(--surface)",
-                fontFamily: "inherit",
-              }}
+              rows={6}
+              className="w-full border border-[#d6d3d1] focus:border-[#1c1917] rounded-xl p-3.5 bg-white text-sm text-[#1c1917] focus:outline-hidden transition-colors"
             />
           </div>
         </section>
@@ -171,16 +169,9 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               id="verifiedClaims"
               name="verifiedClaims"
               defaultValue={(brand?.verifiedClaims || []).join("\n")}
-              placeholder={"z.B. Faire Produktion in Portugal\nz.B. Zertifizierte Bio-Baumwolle (GOTS)"}
+              placeholder={"z.B. Faire Produktion in Portugal\nz.B. Zertifizierte Bio-Baumwolle (GOTS)\nz.B. Zertifiziertes Mitglied der Fair Wear Foundation"}
               rows={4}
-              style={{
-                width: "100%",
-                border: "1px solid #d6d3d1",
-                borderRadius: "10px",
-                padding: "14px",
-                background: "var(--surface)",
-                fontFamily: "inherit",
-              }}
+              className="w-full border border-[#d6d3d1] focus:border-[#1c1917] rounded-xl p-3.5 bg-white text-sm text-[#1c1917] focus:outline-hidden transition-colors"
             />
             <p className="text-xs text-[#78716c] mt-1">
               Nur belegte Aussagen eintragen. Keine Nachhaltigkeits-, Zertifizierungs- oder Produktionsclaims ohne verlässliche Quelle.
@@ -207,7 +198,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               placeholder="z.B. King Louie Kleider in Wien Hietzing | Checkpot"
               maxLength={70}
             />
-            <p className="text-xs text-[#78716c] mt-1">
+            <p className="text-xs text-[#78716c] mt-0.5">
               Optional (max. 70 Zeichen). Wenn leer, wird automatisch &bdquo;{brand?.name || "Markenname"} bei Checkpot&ldquo; verwendet.
             </p>
           </div>
@@ -221,16 +212,9 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               placeholder="z.B. Entdecken Sie die farbenfrohe Vintage-Kollektion von King Louie bei Checkpot in Wien Hietzing..."
               rows={3}
               maxLength={180}
-              style={{
-                width: "100%",
-                border: "1px solid #d6d3d1",
-                borderRadius: "10px",
-                padding: "14px",
-                background: "var(--surface)",
-                fontFamily: "inherit",
-              }}
+              className="w-full border border-[#d6d3d1] focus:border-[#1c1917] rounded-xl p-3.5 bg-white text-sm text-[#1c1917] focus:outline-hidden transition-colors"
             />
-            <p className="text-xs text-[#78716c] mt-1">
+            <p className="text-xs text-[#78716c] mt-0.5">
               Optional (max. 180 Zeichen). Wenn leer, wird automatisch die Kurzbeschreibung bzw. ein neutraler Standardtext verwendet.
             </p>
           </div>
@@ -239,23 +223,23 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
         {/* Card 6: Veröffentlichung & Sortierung */}
         <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
           <div>
-            <h2 className="text-lg font-bold text-[#1c1917]">6. Veröffentlichung</h2>
+            <h2 className="text-lg font-bold text-[#1c1917]">6. Veröffentlichung & Sortierung</h2>
             <p className="text-xs text-[#78716c] mt-0.5">
               Status und Reihenfolge in der Website-Darstellung.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-            <div className="field-group" style={{ flexDirection: "row", alignItems: "center", display: "flex", gap: "10px" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
+            <div className="p-4 bg-[#fafaf9] border border-[#e7e5e4] rounded-xl flex items-center gap-3">
               <input
                 type="checkbox"
                 id="active"
                 name="active"
                 value="true"
                 defaultChecked={brand?.active}
-                style={{ width: "22px", minHeight: "22px" }}
+                className="w-5 h-5 rounded text-[#C01718] focus:ring-[#C01718] cursor-pointer"
               />
-              <label htmlFor="active" style={{ fontSize: "0.95rem", cursor: "pointer" }}>
+              <label htmlFor="active" className="text-sm font-semibold text-[#1c1917] cursor-pointer">
                 Veröffentlicht (Auf Website sichtbar)
               </label>
             </div>
@@ -267,6 +251,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
                 id="sortOrder"
                 name="sortOrder"
                 defaultValue={brand?.sortOrder || 0}
+                placeholder="0"
               />
             </div>
           </div>

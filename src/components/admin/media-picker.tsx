@@ -132,83 +132,87 @@ export function MediaPicker({
       {/* Hidden input ensuring standard form submit */}
       <input type="hidden" name={name} value={selectedItem?.id || ""} />
 
-      <div className="flex items-baseline justify-between">
-        <label className="text-sm font-bold text-[#1c1917]">
+      {/* Header with Title and Subtitle */}
+      <div>
+        <label className="text-sm font-bold text-[#1c1917] block">
           {label} {required && <span className="text-[#b91c1c]">*</span>}
         </label>
-        {helpText && <span className="text-xs text-[#78716c]">{helpText}</span>}
+        {helpText && (
+          <p className="text-xs text-[#78716c] mt-0.5 leading-snug">
+            {helpText}
+          </p>
+        )}
       </div>
 
-      {/* Closed State / Current Selection Preview */}
+      {/* Media Card: Selected or Empty State */}
       {selectedItem ? (
-        <div className="flex flex-col gap-3 p-4 bg-[#fafaf9] border border-[#e7e5e4] rounded-xl">
-          <div className="flex items-center gap-4">
-            {/* Visual Thumbnail */}
-            <div
-              className={`relative overflow-hidden rounded-lg bg-white border border-[#e7e5e4] flex-shrink-0 ${
-                aspect === "logo"
-                  ? "w-28 h-20 p-2 flex items-center justify-center"
-                  : aspect === "square"
-                  ? "w-24 h-24"
-                  : "w-32 h-24"
+        <div className="flex flex-col bg-[#fafaf9] border border-[#e7e5e4] rounded-2xl overflow-hidden shadow-2xs transition-all">
+          {/* Visual Preview Container */}
+          <div
+            className={`relative w-full h-44 sm:h-48 flex items-center justify-center overflow-hidden border-b border-[#e7e5e4] ${
+              aspect === "logo"
+                ? "bg-white p-6"
+                : "bg-[#f5f5f4]"
+            }`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={selectedItem.url}
+              alt={selectedItem.alt || selectedItem.title || "Ausgewähltes Bild"}
+              className={`w-full h-full ${
+                aspect === "logo" ? "object-contain max-h-36" : "object-contain max-h-48"
               }`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={selectedItem.url}
-                alt={selectedItem.alt || selectedItem.title || "Ausgewähltes Bild"}
-                className={`w-full h-full ${
-                  aspect === "logo" ? "object-contain" : "object-cover"
-                }`}
-                style={
-                  selectedItem.focalPoint && aspect !== "logo"
-                    ? { objectPosition: selectedItem.focalPoint }
-                    : undefined
-                }
-              />
-            </div>
+              style={
+                selectedItem.focalPoint && aspect !== "logo"
+                  ? { objectPosition: selectedItem.focalPoint }
+                  : undefined
+              }
+            />
 
-            {/* Metadata Info */}
-            <div className="flex-1 min-w-0">
-              <div className="font-semibold text-sm text-[#1c1917] truncate">
-                {selectedItem.title || "Ohne Titel"}
+            {/* Badge for Image Type */}
+            <div className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium rounded-md">
+              {aspect === "logo" ? "Logo" : "Bild"}
+            </div>
+          </div>
+
+          {/* Footer Bar: Details & Actions */}
+          <div className="p-3.5 bg-white flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <div className="font-semibold text-xs text-[#1c1917] truncate">
+                {selectedItem.title || selectedItem.alt || selectedItem.url.split("/").pop()}
               </div>
-              <div className="text-xs text-[#78716c] truncate mt-0.5">
-                {selectedItem.url.split("/").pop()}
-              </div>
-              {selectedItem.alt && (
-                <div className="text-xs text-[#a8a29e] truncate mt-0.5">
+              {selectedItem.alt && selectedItem.alt !== selectedItem.title && (
+                <div className="text-[11px] text-[#78716c] truncate mt-0.5">
                   Alt: {selectedItem.alt}
                 </div>
               )}
             </div>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2 pt-2 border-t border-[#e7e5e4]/80">
-            <button
-              type="button"
-              onClick={() => setIsOpen(true)}
-              className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-[#292524] text-white hover:bg-[#44403c] transition-colors cursor-pointer"
-            >
-              Bild ändern
-            </button>
-            <button
-              type="button"
-              onClick={handleRemove}
-              className="text-xs font-medium px-3 py-1.5 rounded-lg text-[#78716c] hover:text-[#b91c1c] hover:bg-[#fee2e2]/40 transition-colors cursor-pointer"
-            >
-              Entfernen
-            </button>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsOpen(true)}
+                className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-[#292524] text-white hover:bg-[#44403c] transition-colors cursor-pointer"
+              >
+                Bild ändern
+              </button>
+              <button
+                type="button"
+                onClick={handleRemove}
+                className="text-xs font-medium px-2.5 py-1.5 rounded-lg text-[#78716c] hover:text-[#b91c1c] hover:bg-[#fee2e2]/50 transition-colors cursor-pointer"
+              >
+                Entfernen
+              </button>
+            </div>
           </div>
         </div>
       ) : (
         /* Empty State */
         <div
           onClick={() => setIsOpen(true)}
-          className="flex flex-col items-center justify-center p-6 bg-[#fafaf9] border-2 border-dashed border-[#d6d3d1] hover:border-[#a8a29e] hover:bg-[#f5f5f4] rounded-xl cursor-pointer transition-all duration-150 group"
+          className="flex flex-col items-center justify-center h-44 sm:h-48 p-6 bg-[#fafaf9] border-2 border-dashed border-[#d6d3d1] hover:border-[#78716c] hover:bg-[#f5f5f4] rounded-2xl cursor-pointer transition-all duration-150 group text-center"
         >
-          <div className="w-10 h-10 rounded-full bg-[#f5f5f4] group-hover:bg-[#e7e5e4] flex items-center justify-center text-[#78716c] mb-2 transition-colors">
+          <div className="w-11 h-11 rounded-full bg-[#f5f5f4] group-hover:bg-[#e7e5e4] flex items-center justify-center text-[#78716c] mb-2.5 transition-colors">
             <svg
               className="w-5 h-5"
               fill="none"
@@ -224,10 +228,10 @@ export function MediaPicker({
               />
             </svg>
           </div>
-          <span className="text-sm font-semibold text-[#1c1917]">
+          <span className="text-sm font-bold text-[#1c1917]">
             {aspect === "logo" ? "Logo auswählen" : "Bild auswählen"}
           </span>
-          <span className="text-xs text-[#78716c] mt-0.5">
+          <span className="text-xs text-[#78716c] mt-1 max-w-[240px]">
             Aus der Mediathek wählen oder neues Bild hochladen
           </span>
         </div>

@@ -102,27 +102,46 @@ p {
 }
 
 .field-group {
-  display: grid;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
 }
 
 .field-group label {
   font-size: 0.875rem;
   font-weight: 700;
+  color: #1c1917;
 }
 
-.field-group input {
-  min-height: 48px;
+.field-group input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.field-group select {
+  height: 46px;
+  min-height: 46px;
+  max-height: 46px;
   width: 100%;
   border: 1px solid #d6d3d1;
   border-radius: 10px;
   padding: 0 14px;
   background: var(--surface);
   color: var(--text);
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
 }
 
-.field-group input:hover {
+.field-group input:hover,
+.field-group select:hover,
+.field-group textarea:hover {
   border-color: #a8a29e;
+}
+
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+  outline: none;
+  border-color: #1c1917;
+  box-shadow: 0 0 0 2px rgba(28, 25, 23, 0.08);
 }
 
 .login-form button,
