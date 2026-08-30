@@ -1,0 +1,31 @@
+brand,slug,asset_type,current_media_id,candidate_source_url,source_owner,usage_basis,rights_confidence,file_format,decision,new_media_id,assigned,notes
+Sorgenfri,sorgenfri,logo,NULL,https://scandic-fashion.de,Scandic Fashion GmbH,B2B Händlerportal,MEDIUM,PNG,REVIEW,NULL,NO,Download aus B2B-Portal durch Inhaberin erforderlich
+Sorgenfri,sorgenfri,title_image,7989cd5a-a0b0-45c9-b399-85f891b8bc87,https://scandic-fashion.de,Scandic Fashion GmbH,B2B Lookbook,MEDIUM,JPG,KEEP_TEMPORARILY,NULL,NO,Generisches Boutique-Bild bleibt bis Lookbook-Erhalt aktiv
+Lykka du Nord,lykka-du-nord,logo,NULL,https://scandic-fashion.de,Scandic Fashion GmbH,B2B Händlerportal,MEDIUM,PNG,REVIEW,NULL,NO,Download aus B2B-Portal durch Inhaberin erforderlich
+Lykka du Nord,lykka-du-nord,title_image,NULL,https://scandic-fashion.de,Scandic Fashion GmbH,B2B Lookbook,MEDIUM,JPG,MISSING,NULL,NO,Kein generisches Bild zugewiesen; Public Fallback greift
+Seasalt,seasalt,logo,NULL,https://www.seasaltcornwall.com,Seasalt Ltd.,B2B Reseller Hub,MEDIUM,PNG,REVIEW,NULL,NO,Download aus offiziellem B2B-Portal durch Inhaberin
+Seasalt,seasalt,title_image,NULL,https://www.seasaltcornwall.com,Seasalt Ltd.,B2B Marketing Hub,MEDIUM,JPG,MISSING,NULL,NO,Lookbook-Bild aus Händlerportal erforderlich
+Pretty Vacant,pretty-vacant,logo,NULL,https://www.prettyvacantclothing.com,Pretty Vacant Clothing,Händlerbereich,MEDIUM,PNG,REVIEW,NULL,NO,Bereitstellung durch Markenvertretung
+Pretty Vacant,pretty-vacant,title_image,NULL,https://www.prettyvacantclothing.com,Pretty Vacant Clothing,B2B Lookbook,MEDIUM,JPG,MISSING,NULL,NO,Lookbook-Bild aus Händlerbereich erforderlich
+Cissi och Selma,cissi-och-selma,logo,NULL,https://cissiochselma.se,Cissi och Selma AB,B2B Pressematerial,MEDIUM,PNG,REVIEW,NULL,NO,Download aus schwedischem Händlerbereich
+Cissi och Selma,cissi-och-selma,title_image,NULL,https://cissiochselma.se,Cissi och Selma AB,Presse-Kit,MEDIUM,JPG,MISSING,NULL,NO,Kampagnenbild aus Presse-Kit erforderlich
+Danefae,danefae,logo,NULL,https://danefae.dk,Danefæ ApS,Wholesale Media Download,MEDIUM,PNG,REVIEW,NULL,NO,B2B-Download über Danefæ Händlerkonto
+Danefae,danefae,title_image,NULL,https://danefae.dk,Danefæ ApS,Imagebank,MEDIUM,JPG,MISSING,NULL,NO,Outdoor-Fotografie aus Imagebank erforderlich
+LaLamour,lalamour,logo,NULL,https://lalamour.eu,LaLamour B.V.,Reseller Media Kit,MEDIUM,PNG,REVIEW,NULL,NO,Download aus niederländischem B2B-Portal
+LaLamour,lalamour,title_image,NULL,https://lalamour.eu,LaLamour B.V.,B2B Lookbook,MEDIUM,JPG,MISSING,NULL,NO,Lookbook-Bild aus B2B-Portal erforderlich
+Nomads,nomads,logo,NULL,https://nomadsclothing.com,Nomads Clothing,Wholesale Portal,MEDIUM,PNG,REVIEW,NULL,NO,Stockist-Download über Nomads Wholesale
+Nomads,nomads,title_image,NULL,https://nomadsclothing.com,Nomads Clothing,Trade Image Bank,MEDIUM,JPG,MISSING,NULL,NO,Blockprint-Modelmotiv aus Image Bank erforderlich
+Circus,circus,logo,NULL,https://circusclothing.eu,Circus Apparel Ireland Ltd,Wholesale Stockist Hub,MEDIUM,PNG,REVIEW,NULL,NO,Download über irisches Großhandelsportal
+Circus,circus,title_image,NULL,https://circusclothing.eu,Circus Apparel Ireland Ltd,Wholesale Lookbook,MEDIUM,JPG,MISSING,NULL,NO,Modern-Vintage Motiv aus Lookbook erforderlich
+Angels,angels,logo,NULL,https://angels-jeans.de,Angels GmbH,B2B Händlerportal,MEDIUM,PNG,REVIEW,NULL,NO,B2B-Portal Download erforderlich
+Angels,angels,title_image,d95380cc-7402-4e79-854a-83a0a504be16,https://angels-jeans.de,Angels GmbH,B2B Bilddatenbank,MEDIUM,JPG,KEEP_TEMPORARILY,NULL,NO,Generisches Boutique-Bild bleibt bis Lookbook-Erhalt aktiv
+Stehmann,stehmann,logo,NULL,https://stehmann-store.de,Stehmann Mode GmbH,B2B Portal,MEDIUM,PNG,REVIEW,NULL,NO,Download aus Stehmann Händlerbereich
+Stehmann,stehmann,title_image,NULL,https://stehmann-store.de,Stehmann Mode GmbH,Fachhändler-Werbemittel,MEDIUM,JPG,MISSING,NULL,NO,Ina-Tragemotiv aus Händlerbereich erforderlich
+Emily van den Berg,emily-van-den-berg,logo,NULL,https://etori.de,Just E GmbH / Handel,Handelsportal,MEDIUM,PNG,REVIEW,NULL,NO,Status: ASSET FOUND — IDENTITY CONFIRMATION REQUIRED
+Emily van den Berg,emily-van-den-berg,title_image,42c97f46-e817-4af4-9859-241798dbf7da,https://etori.de,Just E GmbH / Handel,Großhandelskatalog,MEDIUM,JPG,KEEP_TEMPORARILY,NULL,NO,Generisches Store-Bild bleibt aktiv bis Identitätsprüfung
+Madness,madness,logo,NULL,https://madness-online.com,Madness GmbH,Händlerportal,MEDIUM,PNG,REVIEW,NULL,NO,Download aus Madness Händlerbereich
+Madness,madness,title_image,ab21b542-386b-4736-9b2b-7c3b4bfe47f9,https://madness-online.com,Madness GmbH,Presse-/Händlerdatenbank,MEDIUM,JPG,KEEP_TEMPORARILY,NULL,NO,Generisches Store-Bild bleibt aktiv bis Kampagnenbild-Erhalt
+Heidekönigin,heidekoenigin,logo,NULL,https://heidekoenigin.de,Heidekönigin,B2B Händlerportal,MEDIUM,PNG,REVIEW,NULL,NO,Download aus Heidekönigin Händlerportal
+Heidekönigin,heidekoenigin,title_image,NULL,https://heidekoenigin.de,Heidekönigin,Fachhändlermarketing,MEDIUM,JPG,MISSING,NULL,NO,Allover-Print Kampagnenbild erforderlich
+King Louie,king-louie,logo,NULL,https://kinglouie.de,Klooster B.V.,Reseller Media Portal,MEDIUM,PNG,REVIEW,NULL,NO,Download über King Louie B2B-Zugang
+King Louie,king-louie,title_image,e5c4bc2c-04d4-4dfe-aae4-444d6c21a655,https://kinglouie.de,Klooster B.V.,Reseller Lookbook,MEDIUM,JPG,KEEP_TEMPORARILY,NULL,NO,Generisches Store-Bild bleibt aktiv bis Lookbook-Erhalt

@@ -4,31 +4,31 @@
 
 ---
 
-## 1. Marken-Inhalte (15 aktive Partnermarken)
+## 1. Marken-Inhalte & Assets (15 aktive Partnermarken)
 
 | Marke | Sort | Status | Logo | Titelbild | Kurzbeschreibung (Summary) | Ausführlicher Text (Description) | Belegte Merkmale (Claims) | SEO Override | Zugeordnete Outfits |
 |---|---|---|---|---|---|---|---|---|---|
-| **Sorgenfri** | 10 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 1 aktiver Look (Blauer Winter Look) |
-| **Lykka du Nord** | 20 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Seasalt** | 30 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Pretty Vacant** | 40 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Cissi och Selma** | 50 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Danefae** | 60 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **LaLamour** | 70 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Nomads** | 80 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Circus** | 90 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Angels** | 100 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Stehmann** | 110 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **Emily van den Berg** | 120 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | *REVIEW* | *REVIEW* | *REVIEW* | *REVIEW* | 0 Looks |
-| **Madness** | 130 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | **DONE** | **DONE** | **DONE** (4 Claims) | **DONE** | 0 Looks |
-| **Heidekönigin** | 140 | Aktiv | MISSING | MISSING | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
-| **King Louie** | 150 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Sorgenfri** | 10 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 1 aktiver Look (Blauer Winter Look) |
+| **Lykka du Nord** | 20 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Seasalt** | 30 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Pretty Vacant** | 40 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Cissi och Selma** | 50 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Danefae** | 60 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **LaLamour** | 70 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Nomads** | 80 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Circus** | 90 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Angels** | 100 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Stehmann** | 110 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **Emily van den Berg** | 120 | Aktiv | MISSING (Hold) | KEEP TEMPORARILY (Boutique-Foto) | *REVIEW* | *REVIEW* | *REVIEW* | *REVIEW* | 0 Looks |
+| **Madness** | 130 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (4 Claims) | **DONE** | 0 Looks |
+| **Heidekönigin** | 140 | Aktiv | MISSING (B2B-Download) | MISSING (Lookbook) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
+| **King Louie** | 150 | Aktiv | MISSING (B2B-Download) | KEEP TEMPORARILY (Boutique-Foto) | **DONE** | **DONE** | **DONE** (3 Claims) | **DONE** | 0 Looks |
 
-### Ausstehende Aufgaben für Marken (Assets & Freigaben):
-- [ ] **15 Marken-Logos bereitstellen & hochladen:** Freigestellte PNG-Dateien mit transparentem Hintergrund über `/admin/media` hochladen und den Marken in `/admin/brands/[id]` zuweisen.
-- [ ] **10 fehlende Titelbilder ergänzen:** Für `Lykka du Nord`, `Seasalt`, `Pretty Vacant`, `Cissi och Selma`, `Danefae`, `LaLamour`, `Nomads`, `Circus`, `Stehmann`, `Heidekönigin`.
-- [ ] **5 bestehende generische Titelbilder prüfen:** Entscheiden, ob die Store-Bilder durch herstellereigene Lookbook-Fotos ersetzt werden.
-- [ ] **Emily van den Berg Schreibweise bestätigen:** Inhaberin prüft, ob die Marke im Text als *Emily van den Berg* oder *Emily van den Bergh* genannt werden soll. Anschließend Import der vorbereiteten Texte über den Admin-Bereich.
+### Ausstehende Aufgaben für Marken (Details siehe `docs/BRAND-ASSETS-HUMAN-REVIEW.md`):
+- [ ] **15 Marken-Logos bereitstellen & hochladen:** Freigestellte PNG-Dateien mit transparentem Hintergrund über B2B-Händlerportale beziehen und über `/admin/media` hochladen.
+- [ ] **10 fehlende Lookbook-Titelbilder ergänzen:** Für `Lykka du Nord`, `Seasalt`, `Pretty Vacant`, `Cissi och Selma`, `Danefae`, `LaLamour`, `Nomads`, `Circus`, `Stehmann`, `Heidekönigin`.
+- [ ] **5 bestehende generische Titelbilder austauschen:** Für `Sorgenfri`, `Angels`, `Emily van den Berg`, `Madness`, `King Louie` durch herstellereigene Lookbook-Fotos im Format 3:4 ersetzen.
+- [ ] **Emily van den Berg Schreibweise bestätigen:** Inhaberin prüft, ob die Marke im Text als *Emily van den Berg* oder *Emily van den Bergh* genannt werden soll. Anschließend Import der vorbereiteten Texte über `/admin/brands`.
 
 ---
 
