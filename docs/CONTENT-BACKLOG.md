@@ -6,9 +6,9 @@
 
 ## 1. Marken-Inhalte (15 aktive Partnermarken)
 
-| Marke | Sort | Status | Logo | Titelbild | Kurzbeschreibung (Summary) | Ausführlicher Text (Description) | Belegte Merkmale (Claims) | SEO Override | Outfits zugeordnet |
+| Marke | Sort | Status | Logo | Titelbild | Kurzbeschreibung (Summary) | Ausführlicher Text (Description) | Belegte Merkmale (Claims) | SEO Override | Zugeordnete Outfits |
 |---|---|---|---|---|---|---|---|---|---|
-| **Sorgenfri** | 10 | Aktiv | MISSING | DONE (`/customer/store-christa-counter.jpg`) | MISSING | MISSING | MISSING | OPTIONAL | 1 Look |
+| **Sorgenfri** | 10 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | MISSING | MISSING | MISSING | OPTIONAL | 2 Looks (Blauer Winter Look, Outfit 3) |
 | **Lykka du Nord** | 20 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Seasalt** | 30 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Pretty Vacant** | 40 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
@@ -17,18 +17,19 @@
 | **LaLamour** | 70 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Nomads** | 80 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Circus** | 90 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
-| **Angels** | 100 | Aktiv | MISSING | DONE (`/customer/store-sustainable-shelf.jpg`) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
+| **Angels** | 100 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Stehmann** | 110 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
-| **Emily van den Berg** | 120 | Aktiv | MISSING | DONE (`/customer/store-detail-scarves.jpg`) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
-| **Madness** | 130 | Aktiv | MISSING | DONE (`/customer/store-detail-flowers.jpg`) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
+| **Emily van den Berg** | 120 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
+| **Madness** | 130 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 | **Heidekönigin** | 140 | Aktiv | MISSING | MISSING | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
-| **King Louie** | 150 | Aktiv | MISSING | DONE (`/customer/christa-storefront.jpg`) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
+| **King Louie** | 150 | Aktiv | MISSING | REVIEW (Generisches Store-Bild) | MISSING | MISSING | MISSING | OPTIONAL | 0 Looks |
 
 ### To-Dos für Marken:
-- [ ] **15 Marken-Logos hochladen:** Vektornahe, freigestellte PNG-Dateien mit transparentem Hintergrund über `/admin/media` hochladen und den Marken in `/admin/brands/[id]` zuweisen.
+- [ ] **15 Marken-Logos bereitstellen & hochladen:** Freigestellte PNG-Dateien mit transparentem Hintergrund über `/admin/media` hochladen und den Marken in `/admin/brands/[id]` zuweisen.
 - [ ] **10 fehlende Titelbilder ergänzen:** Für `Lykka du Nord`, `Seasalt`, `Pretty Vacant`, `Cissi och Selma`, `Danefae`, `LaLamour`, `Nomads`, `Circus`, `Stehmann`, `Heidekönigin`.
-- [ ] **Marken-Texte & Summaries einpflegen:** Individuelle Beschreibungstexte und Kernaussagen zur Passform/Stil im Admin eintragen.
-- [ ] **Geprüfte Nachhaltigkeits- & Qualitätsmerkmale eintragen:** Pro Marke verifizierte Stichpunkte (z.B. GOTS-zertifizierte Bio-Baumwolle, Faire Produktion in Europa) eintragen, die auf der Markenseite unter *„Gut zu wissen“* erscheinen.
+- [ ] **5 bestehende generische Titelbilder prüfen:** Entscheiden, ob die Store-Bilder durch herstellereigene Lookbook-Fotos ersetzt werden.
+- [ ] **Marken-Texte & Summaries einpflegen:** Individuelle Beschreibungstexte zur Passform und Stil im Admin eintragen.
+- [ ] **Geprüfte Nachhaltigkeits- & Qualitätsmerkmale eintragen:** Pro Marke verifizierte Stichpunkte eintragen, die unter *„Gut zu wissen“* auf der Markenseite erscheinen.
 
 ---
 
@@ -36,17 +37,16 @@
 
 | Outfit-Titel | Kollektion | Bild vorhanden | Zugeordnete Marken | Filter-Kategorien | Redaktioneller Handlungsbedarf |
 |---|---|---|---|---|---|
-| **Musterkleid Sommer** | Frühjahr / Sommer | Ja | Zilch *(Legacy-Marke)* | Keine | Marke auf aktives Sortiment aktualisieren & Filter zuweisen |
-| **Blauer Winter Look** | Herbst / Winter | Ja | Sorgenfri | Keine | Filter-Kategorien (z.B. Stil, Anlass) zuweisen |
-| **Outfit 1: Autumn Layer** | Frühlingserwachen | Ja | Keine | Keine | Marken & Filter zuweisen |
-| **Outfit 2: Blue Summer** | Frühlingserwachen | Ja | Keine | Keine | Marken & Filter zuweisen |
-| **Outfit 3: Blue Winter** | Frühlingserwachen | Ja | Keine | Keine | Marken & Filter zuweisen |
-| **Outfit 4: Summer Pattern**| Frühlingserwachen | Ja | Keine | Keine | Marken & Filter zuweisen |
+| **Musterkleid Sommer** | Frühjahr / Sommer | Ja | `Zilch` *(Legacy-Marke)* | Frühling/Sommer, Feminin, Muster | Mit Outfit 4 konsolidieren oder Marke auf aktives Sortiment anpassen |
+| **Blauer Winter Look** | Herbst / Winter | Ja | `Sorgenfri` | Herbst/Winter, Klassisch, Kräftige Farben | Mit Outfit 3 konsolidieren |
+| **Outfit 1: Autumn Layer** | Frühlingserwachen | Ja | *(Keine)* | Herbst/Winter, Lässig, Naturtöne | Reale Marke(n) zuweisen |
+| **Outfit 2: Blue Summer** | Frühlingserwachen | Ja | *(Keine)* | Frühling/Sommer, Lässig, Kräftige Farben | Reale Marke(n) zuweisen |
+| **Outfit 3: Blue Winter** | Frühlingserwachen | Ja | `Sorgenfri` | Herbst/Winter, Klassisch, Kräftige Farben | Look verifiziert |
+| **Outfit 4: Summer Pattern**| Frühlingserwachen | Ja | `Zilch` *(Legacy-Marke)* | Frühling/Sommer, Feminin, Muster | Look verifiziert |
 
 ### To-Dos für Outfits:
-- [ ] Bestehende Outfits 1–4 mit realen Marken verknüpfen.
-- [ ] Outfit-Taxonomie-Kategorien (z.B. „Alltag“, „Festlich“, „Kräftige Farben“) im Admin erstellen und den Outfits zuweisen.
-- [ ] Neue Saison-Outfits für Frühjahr/Sommer 2026 fotografieren und anlegen.
+- [ ] Outfits 1 & 2 mit den tatsächlich abgebildeten Marken verknüpfen.
+- [ ] Neue Saison-Outfits für Frühjahr/Sommer 2026 fotografieren und über `/admin/outfits` anlegen.
 
 ---
 
@@ -56,10 +56,7 @@
 |---|---|---|---|---|---|
 | **Frühjahr / Sommer** | 2026 | Ja | Ja | 1 | Intro-Text prüfen |
 | **Herbst / Winter** | 2026 | Ja | Nein | 1 | Für Herbst-Saison vorbereiten |
-| **Frühlingserwachen in Hietzing** | Frühjahr 2026 | Ja | Ja | 4 | Aktuelle Saison-Kollektion |
-
-### To-Dos für Kollektionen:
-- [ ] Nur **eine** Kollektion als `featured` markieren, um eine eindeutige Präsentation auf `/mode` zu gewährleisten.
+| **Frühlingserwachen in Hietzing** | Frühjahr 2026 | Ja | Ja | 4 | Aktuelle Haupt-Kollektion |
 
 ---
 
@@ -67,8 +64,6 @@
 
 - **Gesamtanzahl Bilder:** 16
 - **Verwendete Bilder:** 14
-- **Unbenutzte Bilder:** 2 (`checkpot-logo.svg` in Blob, `textile-sorgenfri-detail.jpg`)
-- **Metadaten-Lücken:**
-  - `Alt-Texte`: 2 Bilder ohne Alt-Text ergänzen.
-  - `Bildrechte (Copyright / Rights)`: Bei allen 16 Bildern Urheber- / Nutzungsrechte dokumentieren.
-  - `Fokuspunkt (Focal Point)`: Bei 11 Bildern den Bildfokuspunkt für optimale mobile Schnitte setzen.
+- **Alt-Texte:** 100% gepflegt
+- **Fokus-Punkte:** 100% gepflegt
+- **Urheber- / Bildrechte:** 16 / 16 ausstehend (Klärung der Bildquellen / Fotografenrechte durch Inhaberin).
