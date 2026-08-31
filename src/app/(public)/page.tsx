@@ -58,7 +58,7 @@ export default async function HomePage() {
           {/* Desktop Full-Bleed Dominant Image */}
           <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[51%] xl:w-[53%] h-full z-0 pointer-events-none select-none overflow-hidden">
             {/* Controlled soft transition gradient */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 xl:w-32 bg-gradient-to-r from-[#F9F9F8] to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-10 lg:w-16 xl:w-20 bg-gradient-to-r from-[#F9F9F8] to-transparent z-10" />
             <Image
               src="/customer/store-christa-counter.jpg"
               alt="Persönliche Beratung und Damenmode in der Checkpot Boutique Hietzing"
@@ -93,7 +93,7 @@ export default async function HomePage() {
                   Ausgewählte Damenmode für Frauen, die ihren eigenen Stil tragen möchten – mit ehrlicher Beratung direkt in Wien-Hietzing.
                 </p>
 
-                {/* CTAs: Solid Primary Button + Quiet Text Link */}
+                {/* CTAs: Solid Primary Button + Refined Secondary Text Link */}
                 <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 w-full sm:w-auto">
                   <Link
                     href="#discovery"
@@ -103,9 +103,9 @@ export default async function HomePage() {
                   </Link>
                   <Link
                     href="/kontakt"
-                    className="group inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+                    className="group inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
                   >
-                    Besuchen Sie uns <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                    Besuchen Sie uns <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                   </Link>
                 </div>
               </FadeIn>
@@ -124,9 +124,9 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Bottom Editorial Meta Strip with enhanced legibility */}
+          {/* Bottom Editorial Meta Strip with refined legibility */}
           <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-8 pt-8 lg:pt-12 relative z-10">
-            <div className="flex items-center gap-3 text-[12px] sm:text-[13px] font-medium uppercase tracking-[0.16em] text-[#4A5568]">
+            <div className="flex items-center gap-3 text-[12px] sm:text-[13px] font-medium uppercase tracking-[0.16em] text-[#2D3748]">
               <span>1130 Wien</span>
               <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
               <span>Seit 2009</span>
