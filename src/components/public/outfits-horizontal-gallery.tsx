@@ -149,16 +149,16 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
           const distFromFocal = Math.abs(cardCenter - focalX);
           const normDist = Math.min(1, distFromFocal / (cardRect.width * 1.35));
 
-          // Clearly visible scale (1.04 in focus center down to 0.91 away from center)
-          const scale = 1.04 - normDist * 0.13;
-          // Opacity (1.0 down to 0.78)
-          const opacity = 1 - normDist * 0.22;
+          // Clearly visible scale (1.03 in focus center down to 0.93 away from center)
+          const scale = 1.03 - normDist * 0.10;
+          // Opacity (1.0 down to 0.80)
+          const opacity = 1 - normDist * 0.20;
 
           const imgBox = cardEl.querySelector<HTMLElement>(".outfit-img-box");
           if (imgBox) {
             imgBox.style.transform = `scale(${scale.toFixed(4)})`;
             imgBox.style.boxShadow = normDist < 0.35 
-              ? "0 16px 32px -8px rgba(0,0,0,0.12), 0 4px 12px -2px rgba(0,0,0,0.06)" 
+              ? "0 14px 28px -6px rgba(0,0,0,0.11), 0 4px 10px -2px rgba(0,0,0,0.05)" 
               : "0 2px 8px rgba(0,0,0,0.03)";
           }
           cardEl.style.opacity = opacity.toFixed(3);
@@ -189,7 +189,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
     <section
       ref={containerRef}
       id="discovery"
-      className="relative bg-[#FAF9F6] border-y border-[#EDEAE4]"
+      className="relative bg-[#FAF9F6] border-y border-[#EDEAE4] overflow-x-clip isolate"
       style={
         isPinnedActive && sectionHeight
           ? { height: `${sectionHeight}px` }
@@ -199,7 +199,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
       <div
         className={
           isPinnedActive
-            ? "sticky z-10 flex w-full flex-col justify-start overflow-hidden bg-[#FAF9F6] pt-8 pb-6 lg:pt-10 lg:pb-8"
+            ? "sticky z-10 flex w-full flex-col justify-start overflow-hidden bg-[#FAF9F6] pt-4 lg:pt-5 2xl:pt-9 pb-3 lg:pb-4 2xl:pb-7"
             : "relative w-full py-16 lg:py-24 bg-[#FAF9F6]"
         }
         style={
@@ -207,22 +207,22 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
             ? {
                 top: `${HEADER_HEIGHT}px`,
                 height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-                minHeight: "560px",
+                minHeight: "540px",
               }
             : undefined
         }
       >
         {/* Section Header with Integrated Progress Indicator */}
-        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-8 mb-6 lg:mb-8 shrink-0">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-8 mb-3 lg:mb-4 2xl:mb-7 shrink-0">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-6">
             <div className="max-w-2xl">
-              <span className="mb-2.5 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#C01718]">
+              <span className="mb-1.5 2xl:mb-2.5 block text-[12px] 2xl:text-[13px] font-medium uppercase tracking-[0.08em] text-[#C01718]">
                 Boutique Wien-Hietzing
               </span>
-              <h2 className="font-display text-4xl lg:text-5xl font-normal leading-[1.15] tracking-tight text-[#1A1A1A] sm:text-5xl">
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] 2xl:text-[48px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A]">
                 Ausgesuchte Mode<br />mit Persönlichkeit
               </h2>
-              <p className="mt-3 text-base sm:text-lg leading-relaxed text-[#4A5568]">
+              <p className="mt-1.5 2xl:mt-2.5 text-[13.5px] sm:text-[15px] 2xl:text-lg leading-relaxed text-[#4A5568]">
                 Wir kuratieren Kollektionen, die Ihre Ausstrahlung unterstreichen.
                 Entdecken Sie unerwartete Kombinationen in einer entspannten Umgebung.
               </p>
@@ -244,22 +244,22 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
 
               <Link
                 href="/outfits"
-                className="group inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+                className="group inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-0.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
               >
-                Alle Outfits ansehen <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                Alle Outfits ansehen <span className="ml-1.5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
         </div>
 
         {/* Gallery Rail Viewport */}
-        <div className="relative w-full overflow-hidden shrink-0 py-3">
+        <div className="relative w-full overflow-hidden shrink-0 py-2">
           {/* Scroll Track */}
           <div
             ref={trackRef}
             className={
               isPinnedActive
-                ? "flex gap-7 lg:gap-8 will-change-transform items-start py-2"
+                ? "flex gap-6 lg:gap-7 2xl:gap-8 will-change-transform items-start py-1"
                 : "flex gap-5 sm:gap-6 lg:gap-8 overflow-x-auto snap-x scrollbar-none pb-4 px-6 lg:px-8 items-start"
             }
             style={
@@ -276,7 +276,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                 ref={(el) => {
                   cardRefs.current[index] = el;
                 }}
-                className="w-[78vw] max-w-[300px] sm:w-[45vw] sm:max-w-[340px] md:w-[40vw] md:max-w-[360px] lg:w-[clamp(330px,26vw,390px)] shrink-0 snap-start group flex flex-col transition-[opacity] duration-200 ease-out"
+                className="w-[78vw] max-w-[300px] sm:w-[45vw] sm:max-w-[340px] md:w-[40vw] md:max-w-[360px] lg:w-[min(clamp(280px,24vw,390px),max(240px,calc((100vh-360px)*0.75)))] shrink-0 snap-start group flex flex-col transition-[opacity] duration-200 ease-out"
               >
                 <Link
                   href="/outfits"
@@ -299,17 +299,17 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                   )}
                 </Link>
 
-                <div className="mt-3.5 flex flex-col items-start gap-0.5">
+                <div className="mt-2.5 2xl:mt-3.5 flex flex-col items-start gap-0.5">
                   <Link
                     href="/outfits"
                     className="focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] rounded-xs"
                   >
-                    <h3 className="font-display text-lg lg:text-[19px] font-medium leading-snug text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718] line-clamp-2">
+                    <h3 className="font-display text-[16px] lg:text-[17.5px] 2xl:text-[19px] font-medium leading-snug text-[#1A1A1A] transition-colors duration-200 group-hover:text-[#C01718] line-clamp-2">
                       {outfit.title}
                     </h3>
                   </Link>
                   {outfit.availabilityNote && (
-                    <span className="mt-1 text-[11.5px] font-normal tracking-normal text-[#8B1E1F]/85">
+                    <span className="mt-0.5 text-[11px] 2xl:text-[11.5px] font-normal tracking-normal text-[#8B1E1F]/85">
                       {outfit.availabilityNote}
                     </span>
                   )}
