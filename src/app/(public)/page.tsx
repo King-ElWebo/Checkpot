@@ -146,42 +146,69 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* 4. CHRISTA / PERSONAL CONSULTATION */}
-        <section className="bg-white px-4 py-16 lg:px-8 lg:py-24">
-          <div className="mx-auto max-w-[1400px]">
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-              <FadeIn className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-[#E2E8F0]">
-                <Image
-                  src="/customer/christa-storefront.jpg"
-                  alt="Christa vor dem Checkpot Hietzing"
-                  fill
-                  sizes="(min-width: 1024px) 45vw, 100vw"
-                  className="object-cover"
-                  style={{ objectPosition: "50% 25%" }}
-                />
-              </FadeIn>
+        {/* 4. CHRISTA / PERSONAL CONSULTATION — EDITORIAL TRUST MOMENT */}
+        <section className="bg-[#FAF9F6] border-b border-[#EDEAE4] px-6 lg:px-8 2xl:px-12 py-20 lg:py-28 2xl:py-36">
+          <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+            <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 relative">
               
-              <FadeIn delay={150} className="flex flex-col">
-                <h2 className="mb-8 font-display text-4xl font-normal leading-[1.2] tracking-tight text-[#1A1A1A] sm:text-5xl">
-                  Beratung, die<br />von Herzen kommt
-                </h2>
-                <div className="space-y-6 text-[17px] lg:text-xl leading-relaxed text-[#4A5568]">
-                  <p>
-                    Mode ist für mich mehr als Kleidung. Es ist die Freude daran, das perfekte Teil 
-                    zu finden, das Ihre Persönlichkeit und Ihre Ausstrahlung unterstreicht.
-                  </p>
-                  <p>
-                    Bei einem gemütlichen Kaffee nehme ich mir Zeit für Sie. 
-                    Gemeinsam finden wir heraus, welche Schnitte, Farben und Kombinationen 
-                    wirklich zu Ihnen passen – ohne Hektik und mit viel Liebe zum Detail.
-                  </p>
-                </div>
-                <div className="mt-10">
-                  <span className="font-display text-2xl font-medium text-[#C01718]">
-                    Ihre Christa
+              {/* Left: Large Editorial Portrait */}
+              <div className="w-full lg:w-[48%] xl:w-[45%] 2xl:w-[44%] shrink-0">
+                <FadeIn duration={600} translateY={20} className="relative aspect-[4/5] xl:aspect-[3.9/5] w-full overflow-hidden rounded-sm bg-[#EFECE6] shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
+                  <Image
+                    src="/customer/christa-storefront.jpg"
+                    alt="Christa vor der Checkpot Boutique in Wien-Hietzing"
+                    fill
+                    sizes="(min-width: 1536px) 44vw, (min-width: 1024px) 48vw, 100vw"
+                    className="object-cover object-[50%_22%] transition-transform duration-700 hover:scale-[1.02]"
+                  />
+                </FadeIn>
+              </div>
+
+              {/* Right: Editorial Note & Personal Consultation Message */}
+              <div className="w-full lg:w-[58%] xl:w-[60%] 2xl:w-[61%] lg:-ml-12 xl:-ml-16 relative z-10">
+                <FadeIn delay={150} duration={600} translateY={20} className="bg-white border border-[#E5E2DC] rounded-sm p-8 sm:p-10 lg:p-12 xl:p-14 2xl:p-16 shadow-[0_12px_36px_rgba(0,0,0,0.03)] relative">
+                  {/* Subtle pale red typographic quote accent */}
+                  <span
+                    className="select-none pointer-events-none absolute -top-5 sm:-top-7 -left-3 sm:-left-5 font-serif text-[100px] sm:text-[130px] lg:text-[150px] leading-none text-[#C01718]/10"
+                    aria-hidden="true"
+                  >
+                    „
                   </span>
-                </div>
-              </FadeIn>
+
+                  {/* Eyebrow */}
+                  <div className="flex items-center gap-3 mb-4 relative z-10">
+                    <span className="w-6 h-[2px] bg-[#C01718]" aria-hidden="true" />
+                    <span className="text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
+                      Persönlich für Sie
+                    </span>
+                  </div>
+
+                  {/* Main Heading */}
+                  <h2 className="mb-5 font-display text-3xl sm:text-4xl lg:text-[44px] 2xl:text-[50px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A] relative z-10">
+                    Beratung, die von Herzen kommt.
+                  </h2>
+
+                  {/* Body Copy */}
+                  <p className="mb-8 text-[15.5px] sm:text-[17.5px] 2xl:text-[19px] leading-relaxed text-[#4A5568] relative z-10 max-w-xl">
+                    Mode ist für mich mehr als Kleidung. Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen – entspannt, ehrlich und mit Zeit für Sie.
+                  </p>
+
+                  {/* Personal Sign-Off & Quiet Link */}
+                  <div className="pt-4 border-t border-[#ECEAE4] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 relative z-10">
+                    <span className="font-display text-2xl 2xl:text-[28px] font-medium text-[#C01718]">
+                      Ihre Christa
+                    </span>
+
+                    <Link
+                      href="/ueber-uns"
+                      className="group inline-flex items-center text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 self-start sm:self-auto focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                    >
+                      Mehr über Checkpot <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                </FadeIn>
+              </div>
+
             </div>
           </div>
         </section>
