@@ -137,7 +137,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
           progressBarRef.current.style.transform = `scaleX(${progress.toFixed(4)})`;
         }
 
-        // 3. Subtle active card focal depth interpolation
+        // 3. Pronounced active card focal depth interpolation
         const viewportWidth = window.innerWidth;
         const focalX = viewportWidth * 0.45; // Visual focus sweet spot
 
@@ -146,15 +146,19 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
           const cardRect = cardEl.getBoundingClientRect();
           const cardCenter = cardRect.left + cardRect.width / 2;
           const distFromFocal = Math.abs(cardCenter - focalX);
-          const normDist = Math.min(1, distFromFocal / (cardRect.width * 1.6));
+          const normDist = Math.min(1, distFromFocal / (cardRect.width * 1.35));
 
-          // Restrained scale (1.0 down to 0.965) and opacity (1.0 down to 0.90)
-          const scale = 1 - normDist * 0.035;
-          const opacity = 1 - normDist * 0.10;
+          // Clearly visible scale (1.04 in focus center down to 0.91 away from center)
+          const scale = 1.04 - normDist * 0.13;
+          // Opacity (1.0 down to 0.78)
+          const opacity = 1 - normDist * 0.22;
 
           const imgBox = cardEl.querySelector<HTMLElement>(".outfit-img-box");
           if (imgBox) {
             imgBox.style.transform = `scale(${scale.toFixed(4)})`;
+            imgBox.style.boxShadow = normDist < 0.35 
+              ? "0 16px 32px -8px rgba(0,0,0,0.12), 0 4px 12px -2px rgba(0,0,0,0.06)" 
+              : "0 2px 8px rgba(0,0,0,0.03)";
           }
           cardEl.style.opacity = opacity.toFixed(3);
         });
@@ -248,13 +252,13 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
         </div>
 
         {/* Gallery Rail Viewport */}
-        <div className="relative w-full overflow-hidden shrink-0">
+        <div className="relative w-full overflow-hidden shrink-0 py-3">
           {/* Scroll Track */}
           <div
             ref={trackRef}
             className={
               isPinnedActive
-                ? "flex gap-7 lg:gap-8 will-change-transform items-start"
+                ? "flex gap-7 lg:gap-8 will-change-transform items-start py-2"
                 : "flex gap-5 sm:gap-6 lg:gap-8 overflow-x-auto snap-x scrollbar-none pb-4 px-6 lg:px-8 items-start"
             }
             style={
