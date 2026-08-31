@@ -139,28 +139,10 @@ export default async function HomePage() {
         {/* 2. FASHION / OUTFIT EXPERIENCE (SCROLL-DRIVEN HORIZONTAL GALLERY) */}
         <OutfitsHorizontalGallery outfits={homepageOutfits} />
 
-        {/* 3. BRAND BOOKSHELF / DISCOVERY */}
-        <section className="bg-[#F9F9F8] px-4 py-16 lg:px-8 lg:py-24">
-          <div className="mx-auto max-w-[1400px]">
-            <div className="mb-12 text-center">
-              <span className="mb-4 block text-[14px] font-medium uppercase tracking-wider text-[#C01718]">
-                Stöbern in Christas Auswahl
-              </span>
-              <h2 className="font-display text-4xl font-normal tracking-tight text-[#1A1A1A] sm:text-5xl">
-                Unsere Marken entdecken
-              </h2>
-            </div>
-            
+        {/* 3. BRAND BOOKSHELF / DISCOVERY (15-BRAND INDEX + ACTIVE PREVIEW) */}
+        <section className="bg-[#F9F9F8] px-6 lg:px-8 2xl:px-12 py-14 lg:py-18 2xl:py-22">
+          <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
             <BrandBookshelf brands={featuredBrands} />
-
-            <div className="mt-12 text-center">
-              <Link
-                href="/marken"
-                className="inline-flex items-center text-[14px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors"
-              >
-                Zur Markenübersicht <span className="ml-2">→</span>
-              </Link>
-            </div>
           </div>
         </section>
 
