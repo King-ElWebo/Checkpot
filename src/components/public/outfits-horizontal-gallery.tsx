@@ -82,10 +82,11 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
       return;
     }
 
+    const RELEASE_BUFFER = 180; // Intentional rest distance in px after full horizontal travel before release
     setMaxTranslate(horizontalDistance);
     const stickyViewportHeight = window.innerHeight - HEADER_HEIGHT;
-    // Outer section height: sticky viewport height + horizontal travel distance
-    setSectionHeight(stickyViewportHeight + horizontalDistance);
+    // Outer section height: sticky viewport height + horizontal travel distance + release buffer
+    setSectionHeight(stickyViewportHeight + horizontalDistance + RELEASE_BUFFER);
     setIsPinnedActive(true);
   }, [outfits.length]);
 

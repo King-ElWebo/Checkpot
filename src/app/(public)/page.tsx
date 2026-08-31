@@ -140,7 +140,7 @@ export default async function HomePage() {
         <OutfitsHorizontalGallery outfits={homepageOutfits} />
 
         {/* 3. BRAND BOOKSHELF / DISCOVERY (15-BRAND INDEX + ACTIVE PREVIEW) */}
-        <section className="bg-[#F9F9F8] px-6 lg:px-8 2xl:px-12 py-14 lg:py-18 2xl:py-22">
+        <section className="bg-[#F8F7F3] border-b border-[#EDEAE4] px-6 lg:px-8 2xl:px-12 py-20 lg:py-28 2xl:py-32">
           <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
             <BrandBookshelf brands={featuredBrands} />
           </div>
