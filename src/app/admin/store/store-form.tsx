@@ -281,7 +281,7 @@ export function StoreForm({ initialData }: StoreFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-8 max-w-[880px]">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-8 w-full">
       {/* Feedback alerts */}
       {savedSuccess && (
         <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium flex items-center justify-between">

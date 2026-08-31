@@ -52,13 +52,13 @@ export default async function OutfitEditPage({ params }: { params: Promise<{ id:
   }
 
   return (
-    <div className="dashboard-stack">
+    <div className="dashboard-stack max-w-[880px] mx-auto">
       <section className="page-intro">
         <div className="eyebrow">Outfits & Lookbook</div>
         <h1>{isNew ? "Neues Outfit erstellen" : `Outfit: ${item?.title || "Bearbeiten"}`}</h1>
       </section>
 
-      <form action={handleSave} className="flex flex-col gap-8 max-w-[840px]">
+      <form action={handleSave} className="flex flex-col gap-8 w-full">
         {/* Card A: Basisdaten */}
         <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
           <div>

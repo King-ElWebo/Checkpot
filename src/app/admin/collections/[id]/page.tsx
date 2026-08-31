@@ -29,7 +29,7 @@ export default async function CollectionEditPage({ params }: { params: Promise<{
   }
 
   return (
-    <div className="dashboard-stack">
+    <div className="dashboard-stack max-w-[880px] mx-auto">
       <section className="page-intro">
         <div className="eyebrow">Kollektionen</div>
         <h1>{isNew ? "Neue Kollektion" : "Kollektion bearbeiten"}</h1>
@@ -38,7 +38,7 @@ export default async function CollectionEditPage({ params }: { params: Promise<{
         </p>
       </section>
 
-      <form action={handleSave} className="flex flex-col gap-8 max-w-[880px]">
+      <form action={handleSave} className="flex flex-col gap-8 w-full">
         <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
           <div className="field-group">
             <label htmlFor="title">Titel *</label>

@@ -38,7 +38,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
   }
 
   return (
-    <div className="dashboard-stack">
+    <div className="dashboard-stack max-w-[880px] mx-auto">
       <section className="page-intro">
         <div className="eyebrow">Marken</div>
         <h1>{isNew ? "Neue Marke anlegen" : `Marke: ${brand?.name || "Bearbeiten"}`}</h1>
@@ -47,7 +47,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
         </p>
       </section>
 
-      <form action={handleSave} className="flex flex-col gap-8 max-w-[880px]">
+      <form action={handleSave} className="flex flex-col gap-8 w-full">
         {/* Card 1: Basis & Identität */}
         <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
           <div>

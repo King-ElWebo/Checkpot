@@ -43,13 +43,13 @@ export default async function CategoryEditPage({ params, searchParams }: { param
   }
 
   return (
-    <div className="dashboard-stack">
+    <div className="dashboard-stack max-w-[800px] mx-auto">
       <section className="page-intro">
         <div className="eyebrow">Taxonomie</div>
         <h1>{isNew ? "Neue Kategorie" : "Kategorie bearbeiten"}</h1>
       </section>
 
-      <section className="login-panel" style={{ width: "100%", maxWidth: "800px" }}>
+      <section className="login-panel" style={{ width: "100%" }}>
         <form action={handleSave} className="login-form" style={{ marginTop: 0 }}>
           
           <div className="field-group">

@@ -7,7 +7,7 @@ export default async function AdminStoreSettingsPage() {
   const store = await getRawStoreSettings();
 
   return (
-    <div className="dashboard-stack">
+    <div className="dashboard-stack max-w-[880px] mx-auto">
       <section className="page-intro">
         <div className="eyebrow">Einstellungen</div>
         <h1>Geschäftsdaten & Öffnungszeiten</h1>
