@@ -25,6 +25,8 @@ const HEADER_HEIGHT = 80; // Fixed navbar height (h-20 = 80px)
 export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [isPinnedActive, setIsPinnedActive] = useState(false);
   const [sectionHeight, setSectionHeight] = useState<number | null>(null);
@@ -38,7 +40,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
     const isDesktop = viewportWidth >= 1024;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Computed left offset aligning with max-w-[1400px] header container
+    // Computed left/right offset aligning with max-w-[1400px] header container
     const computedLeftPadding = Math.max(24, Math.floor((viewportWidth - 1400) / 2) + 32);
     setLeftPadding(computedLeftPadding);
 
@@ -50,12 +52,18 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
       if (trackRef.current) {
         trackRef.current.style.transform = "none";
       }
+      cardRefs.current.forEach((cardEl) => {
+        if (!cardEl) return;
+        cardEl.style.opacity = "1";
+        const imgBox = cardEl.querySelector<HTMLElement>(".outfit-img-box");
+        if (imgBox) imgBox.style.transform = "none";
+      });
       return;
     }
 
     const trackScrollWidth = trackRef.current.scrollWidth;
-    const endBreathingRoom = Math.max(64, computedLeftPadding);
-    const horizontalDistance = Math.max(0, trackScrollWidth - viewportWidth + endBreathingRoom);
+    // Symmetrical end alignment: last card finishes exactly at right content padding (viewportWidth - computedLeftPadding)
+    const horizontalDistance = Math.max(0, trackScrollWidth - viewportWidth + 2 * computedLeftPadding);
 
     // If all cards already fit on the screen without overflow, do not pin
     if (horizontalDistance <= 60) {
@@ -65,6 +73,12 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
       if (trackRef.current) {
         trackRef.current.style.transform = "none";
       }
+      cardRefs.current.forEach((cardEl) => {
+        if (!cardEl) return;
+        cardEl.style.opacity = "1";
+        const imgBox = cardEl.querySelector<HTMLElement>(".outfit-img-box");
+        if (imgBox) imgBox.style.transform = "none";
+      });
       return;
     }
 
@@ -115,7 +129,35 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
         const progress = Math.min(1, Math.max(0, scrolledPastTop / maxTranslate));
         const currentTranslateX = progress * maxTranslate;
 
+        // 1. Translate horizontal rail
         trackRef.current.style.transform = `translate3d(-${currentTranslateX}px, 0, 0)`;
+
+        // 2. Update subtle desktop progress bar
+        if (progressBarRef.current) {
+          progressBarRef.current.style.transform = `scaleX(${progress.toFixed(4)})`;
+        }
+
+        // 3. Subtle active card focal depth interpolation
+        const viewportWidth = window.innerWidth;
+        const focalX = viewportWidth * 0.45; // Visual focus sweet spot
+
+        cardRefs.current.forEach((cardEl) => {
+          if (!cardEl) return;
+          const cardRect = cardEl.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distFromFocal = Math.abs(cardCenter - focalX);
+          const normDist = Math.min(1, distFromFocal / (cardRect.width * 1.6));
+
+          // Restrained scale (1.0 down to 0.965) and opacity (1.0 down to 0.90)
+          const scale = 1 - normDist * 0.035;
+          const opacity = 1 - normDist * 0.10;
+
+          const imgBox = cardEl.querySelector<HTMLElement>(".outfit-img-box");
+          if (imgBox) {
+            imgBox.style.transform = `scale(${scale.toFixed(4)})`;
+          }
+          cardEl.style.opacity = opacity.toFixed(3);
+        });
       });
     };
 
@@ -152,7 +194,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
       <div
         className={
           isPinnedActive
-            ? "sticky z-10 flex w-full flex-col justify-center overflow-hidden bg-[#FAF9F6] py-6 lg:py-8"
+            ? "sticky z-10 flex w-full flex-col justify-start overflow-hidden bg-[#FAF9F6] pt-8 pb-6 lg:pt-10 lg:pb-8"
             : "relative w-full py-16 lg:py-24 bg-[#FAF9F6]"
         }
         style={
@@ -160,11 +202,12 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
             ? {
                 top: `${HEADER_HEIGHT}px`,
                 height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+                minHeight: "560px",
               }
             : undefined
         }
       >
-        {/* Section Header */}
+        {/* Section Header with Integrated Progress Indicator */}
         <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-8 mb-6 lg:mb-8 shrink-0">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="max-w-2xl">
@@ -179,7 +222,21 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                 Entdecken Sie unerwartete Kombinationen in einer entspannten Umgebung.
               </p>
             </div>
-            <div className="pb-1">
+
+            <div className="flex items-center gap-6 pb-1">
+              {/* Subtle Desktop Progress Indicator */}
+              {isPinnedActive && (
+                <div className="hidden lg:flex items-center gap-3" aria-hidden="true">
+                  <div className="w-24 xl:w-32 h-[2px] bg-[#E2E0D8] rounded-full overflow-hidden">
+                    <div
+                      ref={progressBarRef}
+                      className="h-full w-full bg-[#C01718] origin-left will-change-transform rounded-full"
+                      style={{ transform: "scaleX(0)" }}
+                    />
+                  </div>
+                </div>
+              )}
+
               <Link
                 href="/outfits"
                 className="group inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
@@ -208,14 +265,17 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                 : undefined
             }
           >
-            {outfits.map((outfit) => (
+            {outfits.map((outfit, index) => (
               <div
                 key={outfit.id}
-                className="w-[78vw] max-w-[300px] sm:w-[45vw] sm:max-w-[340px] md:w-[40vw] md:max-w-[360px] lg:w-[clamp(330px,26vw,390px)] shrink-0 snap-start group flex flex-col transition-transform duration-300 ease-out hover:-translate-y-1 motion-reduce:hover:translate-y-0"
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                className="w-[78vw] max-w-[300px] sm:w-[45vw] sm:max-w-[340px] md:w-[40vw] md:max-w-[360px] lg:w-[clamp(330px,26vw,390px)] shrink-0 snap-start group flex flex-col transition-[opacity] duration-200 ease-out"
               >
                 <Link
                   href="/outfits"
-                  className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-white border border-[#E5E2DC] shadow-[0_2px_8px_rgba(0,0,0,0.03)] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4"
+                  className="outfit-img-box relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-white border border-[#E5E2DC] shadow-[0_2px_8px_rgba(0,0,0,0.03)] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4 will-change-transform transition-transform duration-300 ease-out"
                   tabIndex={0}
                 >
                   {outfit.media ? (
@@ -234,7 +294,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                   )}
                 </Link>
 
-                <div className="mt-3.5 flex flex-col items-start gap-1">
+                <div className="mt-3.5 flex flex-col items-start gap-0.5">
                   <Link
                     href="/outfits"
                     className="focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] rounded-xs"
@@ -244,7 +304,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                     </h3>
                   </Link>
                   {outfit.availabilityNote && (
-                    <span className="text-[12px] uppercase tracking-[0.06em] text-[#991b1b] font-medium">
+                    <span className="mt-1 text-[11.5px] font-normal tracking-normal text-[#8B1E1F]/85">
                       {outfit.availabilityNote}
                     </span>
                   )}
