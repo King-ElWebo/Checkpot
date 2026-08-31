@@ -213,73 +213,84 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* 5. VISIT CHECKPOT */}
-        <section className="bg-[#1A1A1A] px-4 py-16 text-white lg:px-8 lg:py-24">
-          <div className="mx-auto max-w-[1400px]">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 items-center">
+        {/* 5. VISIT CHECKPOT — PHYSICAL STORE INVITATION */}
+        <section className="bg-[#1A1A1A] text-white px-6 lg:px-8 2xl:px-12 py-16 lg:py-20 xl:py-24 2xl:py-28 border-b border-[#2A2A2A]">
+          <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1.2fr] xl:grid-cols-[1fr_1.25fr] 2xl:grid-cols-[1fr_1.3fr] gap-10 lg:gap-14 xl:gap-20 items-center">
               
-              <div className="flex flex-col">
-                <span className="mb-4 block text-[14px] font-medium uppercase tracking-wider text-[#C01718]">
-                  Hier bin ich gut aufgehoben
-                </span>
-                <h2 className="mb-10 font-display text-4xl font-normal tracking-tight sm:text-5xl">
-                  Besuchen Sie uns
+              {/* Left Column: Location, Hours & Route Action */}
+              <FadeIn duration={600} translateY={16} className="flex flex-col">
+                {/* Eyebrow */}
+                <div className="flex items-center gap-2.5 mb-3.5">
+                  <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
+                  <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
+                    Hier bin ich gut aufgehoben
+                  </span>
+                </div>
+
+                {/* Main Heading */}
+                <h2 className="mb-8 font-display text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] 2xl:text-[52px] font-normal leading-[1.12] tracking-tight text-white">
+                  Besuchen Sie uns<br />in Wien-Hietzing.
                 </h2>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+                {/* Information Grid: Address & Opening Hours */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 pb-8 border-b border-white/12">
+                  {/* Address */}
                   <div>
-                    <h3 className="mb-3 text-[13px] font-medium uppercase tracking-[0.08em] text-white/50">Adresse</h3>
-                    <p className="text-[17px] leading-relaxed text-white/90">
-                      {storeDetails.name}<br />
-                      {storeDetails.address.street}<br />
+                    <h3 className="mb-2 text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/50">
+                      Adresse
+                    </h3>
+                    <p className="text-[16px] sm:text-[17.5px] 2xl:text-[18.5px] leading-relaxed text-white/90">
+                      {storeDetails.address.street}
+                      <br />
                       {storeDetails.address.postalCode} {storeDetails.address.city}
                     </p>
-                    <a 
-                      href={storeDetails.routePlanningHref} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block text-[15px] font-medium text-white hover:text-[#C01718] transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-[#C01718]"
-                    >
-                      Route planen ↗
-                    </a>
                   </div>
-                  
+
+                  {/* Opening Hours */}
                   <div>
-                    <h3 className="mb-3 text-[13px] font-medium uppercase tracking-[0.08em] text-white/50">Öffnungszeiten</h3>
-                    <div className="space-y-3">
+                    <h3 className="mb-2 text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/50">
+                      Öffnungszeiten
+                    </h3>
+                    <div className="space-y-1.5 text-[15px] sm:text-[16.5px] 2xl:text-[17.5px] leading-relaxed text-white/90">
                       {storeDetails.hours.map((hour) => (
-                        <p key={hour.label} className="text-[17px] leading-relaxed text-white/90">
-                          {hour.label}<br />
-                          {hour.value}
-                        </p>
+                        <div key={hour.label} className="flex items-baseline justify-between sm:justify-start sm:gap-4">
+                          <span className="text-white/60 text-[13.5px] sm:text-[14.5px]">{hour.label}</span>
+                          <span className="font-medium text-white/95">{hour.value}</span>
+                        </div>
                       ))}
-                      {storeDetails.hoursNote && (
-                        <p className="text-[14px] leading-relaxed text-white/70 italic pt-1">
-                          {storeDetails.hoursNote}
-                        </p>
-                      )}
                     </div>
-                  </div>
-                  
-                  <div className="sm:col-span-2">
-                    <h3 className="mb-3 text-[13px] font-medium uppercase tracking-[0.08em] text-white/50">Kontakt</h3>
-                    <p className="text-[17px] leading-relaxed text-white/90">
-                      <a href={storeDetails.phoneHref} className="hover:text-[#C01718] transition-colors">{storeDetails.phone}</a><br />
-                      <a href={storeDetails.emailHref} className="hover:text-[#C01718] transition-colors">{storeDetails.email}</a>
-                    </p>
+                    {storeDetails.hoursNote && (
+                      <p className="mt-2 text-[13px] leading-relaxed text-white/60 italic">
+                        {storeDetails.hoursNote}
+                      </p>
+                    )}
                   </div>
                 </div>
-              </div>
 
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm lg:aspect-[4/5] bg-[#333]">
+                {/* Primary Action */}
+                <div className="mt-8">
+                  <a
+                    href={storeDetails.routePlanningHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-sm bg-white px-7 py-3.5 text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] !text-[#1A1A1A] transition-colors duration-200 hover:bg-[#F0EEEA] hover:!text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A]"
+                  >
+                    Route planen <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </FadeIn>
+
+              {/* Right Column: Large High-Presence Store Image */}
+              <FadeIn delay={120} duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.12/1] xl:aspect-[1.18/1] 2xl:aspect-[1.22/1] w-full overflow-hidden rounded-sm bg-[#262626] shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
                 <Image
                   src="/customer/store-sustainable-shelf.jpg"
-                  alt="Atmosphäre im Checkpot Store"
+                  alt="Atmosphäre und Kollektionen in der Checkpot Boutique in Wien-Hietzing"
                   fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
+                  sizes="(min-width: 1536px) 50vw, (min-width: 1024px) 50vw, (max-width: 768px) 100vw, 680px"
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
-              </div>
+              </FadeIn>
 
             </div>
           </div>
