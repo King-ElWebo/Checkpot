@@ -30,10 +30,10 @@ export function ModeStyleWorlds({ styles }: ModeStyleWorldsProps) {
   return (
     <div className="w-full">
       {/* Desktop & Tablet Two-Zone Layout */}
-      <div className="hidden lg:grid grid-cols-[1fr_1.15fr] xl:grid-cols-[1fr_1.2fr] gap-10 xl:gap-16 items-center">
+      <div className="hidden lg:grid grid-cols-[1fr_1.15fr] xl:grid-cols-[1fr_1.2fr] gap-12 xl:gap-18 items-center">
         
-        {/* Left: Interactive Typographic Style Selector */}
-        <div className="flex flex-col space-y-4">
+        {/* Left: Typography-Led Editorial Style Index */}
+        <div className="flex flex-col divide-y divide-[#EDEAE4]">
           {styles.map((style, idx) => {
             const isActive = idx === activeIndex;
             return (
@@ -42,54 +42,50 @@ export function ModeStyleWorlds({ styles }: ModeStyleWorldsProps) {
                 type="button"
                 onClick={() => setActiveIndex(idx)}
                 onMouseEnter={() => setActiveIndex(idx)}
-                className={`group text-left p-6 rounded-sm border transition-all duration-200 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] ${
-                  isActive
-                    ? 'bg-white border-[#EDEAE4] shadow-[0_8px_24px_rgba(0,0,0,0.04)]'
-                    : 'bg-transparent border-transparent hover:bg-white/60'
-                }`}
+                className="group text-left py-6 xl:py-7 transition-colors duration-200 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-4"
                 aria-pressed={isActive}
               >
-                <div className="flex items-center justify-between">
+                <div className="flex items-baseline justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <span
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        isActive ? 'bg-[#C01718]' : 'bg-[#D5D2CA] group-hover:bg-[#A5A096]'
-                      }`}
-                      aria-hidden="true"
-                    />
+                    {isActive ? (
+                      <span className="w-5 h-[2px] bg-[#C01718] shrink-0" aria-hidden="true" />
+                    ) : (
+                      <span className="w-2 h-2 rounded-full bg-[#D5D2CA] group-hover:bg-[#A5A096] shrink-0 transition-colors" aria-hidden="true" />
+                    )}
                     <h3
-                      className={`font-display text-2xl xl:text-3xl transition-colors ${
-                        isActive ? 'text-[#1A1A1A] font-medium' : 'text-[#5A6578] font-normal group-hover:text-[#1A1A1A]'
+                      className={`font-display text-2xl xl:text-[32px] 2xl:text-[36px] transition-colors leading-tight ${
+                        isActive ? 'text-[#1A1A1A] font-normal' : 'text-[#718096] font-normal group-hover:text-[#1A1A1A]'
                       }`}
                     >
                       {style.name}
                     </h3>
                   </div>
-                  <span className="text-[11.5px] uppercase tracking-[0.12em] text-[#718096] font-medium">
+                  <span className={`text-[11.5px] 2xl:text-[12px] uppercase tracking-[0.14em] font-semibold transition-colors ${
+                    isActive ? 'text-[#C01718]' : 'text-[#A0AEC0]'
+                  }`}>
                     {style.subtitle}
                   </span>
                 </div>
-                <p
-                  className={`mt-3 text-[14.5px] leading-relaxed transition-colors max-w-md ${
-                    isActive ? 'text-[#4A5568]' : 'text-[#718096] group-hover:text-[#4A5568]'
-                  }`}
-                >
-                  {style.description}
-                </p>
+                
+                {isActive && (
+                  <p className="mt-3 text-[14.5px] 2xl:text-[15.5px] leading-relaxed text-[#4A5568] max-w-lg pl-8">
+                    {style.description}
+                  </p>
+                )}
               </button>
             );
           })}
         </div>
 
         {/* Right: Active Style Visual Area */}
-        <div className="relative w-full aspect-[4/5] xl:aspect-[3.8/5] max-h-[540px] 2xl:max-h-[580px] rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_16px_40px_rgba(0,0,0,0.05)]">
+        <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1.25/1] max-h-[460px] 2xl:max-h-[520px] rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStyle.id}
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0 }}
-              transition={{ duration: 0.28, ease: 'easeOut' }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
               className="relative w-full h-full"
             >
               <Image
@@ -102,7 +98,7 @@ export function ModeStyleWorlds({ styles }: ModeStyleWorldsProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white z-10">
-                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-white/70 block mb-1">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/70 block mb-1">
                   Stilrichtung
                 </span>
                 <h4 className="font-display text-2xl xl:text-3xl font-medium tracking-tight">

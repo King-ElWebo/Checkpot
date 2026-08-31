@@ -79,7 +79,7 @@ export default async function ModePage() {
     },
   ];
 
-  // Active / Highlight items (2-3 items)
+  // Active / Highlight items (max 3 items)
   const currentHighlights = outfits.slice(0, 3);
 
   return (
@@ -96,23 +96,23 @@ export default async function ModePage() {
       </div>
 
       {/* 2. EVERGREEN FASHION HERO */}
-      <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-6 pb-16 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.25fr] gap-10 lg:gap-14 xl:gap-20 items-center">
+      <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-4 pb-12 lg:pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.2fr] gap-10 lg:gap-14 xl:gap-18 items-center">
           
           {/* Hero Text */}
           <FadeIn duration={600} translateY={16} className="flex flex-col">
-            <div className="flex items-center gap-2.5 mb-3.5">
+            <div className="flex items-center gap-2.5 mb-3">
               <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
               <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
                 Ausgewählt für Checkpot
               </span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[54px] 2xl:text-[64px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A] mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[50px] 2xl:text-[60px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A] mb-5">
               Mode mit Persönlichkeit.
             </h1>
 
-            <p className="text-[16.5px] sm:text-[18.5px] 2xl:text-[20px] text-[#4A5568] leading-relaxed max-w-xl">
+            <p className="text-[16px] sm:text-[18px] 2xl:text-[19.5px] text-[#4A5568] leading-relaxed max-w-xl">
               Farben, Muster und Schnitte, die nicht beliebig wirken – sondern zu Ihnen und Ihrem persönlichen Stil passen.
             </p>
           </FadeIn>
@@ -120,24 +120,24 @@ export default async function ModePage() {
           {/* Asymmetric Hero Imagery */}
           <FadeIn delay={120} duration={600} translateY={16} className="relative">
             {/* Main Visual */}
-            <div className="relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/5] max-h-[520px] 2xl:max-h-[580px] w-full rounded-sm overflow-hidden bg-[#EFECE6] shadow-[0_16px_40px_rgba(0,0,0,0.05)] border border-[#E5E2DC]">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] max-h-[440px] 2xl:max-h-[500px] w-full rounded-sm overflow-hidden bg-[#EFECE6] shadow-[0_16px_40px_rgba(0,0,0,0.04)] border border-[#E5E2DC]">
               <Image
                 src="/customer/outfit-blue-summer.jpg"
                 alt="Sommerliches Ensemble mit Musterakzent bei Checkpot"
                 fill
-                sizes="(min-width: 1024px) 55vw, 100vw"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover object-[50%_25%]"
                 priority
               />
             </div>
 
             {/* Inset Cut-In Texture Accent */}
-            <div className="hidden sm:block absolute -bottom-6 -left-6 lg:-left-10 w-44 lg:w-52 aspect-[4/3] rounded-sm overflow-hidden bg-white border border-[#E5E2DC] shadow-[0_12px_28px_rgba(0,0,0,0.08)] z-10">
+            <div className="hidden sm:block absolute -bottom-5 -left-5 lg:-left-8 w-40 lg:w-48 aspect-[4/3] rounded-sm overflow-hidden bg-white border border-[#E5E2DC] shadow-[0_12px_24px_rgba(0,0,0,0.08)] z-10">
               <Image
                 src="/customer/textile-sorgenfri-detail.jpg"
                 alt="Textile Musterdetails und Farbwelten"
                 fill
-                sizes="220px"
+                sizes="200px"
                 className="object-cover"
               />
             </div>
@@ -146,31 +146,31 @@ export default async function ModePage() {
         </div>
       </section>
 
-      {/* 3. WAS SIE BEI UNS ENTDECKEN (4 THEMES IN ALTERNATING EDITORIAL RHYTHM) */}
-      <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-20 lg:py-28 2xl:py-32 px-6 lg:px-8 2xl:px-12">
+      {/* 3. WAS SIE BEI UNS ENTDECKEN (4 THEMES IN COMPACT EDITORIAL RHYTHM) */}
+      <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-14 lg:py-18 2xl:py-22 px-6 lg:px-8 2xl:px-12">
         <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
           
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-24">
-            <div className="inline-flex items-center gap-2 mb-3">
+          <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2 mb-2.5">
               <span className="w-4 h-[2px] bg-[#C01718]" aria-hidden="true" />
               <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
                 Unser Sortiment & Anspruch
               </span>
               <span className="w-4 h-[2px] bg-[#C01718]" aria-hidden="true" />
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[44px] 2xl:text-[50px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A]">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] 2xl:text-[46px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A]">
               Was Sie bei uns entdecken
             </h2>
           </div>
 
-          <div className="space-y-16 lg:space-y-24">
+          <div className="space-y-10 lg:space-y-14">
             
             {/* Theme 1: FARBEN & MUSTER (Image Left | Text Right) */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-14 xl:gap-20 items-center">
-              <FadeIn duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.25/1] max-h-[440px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.04)]">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-12 xl:gap-16 items-center">
+              <FadeIn duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.3/1] max-h-[380px] 2xl:max-h-[420px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_8px_24px_rgba(0,0,0,0.03)]">
                 <Image
-                  src="/customer/textile-sorgenfri-detail.jpg"
+                  src="/customer/outfit-summer-pattern.jpg"
                   alt="Farben und florale Muster bei Checkpot"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -178,32 +178,32 @@ export default async function ModePage() {
                 />
               </FadeIn>
               <FadeIn delay={100} duration={600} translateY={16} className="flex flex-col">
-                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-1.5">
                   01 · Ausdruck
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1A1A1A] mb-4">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-[30px] font-normal text-[#1A1A1A] mb-3">
                   Farben & Muster
                 </h3>
-                <p className="text-[16px] sm:text-[17.5px] leading-relaxed text-[#4A5568] max-w-lg">
+                <p className="text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#4A5568] max-w-lg">
                   Von kräftigen Farben bis zu floralen und grafischen Prints – Mode darf bei Checkpot sichtbar Persönlichkeit zeigen.
                 </p>
               </FadeIn>
             </div>
 
             {/* Theme 2: SCHNITTE & KOMBINATIONEN (Text Left | Image Right) */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-8 lg:gap-14 xl:gap-20 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-6 lg:gap-12 xl:gap-16 items-center">
               <FadeIn duration={600} translateY={16} className="flex flex-col order-2 lg:order-1">
-                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-1.5">
                   02 · Harmonie
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1A1A1A] mb-4">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-[30px] font-normal text-[#1A1A1A] mb-3">
                   Schnitte & Kombinationen
                 </h3>
-                <p className="text-[16px] sm:text-[17.5px] leading-relaxed text-[#4A5568] max-w-lg">
+                <p className="text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#4A5568] max-w-lg">
                   Kleider, Hosen, Jacken und Strick werden so kombiniert, dass daraus ein stimmiger und tragbarer Look entsteht.
                 </p>
               </FadeIn>
-              <FadeIn delay={100} duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.25/1] max-h-[440px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.04)] order-1 lg:order-2">
+              <FadeIn delay={100} duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.3/1] max-h-[380px] 2xl:max-h-[420px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_8px_24px_rgba(0,0,0,0.03)] order-1 lg:order-2">
                 <Image
                   src="/customer/outfit-autumn-layer.jpg"
                   alt="Kombinationen aus Strick und Jacke"
@@ -215,10 +215,10 @@ export default async function ModePage() {
             </div>
 
             {/* Theme 3: VON LÄSSIG BIS FEMININ (Image Left | Text Right) */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-14 xl:gap-20 items-center">
-              <FadeIn duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.25/1] max-h-[440px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.04)]">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-12 xl:gap-16 items-center">
+              <FadeIn duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.3/1] max-h-[380px] 2xl:max-h-[420px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_8px_24px_rgba(0,0,0,0.03)]">
                 <Image
-                  src="/customer/outfit-summer-pattern.jpg"
+                  src="/customer/outfit-blue-summer.jpg"
                   alt="Feminine und lässige Schnitte"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -226,32 +226,32 @@ export default async function ModePage() {
                 />
               </FadeIn>
               <FadeIn delay={100} duration={600} translateY={16} className="flex flex-col">
-                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-1.5">
                   03 · Vielfalt
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1A1A1A] mb-4">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-[30px] font-normal text-[#1A1A1A] mb-3">
                   Von lässig bis feminin
                 </h3>
-                <p className="text-[16px] sm:text-[17.5px] leading-relaxed text-[#4A5568] max-w-lg">
+                <p className="text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#4A5568] max-w-lg">
                   Nicht jede Frau sucht denselben Stil. Deshalb reicht die Auswahl von entspannt und unkompliziert bis klassisch, feminin und verspielt.
                 </p>
               </FadeIn>
             </div>
 
             {/* Theme 4: MIT BLICK AUF PASSFORM (Text Left | Image Right) */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-8 lg:gap-14 xl:gap-20 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-6 lg:gap-12 xl:gap-16 items-center">
               <FadeIn duration={600} translateY={16} className="flex flex-col order-2 lg:order-1">
-                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-1.5">
                   04 · Wohlgefühl
                 </span>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1A1A1A] mb-4">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-[30px] font-normal text-[#1A1A1A] mb-3">
                   Mit Blick auf Passform
                 </h3>
-                <p className="text-[16px] sm:text-[17.5px] leading-relaxed text-[#4A5568] max-w-lg">
+                <p className="text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#4A5568] max-w-lg">
                   Entscheidend ist nicht nur, was schön aussieht, sondern was gut sitzt, sich angenehm trägt und wirklich zu Ihnen passt.
                 </p>
               </FadeIn>
-              <FadeIn delay={100} duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.25/1] max-h-[440px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.04)] order-1 lg:order-2">
+              <FadeIn delay={100} duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.3/1] max-h-[380px] 2xl:max-h-[420px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_8px_24px_rgba(0,0,0,0.03)] order-1 lg:order-2">
                 <Image
                   src="/customer/outfit-blue-winter.jpg"
                   alt="Hochwertige Passform und Materialgefühl"
@@ -267,20 +267,20 @@ export default async function ModePage() {
         </div>
       </section>
 
-      {/* 4. STILWELTEN (INTERACTIVE TYPOGRAPHY-LED SELECTION) */}
-      <section className="py-20 lg:py-28 2xl:py-32 px-6 lg:px-8 2xl:px-12 bg-white">
+      {/* 4. STILWELTEN (TYPOGRAPHY-LED EDITORIAL INTERACTION) */}
+      <section className="py-14 lg:py-18 2xl:py-22 px-6 lg:px-8 2xl:px-12 bg-white">
         <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-          <div className="max-w-2xl mb-12 lg:mb-16">
-            <div className="flex items-center gap-2.5 mb-3.5">
+          <div className="max-w-2xl mb-10 lg:mb-14">
+            <div className="flex items-center gap-2.5 mb-2.5">
               <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
               <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
                 Vielfalt & Ausdruck
               </span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[42px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A] mb-3">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A] mb-2.5">
               Stilwelten
             </h2>
-            <p className="text-[16px] sm:text-[17.5px] text-[#4A5568] leading-relaxed">
+            <p className="text-[15.5px] sm:text-[17px] text-[#4A5568] leading-relaxed">
               Vier Richtungen, die sich bei Checkpot immer wieder neu verbinden.
             </p>
           </div>
@@ -289,25 +289,25 @@ export default async function ModePage() {
         </div>
       </section>
 
-      {/* 5. AKTUELL BEI CHECKPOT (2-3 VISUAL HIGHLIGHTS) */}
+      {/* 5. AKTUELL BEI CHECKPOT (MAX 3 COMPACT VISUAL HIGHLIGHTS) */}
       {currentHighlights.length > 0 && (
-        <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-18 lg:py-24 px-6 lg:px-8 2xl:px-12">
+        <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-14 lg:py-18 px-6 lg:px-8 2xl:px-12">
           <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-14">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
               <div>
-                <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+                <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-1.5">
                   Einblicke in die Boutique
                 </span>
-                <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-normal text-[#1A1A1A] tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#1A1A1A] tracking-tight">
                   Aktuell bei Checkpot
                 </h2>
               </div>
-              <p className="text-[15.5px] text-[#5A6578] max-w-md">
+              <p className="text-[14.5px] sm:text-[15.5px] text-[#5A6578] max-w-md">
                 Ausgewählte Stücke und Impressionen aus unseren aktuellen Kollektionen in Hietzing.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
               {currentHighlights.map((highlight) => (
                 <div key={highlight.id} className="group flex flex-col">
                   <div className="relative aspect-[3/4] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.03)]">
@@ -325,11 +325,11 @@ export default async function ModePage() {
                       </div>
                     )}
                   </div>
-                  <h3 className="mt-3.5 font-display text-[17px] font-medium text-[#1A1A1A]">
+                  <h3 className="mt-3 font-display text-[16.5px] font-medium text-[#1A1A1A]">
                     {highlight.title}
                   </h3>
                   {highlight.availabilityNote && (
-                    <span className="text-[12px] text-[#8B1E1F]/85 mt-0.5">
+                    <span className="text-[11.5px] text-[#8B1E1F]/85 mt-0.5">
                       {highlight.availabilityNote}
                     </span>
                   )}
@@ -340,55 +340,47 @@ export default async function ModePage() {
         </section>
       )}
 
-      {/* 6. TWO BRIDGES: OUTFITS & MARKEN DISCOVERY */}
-      <section className="py-20 lg:py-28 px-6 lg:px-8 2xl:px-12 bg-white">
+      {/* 6. TWO BRIDGES: OUTFITS & MARKEN (OPEN EDITORIAL TYPOGRAPHIC SPLIT) */}
+      <section className="py-16 lg:py-20 px-6 lg:px-8 2xl:px-12 bg-white">
         <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-18">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-20 items-start divide-y lg:divide-y-0 lg:divide-x divide-[#EDEAE4]">
             
             {/* Bridge 1: Lookbook */}
-            <div className="bg-[#FAF9F6] border border-[#EDEAE4] rounded-sm p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
-              <div>
-                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2.5">
-                  Inspiration
-                </span>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1A1A1A] mb-4 leading-snug">
-                  So kann das aussehen.
-                </h3>
-                <p className="text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#4A5568] mb-8">
-                  Entdecken Sie konkrete Styling-Kombinationen und kuratierte Looks in unserem Lookbook.
-                </p>
-              </div>
-              <div>
-                <Link
-                  href={"/outfits" as Route}
-                  className="group inline-flex items-center text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
-                >
-                  Outfits entdecken <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                </Link>
-              </div>
+            <div className="flex flex-col pb-8 lg:pb-0">
+              <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+                Inspiration
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-[32px] font-normal text-[#1A1A1A] mb-3 leading-snug">
+                So kann das aussehen.
+              </h3>
+              <p className="text-[15px] sm:text-[16px] leading-relaxed text-[#4A5568] mb-6 max-w-md">
+                Entdecken Sie konkrete Styling-Kombinationen und kuratierte Looks in unserem Lookbook.
+              </p>
+              <Link
+                href={"/outfits" as Route}
+                className="group inline-flex items-center text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 self-start focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+              >
+                Outfits entdecken <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
             </div>
 
             {/* Bridge 2: Brands */}
-            <div className="bg-[#FAF9F6] border border-[#EDEAE4] rounded-sm p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
-              <div>
-                <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2.5">
-                  Herkunft & Qualität
-                </span>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1A1A1A] mb-4 leading-snug">
-                  Labels, die wir für Sie auswählen.
-                </h3>
-                <p className="text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#4A5568] mb-8">
-                  Von skandinavischem Minimalismus bis zu italienischer Leichtigkeit – mit Liebe kuratierte Marken.
-                </p>
-              </div>
-              <div>
-                <Link
-                  href={"/marken" as Route}
-                  className="group inline-flex items-center text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
-                >
-                  Unsere Marken entdecken <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                </Link>
-              </div>
+            <div className="flex flex-col pt-8 lg:pt-0 lg:pl-12 xl:pl-16">
+              <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+                Herkunft & Qualität
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-[32px] font-normal text-[#1A1A1A] mb-3 leading-snug">
+                Labels, die wir für Sie auswählen.
+              </h3>
+              <p className="text-[15px] sm:text-[16px] leading-relaxed text-[#4A5568] mb-6 max-w-md">
+                Entdecken Sie die Marken, die wir mit Sorgfalt und Blick auf Qualität für Checkpot auswählen.
+              </p>
+              <Link
+                href={"/marken" as Route}
+                className="group inline-flex items-center text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 self-start focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+              >
+                Unsere Marken entdecken <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
             </div>
 
           </div>
@@ -396,12 +388,12 @@ export default async function ModePage() {
       </section>
 
       {/* 7. FINAL CONSULTATION CTA */}
-      <section className="bg-[#FAF9F6] border-t border-[#EDEAE4] py-16 lg:py-20 px-6 lg:px-8 2xl:px-12 text-center">
+      <section className="bg-[#FAF9F6] border-t border-[#EDEAE4] py-14 lg:py-16 px-6 lg:px-8 2xl:px-12 text-center">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#1A1A1A] mb-4 leading-snug">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-normal text-[#1A1A1A] mb-3.5 leading-snug">
             Sie müssen nicht schon wissen,<br />was zu Ihnen passt.
           </h2>
-          <p className="text-[16px] sm:text-[17.5px] text-[#4A5568] leading-relaxed mb-8">
+          <p className="text-[15.5px] sm:text-[17px] text-[#4A5568] leading-relaxed mb-7">
             Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen.
           </p>
           <Link
