@@ -147,61 +147,61 @@ export default async function HomePage() {
         </section>
 
         {/* 4. CHRISTA / PERSONAL CONSULTATION — EDITORIAL TRUST MOMENT */}
-        <section className="bg-[#FAF9F6] border-b border-[#EDEAE4] px-6 lg:px-8 2xl:px-12 py-20 lg:py-28 2xl:py-36">
+        <section className="bg-[#FAF9F6] border-b border-[#EDEAE4] px-6 lg:px-8 2xl:px-12 py-16 lg:py-20 xl:py-24 2xl:py-28">
           <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-            <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 relative">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 relative">
               
-              {/* Left: Large Editorial Portrait */}
-              <div className="w-full lg:w-[48%] xl:w-[45%] 2xl:w-[44%] shrink-0">
-                <FadeIn duration={600} translateY={20} className="relative aspect-[4/5] xl:aspect-[3.9/5] w-full overflow-hidden rounded-sm bg-[#EFECE6] shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
+              {/* Left: Controlled Editorial Portrait */}
+              <div className="w-full max-w-[440px] sm:max-w-[480px] lg:max-w-none lg:w-[40%] xl:w-[38%] 2xl:w-[37%] shrink-0">
+                <FadeIn duration={600} translateY={16} className="relative aspect-[3.7/5] xl:aspect-[3.6/5] w-full max-h-[580px] 2xl:max-h-[660px] overflow-hidden rounded-sm bg-[#EFECE6] shadow-[0_12px_32px_rgba(0,0,0,0.04)]">
                   <Image
                     src="/customer/christa-storefront.jpg"
                     alt="Christa vor der Checkpot Boutique in Wien-Hietzing"
                     fill
-                    sizes="(min-width: 1536px) 44vw, (min-width: 1024px) 48vw, 100vw"
-                    className="object-cover object-[50%_22%] transition-transform duration-700 hover:scale-[1.02]"
+                    sizes="(min-width: 1536px) 37vw, (min-width: 1024px) 40vw, (max-width: 768px) 100vw, 480px"
+                    className="object-cover object-[50%_18%] transition-transform duration-700 hover:scale-[1.02]"
                   />
                 </FadeIn>
               </div>
 
-              {/* Right: Editorial Note & Personal Consultation Message */}
-              <div className="w-full lg:w-[58%] xl:w-[60%] 2xl:w-[61%] lg:-ml-12 xl:-ml-16 relative z-10">
-                <FadeIn delay={150} duration={600} translateY={20} className="bg-white border border-[#E5E2DC] rounded-sm p-8 sm:p-10 lg:p-12 xl:p-14 2xl:p-16 shadow-[0_12px_36px_rgba(0,0,0,0.03)] relative">
+              {/* Right: Refined Editorial Note & Personal Consultation Message */}
+              <div className="w-full max-w-[580px] lg:max-w-none lg:w-[56%] xl:w-[58%] 2xl:w-[57%] lg:-ml-14 xl:-ml-18 2xl:-ml-20 relative z-10">
+                <FadeIn delay={120} duration={600} translateY={16} className="bg-white border border-[#E5E2DC] rounded-sm p-7 sm:p-8 lg:p-9 xl:p-11 2xl:p-13 shadow-[0_10px_30px_rgba(0,0,0,0.03)] relative">
                   {/* Subtle pale red typographic quote accent */}
                   <span
-                    className="select-none pointer-events-none absolute -top-5 sm:-top-7 -left-3 sm:-left-5 font-serif text-[100px] sm:text-[130px] lg:text-[150px] leading-none text-[#C01718]/10"
+                    className="select-none pointer-events-none absolute -top-4 sm:-top-5 -left-2 sm:-left-3 font-serif text-[80px] sm:text-[100px] 2xl:text-[120px] leading-none text-[#C01718]/10"
                     aria-hidden="true"
                   >
                     „
                   </span>
 
                   {/* Eyebrow */}
-                  <div className="flex items-center gap-3 mb-4 relative z-10">
-                    <span className="w-6 h-[2px] bg-[#C01718]" aria-hidden="true" />
-                    <span className="text-[12px] sm:text-[13px] 2xl:text-[14px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
+                  <div className="flex items-center gap-2.5 mb-3.5 relative z-10">
+                    <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
+                    <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
                       Persönlich für Sie
                     </span>
                   </div>
 
                   {/* Main Heading */}
-                  <h2 className="mb-5 font-display text-3xl sm:text-4xl lg:text-[44px] 2xl:text-[50px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A] relative z-10">
+                  <h2 className="mb-4 font-display text-2xl sm:text-3xl lg:text-[36px] xl:text-[40px] 2xl:text-[46px] font-normal leading-[1.14] tracking-tight text-[#1A1A1A] relative z-10">
                     Beratung, die von Herzen kommt.
                   </h2>
 
                   {/* Body Copy */}
-                  <p className="mb-8 text-[15.5px] sm:text-[17.5px] 2xl:text-[19px] leading-relaxed text-[#4A5568] relative z-10 max-w-xl">
+                  <p className="mb-6 lg:mb-7 text-[15px] sm:text-[16.5px] 2xl:text-[18px] leading-relaxed text-[#4A5568] relative z-10 max-w-lg">
                     Mode ist für mich mehr als Kleidung. Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen – entspannt, ehrlich und mit Zeit für Sie.
                   </p>
 
                   {/* Personal Sign-Off & Quiet Link */}
-                  <div className="pt-4 border-t border-[#ECEAE4] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 relative z-10">
-                    <span className="font-display text-2xl 2xl:text-[28px] font-medium text-[#C01718]">
+                  <div className="pt-4 border-t border-[#ECEAE4] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative z-10">
+                    <span className="font-display text-xl 2xl:text-2xl font-medium text-[#C01718]">
                       Ihre Christa
                     </span>
 
                     <Link
                       href="/ueber-uns"
-                      className="group inline-flex items-center text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 self-start sm:self-auto focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                      className="group inline-flex items-center text-[12.5px] 2xl:text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 self-start sm:self-auto focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
                     >
                       Mehr über Checkpot <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                     </Link>
