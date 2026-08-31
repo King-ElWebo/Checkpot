@@ -13,12 +13,12 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-white">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl 2xl:max-w-[1600px] items-center justify-between px-6 lg:px-8 2xl:px-12">
         <Link
           href="/"
           className="flex items-center space-x-2 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
         >
-          <div className="relative h-10 w-32">
+          <div className="relative h-10 w-32 2xl:w-36">
             <Image
               src="/customer/checkpot-logo.svg"
               alt="Checkpot Logo"
@@ -30,14 +30,14 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex md:items-center md:space-x-8">
+        <nav className="hidden md:flex md:items-center md:space-x-8 2xl:space-x-10">
           {navigationLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.label}
                 href={link.href as Route}
-                className={`text-[13px] uppercase tracking-wider font-medium transition-colors hover:text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] ${
+                className={`text-[13px] 2xl:text-[13.5px] uppercase tracking-wider font-medium transition-colors hover:text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] ${
                   isActive ? "text-[#C01718]" : "text-[#1A1A1A]"
                 }`}
                 aria-current={isActive ? "page" : undefined}
