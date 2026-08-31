@@ -214,14 +214,14 @@ export default async function HomePage() {
         </section>
 
         {/* 5. VISIT CHECKPOT — PHYSICAL STORE INVITATION */}
-        <section className="bg-[#1A1A1A] text-white px-6 lg:px-8 2xl:px-12 py-16 lg:py-20 xl:py-24 2xl:py-28 border-b border-[#2A2A2A]">
+        <section className="bg-[#1A1A1A] text-white px-6 lg:px-8 2xl:px-12 py-12 sm:py-16 lg:py-16 xl:py-20 2xl:py-24 border-b border-[#2A2A2A]">
           <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1.2fr] xl:grid-cols-[1fr_1.25fr] 2xl:grid-cols-[1fr_1.3fr] gap-10 lg:gap-14 xl:gap-20 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] xl:grid-cols-[1fr_1.1fr] 2xl:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 xl:gap-16 items-start lg:items-center">
               
               {/* Left Column: Location, Hours & Route Action */}
               <FadeIn duration={600} translateY={16} className="flex flex-col">
                 {/* Eyebrow */}
-                <div className="flex items-center gap-2.5 mb-3.5">
+                <div className="flex items-center gap-2.5 mb-2.5 2xl:mb-3">
                   <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
                   <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
                     Hier bin ich gut aufgehoben
@@ -229,18 +229,18 @@ export default async function HomePage() {
                 </div>
 
                 {/* Main Heading */}
-                <h2 className="mb-8 font-display text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] 2xl:text-[52px] font-normal leading-[1.12] tracking-tight text-white">
+                <h2 className="mb-6 2xl:mb-8 font-display text-3xl sm:text-4xl lg:text-[38px] xl:text-[42px] 2xl:text-[48px] font-normal leading-[1.14] tracking-tight text-white">
                   Besuchen Sie uns<br />in Wien-Hietzing.
                 </h2>
 
                 {/* Information Grid: Address & Opening Hours */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 pb-8 border-b border-white/12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 pb-6 border-b border-white/10">
                   {/* Address */}
                   <div>
-                    <h3 className="mb-2 text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/50">
+                    <h3 className="mb-1.5 text-[11px] 2xl:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/50">
                       Adresse
                     </h3>
-                    <p className="text-[16px] sm:text-[17.5px] 2xl:text-[18.5px] leading-relaxed text-white/90">
+                    <p className="text-[15.5px] sm:text-[16.5px] 2xl:text-[18px] leading-relaxed text-white/90">
                       {storeDetails.address.street}
                       <br />
                       {storeDetails.address.postalCode} {storeDetails.address.city}
@@ -249,19 +249,19 @@ export default async function HomePage() {
 
                   {/* Opening Hours */}
                   <div>
-                    <h3 className="mb-2 text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/50">
+                    <h3 className="mb-1.5 text-[11px] 2xl:text-[12px] font-semibold uppercase tracking-[0.12em] text-white/50">
                       Öffnungszeiten
                     </h3>
-                    <div className="space-y-1.5 text-[15px] sm:text-[16.5px] 2xl:text-[17.5px] leading-relaxed text-white/90">
+                    <div className="space-y-1 text-[14.5px] sm:text-[15.5px] 2xl:text-[17px] leading-relaxed text-white/90">
                       {storeDetails.hours.map((hour) => (
                         <div key={hour.label} className="flex items-baseline justify-between sm:justify-start sm:gap-4">
-                          <span className="text-white/60 text-[13.5px] sm:text-[14.5px]">{hour.label}</span>
+                          <span className="text-white/60 text-[13px] sm:text-[14px]">{hour.label}</span>
                           <span className="font-medium text-white/95">{hour.value}</span>
                         </div>
                       ))}
                     </div>
                     {storeDetails.hoursNote && (
-                      <p className="mt-2 text-[13px] leading-relaxed text-white/60 italic">
+                      <p className="mt-1.5 text-[12.5px] leading-relaxed text-white/60 italic">
                         {storeDetails.hoursNote}
                       </p>
                     )}
@@ -269,25 +269,25 @@ export default async function HomePage() {
                 </div>
 
                 {/* Primary Action */}
-                <div className="mt-8">
+                <div className="mt-6">
                   <a
                     href={storeDetails.routePlanningHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-sm bg-white px-7 py-3.5 text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] !text-[#1A1A1A] transition-colors duration-200 hover:bg-[#F0EEEA] hover:!text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A]"
+                    className="inline-flex items-center justify-center rounded-sm bg-white px-6 py-3 2xl:px-7 2xl:py-3.5 text-[12.5px] 2xl:text-[13px] font-medium uppercase tracking-[0.08em] !text-[#1A1A1A] transition-colors duration-200 hover:bg-[#F0EEEA] hover:!text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A]"
                   >
                     Route planen <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">↗</span>
                   </a>
                 </div>
               </FadeIn>
 
-              {/* Right Column: Large High-Presence Store Image */}
-              <FadeIn delay={120} duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.12/1] xl:aspect-[1.18/1] 2xl:aspect-[1.22/1] w-full overflow-hidden rounded-sm bg-[#262626] shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+              {/* Right Column: Controlled High-Presence Store Image */}
+              <FadeIn delay={120} duration={600} translateY={16} className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1.3/1] xl:aspect-[1.35/1] 2xl:aspect-[1.38/1] w-full max-h-[460px] lg:max-h-[480px] xl:max-h-[520px] 2xl:max-h-[580px] overflow-hidden rounded-sm bg-[#262626] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                 <Image
                   src="/customer/store-sustainable-shelf.jpg"
                   alt="Atmosphäre und Kollektionen in der Checkpot Boutique in Wien-Hietzing"
                   fill
-                  sizes="(min-width: 1536px) 50vw, (min-width: 1024px) 50vw, (max-width: 768px) 100vw, 680px"
+                  sizes="(min-width: 1536px) 48vw, (min-width: 1024px) 50vw, (max-width: 768px) 100vw, 640px"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                 />
               </FadeIn>
