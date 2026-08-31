@@ -53,61 +53,86 @@ export default async function HomePage() {
       />
       <div className="flex flex-col bg-[#F9F9F8]">
         
-        {/* 1. HERO — STORE FIRST, FASHION IMMEDIATELY VISIBLE */}
-        <section className="relative mx-auto w-full max-w-[1400px] px-4 py-8 lg:px-8 lg:py-16 overflow-hidden">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
-            <FadeIn duration={600} translateY={20} className="relative z-10 flex flex-col justify-center">
-              <span className="mb-4 block text-[14px] font-medium uppercase tracking-wider text-[#C01718]">
-                Boutique in Wien-Hietzing
-              </span>
-              <h1 className="mb-6 font-display text-5xl font-normal leading-[1.1] tracking-tight text-[#1A1A1A] sm:text-6xl lg:text-7xl">
-                Willkommen bei<br />Checkpot Hietzing
-              </h1>
-              <p className="mb-10 max-w-lg text-xl leading-relaxed text-[#4A5568]">
-                Etwas Besonderes entdecken – und sich trotzdem sofort gut aufgehoben fühlen. 
-                Persönliche Beratung und handverlesene Damenmode für Ihren individuellen Stil.
-              </p>
-              <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  href="#discovery"
-                  className="inline-flex items-center justify-center rounded-sm bg-[#C01718] px-8 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-white transition-colors duration-200 ease-out hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F9F9F8]"
-                >
-                  Kollektion entdecken
-                </Link>
-                <Link
-                  href="/kontakt"
-                  className="inline-flex items-center justify-center rounded-sm border border-[#E2E8F0] bg-white px-8 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] transition-colors duration-200 ease-out hover:bg-[#F3F2EE] hover:border-[#1A1A1A] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F9F9F8]"
-                >
-                  Besuchen Sie uns
-                </Link>
-              </div>
-            </FadeIn>
-            
-            {/* Art-directed composition with restrained overlap */}
-            <FadeIn delay={150} duration={800} className="relative z-0 h-[500px] w-full lg:h-[650px]">
-              {/* Store Image (Main) */}
-              <div className="absolute right-0 top-0 h-[85%] w-[80%] overflow-hidden rounded-sm shadow-sm">
-                <Image
-                  src="/customer/store-christa-counter.jpg"
-                  alt="Checkpot Boutique Innenraum"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              {/* Fashion Image (Overlap) */}
-              <div className="absolute bottom-0 left-0 h-[65%] w-[60%] overflow-hidden rounded-sm border-8 border-[#F9F9F8] shadow-md lg:-left-6">
-                <Image
-                  src="/customer/outfit-blue-summer.jpg"
-                  alt="Modisches Sommer-Outfit in Blau"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 30vw, 60vw"
-                  className="object-cover object-top"
-                />
-              </div>
-            </FadeIn>
+        {/* 1. HERO — BOLD ASYMMETRIC EDITORIAL BOUTIQUE */}
+        <section className="relative w-full overflow-hidden bg-[#F9F9F8] pt-8 lg:pt-14 xl:pt-16 pb-12 lg:pb-16 xl:pb-20 min-h-[calc(84vh-80px)] flex flex-col justify-between">
+          {/* Desktop Full-Bleed Dominant Image */}
+          <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[51%] xl:w-[53%] h-full z-0 pointer-events-none select-none overflow-hidden">
+            {/* Controlled soft transition gradient */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 xl:w-32 bg-gradient-to-r from-[#F9F9F8] to-transparent z-10" />
+            <Image
+              src="/customer/store-christa-counter.jpg"
+              alt="Persönliche Beratung und Damenmode in der Checkpot Boutique Hietzing"
+              fill
+              priority
+              sizes="(min-width: 1280px) 53vw, 51vw"
+              className="object-cover object-[center_28%]"
+            />
+          </div>
+
+          {/* Main Content Container */}
+          <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center">
+            <div className="w-full lg:w-[53%] xl:w-[50%]">
+              <FadeIn duration={600} translateY={16} className="flex flex-col items-start">
+                {/* Eyebrow with restrained red rule */}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-[2px] bg-[#C01718]" aria-hidden="true" />
+                  <span className="text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
+                    Boutique in Wien-Hietzing
+                  </span>
+                </div>
+
+                {/* Expressive H1 with comfortable breathing room */}
+                <h1 className="mb-6 font-display text-4xl sm:text-5xl lg:text-[66px] xl:text-[76px] font-normal leading-[1.05] tracking-tight text-[#1A1A1A]">
+                  <span>Besondere Mode.</span>
+                  <br />
+                  <span className="text-[#C01718] block mt-1">Persönlich beraten.</span>
+                </h1>
+
+                {/* Supporting Copy */}
+                <p className="mb-8 lg:mb-10 max-w-[480px] text-lg sm:text-xl leading-relaxed text-[#4A5568]">
+                  Ausgewählte Damenmode für Frauen, die ihren eigenen Stil tragen möchten – mit ehrlicher Beratung direkt in Wien-Hietzing.
+                </p>
+
+                {/* CTAs: Solid Primary Button + Quiet Text Link */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 w-full sm:w-auto">
+                  <Link
+                    href="#discovery"
+                    className="inline-flex items-center justify-center rounded-sm bg-[#C01718] px-8 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-white !text-white transition-colors duration-200 ease-out hover:bg-[#A01314] hover:text-white hover:!text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F9F9F8]"
+                  >
+                    <span className="text-white font-medium">Kollektion entdecken</span>
+                  </Link>
+                  <Link
+                    href="/kontakt"
+                    className="group inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-1 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+                  >
+                    Besuchen Sie uns <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* Mobile / Tablet In-Flow Image */}
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden rounded-sm bg-[#EFECE6] mt-8 lg:hidden">
+              <Image
+                src="/customer/store-christa-counter.jpg"
+                alt="Persönliche Beratung und Damenmode in der Checkpot Boutique Hietzing"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 80vw"
+                className="object-cover object-[center_28%]"
+              />
+            </div>
+          </div>
+
+          {/* Bottom Editorial Meta Strip with enhanced legibility */}
+          <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-8 pt-8 lg:pt-12 relative z-10">
+            <div className="flex items-center gap-3 text-[12px] sm:text-[13px] font-medium uppercase tracking-[0.16em] text-[#4A5568]">
+              <span>1130 Wien</span>
+              <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
+              <span>Seit 2009</span>
+              <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
+              <span>Persönliche Beratung</span>
+            </div>
           </div>
         </section>
 

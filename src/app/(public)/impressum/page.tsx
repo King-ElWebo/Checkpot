@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { seoRoutes } from "@/content/fixtures/checkpot";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
@@ -24,8 +25,9 @@ export default async function ImpressumPage() {
   const storeDetails = await getStoreDetails();
 
   return (
-    <div className="flex flex-col bg-white">
-      <div className="mx-auto w-full max-w-3xl px-4 pt-12 lg:px-6">
+    <div className="flex flex-col bg-[#F9F9F8]">
+      {/* Breadcrumbs */}
+      <div className="mx-auto w-full max-w-[1200px] px-6 pt-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Startseite", href: "/" },
@@ -34,41 +36,198 @@ export default async function ImpressumPage() {
         />
       </div>
 
-      <section className="mx-auto w-full max-w-3xl px-4 py-12 lg:px-6 lg:py-20">
-        <div className="prose prose-lg prose-p:text-[#4A5568] prose-p:leading-relaxed prose-h2:font-display prose-h2:text-2xl prose-h2:text-[#1A1A1A] prose-h2:mt-12 max-w-none">
-          <h1 className="font-display text-4xl lg:text-5xl text-[#1A1A1A] tracking-tight mb-12">Impressum</h1>
-          
-          <h2>Informationspflicht laut E-Commerce Gesetz</h2>
-          <p>
-            <strong>{storeDetails.name}</strong><br />
-            Inhaberin: {storeDetails.owner}<br />
-            {storeDetails.address.street}<br />
-            {storeDetails.address.postalCode} {storeDetails.address.city}<br />
-            Österreich
-          </p>
-          
-          <p>
-            <strong>Kontakt:</strong><br />
-            Tel: {storeDetails.phone}<br />
-            E-Mail: {storeDetails.email}
-          </p>
-
-          <h2>1. Inhalt des Onlineangebotes</h2>
-          <p>
-            Der Autor übernimmt keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit oder Qualität der bereitgestellten Informationen. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.
-          </p>
-
-          <h2>2. Verweise und Links</h2>
-          <p>
-            Bei direkten oder indirekten Verweisen auf fremde Webseiten (&quot;Hyperlinks&quot;), die außerhalb des Verantwortungsbereiches des Autors liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern. Deshalb distanziert er sich hiermit ausdrücklich von allen Inhalten aller verlinkten /verknüpften Seiten, die nach der Linksetzung verändert wurden.
-          </p>
-
-          <h2>3. Urheber- und Kennzeichenrecht</h2>
-          <p>
-            Das Copyright für veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein beim Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken, Tondokumente, Videosequenzen und Texte in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors nicht gestattet.
+      {/* Page Header */}
+      <header className="mx-auto w-full max-w-[1200px] px-6 pt-4 pb-12 lg:px-8 lg:pt-6 lg:pb-16">
+        <div className="max-w-3xl">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="w-8 h-[2px] bg-[#C01718]" aria-hidden="true" />
+            <span className="text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
+              Rechtliche Angaben & Transparenz
+            </span>
+          </div>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#1A1A1A] tracking-tight font-normal leading-[1.08] mb-6">
+            Impressum
+          </h1>
+          <p className="text-lg sm:text-xl leading-relaxed text-[#4A5568]">
+            Angaben und rechtliche Informationen gemäß § 5 E-Commerce-Gesetz (ECG),
+            § 14 Unternehmensgesetzbuch (UGB) und § 25 Mediengesetz.
           </p>
         </div>
-      </section>
+      </header>
+
+      {/* Main Content Area */}
+      <main className="mx-auto w-full max-w-[1200px] px-6 pb-20 lg:px-8 lg:pb-28">
+        <div className="flex flex-col gap-10 lg:gap-12">
+          
+          {/* Key Company Details Card */}
+          <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 lg:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              
+              {/* Column 1: Company & Ownership */}
+              <div className="flex flex-col">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                  Medieninhaberin & Herausgeberin
+                </span>
+                <h2 className="font-display text-2xl lg:text-3xl text-[#1A1A1A] font-medium mb-4">
+                  {storeDetails.name}
+                </h2>
+                
+                <div className="space-y-2 text-[#4A5568] text-[15px] leading-relaxed">
+                  <p>
+                    <strong className="text-[#1A1A1A]">Inhaberin:</strong> {storeDetails.owner}
+                  </p>
+                  <p>
+                    <strong className="text-[#1A1A1A]">Adresse:</strong><br />
+                    {storeDetails.address.street}<br />
+                    {storeDetails.address.postalCode} {storeDetails.address.city}, Österreich
+                  </p>
+                  <p className="pt-2">
+                    <strong className="text-[#1A1A1A]">Unternehmensgegenstand:</strong><br />
+                    Handel mit Damenbekleidung, Mode & Accessoires
+                  </p>
+                </div>
+              </div>
+
+              {/* Column 2: Direct Contact & Authorities */}
+              <div className="flex flex-col">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                  Kontakt & Aufsichtsbehörde
+                </span>
+                <h3 className="font-display text-2xl lg:text-3xl text-[#1A1A1A] font-medium mb-4">
+                  Direkter Kontakt
+                </h3>
+
+                <div className="space-y-3 text-[#4A5568] text-[15px] leading-relaxed mb-6">
+                  <p className="flex items-center gap-2">
+                    <span className="font-medium text-[#1A1A1A]">Telefon:</span>
+                    <a
+                      href={`tel:${storeDetails.phone.replace(/[^0-9+]/g, "")}`}
+                      className="text-[#C01718] hover:underline font-medium focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                    >
+                      {storeDetails.phone}
+                    </a>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <span className="font-medium text-[#1A1A1A]">E-Mail:</span>
+                    <a
+                      href={`mailto:${storeDetails.email}`}
+                      className="text-[#C01718] hover:underline font-medium focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                    >
+                      {storeDetails.email}
+                    </a>
+                  </p>
+                </div>
+
+                <div className="border-t border-[#ECEAE4] pt-4 space-y-2 text-[13px] text-[#718096] leading-relaxed">
+                  <p>
+                    <strong className="text-[#1A1A1A]">Kammerzugehörigkeit:</strong> Wirtschaftskammer Wien (WKO)
+                  </p>
+                  <p>
+                    <strong className="text-[#1A1A1A]">Gewerbebehörde:</strong> Magistratisches Bezirksamt des XIII. Bezirkes (Wien-Hietzing)
+                  </p>
+                  <p>
+                    <strong className="text-[#1A1A1A]">Anwendbare Vorschriften:</strong> Gewerbeordnung 1994 (GewO), abrufbar unter{" "}
+                    <a
+                      href="https://www.ris.bka.gv.at"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#C01718] hover:underline"
+                    >
+                      www.ris.bka.gv.at
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Legal Explanations Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            
+            {/* 1. Onlineangebote */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 01
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Inhalt des Onlineangebotes
+              </h3>
+              <p className="text-[14px] leading-relaxed text-[#4A5568]">
+                Die Betreiberin übernimmt keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit oder Qualität der bereitgestellten Informationen. Haftungsansprüche materieller oder ideeller Art gegen die Autorin, welche durch die Nutzung oder Nichtnutzung fehlerhafter oder unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt.
+              </p>
+            </div>
+
+            {/* 2. Links & Verweise */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 02
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Verweise & Hyperlinks
+              </h3>
+              <p className="text-[14px] leading-relaxed text-[#4A5568]">
+                Bei direkten oder indirekten Verweisen auf fremde Webseiten (&quot;Hyperlinks&quot;), die außerhalb des Verantwortungsbereiches der Betreiberin liegen, wird keine Haftung für deren Inhalte übernommen. Zum Zeitpunkt der Linksetzung waren keine illegalen Inhalte erkennbar. Für illegale, fehlerhafte oder unvollständige Inhalte und Schäden aus der Nutzung verlinkter Seiten haftet allein der jeweilige Anbieter.
+              </p>
+            </div>
+
+            {/* 3. Urheberrecht */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 03
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Urheber- & Kennzeichenrecht
+              </h3>
+              <p className="text-[14px] leading-relaxed text-[#4A5568]">
+                Das Copyright für veröffentlichte, von der Betreiberin selbst erstellte Objekte und Bildmaterialien bleibt allein bei Checkpot Hietzing. Eine Vervielfältigung oder Verwendung von Grafiken, Texten oder Fotos in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche schriftliche Zustimmung nicht gestattet. Alle innerhalb des Angebotes genannten Marken- und Warenzeichen Dritter unterliegen uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts.
+              </p>
+            </div>
+
+            {/* 4. Streitbeilegung */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 04
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Streitbeilegung & Verbraucherinfo
+              </h3>
+              <p className="text-[14px] leading-relaxed text-[#4A5568] mb-3">
+                Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten:
+              </p>
+              <a
+                href="https://ec.europa.eu/consumers/odr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[14px] font-medium text-[#C01718] hover:underline inline-flex items-center gap-1.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+              >
+                ec.europa.eu/consumers/odr <span aria-hidden="true">↗</span>
+              </a>
+              <p className="text-[13px] text-[#718096] mt-3">
+                Sie können allfällige Beschwerden auch direkt an unsere oben angegebene E-Mail-Adresse richten.
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Reassurance Banner */}
+          <div className="bg-[#FAF9F6] border border-[#ECEAE4] rounded-sm p-8 lg:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="max-w-xl">
+              <h3 className="font-display text-2xl text-[#1A1A1A] font-medium mb-2">
+                Haben Sie Fragen zu unserem Angebot?
+              </h3>
+              <p className="text-[#4A5568] text-[15px] leading-relaxed">
+                Wir legen großen Wert auf persönliche Transparenz und ein vertrauensvolles Miteinander. Besuchen Sie uns gerne direkt in Hietzing.
+              </p>
+            </div>
+            <Link
+              href="/kontakt"
+              className="inline-flex items-center justify-center rounded-sm bg-[#C01718] px-7 py-3.5 text-[13px] font-medium uppercase tracking-[0.08em] !text-white text-white transition-colors duration-200 ease-out hover:bg-[#A01314] hover:!text-white shrink-0 self-start md:self-center focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+            >
+              <span className="text-white font-medium">Kontakt aufnehmen →</span>
+            </Link>
+          </div>
+
+        </div>
+      </main>
     </div>
   );
 }
