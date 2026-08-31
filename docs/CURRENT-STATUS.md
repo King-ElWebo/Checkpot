@@ -74,7 +74,7 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
 | **Admin CMS & Workflows** | **STABLE** | Full CRUD, relation persistence, delete safety, and revalidation operational. |
 | **Security & Rate Limiting** | **STABLE** | Durable login and contact rate limiters active with atomic SQL upserts. |
 | **SEO & URL Migration** | **STABLE** | 22 redirects (301) and 8 gone routes (410) active; sitemap & robots verified. |
-| **Consent Management** | **STABLE** | Audited: no non-essential cookies, trackers or third-party embeds. Banner not required. |
+| **Consent Management** | **LIVE / BASIC MODE** | Google Consent Mode v2 (Basic Mode) active. Strictly blocks GA4 tags before explicit consent. First-party `checkpot_consent` cookie (180 days, versioned). Permanent footer settings link. |
 | **Editorial Brand Content**| **15 / 15 LIVE** | 100% of the 15 active partner brands have fact-checked text, claims, and SEO metadata live in Neon DB. |
 | **Brand Assets (Logos/Photos)**| **REVIEW / PENDING** | Actionable upload package prepared (`docs/BRAND-ASSETS-HUMAN-REVIEW.md`); 15 logos + 10 lookbooks pending B2B download. |
 | **Legal Content** | **PARTIAL** | Technically clean; awaiting customer review and factual inputs (`docs/LEGAL-INPUTS-NEEDED.md`). |

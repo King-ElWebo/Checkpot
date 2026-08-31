@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { StoreDetails } from "@/lib/contracts/public";
+import { ConsentReopenButton } from "@/components/public/consent/consent-reopen-button";
 
 export function Footer({ storeDetails }: { storeDetails: StoreDetails }) {
   return (
@@ -54,6 +55,9 @@ export function Footer({ storeDetails }: { storeDetails: StoreDetails }) {
                 <Link href="/datenschutz" className="hover:text-[#C01718]">
                   Datenschutz
                 </Link>
+              </li>
+              <li>
+                <ConsentReopenButton />
               </li>
             </ul>
           </div>

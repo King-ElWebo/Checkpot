@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 
 import "./public.css";
+import { cookies } from "next/headers";
 import { Navbar } from "@/components/public/layout/navbar";
 import { Footer } from "@/components/public/layout/footer";
 import { getSiteUrl } from "@/lib/site-config";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
+import { CONSENT_COOKIE_NAME, parseConsentCookie } from "@/lib/consent/types";
+import { ConsentManager } from "@/components/public/consent/consent-manager";
 
 const fontHeading = Outfit({
   subsets: ["latin"],
@@ -59,13 +62,18 @@ export const metadata: Metadata = {
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
   const storeDetails = await getStoreDetails();
+  const cookieStore = await cookies();
+  const rawConsentCookie = cookieStore.get(CONSENT_COOKIE_NAME)?.value;
+  const initialConsent = parseConsentCookie(rawConsentCookie);
 
   return (
-    <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
-      <Navbar />
-      <main className="flex-1">{children}</main>
-      <Footer storeDetails={storeDetails} />
-    </div>
+    <ConsentManager initialConsent={initialConsent}>
+      <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer storeDetails={storeDetails} />
+      </div>
+    </ConsentManager>
   );
 }
 
