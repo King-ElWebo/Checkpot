@@ -61,6 +61,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
   const rawRelatedOutfits = await getOutfitsByBrandId(brand.id);
   const relatedOutfits = rawRelatedOutfits.slice(0, 4);
   const additionalBrands = await getAdditionalPublishedBrands(brand.id, 3);
+
   return (
     <div className="flex flex-col bg-white">
       {/* 1. QUIET BREADCRUMBS */}
@@ -75,7 +76,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
       </div>
 
       {/* 2. COMPACT EDITORIAL BRAND HERO */}
-      <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-4 pb-14 lg:pb-20">
+      <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-3 pb-12 lg:pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.25fr] gap-10 lg:gap-14 xl:gap-20 items-center">
           
           {/* Left: Brand Identity & Summary */}
@@ -155,23 +156,23 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
         </div>
       </section>
 
-      {/* 3. BRAND STORY & VERIFIED CLAIMS (GUT ZU WISSEN) */}
+      {/* 3. BRAND STORY & VERIFIED CLAIMS (EDITORIAL FACT SHEET) */}
       {(brand.description || (brand.verifiedClaims && brand.verifiedClaims.length > 0)) && (
-        <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-16 lg:py-22 px-6 lg:px-8 2xl:px-12">
+        <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-12 lg:py-16 px-6 lg:px-8 2xl:px-12">
           <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.9fr] gap-12 lg:gap-16 xl:gap-20 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.9fr] gap-10 lg:gap-14 xl:gap-20 items-start">
               
               {/* Left Column: Story & Description */}
               <div>
                 <span className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
                   {`Das ist ${brand.name}`}
                 </span>
-                <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#1A1A1A] mb-6 tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#1A1A1A] mb-5 tracking-tight">
                   Stil & Handschrift
                 </h2>
 
                 {brand.description && (
-                  <div className="space-y-4 text-[16px] sm:text-[17px] leading-relaxed text-[#4A5568] max-w-xl">
+                  <div className="space-y-4 text-[15.5px] sm:text-[16.5px] leading-relaxed text-[#4A5568] max-w-xl">
                     {brand.description.split('\n').map((paragraph, idx) => (
                       <p key={idx}>{paragraph}</p>
                     ))}
@@ -179,19 +180,19 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
                 )}
               </div>
 
-              {/* Right Column: Verified Claims (Gut zu wissen) */}
+              {/* Right Column: Verified Claims (Editorial Fact Sheet) */}
               {brand.verifiedClaims && brand.verifiedClaims.length > 0 && (
-                <div className="bg-white border border-[#EDEAE4] rounded-sm p-6 sm:p-8">
-                  <h3 className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#1A1A1A] mb-4 pb-3 border-b border-[#EDEAE4]">
+                <div className="pt-1 lg:pt-2">
+                  <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#1A1A1A] block mb-4 pb-2.5 border-b border-[#E5E2DC]">
                     Gut zu wissen
-                  </h3>
-                  <div className="divide-y divide-[#EDEAE4]">
+                  </span>
+                  <div className="divide-y divide-[#E5E2DC]">
                     {brand.verifiedClaims.map((claim, idx) => (
-                      <div key={idx} className="py-3.5 first:pt-1 last:pb-1 flex items-start gap-3">
-                        <span className="text-[11.5px] font-mono font-semibold text-[#C01718] shrink-0 mt-0.5">
+                      <div key={idx} className="py-3.5 first:pt-0 last:pb-0 flex items-start gap-3.5">
+                        <span className="text-[11.5px] font-mono font-semibold text-[#C01718] shrink-0 mt-0.5 select-none">
                           {String(idx + 1).padStart(2, '0')}
                         </span>
-                        <span className="text-[14.5px] leading-relaxed text-[#4A5568]">
+                        <span className="text-[14.5px] sm:text-[15px] leading-relaxed text-[#4A5568]">
                           {claim}
                         </span>
                       </div>
@@ -205,40 +206,43 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
         </section>
       )}
 
-      {/* 4. CHECKPOT LOCAL BRIDGE */}
-      <section className="py-14 lg:py-18 px-6 lg:px-8 2xl:px-12 bg-white text-center border-b border-[#EDEAE4]">
-        <div className="mx-auto max-w-2xl">
+      {/* 4. CHECKPOT LOCAL BRIDGE (COMPACT EDITORIAL INTERLUDE) */}
+      <section className="py-10 lg:py-14 px-6 lg:px-8 2xl:px-12 bg-white text-center border-b border-[#EDEAE4]">
+        <div className="mx-auto max-w-xl">
           <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
             Bei Checkpot in Hietzing
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#1A1A1A] mb-3.5 leading-snug tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#1A1A1A] mb-3 leading-snug tracking-tight">
             {`${brand.name} bei Checkpot entdecken.`}
           </h2>
-          <p className="text-[15.5px] sm:text-[17px] text-[#4A5568] leading-relaxed mb-7">
+          <p className="text-[15px] sm:text-[16.5px] text-[#4A5568] leading-relaxed mb-6">
             Ausgewählte Stücke dieser Marke finden Sie direkt bei uns im Geschäft. Wir beraten Sie gerne persönlich zu Passform und Kombinationen.
           </p>
           <Link
             href={"/kontakt" as Route}
-            className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] hover:bg-[#C01718] px-8 py-3.5 text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-white transition-colors duration-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+            className="group inline-flex items-center text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-0.5 transition-colors duration-200 hover:text-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
           >
-            Besuch planen <span className="ml-2" aria-hidden="true">→</span>
+            Besuch planen{" "}
+            <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
+              →
+            </span>
           </Link>
         </div>
       </section>
 
       {/* 5. CHECKPOT × BRAND LOOKS */}
-      <section className="py-18 lg:py-24 px-6 lg:px-8 2xl:px-12 bg-white">
+      <section className="py-14 lg:py-18 px-6 lg:px-8 2xl:px-12 bg-white">
         <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 lg:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 lg:mb-12">
             <div>
-              <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+              <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-1.5">
                 Inspiration
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-normal text-[#1A1A1A] tracking-tight">
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#1A1A1A] tracking-tight">
                 {`Checkpot × ${brand.name}`}
               </h2>
             </div>
-            <p className="text-[15px] sm:text-[16px] text-[#5A6578] max-w-md">
+            <p className="text-[14.5px] sm:text-[15.5px] text-[#5A6578] max-w-md">
               {`So kombinieren wir die Stücke von ${brand.name} bei Checkpot.`}
             </p>
           </div>
@@ -281,58 +285,72 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
               })}
             </div>
           ) : (
-            <div className="py-14 px-6 text-center max-w-lg mx-auto bg-[#FAF9F6] border border-[#EDEAE4] rounded-sm">
-              <p className="text-[15.5px] text-[#4A5568] leading-relaxed mb-5">
+            <div className="py-12 px-6 text-center max-w-lg mx-auto bg-[#FAF9F6] border border-[#EDEAE4] rounded-sm">
+              <p className="text-[15px] text-[#4A5568] leading-relaxed mb-4">
                 {`Diese Marke entdecken Sie direkt bei uns im Geschäft in Hietzing.`}
               </p>
               <Link
                 href={"/kontakt" as Route}
-                className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] hover:bg-[#C01718] px-6 py-3 text-[12.5px] font-medium uppercase tracking-[0.08em] text-white transition-colors"
+                className="group inline-flex items-center text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-0.5 transition-colors duration-200 hover:text-[#C01718]"
               >
-                Besuchen Sie uns <span className="ml-1.5" aria-hidden="true">→</span>
+                Besuchen Sie uns{" "}
+                <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
+                  →
+                </span>
               </Link>
             </div>
           )}
         </div>
       </section>
 
-      {/* 6. FURTHER BRANDS (TYPOGRAPHY-LED DISCOVERY) */}
+      {/* 6. WEITERE MARKEN ENTDECKEN (TYPOGRAPHY-LED EDITORIAL ROW) */}
       {additionalBrands.length > 0 && (
-        <section className="bg-[#FAF9F6] border-t border-[#EDEAE4] py-16 lg:py-20 px-6 lg:px-8 2xl:px-12">
+        <section className="bg-[#FAF9F6] border-t border-[#EDEAE4] py-14 lg:py-18 px-6 lg:px-8 2xl:px-12">
           <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-10 pb-4 border-b border-[#EDEAE4]">
-              <h2 className="font-display text-2xl sm:text-3xl text-[#1A1A1A]">
+            {/* Header Row */}
+            <div className="flex items-baseline justify-between gap-4 pb-4 border-b border-[#EDEAE4]">
+              <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#1A1A1A]">
                 Weitere Marken entdecken
-              </h2>
+              </span>
               <Link
                 href={"/marken" as Route}
-                className="group inline-flex items-center text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors"
+                className="group inline-flex items-center text-[12px] 2xl:text-[12.5px] font-semibold uppercase tracking-[0.08em] text-[#718096] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
               >
-                Alle Marken <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                Alle Marken{" "}
+                <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
+                  →
+                </span>
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-              {additionalBrands.map((additionalBrand) => (
+            {/* 3 Dynamic Typography Brand Links */}
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#EDEAE4] pt-2">
+              {additionalBrands.map((additionalBrand, idx) => (
                 <Link
                   key={additionalBrand.slug}
                   href={`/marken/${additionalBrand.slug}` as Route}
-                  className="group flex flex-col p-6 rounded-sm bg-white border border-[#EDEAE4] hover:border-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                  className={`group flex flex-col justify-between py-6 md:py-8 ${
+                    idx === 0
+                      ? "md:pr-8 lg:pr-10"
+                      : idx === 1
+                      ? "md:px-8 lg:px-10"
+                      : "md:pl-8 lg:pl-10"
+                  } transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]`}
                 >
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#718096] mb-2 block">
-                    Boutique Hietzing
+                  <span className="text-[11px] font-mono font-medium text-[#718096] uppercase tracking-wider mb-2 select-none">
+                    {`${String(idx + 1).padStart(2, "0")} · Bei Checkpot`}
                   </span>
-                  <h3 className="font-display text-xl sm:text-2xl text-[#1A1A1A] group-hover:text-[#C01718] transition-colors mb-3">
-                    {additionalBrand.name}
-                  </h3>
-                  {additionalBrand.summary && (
-                    <p className="text-[14px] text-[#5A6578] leading-relaxed line-clamp-2 mb-4 flex-1">
-                      {additionalBrand.summary}
-                    </p>
-                  )}
-                  <span className="inline-flex items-center text-[12px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] group-hover:text-[#C01718] transition-colors pt-2 border-t border-[#F2EFEB]">
-                    Marke ansehen <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
-                  </span>
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-display text-2xl lg:text-[26px] xl:text-[28px] font-normal text-[#1A1A1A] group-hover:text-[#C01718] transition-colors leading-tight">
+                      {additionalBrand.name}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="text-lg text-[#1A1A1A]/40 group-hover:text-[#C01718] transition-all duration-200 group-hover:translate-x-1.5 shrink-0"
+                    >
+                      →
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>

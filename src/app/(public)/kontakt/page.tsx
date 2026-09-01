@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { FadeIn } from "@/components/public/motion/fade-in";
 import { seoRoutes, imagery } from "@/content/fixtures/checkpot";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
 import { getSiteUrl } from "@/lib/site-config";
@@ -47,7 +48,6 @@ export default async function KontaktPage() {
       })),
   };
 
-
   return (
     <div className="flex flex-col bg-white">
       <script
@@ -55,7 +55,8 @@ export default async function KontaktPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <div className="mx-auto w-full max-w-[1400px] px-4 pt-12 lg:px-6">
+      {/* QUIET BREADCRUMBS */}
+      <div className="mx-auto w-full max-w-[1360px] px-6 lg:px-8 2xl:px-12 pt-6 pb-2">
         <Breadcrumbs
           items={[
             { label: "Startseite", href: "/" },
@@ -64,131 +65,181 @@ export default async function KontaktPage() {
         />
       </div>
 
-      {/* 1. CONTACT OPENING (Practical info first) */}
-      <section className="mx-auto w-full max-w-[1400px] px-4 py-16 lg:px-6 lg:py-24">
-        
-        <div className="mb-12 lg:mb-20">
-          <h1 className="font-display text-5xl lg:text-7xl text-[#1A1A1A] tracking-tight mb-6">
-            Besuchen Sie uns
-          </h1>
-          <p className="text-xl text-[#4A5568] max-w-2xl leading-relaxed">
-            Wir freuen uns darauf, Sie persönlich in unserer Boutique in Hietzing zu beraten.
-          </p>
-        </div>
+      {/* CHAPTER 1: STORE / LOCATION (DOMINANT STOREFRONT OPENING) */}
+      <section className="mx-auto w-full max-w-[1360px] px-6 lg:px-8 2xl:px-12 pt-2 pb-12 lg:pb-16">
+        <FadeIn duration={600} translateY={16}>
+          {/* Header Typography */}
+          <div className="max-w-2xl mb-5">
+            <div className="flex items-center gap-2.5 mb-3">
+              <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
+              <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
+                Boutique in Wien-Hietzing
+              </span>
+            </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[54px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A] mb-3">
+              Besuchen Sie uns.
+            </h1>
+
+            <p className="text-[16.5px] sm:text-[18px] text-[#4A5568] leading-relaxed">
+              Persönliche Beratung, besondere Mode und Zeit zum Ausprobieren – direkt in Hietzing.
+            </p>
+          </div>
+
+          {/* Address Line & Direct Route Action */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2 mb-6 border-b border-[#EDEAE4] pb-4">
+            <span className="text-[12px] font-mono font-medium tracking-[0.12em] text-[#718096] uppercase">
+              Hietzinger Hauptstraße 10–16 · 1130 Wien
+            </span>
+            <a
+              href={storeDetails.routePlanningHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center text-[12.5px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 self-start sm:self-auto focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+            >
+              Route planen <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          {/* Large Architectural Storefront Photo */}
+          <div className="relative aspect-[16/9] sm:aspect-[21/10] lg:aspect-[21/9] max-h-[460px] 2xl:max-h-[500px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC]">
+            <Image
+              src="/customer/store/20260825_125300.jpg"
+              alt="Geschäftseingang und Schaufenster der Checkpot Boutique in Wien-Hietzing"
+              fill
+              priority
+              sizes="(min-width: 1280px) 1360px, 100vw"
+              className="object-cover"
+              style={{ objectPosition: "50% 25%" }}
+            />
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* CHAPTER 2: SERVICE INFORMATION (COMPACT HORIZONTAL SERVICE BAR) */}
+      <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-10 lg:py-12 px-6 lg:px-8 2xl:px-12">
+        <div className="mx-auto max-w-[1360px]">
           
-          <div className="lg:col-span-5 lg:col-start-1">
-            <div className="bg-[#F9F9F8] p-8 lg:p-12 rounded-sm mb-8">
-              <h2 className="font-display text-2xl text-[#1A1A1A] mb-6">{storeDetails.name}</h2>
-              
-              <address className="not-italic text-[17px] text-[#4A5568] leading-relaxed mb-10">
-                {storeDetails.address.street}<br />
-                {storeDetails.address.postalCode} {storeDetails.address.city}<br />
-                Österreich
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            
+            {/* Column 1: ADRESSE */}
+            <div className="flex flex-col border-t border-[#E5E2DC] pt-4">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-[0.12em] text-[#718096] mb-2.5">
+                Adresse
+              </span>
+              <p className="text-[15.5px] font-medium text-[#1A1A1A] leading-snug">
+                {storeDetails.name}
+              </p>
+              <address className="not-italic text-[14.5px] text-[#4A5568] leading-relaxed mt-1 mb-3">
+                {storeDetails.address.street}
+                <br />
+                {storeDetails.address.postalCode} {storeDetails.address.city}
               </address>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] mb-3">Öffnungszeiten</h3>
-                  <dl className="space-y-2 text-[15px] text-[#4A5568]">
-                    {storeDetails.hours.map((hour) => (
-                      <div key={hour.label} className="flex justify-between">
-                        <dt>{hour.label}</dt>
-                        <dd className="font-medium text-[#1A1A1A]">{hour.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  {storeDetails.hoursNote && (
-                    <p className="mt-3 text-[13px] text-[#718096] italic">
-                      {storeDetails.hoursNote}
-                    </p>
-                  )}
-                </div>
-
-                <div className="pt-6 border-t border-[#E2E8F0]">
-                  <h3 className="text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] mb-3">Direkter Kontakt</h3>
-                  <div className="space-y-3 text-[15px]">
-                    <a href={storeDetails.phoneHref} className="flex items-center text-[#4A5568] hover:text-[#C01718] transition-colors">
-                      <span className="w-24">Telefon:</span>
-                      <span className="font-medium text-[#1A1A1A]">{storeDetails.phone}</span>
-                    </a>
-                    <a href={storeDetails.emailHref} className="flex items-center text-[#4A5568] hover:text-[#C01718] transition-colors">
-                      <span className="w-24">E-Mail:</span>
-                      <span className="font-medium text-[#1A1A1A]">{storeDetails.email}</span>
-                    </a>
-                  </div>
-                </div>
+              <div>
+                <a
+                  href={storeDetails.routePlanningHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center text-[12px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                >
+                  Route planen <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                </a>
               </div>
             </div>
 
-            {/* 2. ACTIONS: WhatsApp & Route */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href={storeDetails.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center rounded-sm bg-[#C01718] px-6 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
-              >
-                Auf WhatsApp schreiben
-              </a>
-              <a
-                href={storeDetails.routePlanningHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-6 py-4 text-[13px] font-medium uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#333333] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A] focus-visible:ring-offset-2"
-              >
-                Route planen
-              </a>
+            {/* Column 2: ÖFFNUNGSZEITEN */}
+            <div className="flex flex-col border-t border-[#E5E2DC] pt-4">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-[0.12em] text-[#718096] mb-2.5">
+                Öffnungszeiten
+              </span>
+              <div className="space-y-1.5 text-[14.5px] text-[#4A5568] mb-2">
+                {storeDetails.hours.map((hour) => (
+                  <div key={hour.label} className="flex items-baseline justify-between max-w-[220px]">
+                    <span className="text-[#718096]">{hour.label}</span>
+                    <span className="font-medium text-[#1A1A1A]">{hour.value}</span>
+                  </div>
+                ))}
+              </div>
+              {storeDetails.hoursNote && (
+                <p className="text-[12.5px] text-[#718096] italic">
+                  {storeDetails.hoursNote}
+                </p>
+              )}
             </div>
+
+            {/* Column 3: DIREKT ERREICHBAR */}
+            <div className="flex flex-col border-t border-[#E5E2DC] pt-4">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-[0.12em] text-[#718096] mb-2.5">
+                Direkt erreichbar
+              </span>
+              <div className="space-y-2 text-[14.5px]">
+                <div>
+                  <a
+                    href={storeDetails.phoneHref}
+                    className="font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors"
+                  >
+                    {storeDetails.phone}
+                  </a>
+                </div>
+
+                <div>
+                  <a
+                    href={storeDetails.emailHref}
+                    className="font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors"
+                  >
+                    {storeDetails.email}
+                  </a>
+                </div>
+
+                {storeDetails.whatsappHref && (
+                  <div className="pt-1.5">
+                    <a
+                      href={storeDetails.whatsappHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center text-[12px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                    >
+                      WhatsApp schreiben <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7">
-            <div className="relative aspect-square lg:aspect-[4/5] w-full overflow-hidden rounded-sm bg-[#E2E8F0]">
-              <Image
-                src={imagery.sustainabilityShelf.src}
-                alt={imagery.sustainabilityShelf.alt}
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-                style={{ objectPosition: imagery.sustainabilityShelf.objectPosition }}
-              />
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* 3. CONTACT FORM */}
-      <section className="bg-[#F9F9F8] border-y border-[#E2E8F0] px-4 py-20 lg:px-6 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      {/* CHAPTER 3: MESSAGE FORM (TYPOGRAPHY-LED FORM SECTION) */}
+      <section className="py-14 lg:py-20 px-6 lg:px-8 2xl:px-12 bg-white">
+        <div className="mx-auto max-w-[1360px]">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-20 items-start">
             
-            <div className="lg:col-span-5">
-              <h2 className="font-display text-4xl text-[#1A1A1A] mb-6">Nachricht senden</h2>
-              <p className="text-[17px] text-[#4A5568] leading-relaxed mb-8">
-                Haben Sie eine Frage zu unserer Kollektion oder möchten Sie wissen, ob ein bestimmtes Stück vorrätig ist? Schreiben Sie uns einfach eine Nachricht.
+            {/* Left: Editorial Intro (32-35%) */}
+            <div className="lg:col-span-4 flex flex-col items-start pt-1">
+              <span className="text-[11.5px] font-mono font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+                Noch eine Frage?
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#1A1A1A] tracking-tight mb-3">
+                Schreiben Sie uns einfach.
+              </h2>
+              <p className="text-[15px] sm:text-[15.5px] text-[#4A5568] leading-relaxed max-w-sm">
+                Sie möchten wissen, ob ein bestimmtes Stück verfügbar ist, haben eine Frage zu Größen oder möchten vor Ihrem Besuch etwas klären? Schreiben Sie uns gerne.
               </p>
-              
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#E2E8F0] mt-12 hidden lg:block">
-                <Image
-                  src={imagery.storeDetails[0].src}
-                  alt={imagery.storeDetails[0].alt}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
-                  style={{ objectPosition: imagery.storeDetails[0].objectPosition }}
-                />
-              </div>
             </div>
 
-            <div className="lg:col-span-6 lg:col-start-7 bg-white p-8 lg:p-12 rounded-sm border border-[#E2E8F0]">
+            {/* Right: Clean Editorial Contact Form (65-68%) */}
+            <div className="lg:col-span-8 max-w-[680px] w-full">
               <ContactForm />
             </div>
 
           </div>
+
         </div>
       </section>
+
     </div>
   );
 }

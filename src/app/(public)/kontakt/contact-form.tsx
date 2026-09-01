@@ -22,18 +22,18 @@ export function ContactForm() {
       <div
         role="status"
         aria-live="polite"
-        className="p-8 bg-[#F3F8F2] border border-[#C6E2C3] rounded-sm flex flex-col gap-4 text-[#1C3D1A] outline-none"
+        className="p-8 bg-[#FAF9F6] border border-[#EDEAE4] rounded-sm flex flex-col gap-4 text-[#1A1A1A] outline-none"
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#3B7A36] text-white flex items-center justify-center font-bold text-sm">
+          <div className="w-7 h-7 rounded-full bg-[#1A1A1A] text-white flex items-center justify-center font-bold text-xs">
             ✓
           </div>
-          <h3 className="font-display text-2xl font-normal text-[#1C3D1A]">
+          <h3 className="font-display text-2xl font-normal text-[#1A1A1A]">
             Nachricht erfolgreich gesendet
           </h3>
         </div>
 
-        <p className="text-[15px] leading-relaxed text-[#2D5A2A]">
+        <p className="text-[15px] leading-relaxed text-[#4A5568]">
           {state.message ||
             "Vielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und melden uns so schnell wie möglich bei Ihnen."}
         </p>
@@ -42,7 +42,7 @@ export function ContactForm() {
           <button
             type="button"
             onClick={() => setDismissedTimestamp(state.submittedAt || Date.now())}
-            className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-6 py-3 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2 cursor-pointer"
+            className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-6 py-3 text-[12.5px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2 cursor-pointer"
           >
             Weitere Nachricht schreiben
           </button>
@@ -52,7 +52,7 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} action={formAction} className="space-y-8" noValidate>
+    <form ref={formRef} action={formAction} className="space-y-5" noValidate>
       {/* Global Error Banner */}
       {!state.success && state.message && (
         <div
@@ -76,72 +76,75 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="space-y-8">
-        {/* Name */}
-        <div>
-          <label
-            htmlFor="name"
-            className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]"
-          >
-            Name *
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            autoComplete="name"
-            required
-            disabled={isPending}
-            aria-invalid={Boolean(state.fieldErrors?.name)}
-            aria-describedby={state.fieldErrors?.name ? "name-error" : undefined}
-            className={`block w-full border-0 border-b ${
-              state.fieldErrors?.name ? "border-[#C01718]" : "border-[#E2E8F0]"
-            } bg-transparent py-3 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#C01718] focus:ring-0 sm:text-[15px] transition-colors`}
-            placeholder="Ihr vollständiger Name"
-          />
-          {state.fieldErrors?.name && (
-            <p id="name-error" className="mt-1.5 text-xs text-[#C01718] font-medium">
-              {state.fieldErrors.name[0]}
-            </p>
-          )}
-        </div>
+      <div className="space-y-5">
+        {/* Name & Email in 2-column row on tablet/desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+          {/* Name */}
+          <div>
+            <label
+              htmlFor="name"
+              className="mb-1.5 block text-[11.5px] font-mono font-medium uppercase tracking-[0.1em] text-[#1A1A1A]"
+            >
+              Name *
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              autoComplete="name"
+              required
+              disabled={isPending}
+              aria-invalid={Boolean(state.fieldErrors?.name)}
+              aria-describedby={state.fieldErrors?.name ? "name-error" : undefined}
+              className={`block w-full border-0 border-b ${
+                state.fieldErrors?.name ? "border-[#C01718]" : "border-[#E5E2DC]"
+              } bg-transparent py-2.5 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#1A1A1A] focus:ring-0 sm:text-[15px] transition-colors`}
+              placeholder="Ihr Name"
+            />
+            {state.fieldErrors?.name && (
+              <p id="name-error" className="mt-1 text-xs text-[#C01718] font-medium">
+                {state.fieldErrors.name[0]}
+              </p>
+            )}
+          </div>
 
-        {/* E-Mail */}
-        <div>
-          <label
-            htmlFor="email"
-            className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]"
-          >
-            E-Mail *
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            autoComplete="email"
-            required
-            disabled={isPending}
-            aria-invalid={Boolean(state.fieldErrors?.email)}
-            aria-describedby={state.fieldErrors?.email ? "email-error" : undefined}
-            className={`block w-full border-0 border-b ${
-              state.fieldErrors?.email ? "border-[#C01718]" : "border-[#E2E8F0]"
-            } bg-transparent py-3 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#C01718] focus:ring-0 sm:text-[15px] transition-colors`}
-            placeholder="ihre.adresse@beispiel.at"
-          />
-          {state.fieldErrors?.email && (
-            <p id="email-error" className="mt-1.5 text-xs text-[#C01718] font-medium">
-              {state.fieldErrors.email[0]}
-            </p>
-          )}
+          {/* E-Mail */}
+          <div>
+            <label
+              htmlFor="email"
+              className="mb-1.5 block text-[11.5px] font-mono font-medium uppercase tracking-[0.1em] text-[#1A1A1A]"
+            >
+              E-Mail *
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              autoComplete="email"
+              required
+              disabled={isPending}
+              aria-invalid={Boolean(state.fieldErrors?.email)}
+              aria-describedby={state.fieldErrors?.email ? "email-error" : undefined}
+              className={`block w-full border-0 border-b ${
+                state.fieldErrors?.email ? "border-[#C01718]" : "border-[#E5E2DC]"
+              } bg-transparent py-2.5 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#1A1A1A] focus:ring-0 sm:text-[15px] transition-colors`}
+              placeholder="ihre.adresse@beispiel.at"
+            />
+            {state.fieldErrors?.email && (
+              <p id="email-error" className="mt-1 text-xs text-[#C01718] font-medium">
+                {state.fieldErrors.email[0]}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Phone (optional) */}
         <div>
           <label
             htmlFor="phone"
-            className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]"
+            className="mb-1.5 block text-[11.5px] font-mono font-medium uppercase tracking-[0.1em] text-[#1A1A1A]"
           >
-            Telefon <span className="text-[#A0AEC0] font-normal normal-case">(optional)</span>
+            Telefon <span className="text-[#A0AEC0] font-normal normal-case font-sans">(optional)</span>
           </label>
           <input
             type="tel"
@@ -152,12 +155,12 @@ export function ContactForm() {
             aria-invalid={Boolean(state.fieldErrors?.phone)}
             aria-describedby={state.fieldErrors?.phone ? "phone-error" : undefined}
             className={`block w-full border-0 border-b ${
-              state.fieldErrors?.phone ? "border-[#C01718]" : "border-[#E2E8F0]"
-            } bg-transparent py-3 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#C01718] focus:ring-0 sm:text-[15px] transition-colors`}
+              state.fieldErrors?.phone ? "border-[#C01718]" : "border-[#E5E2DC]"
+            } bg-transparent py-2.5 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#1A1A1A] focus:ring-0 sm:text-[15px] transition-colors`}
             placeholder="z.B. 0676 1234567"
           />
           {state.fieldErrors?.phone && (
-            <p id="phone-error" className="mt-1.5 text-xs text-[#C01718] font-medium">
+            <p id="phone-error" className="mt-1 text-xs text-[#C01718] font-medium">
               {state.fieldErrors.phone[0]}
             </p>
           )}
@@ -167,36 +170,36 @@ export function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="mb-3 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A]"
+            className="mb-1.5 block text-[11.5px] font-mono font-medium uppercase tracking-[0.1em] text-[#1A1A1A]"
           >
             Nachricht *
           </label>
           <textarea
             name="message"
             id="message"
-            rows={5}
+            rows={4}
             required
             disabled={isPending}
             aria-invalid={Boolean(state.fieldErrors?.message)}
             aria-describedby={state.fieldErrors?.message ? "message-error" : undefined}
             className={`block w-full border-0 border-b ${
-              state.fieldErrors?.message ? "border-[#C01718]" : "border-[#E2E8F0]"
-            } bg-transparent py-3 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#C01718] focus:ring-0 sm:text-[15px] resize-y transition-colors`}
+              state.fieldErrors?.message ? "border-[#C01718]" : "border-[#E5E2DC]"
+            } bg-transparent py-2.5 px-0 text-[#1A1A1A] placeholder:text-[#A0AEC0] focus:border-[#1A1A1A] focus:ring-0 sm:text-[15px] resize-y transition-colors min-h-[130px] max-h-[220px]`}
             placeholder="Wie können wir Ihnen weiterhelfen?"
           />
           {state.fieldErrors?.message && (
-            <p id="message-error" className="mt-1.5 text-xs text-[#C01718] font-medium">
+            <p id="message-error" className="mt-1 text-xs text-[#C01718] font-medium">
               {state.fieldErrors.message[0]}
             </p>
           )}
         </div>
       </div>
 
-      <div className="pt-6">
+      <div className="pt-2">
         <button
           type="submit"
           disabled={isPending}
-          className="w-full inline-flex cursor-pointer items-center justify-center rounded-sm bg-[#1A1A1A] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="inline-flex cursor-pointer items-center justify-center rounded-sm bg-[#C01718] px-7 py-3.5 text-[12.5px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#A01314] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isPending ? (
             <span className="inline-flex items-center gap-2">
@@ -224,7 +227,9 @@ export function ContactForm() {
               Wird gesendet...
             </span>
           ) : (
-            "Nachricht senden"
+            <>
+              Nachricht senden <span className="ml-1.5" aria-hidden="true">→</span>
+            </>
           )}
         </button>
       </div>

@@ -200,7 +200,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
         className={
           isPinnedActive
             ? "sticky z-10 flex w-full flex-col justify-start overflow-hidden bg-[#FAF9F6] pt-4 lg:pt-5 2xl:pt-9 pb-3 lg:pb-4 2xl:pb-7"
-            : "relative w-full py-16 lg:py-24 bg-[#FAF9F6]"
+            : "relative w-full py-10 sm:py-16 lg:py-24 bg-[#FAF9F6]"
         }
         style={
           isPinnedActive
@@ -276,7 +276,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                 ref={(el) => {
                   cardRefs.current[index] = el;
                 }}
-                className="w-[78vw] max-w-[300px] sm:w-[45vw] sm:max-w-[340px] md:w-[40vw] md:max-w-[360px] lg:w-[min(clamp(280px,24vw,390px),max(240px,calc((100vh-360px)*0.75)))] shrink-0 snap-start group flex flex-col transition-[opacity] duration-200 ease-out"
+                className="w-[84vw] max-w-[310px] sm:w-[45vw] sm:max-w-[340px] md:w-[40vw] md:max-w-[360px] lg:w-[min(clamp(280px,24vw,390px),max(240px,calc((100vh-360px)*0.75)))] shrink-0 snap-start group flex flex-col transition-[opacity] duration-200 ease-out"
               >
                 <Link
                   href="/outfits"
@@ -319,15 +319,7 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
           </div>
         </div>
 
-        {/* Mobile Link at Bottom */}
-        <div className="mt-6 px-6 text-center lg:hidden shrink-0">
-          <Link
-            href="/outfits"
-            className="inline-flex items-center justify-center rounded-sm border border-[#E2E8F0] bg-white px-8 py-3.5 text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] transition-colors duration-200 ease-out hover:bg-[#F3F2EE] hover:border-[#1A1A1A] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#1A1A1A]"
-          >
-            Alle Outfits ansehen
-          </Link>
-        </div>
+        {/* Mobile Link at Bottom removed to prevent duplicate CTA */}
       </div>
     </section>
   );

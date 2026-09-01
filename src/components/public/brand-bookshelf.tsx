@@ -189,7 +189,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
       {/* 2. MOBILE & TABLET COMPACT ACCORDION (< 1024px) */}
       <div className="block lg:hidden">
         {/* Mobile Section Header */}
-        <div className="mb-8 text-left">
+        <div className="mb-5 sm:mb-8 text-left">
           <div className="flex items-center gap-2.5 mb-2">
             <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
             <span className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
@@ -215,7 +215,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
                   type="button"
                   aria-expanded={isExpanded}
                   onClick={() => setMobileExpandedIndex(isExpanded ? null : index)}
-                  className="flex items-center justify-between p-4 text-left transition-colors hover:bg-[#FAF9F6] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
+                  className="flex items-center justify-between p-3.5 sm:p-4 text-left transition-colors hover:bg-[#FAF9F6] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
                 >
                   <span className={`text-[15px] ${isExpanded ? 'font-semibold text-[#C01718]' : 'font-medium text-[#1A1A1A]'}`}>
                     {brand.name}
@@ -233,7 +233,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25 }}
-                      className="overflow-hidden bg-[#FAF9F6] px-4 pb-6 pt-2 flex flex-col gap-4 border-t border-[#ECEAE4]/60"
+                      className="overflow-hidden bg-[#FAF9F6] px-3.5 sm:px-4 pb-4 sm:pb-6 pt-2 flex flex-col gap-3 sm:gap-4 border-t border-[#ECEAE4]/60"
                     >
                       {/* Image / Fallback */}
                       <div className="relative w-full aspect-[16/10] rounded-sm overflow-hidden bg-[#EFECE6]">
@@ -279,7 +279,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
         </div>
 
         {/* Mobile Bottom Link */}
-        <div className="mt-6 text-center">
+        <div className="mt-5 sm:mt-6 text-center">
           <Link
             href="/marken"
             className="inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 pb-0.5"

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { FadeIn } from "@/components/public/motion/fade-in";
 import { imagery, seoRoutes } from "@/content/fixtures/checkpot";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
 
@@ -22,8 +23,9 @@ export default async function UeberUnsPage() {
   const storeDetails = await getStoreDetails();
 
   return (
-    <div className="flex flex-col bg-[#F9F9F8]">
-      <div className="mx-auto w-full max-w-[1400px] px-4 pt-12 lg:px-6">
+    <div className="flex flex-col bg-white">
+      {/* 1. QUIET BREADCRUMBS */}
+      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-6 pb-2">
         <Breadcrumbs
           items={[
             { label: "Startseite", href: "/" },
@@ -32,25 +34,38 @@ export default async function UeberUnsPage() {
         />
       </div>
 
-      {/* 1. OPENING */}
-      <section className="mx-auto w-full max-w-[1400px] px-4 py-16 lg:px-6 lg:py-24">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-6 lg:col-start-1">
-            <h1 className="font-display text-5xl lg:text-7xl text-[#1A1A1A] tracking-tight mb-8">
-              Zeit für Ihren Stil
+      {/* 2. EDITORIAL HERO (PERSONAL CONSULTATION / EXPERIENCE) */}
+      <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-3 pb-12 lg:pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.2fr] gap-10 lg:gap-14 xl:gap-20 items-center">
+          
+          {/* Left: Heading & Intro */}
+          <FadeIn duration={600} translateY={16} className="flex flex-col">
+            <div className="flex items-center gap-2.5 mb-3.5">
+              <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
+              <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
+                Persönliche Beratung in Wien-Hietzing
+              </span>
+            </div>
+
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[52px] 2xl:text-[60px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A] mb-4">
+              Zeit für Ihren Stil.
             </h1>
-            <p className="text-xl lg:text-2xl text-[#1A1A1A] font-medium leading-relaxed mb-6">
-              Hier wird nicht einfach nur Kleidung verkauft. Wir nehmen uns die Zeit, um herauszufinden, was wirklich zu Ihnen passt.
+
+            <p className="text-[17px] sm:text-[19px] 2xl:text-[21px] text-[#1A1A1A] font-medium leading-relaxed mb-3 max-w-xl">
+              Bei Checkpot geht es nicht darum, Ihnen einfach etwas zu verkaufen. Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen.
             </p>
-            <p className="text-[17px] text-[#4A5568] leading-relaxed">
-              Willkommen bei {storeDetails.name} – Ihrer Boutique für persönliche, ehrliche und kompetente Stilberatung in Wien.
+
+            <p className="text-[15.5px] sm:text-[17px] text-[#4A5568] leading-relaxed max-w-lg">
+              Persönlich, ehrlich und mit viel Gespür für das, was zu Ihnen passt.
             </p>
-          </div>
-          <div className="lg:col-span-6">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#E2E8F0]">
+          </FadeIn>
+
+          {/* Right: Christa Consultation Image */}
+          <FadeIn delay={120} duration={600} translateY={16} className="relative">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] max-h-[460px] 2xl:max-h-[520px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
               <Image
                 src={imagery.hero.src}
-                alt={imagery.hero.alt}
+                alt="Christa Hausmair bei der persönlichen Modeberatung im Checkpot Hietzing."
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -58,105 +73,255 @@ export default async function UeberUnsPage() {
                 style={{ objectPosition: imagery.hero.objectPosition }}
               />
             </div>
-          </div>
+          </FadeIn>
+
         </div>
       </section>
 
-      {/* 2. CONSULTATION PHILOSOPHY */}
-      <section className="bg-white border-y border-[#E2E8F0] px-4 py-20 lg:px-6 lg:py-32">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <div className="lg:col-span-5">
-              <span className="mb-4 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#C01718]">
-                Unsere Philosophie
-              </span>
-              <h2 className="font-display text-4xl lg:text-5xl text-[#1A1A1A] leading-[1.1] mb-8">
-                Mode, die Ihre Persönlichkeit unterstreicht
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7 prose prose-lg prose-p:text-[#4A5568] prose-p:leading-relaxed">
-              <p className="text-xl text-[#1A1A1A] font-medium mb-8">
-                „Bei uns finden Sie nicht die gängigen Trends, die alle tragen – sondern hochwertige, feminine Mode, die wir durch einfühlsame, persönliche Stilberatung perfekt auf den Typ der Kundin abstimmen.“
-              </p>
-              <p>
-                Mode ist für uns mehr als nur Kleidung – sie ist Ausdruck der eigenen Identität. In einer Zeit, in der fast alles online bestellt und zurückgeschickt wird, glauben wir fest an den Wert der persönlichen Begegnung. Stoffe muss man fühlen, Schnitte muss man anprobieren.
-              </p>
-              <p>
-                „Es gibt wenige Frauen, denen alle Farben passen“, weiß Christa Hausmair aus langjähriger Erfahrung. „Stures Festkrallen an Modemagazin-Vorgaben gibt es bei mir nicht. Es geht immer darum, die jeweilige Persönlichkeit zu verstärken.“ 
-              </p>
-              <p>
-                Wir beraten Sie ehrlich zu Farben, Proportionen und Kombinationen – auch in Verbindung mit Ihren vorhandenen Lieblingsstücken. Das Ziel ist immer, dass Sie sich in Ihrer Kleidung rundum wohl und authentisch fühlen.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. CHRISTA & 4. PHOTOGRAPHIC STORY */}
-      <section className="mx-auto w-full max-w-[1400px] px-4 py-20 lg:px-6 lg:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      {/* 3. DIE BOUTIQUE (PLACE & ATMOSPHERE WITH REAL STORE PHOTOS) */}
+      <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-14 lg:py-20 px-6 lg:px-8 2xl:px-12">
+        <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
           
-          <div className="lg:col-span-5 lg:order-2">
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[#E2E8F0] mb-8">
+          <div className="mb-10 lg:mb-12">
+            <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+              Die Boutique
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-normal text-[#1A1A1A] tracking-tight mb-3">
+              Ein Geschäft zum Entdecken.
+            </h2>
+            <p className="text-[15.5px] sm:text-[17px] text-[#4A5568] leading-relaxed max-w-2xl">
+              Farben, Muster, besondere Stücke – und genug Zeit, alles in Ruhe anzusehen und anzuprobieren. Checkpot ist ein Ort zum Stöbern, Kombinieren und Entdecken.
+            </p>
+          </div>
+
+          {/* Asymmetric Store Photography Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+            
+            {/* Large Store Interior Image */}
+            <div className="lg:col-span-8 relative aspect-[16/10] sm:aspect-[3/2] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.03)]">
+              <Image
+                src="/customer/store/20260820_110653.jpg"
+                alt="Innenraum der Checkpot Boutique in Wien-Hietzing mit Kleiderständern und Holzregalen."
+                fill
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                className="object-cover"
+                style={{ objectPosition: "50% 50%" }}
+              />
+            </div>
+
+            {/* Supporting Detail Images Column */}
+            <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-8">
+              <div className="relative aspect-[4/3] lg:aspect-[4/3] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
+                <Image
+                  src="/customer/store/20260819_132541.jpg"
+                  alt="Sorgfältig arrangierte Kleider und Farben auf Bügeln im Geschäft von Checkpot."
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                  style={{ objectPosition: "50% 40%" }}
+                />
+              </div>
+
+              <div className="relative aspect-[4/3] lg:aspect-[4/3] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
+                <Image
+                  src="/customer/store/20260820_110543.jpg"
+                  alt="Textilauslage und stilvolle Accessoires in der Checkpot Boutique."
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                  style={{ objectPosition: "50% 50%" }}
+                />
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. UNSERE PHILOSOPHIE (3 CONCISE PRINCIPLES) */}
+      <section className="bg-white py-14 lg:py-18 px-6 lg:px-8 2xl:px-12">
+        <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+          
+          <div className="mb-8 lg:mb-12">
+            <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+              Unsere Philosophie
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-normal text-[#1A1A1A] tracking-tight">
+              Was bei der Beratung zählt.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {/* Principle 01 */}
+            <div className="flex flex-col border-t border-[#E5E2DC] pt-5">
+              <span className="text-[12px] font-mono font-bold text-[#C01718] mb-2.5 select-none">
+                01
+              </span>
+              <h3 className="font-display text-xl sm:text-2xl text-[#1A1A1A] mb-2.5 leading-snug">
+                Persönlich beraten
+              </h3>
+              <p className="text-[15px] text-[#4A5568] leading-relaxed">
+                Wir hören zu und schauen gemeinsam, welche Farben, Schnitte und Kombinationen wirklich zu Ihnen passen.
+              </p>
+            </div>
+
+            {/* Principle 02 */}
+            <div className="flex flex-col border-t border-[#E5E2DC] pt-5">
+              <span className="text-[12px] font-mono font-bold text-[#C01718] mb-2.5 select-none">
+                02
+              </span>
+              <h3 className="font-display text-xl sm:text-2xl text-[#1A1A1A] mb-2.5 leading-snug">
+                Nicht jedem Trend folgen
+              </h3>
+              <p className="text-[15px] text-[#4A5568] leading-relaxed">
+                Entscheidend ist nicht, was gerade alle tragen – sondern was Ihre Persönlichkeit unterstreicht.
+              </p>
+            </div>
+
+            {/* Principle 03 */}
+            <div className="flex flex-col border-t border-[#E5E2DC] pt-5">
+              <span className="text-[12px] font-mono font-bold text-[#C01718] mb-2.5 select-none">
+                03
+              </span>
+              <h3 className="font-display text-xl sm:text-2xl text-[#1A1A1A] mb-2.5 leading-snug">
+                Wohlfühlen statt verkleiden
+              </h3>
+              <p className="text-[15px] text-[#4A5568] leading-relaxed">
+                Mode soll sich gut anfühlen und selbstverständlich zu Ihnen gehören.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. CHRISTA (THE PERSON BEHIND CHECKPOT) */}
+      <section className="bg-[#FAF9F6] border-y border-[#EDEAE4] py-14 lg:py-20 px-6 lg:px-8 2xl:px-12">
+        <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-14 xl:gap-20 items-center">
+            
+            {/* Left: Christa Storefront Photo */}
+            <div className="relative aspect-[3/4] sm:aspect-[4/3] lg:aspect-[3/4] max-h-[440px] 2xl:max-h-[500px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
               <Image
                 src={imagery.founder.src}
-                alt={imagery.founder.alt}
+                alt="Christa Hausmair vor der Boutique Checkpot in Wien Hietzing."
                 fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
+                sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"
                 style={{ objectPosition: imagery.founder.objectPosition }}
               />
             </div>
-            <div className="grid grid-cols-2 gap-4 lg:gap-8">
-              {imagery.storeDetails.map((img) => (
-                <div key={img.src} className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-[#E2E8F0]">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(min-width: 1024px) 20vw, 50vw"
-                    className="object-cover"
-                    style={{ objectPosition: img.objectPosition }}
-                  />
-                </div>
-              ))}
+
+            {/* Right: Christa Story */}
+            <div className="flex flex-col">
+              <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+                Das Gesicht hinter Checkpot
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-normal text-[#1A1A1A] mb-4 tracking-tight leading-snug">
+                Christa Hausmair.
+              </h2>
+              <div className="space-y-4 text-[15.5px] sm:text-[17px] text-[#4A5568] leading-relaxed max-w-xl">
+                <p>
+                  Checkpot Hietzing gibt es seit 2009. Christa Hausmair führt die Boutique mit einem klaren Anspruch: Mode soll nicht beliebig sein, sondern zur Frau passen, die sie trägt.
+                </p>
+                <p>
+                  Für Christa steht deshalb nicht der schnelle Verkauf im Mittelpunkt, sondern die Frage, womit sich eine Kundin wirklich wohlfühlt und was zu ihrer Garderobe passt.
+                </p>
+              </div>
             </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 6. BOUTIQUE IMPRESSIONS (ATMOSPHERIC GALLERY WITH STORE PHOTOS) */}
+      <section className="bg-white py-14 lg:py-20 px-6 lg:px-8 2xl:px-12">
+        <div className="mx-auto max-w-[1400px] 2xl:max-w-[1600px]">
+          
+          <div className="mb-8 lg:mb-10">
+            <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-1.5">
+              Einblicke in die Boutique
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-normal text-[#1A1A1A] tracking-tight">
+              Ein bisschen Checkpot zum Durchscrollen.
+            </h2>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-1 lg:order-1">
-            <span className="mb-4 block text-[13px] font-medium uppercase tracking-[0.08em] text-[#4A5568]">
-              Das Gesicht hinter Checkpot
-            </span>
-            <h2 className="font-display text-4xl lg:text-5xl text-[#1A1A1A] mb-8">
-              {storeDetails.owner}
-            </h2>
-            <div className="space-y-6 text-[17px] text-[#4A5568] leading-relaxed">
-              <p>
-                Christa Hausmair lebt ihre Liebe zum geschmackvollen Textilen seit 2009 mit großer Freude in ihrem Geschäft in Hietzing aus. Mit viel Leidenschaft und einem sicheren Blick für Stil und Qualität wählt sie jede Saison die Kollektionen persönlich aus.
-              </p>
-              <p>
-                Ein besonderes Herzensanliegen ist es ihr, Mode anzubieten, die unter fairen und nachhaltigen Bedingungen hergestellt wird – bevorzugt aus Europa.
-              </p>
+          {/* 3 Real Boutique Highlights from images/store */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="relative aspect-[4/5] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
+              <Image
+                src="/customer/store/20260819_132459.jpg"
+                alt="Geschäftseinblicke bei Checkpot mit Holzregalen und Kollektionen."
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover"
+                style={{ objectPosition: "50% 35%" }}
+              />
             </div>
-            
-            <div className="mt-16 rounded-sm bg-white p-10 border border-[#E2E8F0]">
-              <h3 className="font-display text-2xl text-[#1A1A1A] mb-4">
-                Wir freuen uns auf Sie
-              </h3>
-              <p className="text-[15px] text-[#4A5568] leading-relaxed mb-8">
-                Besuchen Sie uns in unserer Boutique in {storeDetails.address.city} Hietzing. Wir nehmen uns gerne Zeit für Sie und finden gemeinsam Mode, die wirklich zu Ihnen passt.
-              </p>
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-8 py-4 text-[13px] uppercase tracking-[0.08em] font-medium text-white transition-colors duration-200 ease-out hover:bg-[#C01718] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
-              >
-                Besuchen Sie uns in Hietzing
-              </Link>
+
+            <div className="relative aspect-[4/5] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
+              <Image
+                src="/customer/store/20260813_125844.jpg"
+                alt="Farbige Kleider und ausgewählte Stücke auf Bügeln in der Boutique."
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover"
+                style={{ objectPosition: "50% 35%" }}
+              />
+            </div>
+
+            <div className="relative aspect-[4/5] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)] sm:col-span-2 lg:col-span-1">
+              <Image
+                src="/customer/store/20260820_110328.jpg"
+                alt="Heller Boutique-Raum mit Kleiderstangen und Modeauswahl im Checkpot Hietzing."
+                fill
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                className="object-cover"
+                style={{ objectPosition: "50% 40%" }}
+              />
             </div>
           </div>
 
         </div>
       </section>
+
+      {/* 7. VISIT CTA (VORBEIKOMMEN & ENTDECKEN) */}
+      <section className="bg-[#FAF9F6] border-t border-[#EDEAE4] py-14 lg:py-18 px-6 lg:px-8 2xl:px-12 text-center">
+        <div className="mx-auto max-w-2xl">
+          <span className="text-[11.5px] 2xl:text-[12px] font-semibold uppercase tracking-[0.14em] text-[#C01718] block mb-2">
+            Vorbeikommen & Entdecken
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#1A1A1A] mb-3.5 leading-snug tracking-tight">
+            Am besten lernen Sie Checkpot persönlich kennen.
+          </h2>
+          <p className="text-[15.5px] sm:text-[17px] text-[#4A5568] leading-relaxed mb-6 max-w-xl mx-auto">
+            Besuchen Sie uns in Wien-Hietzing, stöbern Sie in Ruhe durch unsere Auswahl und lassen Sie sich persönlich beraten.
+          </p>
+
+          <div className="mb-8 text-[14.5px] text-[#5A6578] leading-relaxed">
+            <p className="font-medium text-[#1A1A1A]">
+              {storeDetails.name} · {storeDetails.address.street}, {storeDetails.address.postalCode} {storeDetails.address.city}
+            </p>
+            {storeDetails.hours && storeDetails.hours.length > 0 && (
+              <p className="mt-1 text-[13.5px]">
+                {storeDetails.hours.map((h) => `${h.label}: ${h.value}`).join(" · ")}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <Link
+              href={"/kontakt" as Route}
+              className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] hover:bg-[#C01718] px-8 py-3.5 text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.08em] text-white transition-colors duration-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] focus-visible:ring-offset-2"
+            >
+              Besuch in Hietzing planen <span className="ml-2" aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
