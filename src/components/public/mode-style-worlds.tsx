@@ -29,7 +29,7 @@ export function ModeStyleWorlds({ styles }: ModeStyleWorldsProps) {
 
   return (
     <div className="w-full">
-      {/* Desktop & Tablet Two-Zone Layout */}
+      {/* Desktop & Tablet Two-Zone Layout (>= 1024px) — STRICTLY FROZEN */}
       <div className="hidden lg:grid grid-cols-[1fr_1.15fr] xl:grid-cols-[1fr_1.2fr] gap-12 xl:gap-18 items-center">
         
         {/* Left: Typography-Led Editorial Style Index */}
@@ -116,41 +116,43 @@ export function ModeStyleWorlds({ styles }: ModeStyleWorldsProps) {
 
       </div>
 
-      {/* Mobile & Small Tablet Accordion */}
-      <div className="lg:hidden flex flex-col space-y-4">
+      {/* Mobile & Small Tablet Accordion (< 1024px) — UNBOXED EDITORIAL ROWS */}
+      <div className="lg:hidden flex flex-col divide-y divide-[#ECEAE4] border-y border-[#ECEAE4] bg-white rounded-sm">
         {styles.map((style, idx) => {
           const isActive = idx === activeIndex;
           return (
-            <div
-              key={style.id}
-              className="bg-white rounded-sm border border-[#EDEAE4] overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
-            >
+            <div key={style.id} className="flex flex-col">
               <button
                 type="button"
-                onClick={() => setActiveIndex(idx)}
-                className="w-full flex items-center justify-between p-5 text-left"
+                onClick={() => setActiveIndex(isActive ? -1 : idx)}
+                className="w-full flex items-center justify-between py-4 px-4 sm:px-5 text-left hover:bg-[#FAF9F6] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
                 aria-expanded={isActive}
               >
                 <div className="flex items-center gap-3">
                   <span
-                    className={`w-2 h-2 rounded-full ${isActive ? 'bg-[#C01718]' : 'bg-[#D5D2CA]'}`}
+                    className={`w-2 h-2 rounded-full transition-colors ${isActive ? 'bg-[#C01718]' : 'bg-[#D5D2CA]'}`}
                     aria-hidden="true"
                   />
-                  <h3 className="font-display text-xl font-medium text-[#1A1A1A]">
+                  <h3 className={`font-display text-[18px] sm:text-xl transition-colors ${isActive ? 'text-[#C01718] font-medium' : 'text-[#1A1A1A] font-normal'}`}>
                     {style.name}
                   </h3>
                 </div>
-                <span className="text-[12px] uppercase tracking-wider text-[#718096]">
-                  {style.subtitle}
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-[11px] sm:text-[12px] uppercase tracking-wider text-[#718096]">
+                    {style.subtitle}
+                  </span>
+                  <span className={`text-base font-mono transition-transform duration-200 ${isActive ? 'text-[#C01718] rotate-45' : 'text-[#A0AEC0]'}`} aria-hidden="true">
+                    +
+                  </span>
+                </div>
               </button>
 
               {isActive && (
-                <div className="px-5 pb-5 pt-0 border-t border-[#F2EFEB]">
-                  <p className="text-[14px] text-[#4A5568] leading-relaxed my-3">
+                <div className="px-4 sm:px-5 pb-5 pt-1 bg-[#FAF9F6]/60 border-t border-[#ECEAE4]/60 flex flex-col">
+                  <p className="text-[14px] text-[#4A5568] leading-relaxed my-2.5">
                     {style.description}
                   </p>
-                  <div className="relative aspect-[4/3] w-full rounded-sm overflow-hidden bg-[#EFECE6] mt-2">
+                  <div className="relative aspect-[4/3] max-h-[250px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
                     <Image
                       src={style.imageUrl}
                       alt={style.imageAlt}

@@ -26,7 +26,7 @@ export default async function OutfitsPage() {
 
   return (
     <div className="flex flex-col bg-white min-h-[80vh]">
-      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-6 pb-2">
+      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-3 sm:pt-6 pb-1 sm:pb-2">
         <Breadcrumbs
           items={[
             { label: "Startseite", href: "/" },
@@ -35,7 +35,7 @@ export default async function OutfitsPage() {
         />
       </div>
 
-      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12">
+      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-4 sm:px-6 lg:px-8 2xl:px-12">
         <OutfitsLookbook initialOutfits={outfits} taxonomy={taxonomy} />
       </div>
     </div>

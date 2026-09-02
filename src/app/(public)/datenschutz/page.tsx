@@ -190,17 +190,38 @@ export default async function DatenschutzPage() {
                 Abschnitt 03
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
-                Cookies & Webanalyse (Google Analytics 4)
+                Cookies, Webanalyse & Externe Medien
               </h3>
-              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-2">
+              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
                 <p>
                   <strong>Technisch notwendige Cookies:</strong> Wir setzen das First-Party-Cookie <code className="text-[12px] bg-[#FAF9F6] px-1 py-0.5 rounded-xs border border-[#ECEAE4]">checkpot_consent</code> (Gültigkeit: 180 Tage) ein, um Ihre Datenschutzauswahl zu speichern.
                 </p>
                 <p>
-                  <strong>Google Analytics 4 (Google Consent Mode v2 Basic):</strong> Bei Erteilung Ihrer freiwilligen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) nutzen wir Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Vor Ihrer Zustimmung werden keinerlei Analyseskripte, Tags oder Cookies geladen und keine Daten an Google übermittelt.
+                  <strong>Google Analytics 4 (Google Consent Mode v2 Basic):</strong> Bei Erteilung Ihrer freiwilligen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) nutzen wir Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Vor Ihrer Zustimmung werden keinerlei Analyseskripte, Tags oder Cookies geladen und keine Daten an Google übermittelt. Werbefunktionen, Google Signals und personalisierte Werbung sind dauerhaft deaktiviert. Bei Widerruf über den Link <em>„Cookie-Einstellungen“</em> werden Analyse-Cookies automatisch bereinigt.
                 </p>
                 <p>
-                  Werbefunktionen, Google Signals und personalisierte Werbung sind dauerhaft deaktiviert. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über den Link <em>„Cookie-Einstellungen“</em> im Footer widerrufen. Bei Widerruf werden Analyse-Cookies automatisch bereinigt.
+                  <strong>Google Maps (Externe Medien):</strong> Auf unserer Kontaktseite bieten wir zur Anreiseplanung eine interaktive Standortkarte von Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Mutterkonzern: Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) an. Die Karte wird erst nach Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) durch Klick auf <em>„Karte anzeigen“</em> oder über die <em>„Cookie-Einstellungen“</em> geladen. Erst mit dem Laden wird eine Verbindung zu den Servern von Google hergestellt, wobei Ihre IP-Adresse sowie Browser- und Gerätedaten an Google übertragen werden. Sie können diese Einwilligung jederzeit mit Wirkung für die Zukunft über die <em>„Cookie-Einstellungen“</em> im Footer widerrufen; in diesem Fall wird die Karte entladen und der lokale Platzhalter wiederhergestellt. Ohne Einwilligung bleiben Adresse und ein externer Routenplanungs-Link ohne Datenübertragung an Dritte nutzbar.
+                </p>
+                <p className="text-[12.5px] text-[#718096]">
+                  Weitere Informationen finden Sie in der{" "}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#C01718] underline hover:text-[#A01314]"
+                  >
+                    Google Datenschutzerklärung ↗
+                  </a>{" "}
+                  sowie den{" "}
+                  <a
+                    href="https://www.google.com/intl/de_at/help/terms_maps/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#C01718] underline hover:text-[#A01314]"
+                  >
+                    Zusätzlichen Nutzungsbedingungen für Google Maps ↗
+                  </a>
+                  .
                 </p>
               </div>
             </div>

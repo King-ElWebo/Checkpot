@@ -39,6 +39,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
   }
 
   const activeBrand = brands[activeIndex] || brands[0];
+  const mobileBrands = brands.slice(0, 5);
 
   return (
     <div className="w-full">
@@ -206,7 +207,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
 
         {/* Accordion List */}
         <div className="flex flex-col divide-y divide-[#ECEAE4] border-y border-[#ECEAE4] bg-white rounded-sm overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
-          {brands.map((brand, index) => {
+          {mobileBrands.map((brand, index) => {
             const isExpanded = mobileExpandedIndex === index;
 
             return (

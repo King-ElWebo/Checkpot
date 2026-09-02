@@ -15,7 +15,8 @@ interface ConsentContextValue {
   isSettingsOpen: boolean;
   acceptAll: () => void;
   acceptNecessaryOnly: () => void;
-  saveSettings: (analytics: boolean) => void;
+  saveSettings: (analytics: boolean, externalMedia: boolean) => void;
+  acceptExternalMedia: () => void;
   openSettings: () => void;
   closeSettings: () => void;
   closeBanner: () => void;
@@ -67,8 +68,8 @@ export function ConsentProvider({
     }
   }, [consent]);
 
-  const applyConsent = useCallback((analytics: boolean) => {
-    document.cookie = serializeConsentCookie(analytics);
+  const applyConsent = useCallback((analytics: boolean, externalMedia: boolean = false) => {
+    document.cookie = serializeConsentCookie(analytics, externalMedia);
     const match = document.cookie
       .split("; ")
       .find((row) => row.startsWith(CONSENT_COOKIE_NAME + "="));
@@ -86,19 +87,24 @@ export function ConsentProvider({
   }, []);
 
   const acceptAll = useCallback(() => {
-    applyConsent(true);
+    applyConsent(true, true);
   }, [applyConsent]);
 
   const acceptNecessaryOnly = useCallback(() => {
-    applyConsent(false);
+    applyConsent(false, false);
   }, [applyConsent]);
 
   const saveSettings = useCallback(
-    (analytics: boolean) => {
-      applyConsent(analytics);
+    (analytics: boolean, externalMedia: boolean) => {
+      applyConsent(analytics, externalMedia);
     },
     [applyConsent]
   );
+
+  const acceptExternalMedia = useCallback(() => {
+    const currentAnalytics = consent?.analytics ?? false;
+    applyConsent(currentAnalytics, true);
+  }, [consent, applyConsent]);
 
   const openSettings = useCallback(() => {
     setIsSettingsOpen(true);
@@ -121,6 +127,7 @@ export function ConsentProvider({
         acceptAll,
         acceptNecessaryOnly,
         saveSettings,
+        acceptExternalMedia,
         openSettings,
         closeSettings,
         closeBanner,
