@@ -323,8 +323,7 @@ resolved in `docs/SEO-SPEC.md` after route approval.
 - [ ] Mobile and desktop layouts are approved at the documented verification widths.
 - [ ] All required functions work with real approved services and expose accessible success/error
       states.
-- [ ] Non-essential analytics, video, Meta and spam-protection scripts run only under the approved
-      consent model; no map-provider content is embedded, and route planning is an external link.
+- [ ] Non-essential analytics and external-media embeds (Google Analytics 4, Google Maps on `/kontakt`) run strictly under the approved category-based consent model (blocked before consent, dynamically revocable); route planning remains additionally accessible as an external link.
 - [ ] No brand, exclusivity, sustainability, certification or business claim is published without
       customer-approved evidence.
 - [ ] Privileged operations are authorized server-side and every untrusted payload is validated.

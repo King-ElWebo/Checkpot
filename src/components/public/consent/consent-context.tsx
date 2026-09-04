@@ -38,7 +38,7 @@ export function ConsentProvider({
         .split("; ")
         .find((row) => row.startsWith(CONSENT_COOKIE_NAME + "="));
       if (match) {
-        const rawValue = match.split("=")[1];
+        const rawValue = match.substring((CONSENT_COOKIE_NAME + "=").length);
         return parseConsentCookie(rawValue);
       }
     }
@@ -52,7 +52,7 @@ export function ConsentProvider({
         .split("; ")
         .find((row) => row.startsWith(CONSENT_COOKIE_NAME + "="));
       if (match) {
-        const rawValue = match.split("=")[1];
+        const rawValue = match.substring((CONSENT_COOKIE_NAME + "=").length);
         return parseConsentCookie(rawValue) === null;
       }
     }
@@ -73,7 +73,7 @@ export function ConsentProvider({
     const match = document.cookie
       .split("; ")
       .find((row) => row.startsWith(CONSENT_COOKIE_NAME + "="));
-    const rawValue = match ? match.split("=")[1] : null;
+    const rawValue = match ? match.substring((CONSENT_COOKIE_NAME + "=").length) : null;
     const updated = parseConsentCookie(rawValue);
     setConsent(updated);
     setIsBannerOpen(false);

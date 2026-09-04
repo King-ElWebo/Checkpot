@@ -12,10 +12,65 @@ interface ContactMapProps {
   routePlanningHref: string;
 }
 
-export function ContactMap({ address, routePlanningHref }: ContactMapProps) {
-  const { consent, acceptExternalMedia } = useConsent();
+function ConsentedMapFrame({
+  embedUrl,
+  routePlanningHref,
+}: {
+  embedUrl: string;
+  routePlanningHref: string;
+}) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+
+  // Error Fallback State
+  if (hasError) {
+    return (
+      <div
+        role="alert"
+        className="w-full h-full min-h-[360px] sm:min-h-[400px] lg:min-h-[460px] bg-[#FAF9F6] flex flex-col items-center justify-center p-6 text-center text-[#1A1A1A]"
+      >
+        <p className="text-[14px] text-[#4A5568] mb-3">
+          Karte konnte nicht geladen werden.
+        </p>
+        <a
+          href={routePlanningHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-6 py-2.5 text-[12px] font-medium uppercase tracking-[0.08em] text-white hover:bg-[#C01718] transition-colors"
+        >
+          Route direkt öffnen ↗
+        </a>
+      </div>
+    );
+  }
+
+  // Active Consented Map State
+  return (
+    <div className="relative w-full h-full min-h-[360px] sm:min-h-[400px] lg:min-h-[460px] bg-[#EFECE6] overflow-hidden">
+      {isLoading && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#FAF9F6] text-[#4A5568] text-xs uppercase tracking-wider">
+          <span className="inline-flex items-center gap-2 font-medium">
+            <span className="w-2 h-2 rounded-full bg-[#C01718] animate-ping" aria-hidden="true" />
+            Karte wird geladen...
+          </span>
+        </div>
+      )}
+      <iframe
+        src={embedUrl}
+        title="Standort der Checkpot Boutique auf Google Maps"
+        className="w-full h-full min-h-[360px] sm:min-h-[400px] lg:min-h-[460px] border-0"
+        loading="lazy"
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
+        onLoad={() => setIsLoading(false)}
+        onError={() => setHasError(true)}
+      />
+    </div>
+  );
+}
+
+export function ContactMap({ address, routePlanningHref }: ContactMapProps) {
+  const { consent, acceptExternalMedia } = useConsent();
 
   const hasConsent = Boolean(consent?.externalMedia);
 
@@ -88,49 +143,6 @@ export function ContactMap({ address, routePlanningHref }: ContactMapProps) {
     );
   }
 
-  // 2. Error Fallback State
-  if (hasError) {
-    return (
-      <div
-        role="alert"
-        className="w-full h-full min-h-[360px] sm:min-h-[400px] lg:min-h-[460px] bg-[#FAF9F6] flex flex-col items-center justify-center p-6 text-center text-[#1A1A1A]"
-      >
-        <p className="text-[14px] text-[#4A5568] mb-3">
-          Karte konnte nicht geladen werden.
-        </p>
-        <a
-          href={routePlanningHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-sm bg-[#1A1A1A] px-6 py-2.5 text-[12px] font-medium uppercase tracking-[0.08em] text-white hover:bg-[#C01718] transition-colors"
-        >
-          Route direkt öffnen ↗
-        </a>
-      </div>
-    );
-  }
-
-  // 3. Active Consented Map State
-  return (
-    <div className="relative w-full h-full min-h-[360px] sm:min-h-[400px] lg:min-h-[460px] bg-[#EFECE6] overflow-hidden">
-      {isLoading && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-[#FAF9F6] text-[#4A5568] text-xs uppercase tracking-wider">
-          <span className="inline-flex items-center gap-2 font-medium">
-            <span className="w-2 h-2 rounded-full bg-[#C01718] animate-ping" aria-hidden="true" />
-            Karte wird geladen...
-          </span>
-        </div>
-      )}
-      <iframe
-        src={embedUrl}
-        title="Standort der Checkpot Boutique auf Google Maps"
-        className="w-full h-full min-h-[360px] sm:min-h-[400px] lg:min-h-[460px] border-0"
-        loading="lazy"
-        allowFullScreen
-        referrerPolicy="no-referrer-when-downgrade"
-        onLoad={() => setIsLoading(false)}
-        onError={() => setHasError(true)}
-      />
-    </div>
-  );
+  // 2. Consented Active Map
+  return <ConsentedMapFrame embedUrl={embedUrl} routePlanningHref={routePlanningHref} />;
 }

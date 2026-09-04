@@ -158,89 +158,140 @@ export default async function DatenschutzPage() {
           {/* Legal Explanations Sections */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             
-            {/* 1. Rechtsgrundlage & Zwecke */}
+            {/* 1. Hosting & Bereitstellung */}
             <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
                 Abschnitt 01
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
-                Zweck & Rechtsgrundlage (Art. 6 DSGVO)
+                Hosting & Technische Bereitstellung
               </h3>
-              <p className="text-[14px] leading-relaxed text-[#4A5568]">
-                Die Verarbeitung personenbezogener Daten erfolgt ausschließlich zur Vertragserfüllung bzw. zur Durchführung vorvertraglicher Maßnahmen (Art. 6 Abs. 1 lit. b DSGVO), wie etwa zur individuellen Beratung, Übersendung von Kollektionsinformationen oder zur Bearbeitung von Anfragen, die Sie über das Kontaktformular oder per E-Mail an uns richten.
-              </p>
+              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
+                <p>
+                  <strong>Webhosting:</strong> Diese Website wird über einen Cloud-Hosting-Dienstleister (Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA) bereitgestellt. Zur technischen Auslieferung der aufgerufenen Seiten und zur Gewährleistung der Systemsicherheit verarbeitet der Server Verbindungsdaten (Server-Logfiles wie IP-Adresse, Datum und Uhrzeit des Abrufs, Browsertyp, Betriebssystem und Referrer-URL) auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO).
+                </p>
+                <p>
+                  <strong>Schriftarten (Self-Hosted):</strong> Die auf dieser Website genutzten Schriftarten werden über die Build-Optimierung von Next.js lokal vom eigenen Webserver ausgeliefert. Beim Besuch der Website werden keine Verbindungen zu Servern von Schriftdienstleistern (wie Google Fonts) aufgebaut.
+                </p>
+              </div>
             </div>
 
-            {/* 2. Speicherdauer */}
+            {/* 2. Kontakt & E-Mail */}
             <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
                 Abschnitt 02
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
-                Speicherdauer & Fristen
+                Kontaktformular & E-Mail-Anfragen
               </h3>
-              <p className="text-[14px] leading-relaxed text-[#4A5568]">
-                Ihre Daten werden so lange gespeichert, wie dies für die Abwicklung der Geschäftsbeziehung, für Gewährleistungs- und Garantieansprüche oder auf Grund gesetzlicher steuer- und unternehmensrechtlicher Aufbewahrungspflichten (z. B. nach BAO / UGB) erforderlich ist. Nach Ablauf dieser Fristen werden die Daten gelöscht.
-              </p>
+              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
+                <p>
+                  Wenn Sie uns über das Kontaktformular oder per E-Mail kontaktieren, verarbeiten wir die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, optionale Telefonnummer und Nachricht) zur Bearbeitung und Beantwortung Ihrer Anfrage (Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO).
+                </p>
+                <p>
+                  Für den zuverlässigen Versand von Kontaktformular-Nachrichten nutzen wir den E-Mail-Dienstleister Resend Inc. Die Anfragedaten werden direkt an unsere geschäftliche Empfängeradresse übermittelt; eine dauerhafte Speicherung der Nachrichteninhalte in der Website-Datenbank findet nicht statt.
+                </p>
+              </div>
             </div>
 
-            {/* 3. Cookies & Google Analytics 4 (Consent Mode v2 Basic) */}
+            {/* 3. Missbrauchsschutz & Rate-Limiting */}
             <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
                 Abschnitt 03
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
-                Cookies, Webanalyse & Externe Medien
+                Missbrauchsschutz & Rate-Limiting
               </h3>
-              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
-                <p>
-                  <strong>Technisch notwendige Cookies:</strong> Wir setzen das First-Party-Cookie <code className="text-[12px] bg-[#FAF9F6] px-1 py-0.5 rounded-xs border border-[#ECEAE4]">checkpot_consent</code> (Gültigkeit: 180 Tage) ein, um Ihre Datenschutzauswahl zu speichern.
-                </p>
-                <p>
-                  <strong>Google Analytics 4 (Google Consent Mode v2 Basic):</strong> Bei Erteilung Ihrer freiwilligen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) nutzen wir Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Vor Ihrer Zustimmung werden keinerlei Analyseskripte, Tags oder Cookies geladen und keine Daten an Google übermittelt. Werbefunktionen, Google Signals und personalisierte Werbung sind dauerhaft deaktiviert. Bei Widerruf über den Link <em>„Cookie-Einstellungen“</em> werden Analyse-Cookies automatisch bereinigt.
-                </p>
-                <p>
-                  <strong>Google Maps (Externe Medien):</strong> Auf unserer Kontaktseite bieten wir zur Anreiseplanung eine interaktive Standortkarte von Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Mutterkonzern: Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) an. Die Karte wird erst nach Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) durch Klick auf <em>„Karte anzeigen“</em> oder über die <em>„Cookie-Einstellungen“</em> geladen. Erst mit dem Laden wird eine Verbindung zu den Servern von Google hergestellt, wobei Ihre IP-Adresse sowie Browser- und Gerätedaten an Google übertragen werden. Sie können diese Einwilligung jederzeit mit Wirkung für die Zukunft über die <em>„Cookie-Einstellungen“</em> im Footer widerrufen; in diesem Fall wird die Karte entladen und der lokale Platzhalter wiederhergestellt. Ohne Einwilligung bleiben Adresse und ein externer Routenplanungs-Link ohne Datenübertragung an Dritte nutzbar.
-                </p>
-                <p className="text-[12.5px] text-[#718096]">
-                  Weitere Informationen finden Sie in der{" "}
-                  <a
-                    href="https://policies.google.com/privacy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#C01718] underline hover:text-[#A01314]"
-                  >
-                    Google Datenschutzerklärung ↗
-                  </a>{" "}
-                  sowie den{" "}
-                  <a
-                    href="https://www.google.com/intl/de_at/help/terms_maps/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#C01718] underline hover:text-[#A01314]"
-                  >
-                    Zusätzlichen Nutzungsbedingungen für Google Maps ↗
-                  </a>
-                  .
-                </p>
-              </div>
+              <p className="text-[14px] leading-relaxed text-[#4A5568]">
+                Zum Schutz unserer Formulare vor automatisiertem Missbrauch (Spam) sowie zur Absicherung des Administrationsbereichs gegen unberechtigte Zugriffsversuche setzen wir ein serverseitiges Rate-Limiting ein. Hierbei werden IP-Adressen ausschließlich als unumkehrbarer kryptografischer Hashwert (HMAC-SHA256) mit einem serverseitigen Schlüssel temporär verarbeitet. Es werden keine Klartext-IP-Adressen in der Datenbank gespeichert. Rechtsgrundlage ist unser berechtigtes Interesse an der Integrität und IT-Sicherheit unseres Webangebots (Art. 6 Abs. 1 lit. f DSGVO).
+              </p>
             </div>
 
-            {/* 4. Betroffenenrechte */}
+            {/* 4. Cookies & Einwilligungsverwaltung */}
             <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
                 Abschnitt 04
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Cookies & Einwilligungsverwaltung
+              </h3>
+              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
+                <p>
+                  <strong>Technisch notwendige Cookies:</strong> Wir setzen das First-Party-Cookie <code className="text-[12px] bg-[#FAF9F6] px-1 py-0.5 rounded-xs border border-[#ECEAE4]">checkpot_consent</code> (Speicherdauer: 180 Tage) ein, um Ihre getroffene Datenschutzauswahl zuverlässig auf Ihrem Endgerät zu speichern (§ 165 Abs. 3 TKG 2021). Für angemeldete Administratoren existiert zudem ein technisch notwendiges Session-Cookie (<code className="text-[12px] bg-[#FAF9F6] px-1 py-0.5 rounded-xs border border-[#ECEAE4]">admin_session</code>).
+                </p>
+                <p>
+                  <strong>Widerruf & Anpassung:</strong> Sie können Ihre einmal erteilten Einwilligungen jederzeit mit Wirkung für die Zukunft ändern oder widerrufen, indem Sie auf den Link <em>„Cookie-Einstellungen“</em> im Footer unserer Website klicken.
+                </p>
+              </div>
+            </div>
+
+            {/* 5. Google Analytics 4 */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 05
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Webanalyse (Google Analytics 4)
+              </h3>
+              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
+                <p>
+                  Ausschließlich bei Erteilung Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) nutzen wir Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Vor Ihrer Zustimmung werden keinerlei Analyseskripte, Tags oder Cookies geladen und keine Daten an Google übertragen (Basic Consent Mode).
+                </p>
+                <p>
+                  Die IP-Anonymisierung ist standardmäßig aktiviert. Werbefunktionen, Google Signals und Remarketing sind dauerhaft deaktiviert. Widerrufen Sie Ihre Einwilligung über die <em>„Cookie-Einstellungen“</em>, wird die Erfassung gestoppt und vorhandene First-Party-Analyse-Cookies werden im Rahmen der browserseitigen Möglichkeiten bestmöglich bereinigt.
+                </p>
+              </div>
+            </div>
+
+            {/* 6. Google Maps & Externe Medien */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 06
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Google Maps (Externe Medien)
+              </h3>
+              <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
+                <p>
+                  Auf unserer Kontaktseite bieten wir zur Anreiseplanung eine interaktive Standortkarte von Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) an. Die eingebettete Karte wird erst nach Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) geladen.
+                </p>
+                <p>
+                  Die Adresse sowie der Link zur Routenplanung können auf der Checkpot-Website angezeigt werden, ohne dass die interaktive Google-Maps-Karte geladen wird. Erst wenn Sie aktiv in die Anzeige externer Medien einwilligen, wird die interaktive Karte geladen und eine Verbindung zu Google hergestellt. Wenn Sie den externen Google-Maps-Link anklicken, verlassen Sie unsere Website; dabei verbindet sich Ihr Browser direkt mit Google und es gelten die Datenverarbeitungsbedingungen von Google.
+                </p>
+                <p>
+                  Bei Widerruf über die <em>„Cookie-Einstellungen“</em> wird die eingebettete Karte sofort entladen und der lokale Datenschutz-Platzhalter wiederhergestellt.
+                </p>
+              </div>
+            </div>
+
+            {/* 7. Speicherdauer & Fristen */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 07
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
+                Speicherdauer & Fristen
+              </h3>
+              <p className="text-[14px] leading-relaxed text-[#4A5568]">
+                Ihre Daten werden nur so lange gespeichert, wie dies für die Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzliche Aufbewahrungspflichten (z. B. steuer- und unternehmensrechtliche Vorschriften nach BAO und UGB) dies vorschreiben. Nach Ablauf der Fristen werden entsprechende Daten gelöscht.
+              </p>
+            </div>
+
+            {/* 8. Betroffenenrechte */}
+            <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
+                Abschnitt 08
+              </span>
+              <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
                 Ihre Rechte als betroffene Person
               </h3>
               <p className="text-[14px] leading-relaxed text-[#4A5568] mb-3">
-                Gemäß Art. 13 ff. DSGVO stehen Ihnen folgende Betroffenenrechte uneingeschränkt zu:
+                Gemäß Art. 15 ff. DSGVO stehen Ihnen folgende Betroffenenrechte zu:
               </p>
               <ul className="space-y-1.5 text-[13px] text-[#4A5568]">
                 <li className="flex items-start gap-2">
                   <span className="text-[#C01718] font-bold" aria-hidden="true">•</span>
-                  <span><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Auskunft über verarbeitete Daten.</span>
+                  <span><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Auskunft über Ihre verarbeiteten Daten.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#C01718] font-bold" aria-hidden="true">•</span>
@@ -248,7 +299,7 @@ export default async function DatenschutzPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#C01718] font-bold" aria-hidden="true">•</span>
-                  <span><strong>Löschungsrecht (Art. 17 DSGVO):</strong> Löschung nicht mehr benötigter Daten.</span>
+                  <span><strong>Löschungsrecht (Art. 17 DSGVO):</strong> Löschung Ihrer bei uns gespeicherten Daten.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#C01718] font-bold" aria-hidden="true">•</span>
@@ -261,16 +312,16 @@ export default async function DatenschutzPage() {
               </ul>
             </div>
 
-            {/* 5. Aufsichtsbehörde */}
+            {/* 9. Aufsichtsbehörde */}
             <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col md:col-span-2">
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
-                Abschnitt 05
+                Abschnitt 09
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
                 Beschwerderecht bei der Aufsichtsbehörde
               </h3>
               <p className="text-[14px] leading-relaxed text-[#4A5568] mb-3">
-                Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt, haben Sie das Recht auf Beschwerde bei der zuständigen Aufsichtsbehörde:
+                Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen das Datenschutzrecht verstößt, haben Sie das Recht auf Beschwerde bei der zuständigen Aufsichtsbehörde:
               </p>
               <div className="bg-[#FAF9F6] border border-[#ECEAE4] rounded-xs p-4 text-[13px] text-[#4A5568] space-y-1">
                 <p><strong className="text-[#1A1A1A]">Österreichische Datenschutzbehörde</strong></p>

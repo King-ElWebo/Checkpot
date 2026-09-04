@@ -24,8 +24,8 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
    - Durable, concurrency-safe abuse protection implemented in Neon PostgreSQL (`rate_limits` table with atomic SQL upsert).
    - Applied durable rate limiting to Admin login (brute-force protection: max 5 failed attempts / 15 min window) and public contact form (max 5 submissions / 10 min window).
    - Pseudonymous privacy: subjects are hashed via `HMAC-SHA256(RATE_LIMIT_SECRET, clientIp)` — zero raw IP addresses are persisted or logged.
-   - Privacy & Consent Audit: Verified that no tracking scripts, pixels, non-essential cookies, or third-party embeds exist. **Consent manager not currently required by implemented public functionality.**
-   - Legal Cleanup: Removed developer placeholder callout boxes from `/impressum` and `/datenschutz`. Legal pages are technically clean but pending final customer/legal review.
+   - Privacy & Consent Management: Built-in category-based consent manager active. Google Consent Mode v2 (Basic Mode) strictly blocks GA4 tags prior to explicit consent. Google Maps embedded map on `/kontakt` is strictly consent-gated (local placeholder before consent, dynamic unmount on withdrawal). First-party `checkpot_consent` cookie (180 days, versioned) and permanent footer settings modal.
+   - Legal Cleanup: Removed developer placeholder callout boxes and obsolete EU ODR content. Legal pages are technically clean with clear owner inputs documented in `docs/LEGAL-INPUTS-NEEDED.md`.
 8. **Release Preparation, Git Push & Legacy SEO Migration (Phase 5)**:
    - Synchronized previous commits to remote repository (`origin/main` at `948098f`).
    - Audited all verified historical URLs from GSC and GA4 exports.
@@ -73,8 +73,7 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
 | **Database & Migrations** | **STABLE** | Neon PostgreSQL schema integrity verified (12 tables, 15 active brands, 4 active outfits). |
 | **Admin CMS & Workflows** | **STABLE** | Full CRUD, relation persistence, delete safety, and revalidation operational. |
 | **Security & Rate Limiting** | **STABLE** | Durable login and contact rate limiters active with atomic SQL upserts. |
-| **SEO & URL Migration** | **STABLE** | 22 redirects (301) and 8 gone routes (410) active; sitemap & robots verified. |
-| **Consent Management** | **LIVE / BASIC MODE** | Google Consent Mode v2 (Basic Mode) active. Strictly blocks GA4 tags before explicit consent. First-party `checkpot_consent` cookie (180 days, versioned). Permanent footer settings link. |
+| **Consent Management** | **LIVE / BASIC MODE** | Built-in category-based consent manager active. Google Consent Mode v2 (Basic Mode) strictly blocks GA4 scripts before explicit consent. Google Maps embedded iframe on `/kontakt` strictly gated before explicit consent. Dynamic unmount on withdrawal and best-effort GA cookie cleanup. First-party `checkpot_consent` cookie (180 days, versioned). Permanent footer settings modal. |
 | **Editorial Brand Content**| **15 / 15 LIVE** | 100% of the 15 active partner brands have fact-checked text, claims, and SEO metadata live in Neon DB. |
 | **Brand Assets (Logos/Photos)**| **REVIEW / PENDING** | Actionable upload package prepared (`docs/BRAND-ASSETS-HUMAN-REVIEW.md`); 15 logos + 10 lookbooks pending B2B download. |
 | **Legal Content** | **PARTIAL** | Technically clean; awaiting customer review and factual inputs (`docs/LEGAL-INPUTS-NEEDED.md`). |
@@ -131,6 +130,7 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
 | `BLOB_READ_WRITE_TOKEN`| No | Yes (for media uploads) | Yes | Read/write token for Vercel Blob storage | Documented |
 | `RESEND_API_KEY` | No (build succeeds) | Yes (for contact form) | Yes | API key for transactional email dispatch via Resend | Documented |
 | `RATE_LIMIT_SECRET` | No (falls back to `AUTH_SECRET`) | Optional | Yes | Dedicated HMAC secret for hashing rate-limit subject IPs | Documented |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | No (build succeeds) | Optional (for GA4) | No (client/public) | Google Analytics 4 Measurement ID (Basic Mode v2) | Documented |
 
 ---
 

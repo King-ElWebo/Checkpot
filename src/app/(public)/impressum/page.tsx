@@ -189,21 +189,10 @@ export default async function ImpressumPage() {
                 Abschnitt 04
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
-                Streitbeilegung & Verbraucherinfo
+                Streitbeilegung & Verbraucherinformation
               </h3>
-              <p className="text-[14px] leading-relaxed text-[#4A5568] mb-3">
-                Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten:
-              </p>
-              <a
-                href="https://ec.europa.eu/consumers/odr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[14px] font-medium text-[#C01718] hover:underline inline-flex items-center gap-1.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
-              >
-                ec.europa.eu/consumers/odr <span aria-hidden="true">↗</span>
-              </a>
-              <p className="text-[13px] text-[#718096] mt-3">
-                Sie können allfällige Beschwerden auch direkt an unsere oben angegebene E-Mail-Adresse richten.
+              <p className="text-[14px] leading-relaxed text-[#4A5568]">
+                Verbraucher haben die Möglichkeit, allfällige Anfragen oder Beschwerden direkt an unsere oben angegebene E-Mail-Adresse zu richten.
               </p>
             </div>
           </div>

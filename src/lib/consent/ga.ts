@@ -39,7 +39,9 @@ export function updateGoogleConsent(analyticsGranted: boolean) {
 }
 
 /**
- * Delete known Google Analytics cookies (_ga, _ga_*, _gid, _gat) when consent is withdrawn.
+ * Best-effort client-side cleanup of known first-party Google Analytics cookies (_ga, _ga_*, _gid, _gat)
+ * accessible via document.cookie across current hostname and parent domain scopes when consent is withdrawn.
+ * Note: This cleans up accessible first-party browser cookies; it does not retroactively delete data already transmitted to Google.
  */
 export function cleanupGoogleAnalyticsCookies() {
   if (typeof document === "undefined") return;
@@ -47,6 +49,10 @@ export function cleanupGoogleAnalyticsCookies() {
   const cookies = document.cookie.split(";");
   const hostname = window.location.hostname;
   const path = "/";
+
+  // Identify apex domain if hostname is a subdomain (e.g. www.checkpot-hietzing.at -> checkpot-hietzing.at)
+  const domainParts = hostname.split(".");
+  const apexDomain = domainParts.length > 2 ? domainParts.slice(-2).join(".") : null;
 
   for (const cookie of cookies) {
     const name = cookie.split("=")[0].trim();
@@ -61,6 +67,11 @@ export function cleanupGoogleAnalyticsCookies() {
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}`;
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}; domain=.${hostname}`;
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}; domain=${hostname}`;
+
+      if (apexDomain) {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}; domain=.${apexDomain}`;
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}; domain=${apexDomain}`;
+      }
     }
   }
 }
