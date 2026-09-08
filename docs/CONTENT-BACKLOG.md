@@ -1,6 +1,10 @@
 # Checkpot Content Backlog
 
-> Dieses Dokument listet alle noch ausstehenden redaktionellen Inhalte, Fotos und Freigaben für das Sortiment und den Webauftritt auf. Es dient der Inhaberin / Redaktion als Arbeitsgrundlage für die finale Freigabe und Inhaltspflege im Admin-Bereich (`/admin`).
+> [!NOTE]
+> **Historischer Phasenstand (Phase 7 vom 30.08.2026):**  
+> Die nachfolgenden Bestandsangaben zu Outfits (Abschnitt 2) und Mediathek (Abschnitt 4) dokumentieren den Zwischenstand von Phase 7. Inzwischen wurden die Outfits und Medien im System erweitert: Die Neon-Datenbank führt aktuell **27 aktive Outfits** und **43 Medienobjekte**. Die redaktionellen Texte aller 15 Marken sind zu 100 % live in der Datenbank hinterlegt. Verbindlicher Gesamtstatus: siehe [`docs/CURRENT-STATUS.md`](CURRENT-STATUS.md).
+
+> Dieses Dokument listet redaktionelle Inhalte, Fotos und Freigaben auf. Es dient der Inhaberin / Redaktion als Arbeitsgrundlage für die finale Freigabe und Inhaltspflege im Admin-Bereich (`/admin`).
 
 ---
 

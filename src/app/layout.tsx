@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { getSiteUrl } from "@/lib/site-config";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Admin Platform",
-    template: "%s | Admin Platform",
+    default: "Checkpot Damenmoden Wien-Hietzing",
+    template: "%s | Checkpot Hietzing",
   },
-  description: "Backend and administration foundation for customer projects.",
+  description:
+    "Hochwertige feminine Damenmode und persönliche Stilberatung in Wien Hietzing. Nachhaltige Kollektionen und ausgewählte Marken.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

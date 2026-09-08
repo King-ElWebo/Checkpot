@@ -4,6 +4,9 @@ import { seoRoutes } from "@/content/fixtures/checkpot";
 import { getSiteUrl } from "@/lib/site-config";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
   const lastModified = new Date();

@@ -1,7 +1,11 @@
 # Checkpot Backend Acceptance
 
+> [!NOTE]
+> **Historischer Abnahmebericht (Phase 8 vom 30.08.2026):**  
+> Dieser Bericht dokumentiert das abgeschlossene technische Backend- und Sicherheits-Audit zum Stand von Commit `17dc428`. Der Datenbestand umfasst inzwischen 27 aktive Outfits und 43 Medienobjekte in Neon. Vor dem Launch steht eine Hosting-Migration an. Aktueller Gesamtstatus: siehe [`docs/CURRENT-STATUS.md`](CURRENT-STATUS.md).
+
 > Stand: 2026-08-30 (Phase 8 Final Technical Acceptance Audit)  
-> Status: **BACKEND STABLE / FEATURE COMPLETE (ITERATIVE CHANGES ALLOWED)**
+> Status: **HISTORICAL AUDIT / BACKEND STABLE & FEATURE COMPLETE**
 
 ---
 

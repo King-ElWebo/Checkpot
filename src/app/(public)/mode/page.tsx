@@ -97,10 +97,10 @@ export default async function ModePage() {
 
       {/* 2. EVERGREEN FASHION HERO */}
       <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-2 sm:pt-4 pb-8 sm:pb-12 lg:pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.2fr] gap-6 sm:gap-10 lg:gap-14 xl:gap-18 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.3fr] gap-6 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* Hero Text */}
-          <FadeIn duration={600} translateY={16} className="flex flex-col">
+          <FadeIn className="flex flex-col lg:pb-6">
             <div className="flex items-center gap-2.5 mb-2.5 sm:mb-3">
               <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
               <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
@@ -108,19 +108,19 @@ export default async function ModePage() {
               </span>
             </div>
 
-            <h1 className="font-display text-3xl sm:text-5xl lg:text-[50px] 2xl:text-[60px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A] mb-3 sm:mb-5">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-[48px] 2xl:text-[56px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A] mb-3 sm:mb-4">
               Mode mit Persönlichkeit.
             </h1>
 
-            <p className="text-[15.5px] sm:text-[18px] 2xl:text-[19.5px] text-[#4A5568] leading-relaxed max-w-xl">
+            <p className="text-[15.5px] sm:text-[18px] 2xl:text-[19.5px] text-[#4A5568] leading-relaxed max-w-lg">
               Farben, Muster und Schnitte, die nicht beliebig wirken – sondern zu Ihnen und Ihrem persönlichen Stil passen.
             </p>
           </FadeIn>
 
           {/* Asymmetric Hero Imagery */}
-          <FadeIn delay={120} duration={600} translateY={16} className="relative">
+          <FadeIn className="relative">
             {/* Main Visual */}
-            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] max-h-[340px] sm:max-h-[440px] 2xl:max-h-[500px] w-full rounded-sm overflow-hidden bg-[#EFECE6] shadow-[0_12px_32px_rgba(0,0,0,0.04)] border border-[#E5E2DC]">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[5/4] max-h-[340px] sm:max-h-[440px] 2xl:max-h-[500px] w-full rounded-sm overflow-hidden bg-[#EFECE6] shadow-[0_12px_32px_rgba(0,0,0,0.04)] border border-[#E5E2DC]">
               <Image
                 src="/customer/outfit-blue-summer.jpg"
                 alt="Sommerliches Ensemble mit Musterakzent bei Checkpot"

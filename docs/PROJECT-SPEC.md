@@ -179,14 +179,12 @@ Checkpot uses a hybrid data-access model:
 
 ### Customer-specific decisions
 
-- Cost constraint: The private/pre-release test phase should operate at `€0/month` within documented
-  free-tier limits. No automatic paid overage may be enabled. Vercel must be upgraded to a plan that
-  permits commercial use before the Checkpot production site becomes publicly available.
-- Deployment target: Vercel for testing and later production. The customer requests Hobby during the
-  test phase and a later paid upgrade. Because Vercel restricts Hobby to personal/non-commercial use,
-  this is recorded only as a temporary private/pre-release environment and is a mandatory release
-  blocker; a Pro trial or Pro plan is the safer compliant test path.
-- Function region: Frankfurt, Germany (`fra1`), explicitly configured instead of Vercel's US default
+- Cost constraint: The private/pre-release test phase operated within documented free-tier limits.
+  No automatic paid overage may be enabled.
+- Deployment target: Temporary test phase was hosted on Vercel. For production, a hosting migration
+  is planned/pending to move away from Vercel to a dedicated provider-neutral production hosting
+  environment prior to the public domain cutover.
+- Hosting region: Frankfurt, Germany (`fra1` / EU region), explicitly required for EU data locality.
 - Neon project, owner, region and branch: Create/verify a customer-owned Neon project in Frankfurt;
   the locally present `DATABASE_URL` is not assumed to belong to production and no discovery-time
   migration has been run
@@ -296,9 +294,9 @@ resolved in `docs/SEO-SPEC.md` after route approval.
 
 ### Blocking before backend
 
-- Upgrade Vercel from the temporary test plan to a commercial-use-compatible plan before public
-  production release
-- Verify customer ownership and Frankfurt placement for Vercel Functions, Vercel Blob and Neon; no
+- Complete hosting migration from the temporary Vercel test setup to the target production hosting
+  environment before public production domain cutover
+- Verify customer ownership and Frankfurt/EU placement for hosting runtime, media storage, and Neon; no
   discovery-time credentials or default US regions may silently become production
 - Complete and verify the Resend domain/DNS setup for `website@checkpot-hietzing.at`, including the
   selected Ireland sending region and required privacy documentation

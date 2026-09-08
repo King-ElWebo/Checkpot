@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { FadeIn } from "@/components/public/motion/fade-in";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
 import { getSiteUrl } from "@/lib/site-config";
@@ -7,6 +8,19 @@ import { listHomepageOutfits } from "@/lib/repositories/outfits";
 import { listPublishedBrands } from "@/lib/repositories/brands";
 import { BrandBookshelf } from "@/components/public/brand-bookshelf";
 import { OutfitsHorizontalGallery } from "@/components/public/outfits-horizontal-gallery";
+import { seoRoutes } from "@/content/fixtures/checkpot";
+
+const seo = seoRoutes.find((r) => r.route === "/")!;
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Checkpot Damenmoden Wien-Hietzing | Mode & Stilberatung",
+  },
+  description: seo.description,
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

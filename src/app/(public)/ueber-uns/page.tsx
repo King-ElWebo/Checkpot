@@ -36,10 +36,10 @@ export default async function UeberUnsPage() {
 
       {/* 2. EDITORIAL HERO (PERSONAL CONSULTATION / EXPERIENCE) */}
       <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-2 sm:pt-3 pb-8 sm:pb-10 lg:pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.2fr] gap-6 sm:gap-10 lg:gap-14 xl:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.25fr] gap-6 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* Left: Heading & Intro */}
-          <FadeIn duration={600} translateY={16} className="flex flex-col">
+          <FadeIn className="flex flex-col lg:pb-4">
             <div className="flex items-center gap-2.5 mb-2.5 sm:mb-3.5">
               <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
               <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
@@ -61,8 +61,8 @@ export default async function UeberUnsPage() {
           </FadeIn>
 
           {/* Right: Christa Consultation Image */}
-          <FadeIn delay={120} duration={600} translateY={16} className="relative">
-            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] max-h-[300px] sm:max-h-[400px] lg:max-h-[460px] 2xl:max-h-[520px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.03)] sm:shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
+          <FadeIn className="relative">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[5/4] max-h-[300px] sm:max-h-[400px] lg:max-h-[460px] 2xl:max-h-[520px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.03)] sm:shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
               <Image
                 src={imagery.hero.src}
                 alt="Christa Hausmair bei der persönlichen Modeberatung im Checkpot Hietzing."

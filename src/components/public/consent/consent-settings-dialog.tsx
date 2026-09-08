@@ -10,15 +10,49 @@ function SettingsModalContent() {
   const [externalMediaEnabled, setExternalMediaEnabled] = useState<boolean>(consent?.externalMedia ?? false);
   const modalRef = useRef<HTMLDivElement>(null);
   const saveButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    triggerElementRef.current = (document.activeElement as HTMLElement) ?? null;
     saveButtonRef.current?.focus();
+    return () => {
+      triggerElementRef.current?.focus();
+    };
   }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        e.preventDefault();
         closeSettings();
+        return;
+      }
+
+      if (e.key === "Tab") {
+        if (!modalRef.current) return;
+        const focusables = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const visibleFocusables = Array.from(focusables).filter(
+          (el) => el.offsetParent !== null || el.classList.contains("sr-only") || window.getComputedStyle(el).display !== "none"
+        );
+
+        if (visibleFocusables.length === 0) return;
+
+        const first = visibleFocusables[0];
+        const last = visibleFocusables[visibleFocusables.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       }
     };
 

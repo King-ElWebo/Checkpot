@@ -68,30 +68,35 @@ export default async function ImpressumPage() {
                 <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
                   Medieninhaberin & Herausgeberin
                 </span>
-                <h2 className="font-display text-2xl lg:text-3xl text-[#1A1A1A] font-medium mb-4">
-                  {storeDetails.name}
+                <h2 className="font-display text-2xl lg:text-3xl text-[#1A1A1A] font-medium mb-1">
+                  {storeDetails.owner}
                 </h2>
+                <p className="text-[13px] uppercase tracking-[0.08em] font-medium text-[#718096] mb-4">
+                  Einzelunternehmen
+                </p>
                 
-                <div className="space-y-2 text-[#4A5568] text-[15px] leading-relaxed">
+                <div className="space-y-2.5 text-[#4A5568] text-[15px] leading-relaxed">
                   <p>
-                    <strong className="text-[#1A1A1A]">Inhaberin:</strong> {storeDetails.owner}
+                    <strong className="text-[#1A1A1A]">Geschäftsbezeichnung:</strong> Checkpot Hietzing Boutique
                   </p>
                   <p>
-                    <strong className="text-[#1A1A1A]">Adresse:</strong><br />
+                    <strong className="text-[#1A1A1A]">Standort / Anschrift:</strong><br />
                     {storeDetails.address.street}<br />
                     {storeDetails.address.postalCode} {storeDetails.address.city}, Österreich
                   </p>
-                  <p className="pt-2">
-                    <strong className="text-[#1A1A1A]">Unternehmensgegenstand:</strong><br />
-                    Handel mit Damenbekleidung, Mode & Accessoires
+                  <p>
+                    <strong className="text-[#1A1A1A]">UID-Nummer:</strong> ATU64656223
+                  </p>
+                  <p>
+                    <strong className="text-[#1A1A1A]">GISA-Zahl:</strong> 26767192
                   </p>
                 </div>
               </div>
 
-              {/* Column 2: Direct Contact & Authorities */}
+              {/* Column 2: Direct Contact & Commercial Supervision */}
               <div className="flex flex-col">
                 <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
-                  Kontakt & Aufsichtsbehörde
+                  Kontakt & Aufsicht
                 </span>
                 <h3 className="font-display text-2xl lg:text-3xl text-[#1A1A1A] font-medium mb-4">
                   Direkter Kontakt
@@ -118,20 +123,29 @@ export default async function ImpressumPage() {
                   </p>
                 </div>
 
-                <div className="border-t border-[#ECEAE4] pt-4 space-y-2 text-[13px] text-[#718096] leading-relaxed">
+                <div className="border-t border-[#ECEAE4] pt-6 space-y-2 text-[14px] text-[#4A5568] leading-relaxed">
+                  <p>
+                    <strong className="text-[#1A1A1A]">Gewerbewortlaut:</strong> Handelsgewerbe und Handelsagent
+                  </p>
+                  <p>
+                    <strong className="text-[#1A1A1A]">Berufszweig:</strong> Einzelhandel mit Bekleidung und Textilien
+                  </p>
                   <p>
                     <strong className="text-[#1A1A1A]">Kammerzugehörigkeit:</strong> Wirtschaftskammer Wien (WKO)
                   </p>
                   <p>
-                    <strong className="text-[#1A1A1A]">Gewerbebehörde:</strong> Magistratisches Bezirksamt des XIII. Bezirkes (Wien-Hietzing)
+                    <strong className="text-[#1A1A1A]">Fachorganisation:</strong> Landesgremium Wien des Einzelhandels mit Mode und Freizeitartikeln
                   </p>
                   <p>
-                    <strong className="text-[#1A1A1A]">Anwendbare Vorschriften:</strong> Gewerbeordnung 1994 (GewO), abrufbar unter{" "}
+                    <strong className="text-[#1A1A1A]">Zuständige Gewerbebehörde:</strong> Magistratisches Bezirksamt für den 13. und 14. Bezirk (Hietzinger Kai 1-3, 1130 Wien)
+                  </p>
+                  <p>
+                    <strong className="text-[#1A1A1A]">Anwendbare Rechtsvorschriften:</strong> Gewerbeordnung 1994 (GewO), abrufbar im Rechtsinformationssystem des Bundes unter{" "}
                     <a
                       href="https://www.ris.bka.gv.at"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#C01718] hover:underline"
+                      className="text-[#C01718] hover:underline font-medium"
                     >
                       www.ris.bka.gv.at
                     </a>

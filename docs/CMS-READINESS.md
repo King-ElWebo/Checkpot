@@ -1,7 +1,11 @@
 # Checkpot CMS Readiness & Data Integrity Report
 
+> [!NOTE]
+> **Historischer Phasenbericht (Phase 6 vom 30.08.2026):**  
+> Dieser Bericht dokumentiert den Abschluss der technischen CMS- und Datenbank-Integritätsprüfung vor der redaktionellen Vollbefüllung. Der aktuelle Live-Bestand in Neon umfasst inzwischen **15/15 Marken** mit vollständigen redaktionellen Texten, **27 aktive Outfits** und **43 Medienobjekte**. Die Hosting-Migration weg von Vercel steht vor dem Launch aus. Aktueller Gesamtzustand: siehe [`docs/CURRENT-STATUS.md`](CURRENT-STATUS.md).
+
 > Datum: 2026-08-30  
-> Status: **READY FOR CONTENT POPULATION**  
+> Status: **HISTORICAL (PHASE 6 READY FOR CONTENT POPULATION)**  
 > Verifizierte DB: Neon PostgreSQL  
 
 ---
@@ -91,7 +95,7 @@ Folgende Inhalte sind aktuell unvollständig und können nun direkt über das CM
 
 ## 5. Bewusst zurückgestellte Infrastruktur- & Release-Aufgaben
 
-1. **Vercel Produktions-Umgebungsvariablen:** Hinterlegung von `DATABASE_URL`, `SITE_URL`, `AUTH_SECRET`, `ADMIN_PASSWORD` und `BLOB_READ_WRITE_TOKEN` im Vercel-Dashboard (wird in einem separaten Schritt nach Abschluss der Inhaltspflege durchgeführt).
+1. **Produktions-Umgebungsvariablen (Hosting-Migration ausstehend):** Hinterlegung von `DATABASE_URL`, `SITE_URL`, `AUTH_SECRET`, `ADMIN_PASSWORD` und `BLOB_READ_WRITE_TOKEN` in der finalen Produktionsumgebung (die Hosting-Migration weg von Vercel wird vor dem Launch vollzogen).
 2. **Phase 2.5 (Resend E-Mail-Live-Test):** Bereitstellung des Resend API-Keys und Verifikation der Absender-Domain.
 3. **Finale rechtliche Freigabe:** Prüfung durch Inhaberin / rechtliche Vertretung.
 4. **Design-Feinschliff:** Bleibt eingefroren; keine weiteren visuellen Änderungen vor Content-Finalisierung.

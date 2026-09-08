@@ -8,17 +8,23 @@ export function FadeIn({
   delay = 0,
   duration = 600,
   translateY = 10,
+  reveal = false,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   duration?: number;
   translateY?: number;
+  reveal?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(!reveal);
 
   useEffect(() => {
+    if (!reveal) {
+      return;
+    }
+
     // Respect prefers-reduced-motion
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) {
@@ -41,16 +47,20 @@ export function FadeIn({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [reveal]);
+
+  const isShown = !reveal || isVisible;
 
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : `translateY(${translateY}px)`,
-        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
+        opacity: isShown ? 1 : 0,
+        transform: isShown ? "translateY(0)" : `translateY(${translateY}px)`,
+        transition: reveal
+          ? `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`
+          : undefined,
       }}
     >
       {children}

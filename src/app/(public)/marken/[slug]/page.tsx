@@ -65,7 +65,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
   return (
     <div className="flex flex-col bg-white">
       {/* 1. QUIET BREADCRUMBS */}
-      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-6 pb-2">
+      <div className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-3 sm:pt-5 pb-1 sm:pb-2">
         <Breadcrumbs
           items={[
             { label: "Startseite", href: "/" },
@@ -76,11 +76,11 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
       </div>
 
       {/* 2. COMPACT EDITORIAL BRAND HERO */}
-      <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-3 pb-12 lg:pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.25fr] gap-10 lg:gap-14 xl:gap-20 items-center">
+      <section className="mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-6 lg:px-8 2xl:px-12 pt-2 sm:pt-3 pb-8 sm:pb-10 lg:pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.35fr] gap-6 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* Left: Brand Identity & Summary */}
-          <FadeIn duration={600} translateY={16} className="flex flex-col">
+          <FadeIn className="flex flex-col lg:pb-2">
             <div className="flex items-center gap-2.5 mb-3.5">
               <span className="w-5 h-[2px] bg-[#C01718]" aria-hidden="true" />
               <span className="text-[12px] 2xl:text-[13px] font-semibold uppercase tracking-[0.14em] text-[#C01718]">
@@ -115,9 +115,9 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
           </FadeIn>
 
           {/* Right: Brand Visual or Intentional Typographic Fallback */}
-          <FadeIn delay={120} duration={600} translateY={16} className="relative">
+          <FadeIn className="relative">
             {brand.image?.url ? (
-              <div className="relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/5] max-h-[500px] 2xl:max-h-[560px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
+              <div className="relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[16/10] max-h-[400px] 2xl:max-h-[440px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.03)]">
                 <Image
                   src={brand.image.url}
                   alt={brand.image.alt || brand.name}
@@ -130,7 +130,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ sl
               </div>
             ) : (
               /* Intentional Typographic Brand Fallback Panel */
-              <div className="relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/5] max-h-[500px] 2xl:max-h-[560px] w-full rounded-sm overflow-hidden bg-[#F6F4EE] border border-[#E5E2DC] shadow-[0_16px_40px_rgba(0,0,0,0.03)] p-8 sm:p-12 flex flex-col justify-between select-none">
+              <div className="relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[16/10] max-h-[400px] 2xl:max-h-[440px] w-full rounded-sm overflow-hidden bg-[#F6F4EE] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.03)] p-8 sm:p-12 flex flex-col justify-between select-none">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#C01718]" aria-hidden="true" />
                   <span className="text-[11.5px] font-mono font-medium tracking-wider text-[#718096]">

@@ -1,40 +1,45 @@
 # Checkpot – Rechtliche Pflichtangaben & Fakten-Checkliste (Launch-Voraussetzung)
 
-> **Wichtiger Hinweis:** Dieses Dokument stellt eine rein technische Bestandsaufnahme der im aktuellen Code implementierten IT-Dienste sowie der benötigten betrieblichen Pflichtangaben dar (keine Rechtsberatung). Die markierten betrieblichen und rechtlichen Angaben müssen von der Inhaberin / der steuerlichen bzw. rechtlichen Vertretung vor dem endgültigen Go-Live geprüft, ergänzt und freigegeben werden.
+> **Workflow-Status:** Formularrücklauf am 08.09.2026 erfolgt. Pflichtangaben mit WKO Firmen A-Z, Gewerbedatenbank und Stadt Wien abgeglichen und im Impressum integriert. Ausstehende Punkte (AVVs, Hosting-Migration, Resend-Key, DNS) verbleiben für die Launch-Phase.  
+> **Wichtiger Hinweis:** Dieses Dokument stellt eine technische Bestandsaufnahme der im Code implementierten IT-Dienste sowie der betrieblichen Pflichtangaben dar (keine Rechtsberatung).
 
 ---
 
 ## 1. Impressum (Offenlegung nach ECG, UGB, GewO & Mediengesetz)
 
-Die technische Struktur für das Impressum ist unter `/impressum` implementiert und bezieht Kernstammdaten dynamisch aus der Datenbank (`store_details`). Folgende Angaben sind im Code hinterlegt bzw. müssen vor dem Launch final durch die Inhaberin bestätigt werden:
+Die rechtlichen Stammdaten wurden anhand des von Christa Hausmair am 08.09.2026 ausgefüllten Datenblatts sowie der behördlichen Abgleiche (WKO Gewerbedatenbank, Stadt Wien, RIS) verifiziert und unter `/impressum` integriert:
 
-| Fachthema / Angabe | Aktueller technischer Status im Code | Erforderliche Prüfung / To-Do für Inhaberin (Christa Hausmair) |
+| Fachthema / Angabe | Status im Code & Veröffentlichung | Verifizierte Datenquelle & Ergebnis |
 |---|---|---|
-| **Firmenwortlaut / Name** | Vorhanden (`Checkpot Damenmoden`) | Bitte exakten behördlich registrierten Firmenwortlaut bestätigen (z.B. Einzelunternehmen vs. eingetragene Unternehmerin `e.U.`). |
-| **Inhaberin** | Vorhanden (`Christa Hausmair`) | Bestätigt. |
-| **Standort / Geschäftsadresse** | Vorhanden (`Hietzinger Hauptstraße 10-16, 1130 Wien`) | Bestätigt. |
-| **Telefon & E-Mail** | Vorhanden (`+43 1 876 54 32`, `christa.hausmair@outlook.at`) | Bitte bestätigen, ob dies die offizielle Impressums- und Kundenkontakt-E-Mail ist. |
-| **UID-Nummer** | *Ausständig* | Sofern vorhanden, UID-Nummer (z.B. `ATU...`) angeben oder Bestätigung, dass keine UID vorliegt / Kleinunternehmerregelung greift. |
-| **Firmenbuchnummer & -gericht** | *Ausständig* | Falls im Firmenbuch eingetragen: Firmenbuchnummer (FN ...) und Handelsgericht Wien angeben; falls nicht eingetragen, als nicht eingetragenes Einzelunternehmen bestätigen. |
-| **Zuständige Gewerbebehörde** | Vorläufig hinterlegt (`Magistratisches Bezirksamt des XIII. Bezirkes (Wien-Hietzing)`) | Formell durch Inhaberin bzw. Gewerbeschein bestätigen. |
-| **Kammerzugehörigkeit** | Vorläufig hinterlegt (`Wirtschaftskammer Wien (WKO)`) | Formell bestätigen (inkl. genauer Fachgruppe, z.B. Einzelhandel mit Mode- und Freizeitartikeln). |
-| **Anwendbare berufsrechtliche Vorschriften** | Vorläufig hinterlegt (`Gewerbeordnung 1994 (GewO)`, einsehbar unter [www.ris.bka.gv.at](https://www.ris.bka.gv.at)) | Formell bestätigen. |
-| **Unternehmensgegenstand** | Vorläufig hinterlegt (`Handel mit Damenbekleidung, Mode & Accessoires`) | Wortlaut bestätigen. |
-| **Streitbeilegung & Verbraucherinfo** | Obsolet gewordener Link zur EU-ODR-Plattform wurde entfernt; neutraler Hinweis auf direkte Kontaktaufnahme per E-Mail ist aktiv. | Prüfen, ob eine gesetzliche oder freiwillige Verpflichtung zu einer alternativen Streitbeilegungsstelle (z.B. Internet Ombudsstelle) besteht. |
+| **Medieninhaberin & Name** | **RESOLVED** (Veröffentlicht) | `Christa Hausmair` (WKO Firmen A-Z / Gewerbedatenbank). Christas handschriftliche Angabe `CHECKPOT` wird als Geschäftsbezeichnung geführt, nicht als Firmenname. |
+| **Rechtsform** | **RESOLVED** (Veröffentlicht) | `Einzelunternehmen` (Owner-Formular 08.09.2026 & WKO). |
+| **Geschäftsbezeichnung** | **RESOLVED** (Veröffentlicht) | `Checkpot Hietzing Boutique` (WKO Gewerbedatenbank). |
+| **Standort / Geschäftsadresse** | **RESOLVED** (Veröffentlicht) | `Hietzinger Hauptstraße 10-16, 1130 Wien, Österreich` (Owner-Formular & WKO). |
+| **Telefon & E-Mail** | **RESOLVED** (Veröffentlicht) | `(01) 877 58 87`, `store@checkpot-hietzing.at` (Zentral über Store Settings verwaltet). |
+| **UID-Nummer** | **RESOLVED** (Veröffentlicht) | `ATU64656223` (Owner-Formular 08.09.2026). |
+| **GISA-Zahl** | **RESOLVED** (Veröffentlicht) | `26767192` (WKO Gewerbedatenbank). |
+| **Gewerbewortlaut** | **RESOLVED** (Veröffentlicht) | `Handelsgewerbe und Handelsagent` (WKO Gewerbedatenbank; Christas Angabe `Textileinzelhandel` beschreibt den Berufszweig). |
+| **Berufszweig** | **RESOLVED** (Veröffentlicht) | `Einzelhandel mit Bekleidung und Textilien` (WKO Firmen A-Z). |
+| **Kammerzugehörigkeit** | **RESOLVED** (Veröffentlicht) | `Wirtschaftskammer Wien (WKO)` (WKO Firmen A-Z). |
+| **Fachorganisation** | **RESOLVED** (Veröffentlicht) | `Landesgremium Wien des Einzelhandels mit Mode und Freizeitartikeln` (WKO Fachgruppenstruktur). |
+| **Zuständige Gewerbebehörde** | **RESOLVED** (Veröffentlicht) | `Magistratisches Bezirksamt für den 13. und 14. Bezirk` (Hietzinger Kai 1-3, 1130 Wien; Stadt Wien / ECG Behörde). Christas Eintragung `Handelsgewerbe und Handelsagentur` war eine Verwechslung mit dem Gewerbewortlaut. |
+| **Anwendbare Vorschriften** | **RESOLVED** (Veröffentlicht) | `Gewerbeordnung 1994 (GewO)`, einsehbar unter [www.ris.bka.gv.at](https://www.ris.bka.gv.at) (§ 5 Abs. 1 Z 6 ECG / RIS). |
+| **Firmenbuchnummer & -gericht** | **UNRESOLVED / ENTFÄLLT** | Im Owner-Formular mit Schrägstrich markiert; keine Firmenbucheintragung nachweisbar. Gemäß § 5 Abs. 1 Z 4 ECG nur *sofern vorhanden* anzugeben; entfällt im Impressum ohne Erfindung eines Negativvermerks. |
+| **Verbraucher-Streitbeilegung** | **RESOLVED (NEUTRAL)** | Im Owner-Formular mit Schrägstrich markiert (weder Ja noch Nein). Neutraler Hinweis auf direkte Kontaktaufnahme per E-Mail ist aktiv; kein veralteter EU-ODR-Link. |
 
 ---
 
 ## 2. Datenschutzerklärung (DSGVO-Transparenzpflicht nach Art. 13 DSGVO)
 
-Die Datenschutzerklärung unter `/datenschutz` spiegelt die im aktuellen Code tatsächlich implementierten Dienste und Verarbeitungen wider.
+Die Datenschutzerklärung unter `/datenschutz` spiegelt die im aktuellen Code tatsächlich implementierten Dienste und Verarbeitungen wider. Die verantwortliche Stelle ist mit `Checkpot Damenmoden / Inhaberin: Christa Hausmair` ausgewiesen.
 
 ### A) Vom Code technisch verifizierte Bestandsaufnahme
 
 | Eingesetzter Dienst / Komponente | Tatsächlicher technischer Datenfluss im Code | Datenschutzrechtlicher Status |
 |---|---|---|
-| **Vercel Inc. (Webhosting)** | Auslieferung der Website, Verarbeitung von Server-Logdaten (IP-Adresse, Browser, Zeitstempel zur Bereitstellung der Verbindung und Gefahrenabwehr). | Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO). AVV / Data Processing Addendum mit Vercel erforderlich. Genaue Hosting-Region mit Live-Projektkonfiguration abgleichen. |
+| **Webhosting (Aktuell Vercel / Hosting-Migration ausstehend)** | Auslieferung der Website, Verarbeitung von Server-Logdaten (IP-Adresse, Browser, Zeitstempel zur Bereitstellung der Verbindung und Gefahrenabwehr). | Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO). AVV mit dem finalen Hosting-Provider erforderlich (aktuell Vercel; nach erfolgter Migration mit Ziel-Host abzuschließen). |
 | **Neon Inc. (PostgreSQL Datenbank)** | Speicherung von CMS-Daten (Geschäftsdaten, Sortiment, Marken, Outfits, Medienverweise) und pseudonymisierten Rate-Limit-Zählern. **Keine Speicherung von Kontaktanfragen oder Besucher-Trackingdaten.** | Berechtigtes Interesse / Vertragserfüllung. AVV mit Neon erforderlich. |
-| **Vercel Blob Storage** | Speicherung und Auslieferung von Produkt- und Markenfotos. | Im Vercel DPA enthalten. |
+| **Vercel Blob Storage** | Speicherung und Auslieferung von Produkt- und Markenfotos. | Im Vercel DPA enthalten (ggf. analog zur Hosting-Migration zu migrieren). |
 | **Resend Inc. (E-Mail Delivery)** | Weiterleitung von Kontaktformular-Anfragen (`Name`, `E-Mail`, optionale `Telefonnummer`, `Nachricht`) direkt per E-Mail an `christa.hausmair@outlook.at`. **Keine Speicherung in der Website-Datenbank.** | Vorvertragliche Maßnahmen / Berechtigtes Interesse (Art. 6 Abs. 1 lit. b / f DSGVO). AVV mit Resend erforderlich. |
 | **Pseudonymes Rate-Limiting** | Schutz vor Missbrauch des Kontaktformulars und Admin-Login-Brute-Force. IP-Adressen werden ausschließlich als unumkehrbarer `HMAC-SHA256`-Hash mit serverseitigem Secret temporär verarbeitet. Keine Klartext-IPs in der Datenbank. | Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO). |
 | **Schriftarten (Self-Hosted via Next.js)** | Google Fonts (`Outfit`, `Inter`) werden beim Build-Prozess lokal eingebunden und vom eigenen Server ausgeliefert. **Keine Verbindungsdaten fließen an Google-Server.** | Keine Einwilligung erforderlich. |
@@ -48,13 +53,10 @@ Die Datenschutzerklärung unter `/datenschutz` spiegelt die im aktuellen Code ta
 
 ## 3. Launch-Freigabe-Checkliste für die Inhaberin
 
-Folgende Punkte müssen vor dem Go-Live von der Inhaberin / der steuerlichen bzw. rechtlichen Beratung final freigegeben werden:
-
-- [ ] **Firmenwortlaut & Rechtsform:** Genaue behördliche Schreibweise für das Impressum bestätigen (Einzelunternehmen vs. e.U.).
-- [ ] **UID-Nummer:** Klären, ob eine UID-Nummer angegeben werden muss oder der Kleinunternehmerstatus greift.
-- [ ] **Firmenbuch:** Klären, ob eine Firmenbucheintragung vorliegt (FN-Nummer) oder formell bestätigen, dass keine Eintragung existiert.
-- [ ] **Gewerbebehörde & Kammer:** Magistratisches Bezirksamt und Wirtschaftskammer-Angaben auf Richtigkeit mit dem Gewerbeschein abgleichen.
-- [ ] **E-Mail-Empfängerin:** Bestätigen, dass `christa.hausmair@outlook.at` die gewünschte operative Zieladresse für Kontaktanfragen ist.
-- [ ] **Auftragsverarbeitungs-Verträge (AVV):** Abschluss/Bestätigung der AVVs mit Vercel, Neon, Resend und ggf. Google (über die jeweiligen Accounts).
-- [ ] **Datenschutzerklärung & Impressum:** Endgültige Freigabe der Texte durch die Inhaberin / Rechtsberatung.
+- [x] **Firmenwortlaut & Rechtsform:** Verifiziert als `Christa Hausmair`, Einzelunternehmen; Geschäftsbezeichnung `Checkpot Hietzing Boutique`.
+- [x] **UID-Nummer:** `ATU64656223` von Inhaberin am 08.09.2026 bestätigt und im Impressum hinterlegt.
+- [x] **Gewerbebehörde & Kammer:** WKO Wien, Landesgremium Mode/Freizeitartikel, MBA 13/14 verifiziert und hinterlegt.
+- [x] **GISA-Zahl:** `26767192` aus Gewerbedatenbank im Impressum hinterlegt.
+- [ ] **Firmenbuch:** Keine Eintragung nachweisbar; Angaben entfallen im Impressum ordnungsgemäß.
+- [ ] **Auftragsverarbeitungs-Verträge (AVV):** Bestätigung/Abschluss der AVVs mit Ziel-Hostingprovider (nach Migration), Neon, Resend und ggf. Google.
 - [ ] **Produktions-Keys & Domain:** DNS-Zugang für `checkpot-hietzing.at` sowie Bereitstellung von `RESEND_API_KEY` und optional `NEXT_PUBLIC_GA_MEASUREMENT_ID` für die Live-Umgebung.

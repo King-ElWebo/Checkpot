@@ -1,67 +1,26 @@
 # Checkpot Current Technical Status
 
 ## Last audited & updated
-- Date: 2026-08-30
-- Commit SHA: Phase 1 (`85adcc4`), Phase 2 (`02e73e6`), Phase 3A (`dfce5ed`), Phase 3B (`0e56cb3`), Phase 4 (`15c0b0b`), Phase 5 (`948098f`), Phase 6 (`e8108c5`), Phase 7A (`f7c7254`), Phase 7A.1 (`03429d5`), Phase 7B (`988cb5d`), Phase 7B.1 (`82e6f99`), Phase 7C (`da9174b`), Phase 7D (`17dc428`), Phase 8 Final Backend & Security Acceptance Complete (local)
-- Branch: `main` (synchronized baseline with `origin/main` at `17dc428`)
+- Date: 2026-09-08 (Pre-Launch Repository & Documentation Hygiene Pass)
+- Status: **PRE-LAUNCH / FRONTEND FROZEN FOR LAUNCH**
+- Database: Neon PostgreSQL (12 tables, 15 active partner brands, 27 active outfits, 43 media assets)
+- Baseline: Technical Pre-Launch Passes 1 & 2 complete; frontend visual polish complete & design frozen
 
 ---
 
 ## 1. Executive Summary
 
-Phases 1 through 8 of the backend completion, data integrity reconciliation, security hardening, and brand editorial population are **COMPLETE**:
-1. **Central Store Settings & Single Source of Truth (Phase 1)**: Business facts are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
-2. **Central SITE_URL Configuration (Phase 1)**: Production domain assumptions are decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
-3. **Contact Form Backend & Email Delivery (Phase 2)**: Submissions are processed by a dedicated Server Action with Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data is persisted to Neon.
-4. **Media Upload & PNG Transparency Fix (Phase 3A)**: Client-side compression in `src/lib/image-compression.ts` preserves PNG alpha transparency and WebP formats. SVG upload is intentionally unsupported on the server for security hardening; UI recommendations specify `"PNG mit transparentem Hintergrund"`.
-5. **Brand Assortment Reconciliation (Phase 3A)**: Reconciled the Neon database against the 15 approved Checkpot brands with defined sort order (10–150). Inactive legacy brands (`Zilch`, `Happy Rainy Days`, `Adini`) are deactivated (`active = false`) without deleting records or outfit relations.
-6. **Brand SEO, Claims & Public Data Integration (Phase 3B)**:
-   - `brands.seoMetadata` is strictly typed (`BrandSeoMetadata`), editable in Admin, and consumed by `generateMetadata` in `/marken/[slug]` with hierarchical fallbacks.
-   - `brands.verifiedClaims` is safely validated, editable line-by-line in Admin, and rendered under *"Gut zu wissen"* on `/marken/[slug]`.
-   - Replaced random "related brand" slice with deterministic assortment wrap-around helper `getAdditionalPublishedBrands()`.
-   - Audited and eliminated dead legacy business fixtures (`brands[]`, `outfits[]`, `currentCollection`, `getBrandBySlug()`, `getRelatedBrands()`) from `src/content/fixtures/checkpot.ts`.
-7. **Security Hardening, Privacy Decision & Legal Cleanup (Phase 4)**:
-   - Durable, concurrency-safe abuse protection implemented in Neon PostgreSQL (`rate_limits` table with atomic SQL upsert).
-   - Applied durable rate limiting to Admin login (brute-force protection: max 5 failed attempts / 15 min window) and public contact form (max 5 submissions / 10 min window).
-   - Pseudonymous privacy: subjects are hashed via `HMAC-SHA256(RATE_LIMIT_SECRET, clientIp)` — zero raw IP addresses are persisted or logged.
-   - Privacy & Consent Management: Built-in category-based consent manager active. Google Consent Mode v2 (Basic Mode) strictly blocks GA4 tags prior to explicit consent. Google Maps embedded map on `/kontakt` is strictly consent-gated (local placeholder before consent, dynamic unmount on withdrawal). First-party `checkpot_consent` cookie (180 days, versioned) and permanent footer settings modal.
-   - Legal Cleanup: Removed developer placeholder callout boxes and obsolete EU ODR content. Legal pages are technically clean with clear owner inputs documented in `docs/LEGAL-INPUTS-NEEDED.md`.
-8. **Release Preparation, Git Push & Legacy SEO Migration (Phase 5)**:
-   - Synchronized previous commits to remote repository (`origin/main` at `948098f`).
-   - Audited all verified historical URLs from GSC and GA4 exports.
-   - Configured 22 verified permanent `301` redirects in `next.config.ts` (including `/marken/emily-van-den-berg` and `/marken/emily-van-den-bergh-wien` -> `/marken/emily-van-den-bergh`).
-   - Configured 8 explicit `410 Gone` responses in `src/proxy.ts` for permanently obsolete URLs (`zilch-wien`, `adini-wien`, `happy-rainy-days-wien`, `hatley`, `thought-braintree-wien`, `herbstwinter-kollektion-2023-`, `herbst-winter-2018`, `schrankcheck`).
-   - Created SEO source of truth artifact: `seo_analysis/legacy_url_migration.csv`.
-   - Created customer checklist artifact: `docs/LEGAL-INPUTS-NEEDED.md`.
-9. **CMS Readiness, Data Integrity & Admin Workflow QA (Phase 6)**:
-   - Audited all 12 database tables in Neon PostgreSQL: 0 foreign key violations, 0 dangling join rows.
-   - Verified end-to-end CRUD, atomic relation persistence, delete safety, and targeted cache revalidation across Store Settings, Brands, Media, Outfits, Collections, and Taxonomy.
-   - Created full CMS readiness report: `docs/CMS-READINESS.md`.
-10. **Content Structure, Taxonomy & Consistency Cleanup (Phase 7A & 7A.1)**:
-   - Filtered inactive brand links from public outfit DTOs (`src/lib/repositories/outfits.ts`), preventing broken `/marken/zilch` links while preserving historical DB relations.
-   - Resolved outfit duplicate pairs (`Musterkleid Sommer` and `Blauer Winter Look` retained as active canonicals; prototype duplicates deactivated without hard deletion).
-   - Normalized Featured outfits: exactly 3 active unique outfits flagged as `featured = true`.
-   - Corrected collection assignments: Autumn Layer assigned to `"Herbst / Winter"`.
-   - Dynamically filtered zero-usage taxonomy categories from public views while preserving them in DB for Admin management.
-   - Reviewed media focal points: preserved custom framing, reverted mechanical values to standard center default.
-   - Normalized active Outfit `sortOrder` values to 10, 20, 30, 40.
-11. **Brand Research & Editorial Content Draft (Phase 7B & 7B.1)**:
-   - Researched primary sources (official websites, about pages, sustainability reports) for all 15 active partner brands.
-   - Drafted and strictly audited brand-by-brand German editorial texts in formal "Sie" using Checkpot's warm, knowledgeable boutique voice.
-   - Audited all 48 claim candidates against primary source evidence and scope rules.
-   - Created `docs/BRAND-RESEARCH.md`, `docs/BRAND-CLAIM-AUDIT.csv`, `docs/BRAND-CONTENT-APPROVAL.md`.
-12. **Approved Brand Content CMS Import (Phase 7C)**:
-   - Successfully imported approved editorial packages (`summary`, `description`, `verifiedClaims`, `seoMetadata`) into Neon PostgreSQL.
-13. **Brand Assets, Logos & Rights Audit (Phase 7D)**:
-   - Completed comprehensive provenance and rights audit across all 15 active brands.
-   - Enforced strict rights compliance: rejected web scrapings, screenshots, and unauthorized assets.
-   - Created `docs/BRAND-ASSET-AUDIT.md`, `docs/BRAND-ASSET-MANIFEST.csv`, and `docs/BRAND-ASSETS-HUMAN-REVIEW.md`.
-14. **Final Backend, Production & Security Acceptance Audit (Phase 8)**:
-   - Migrated official brand name and slug `Emily van den Bergh` (`emily-van-den-bergh`) and imported approved editorial text.
-   - Added permanent single-hop redirect `/marken/emily-van-den-berg` -> `/marken/emily-van-den-bergh`.
-   - Audited all 12 database tables: 0 foreign key violations, 0 dangling joins, 0 invalid references.
-   - Verified authentication, durable rate limiting, media upload security, public repository contracts, SEO redirects, and fail-closed secret boundaries.
-   - Classification: **BACKEND STABLE / FEATURE COMPLETE (ITERATIVE CHANGES ALLOWED)**.
+Phases 1 through 8 (Backend, Data Integrity, Brand Population, Security Hardening) as well as Technical Pre-Launch Passes 1 and 2 and Frontend Visual Polish are **COMPLETE**:
+
+1. **Pre-Launch Passes 1 & 2 Complete**: Technical verification, code hygiene, runtime checks, and redirect/routing integrity verified.
+2. **Frontend Visual Polish Complete & Frozen for Launch**: Mobile and desktop responsiveness, typography, and layout refinements accepted; public frontend is strictly frozen for launch.
+3. **Assortment & Content Baseline**: Exactly 15 active partner brands with full verified German editorial text, claims, and SEO metadata; exactly 27 active outfits and 43 media assets managed in Neon PostgreSQL.
+4. **Central Store Settings & Single Source of Truth**: Business facts are stored in Neon (`system_settings` table, `key = 'store_details'`) and managed via `/admin/store` ("Geschäftsdaten").
+5. **Central SITE_URL Configuration**: Production domain assumptions decoupled from fixtures. `getSiteUrl()` normalizes `process.env.SITE_URL` with fallback to `https://checkpot-hietzing.at`, driving root `metadataBase`, `sitemap.ts`, `robots.ts`, OpenGraph URLs, and JSON-LD structured data.
+6. **Contact Form Backend & Rate Limiting**: Submissions processed by dedicated Server Action with Zod validation (`src/lib/validations/contact.ts`), honeypot spam filtering, lightweight rate limiting, and email dispatch via Resend (`website@checkpot-hietzing.at` -> `christa.hausmair@outlook.at` with visitor `replyTo`). Zero inquiry data persisted to Neon.
+7. **Security Hardening & Privacy**: Durable, concurrency-safe abuse protection in Neon PostgreSQL (`rate_limits` table with atomic SQL upserts). Pseudonymous privacy: subjects hashed via `HMAC-SHA256(RATE_LIMIT_SECRET, clientIp)` — zero raw IP addresses persisted or logged.
+8. **Consent Management**: Built-in category-based consent manager active. Google Consent Mode v2 (Basic Mode) strictly blocks GA4 tags prior to explicit consent. Google Maps embedded map on `/kontakt` strictly consent-gated (local placeholder before consent, dynamic unmount on withdrawal). First-party `checkpot_consent` cookie (180 days, versioned) and permanent footer settings modal.
+9. **Legacy SEO Migration**: 22 verified permanent `301` redirects in `next.config.ts`, 8 explicit `410 Gone` responses in `src/proxy.ts` for permanently obsolete URLs.
 
 ---
 
@@ -69,16 +28,19 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
 
 | Area | Status | Notes / Next Steps |
 |---|---|---|
-| **Backend & Application Logic** | **STABLE / FEATURE COMPLETE** | Complete, typed, validated, and audited. Iterative adjustments allowed. Full acceptance report in `docs/BACKEND-ACCEPTANCE.md`. |
-| **Database & Migrations** | **STABLE** | Neon PostgreSQL schema integrity verified (12 tables, 15 active brands, 4 active outfits). |
-| **Admin CMS & Workflows** | **STABLE** | Full CRUD, relation persistence, delete safety, and revalidation operational. |
+| **Frontend Design** | **FROZEN FOR LAUNCH** | Visual polish complete; desktop and mobile layouts accepted. Design strictly frozen. |
+| **Backend & Application Logic** | **STABLE / FEATURE COMPLETE** | Complete, typed, validated, and audited. Iterative adjustments allowed. Acceptance report in `docs/BACKEND-ACCEPTANCE.md`. |
+| **Database & Migrations** | **STABLE** | Neon PostgreSQL schema integrity verified (12 tables, 15 active partner brands, 27 active outfits, 43 media assets). |
+| **Admin CMS & Workflows** | **STABLE** | Full CRUD, relation persistence, delete safety, and cache revalidation operational. |
 | **Security & Rate Limiting** | **STABLE** | Durable login and contact rate limiters active with atomic SQL upserts. |
-| **Consent Management** | **LIVE / BASIC MODE** | Built-in category-based consent manager active. Google Consent Mode v2 (Basic Mode) strictly blocks GA4 scripts before explicit consent. Google Maps embedded iframe on `/kontakt` strictly gated before explicit consent. Dynamic unmount on withdrawal and best-effort GA cookie cleanup. First-party `checkpot_consent` cookie (180 days, versioned). Permanent footer settings modal. |
+| **Consent Management** | **LIVE / BASIC MODE** | Built-in category-based consent manager active. Google Consent Mode v2 (Basic Mode) strictly blocks GA4 scripts before explicit consent. Google Maps iframe on `/kontakt` strictly gated before explicit consent. Dynamic unmount on withdrawal. First-party `checkpot_consent` cookie. |
 | **Editorial Brand Content**| **15 / 15 LIVE** | 100% of the 15 active partner brands have fact-checked text, claims, and SEO metadata live in Neon DB. |
-| **Brand Assets (Logos/Photos)**| **REVIEW / PENDING** | Actionable upload package prepared (`docs/BRAND-ASSETS-HUMAN-REVIEW.md`); 15 logos + 10 lookbooks pending B2B download. |
-| **Legal Content** | **PARTIAL** | Technically clean; awaiting customer review and factual inputs (`docs/LEGAL-INPUTS-NEEDED.md`). |
-| **Email Delivery (Phase 2.5)** | **DEFERRED** | Awaiting customer provisioning of `RESEND_API_KEY` for controlled live delivery verification. |
-| **Frontend Design** | **FROZEN** | Design system frozen for backend delivery; no visual regressions introduced. |
+| **Active Outfit Inventory**| **27 ACTIVE LOOKS** | 27 active outfits live in database across collections and taxonomy categories. |
+| **Legal Content & Impressum** | **RESOLVED & INTEGRATED** | Owner form returned 08.09.2026; confirmed UID (ATU64656223), GISA (26767192), WKO Wien, and MBA 13/14 integrated into `/impressum`. |
+| **Email Delivery (Resend)** | **PENDING SETUP & TEST** | Awaiting production `RESEND_API_KEY` configuration and live end-to-end delivery test. |
+| **Hosting Migration** | **PENDING** | Moving away from temporary Vercel hosting to target production hosting environment. |
+| **Production Domain Cutover** | **PENDING** | Final DNS cutover to `checkpot-hietzing.at` pending after hosting migration. |
+| **Live Smoke Test** | **PENDING** | Final production smoke test pending following deployment cutover. |
 
 ---
 
@@ -127,7 +89,7 @@ Phases 1 through 8 of the backend completion, data integrity reconciliation, sec
 | `SITE_URL` | No (has fallback) | Yes | Yes | Central canonical domain (`https://checkpot-hietzing.at`) | Documented |
 | `AUTH_SECRET` | No (fails on auth) | Yes (for admin) | Yes | 32+ char secret for signing HS256 admin JWT sessions | Documented |
 | `ADMIN_PASSWORD` | No (fails on login) | Yes (for admin) | Yes | Passphrase for single-admin bootstrap login | Documented |
-| `BLOB_READ_WRITE_TOKEN`| No | Yes (for media uploads) | Yes | Read/write token for Vercel Blob storage | Documented |
+| `BLOB_READ_WRITE_TOKEN`| No | Yes (for media uploads) | Yes | Read/write token for media blob storage | Documented |
 | `RESEND_API_KEY` | No (build succeeds) | Yes (for contact form) | Yes | API key for transactional email dispatch via Resend | Documented |
 | `RATE_LIMIT_SECRET` | No (falls back to `AUTH_SECRET`) | Optional | Yes | Dedicated HMAC secret for hashing rate-limit subject IPs | Documented |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | No (build succeeds) | Optional (for GA4) | No (client/public) | Google Analytics 4 Measurement ID (Basic Mode v2) | Documented |
