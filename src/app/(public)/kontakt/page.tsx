@@ -3,23 +3,34 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { seoRoutes, imagery } from "@/content/fixtures/checkpot";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
 import { getSiteUrl } from "@/lib/site-config";
+import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 import { ContactForm } from "./contact-form";
 import { ContactMap } from "./contact-map";
 
 const seo = seoRoutes.find((r) => r.route === "/kontakt")!;
 
-export const metadata: Metadata = {
-  title: seo.title,
-  description: seo.description,
-  alternates: {
-    canonical: seo.canonical,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  if (!await isPublicContentAllowed()) {
+    return LOCKED_METADATA;
+  }
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: seo.canonical,
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function KontaktPage() {
+  if (!await isPublicContentAllowed()) {
+    return null;
+  }
+
   const storeDetails = await getStoreDetails();
   const siteUrl = getSiteUrl();
 

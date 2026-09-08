@@ -4,22 +4,32 @@ import type { Metadata, Route } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { FadeIn } from "@/components/public/motion/fade-in";
 import { seoRoutes, imagery } from "@/content/fixtures/checkpot";
+import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 import { StandardsAccordion } from "./standards-accordion";
 
 const seo = seoRoutes.find((r) => r.route === "/fair-trade")!;
 
-export const metadata: Metadata = {
-  title: "Qualität, Herkunft & Transparenz | Checkpot Wien",
-  description: "Transparenz statt pauschaler Versprechen. Erfahren Sie, worauf wir bei Materialien, Qualität und geprüften Markenstandards achten.",
-  alternates: {
-    canonical: seo.canonical,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  if (!await isPublicContentAllowed()) {
+    return LOCKED_METADATA;
+  }
+
+  return {
+    title: "Qualität, Herkunft & Transparenz | Checkpot Wien",
+    description: "Transparenz statt pauschaler Versprechen. Erfahren Sie, worauf wir bei Materialien, Qualität und geprüften Markenstandards achten.",
+    alternates: {
+      canonical: seo.canonical,
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default function FairTradePage() {
+export default async function FairTradePage() {
+  if (!await isPublicContentAllowed()) {
+    return null;
+  }
   return (
     <div className="flex flex-col bg-white">
       {/* 1. QUIET BREADCRUMBS */}

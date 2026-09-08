@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
-import { redirect } from "next/navigation";
 
 import "./public.css";
 import { cookies, headers } from "next/headers";
@@ -14,6 +13,7 @@ import { CONSENT_COOKIE_NAME, parseConsentCookie } from "@/lib/consent/types";
 import { ConsentManager } from "@/components/public/consent/consent-manager";
 import { ComingSoon } from "@/components/public/coming-soon";
 import { PreviewBanner } from "@/components/public/preview-banner";
+import { LegalMaintenanceShell } from "@/components/public/legal-maintenance-shell";
 
 const fontHeading = Outfit({
   subsets: ["latin"],
@@ -100,9 +100,15 @@ export default async function PublicLayout({ children }: { children: React.React
   const isLegalRoute = normalizedPath === "/impressum" || normalizedPath === "/datenschutz";
 
   // Server-side enforcement: Locked visitors see Coming Soon unless preview is active or accessing legal info
-  if (siteAccess.maintenanceMode && !isPreviewActive && !isLegalRoute) {
-    if (normalizedPath !== "/") {
-      redirect("/");
+  if (siteAccess.maintenanceMode && !isPreviewActive) {
+    if (isLegalRoute) {
+      return (
+        <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
+          <LegalMaintenanceShell>
+            {children}
+          </LegalMaintenanceShell>
+        </div>
+      );
     }
 
     return (

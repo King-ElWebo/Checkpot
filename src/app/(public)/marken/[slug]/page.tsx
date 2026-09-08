@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { FadeIn } from "@/components/public/motion/fade-in";
 import { getPublishedBrandBySlug, listPublishedBrands, getAdditionalPublishedBrands } from "@/lib/repositories/brands";
 import { getOutfitsByBrandId } from "@/lib/repositories/outfits";
+import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -18,6 +19,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  if (!await isPublicContentAllowed()) {
+    return LOCKED_METADATA;
+  }
+
   const { slug } = await params;
   const brand = await getPublishedBrandBySlug(slug);
   
@@ -51,6 +56,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function BrandDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  if (!await isPublicContentAllowed()) {
+    return null;
+  }
+
   const { slug } = await params;
   const brand = await getPublishedBrandBySlug(slug);
 

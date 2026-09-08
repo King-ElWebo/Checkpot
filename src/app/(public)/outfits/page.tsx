@@ -3,22 +3,33 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { seoRoutes } from "@/content/fixtures/checkpot";
 import { listPublishedOutfits } from "@/lib/repositories/outfits";
 import { listActiveTaxonomy } from "@/lib/repositories/taxonomy";
+import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 import { OutfitsLookbook } from "./lookbook-client";
 
 const seo = seoRoutes.find((r) => r.route === "/outfits")!;
 
-export const metadata: Metadata = {
-  title: seo.title,
-  description: seo.description,
-  alternates: {
-    canonical: seo.canonical,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  if (!await isPublicContentAllowed()) {
+    return LOCKED_METADATA;
+  }
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: seo.canonical,
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function OutfitsPage() {
+  if (!await isPublicContentAllowed()) {
+    return null;
+  }
+
   const [outfits, taxonomy] = await Promise.all([
     listPublishedOutfits(),
     listActiveTaxonomy(),

@@ -7,20 +7,32 @@ import { listPublishedOutfits } from "@/lib/repositories/outfits";
 import { ModeStyleWorlds, type StyleWorldItem } from "@/components/public/mode-style-worlds";
 import { FadeIn } from "@/components/public/motion/fade-in";
 
+import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
+
 const seo = seoRoutes.find((r) => r.route === "/mode")!;
 
-export const metadata: Metadata = {
-  title: seo.title,
-  description: seo.description,
-  alternates: {
-    canonical: seo.canonical,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  if (!await isPublicContentAllowed()) {
+    return LOCKED_METADATA;
+  }
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: seo.canonical,
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function ModePage() {
+  if (!await isPublicContentAllowed()) {
+    return null;
+  }
+
   const outfits = await listPublishedOutfits();
 
   // Map real outfits to style taxonomy if available, otherwise use curated boutique visuals

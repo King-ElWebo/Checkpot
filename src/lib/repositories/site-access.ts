@@ -2,9 +2,11 @@ import "server-only";
 
 import { cache } from "react";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
 import { getDatabase, isDatabaseConfigured } from "@/db";
 import { systemSettings, auditLogs } from "@/db/schema";
+import { PREVIEW_COOKIE_NAME, verifySitePreviewToken } from "@/lib/auth/preview";
 
 export interface SiteAccessSettings {
   maintenanceMode: boolean;
@@ -14,6 +16,16 @@ export interface SiteAccessSettings {
 
 export const DEFAULT_SITE_ACCESS: SiteAccessSettings = {
   maintenanceMode: false,
+};
+
+export const LOCKED_METADATA = {
+  title: "Checkpot Hietzing — Wir sind bald für Sie da",
+  description:
+    "Unsere Boutique in Wien-Hietzing ist natürlich weiterhin persönlich für Sie da. Die neue Checkpot Website wird gerade für Sie vorbereitet.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 async function readSiteAccessFromDatabase(): Promise<SiteAccessSettings> {
@@ -53,6 +65,25 @@ async function readSiteAccessFromDatabase(): Promise<SiteAccessSettings> {
 export const getSiteAccess = cache(async (): Promise<SiteAccessSettings> => {
   return await readSiteAccessFromDatabase();
 });
+
+/**
+ * Authoritative single check for whether public page content is allowed to render.
+ * Returns true if maintenanceMode is false OR if a valid admin preview token is present.
+ * Returns false if the site is locked to normal visitors.
+ */
+export async function isPublicContentAllowed(): Promise<boolean> {
+  const [siteAccess, cookieStore] = await Promise.all([
+    getSiteAccess(),
+    cookies(),
+  ]);
+
+  if (!siteAccess.maintenanceMode) {
+    return true;
+  }
+
+  const previewCookie = cookieStore.get(PREVIEW_COOKIE_NAME)?.value;
+  return previewCookie ? await verifySitePreviewToken(previewCookie) : false;
+}
 
 /**
  * Updates site access setting and records an audit log entry.

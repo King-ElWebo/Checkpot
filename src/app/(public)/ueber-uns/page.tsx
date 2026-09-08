@@ -5,21 +5,32 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { FadeIn } from "@/components/public/motion/fade-in";
 import { imagery, seoRoutes } from "@/content/fixtures/checkpot";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
+import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 
 const seo = seoRoutes.find((r) => r.route === "/ueber-uns")!;
 
-export const metadata: Metadata = {
-  title: seo.title,
-  description: seo.description,
-  alternates: {
-    canonical: seo.canonical,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  if (!await isPublicContentAllowed()) {
+    return LOCKED_METADATA;
+  }
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: seo.canonical,
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function UeberUnsPage() {
+  if (!await isPublicContentAllowed()) {
+    return null;
+  }
+
   const storeDetails = await getStoreDetails();
 
   return (

@@ -3,23 +3,34 @@ import type { Metadata, Route } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { seoRoutes } from "@/content/fixtures/checkpot";
 import { listPublishedBrands } from "@/lib/repositories/brands";
+import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 import { FadeIn } from "@/components/public/motion/fade-in";
 import { MarkenDirectory } from "./marken-client";
 
 const seo = seoRoutes.find((r) => r.route === "/marken")!;
 
-export const metadata: Metadata = {
-  title: seo.title,
-  description: seo.description,
-  alternates: {
-    canonical: seo.canonical,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  if (!await isPublicContentAllowed()) {
+    return LOCKED_METADATA;
+  }
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: seo.canonical,
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function MarkenPage() {
+  if (!await isPublicContentAllowed()) {
+    return null;
+  }
+
   const activeBrands = await listPublishedBrands();
   const brandCount = activeBrands.length;
 
