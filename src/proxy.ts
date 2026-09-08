@@ -51,15 +51,26 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  return NextResponse.next();
+  // 3. Forward pathname in header for server-side layout detection
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
+
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 }
 
 export const config = {
   matcher: [
-    "/admin/:path*",
-    "/api/admin/:path*",
-    "/marken/:path*",
-    "/mode/:path*",
-    "/schrankcheck-alt/:path*",
+    /*
+     * Match all request paths except for:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, icon.png, apple-icon.png (metadata icons)
+     * - customer (static public customer images)
+     */
+    "/((?!_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|customer/).*)",
   ],
 };

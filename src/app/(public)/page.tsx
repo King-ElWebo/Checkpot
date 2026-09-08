@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { FadeIn } from "@/components/public/motion/fade-in";
+import { cookies } from "next/headers";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
+import { getSiteAccess } from "@/lib/repositories/site-access";
+import { PREVIEW_COOKIE_NAME, verifySitePreviewToken } from "@/lib/auth/preview";
 import { getSiteUrl } from "@/lib/site-config";
 import { listHomepageOutfits } from "@/lib/repositories/outfits";
 import { listPublishedBrands } from "@/lib/repositories/brands";
@@ -26,6 +29,19 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function HomePage() {
+  const [siteAccess, cookieStore] = await Promise.all([
+    getSiteAccess(),
+    cookies(),
+  ]);
+
+  const previewCookie = cookieStore.get(PREVIEW_COOKIE_NAME)?.value;
+  const isPreviewActive = previewCookie ? await verifySitePreviewToken(previewCookie) : false;
+
+  // In Coming Soon mode without active preview, PublicLayout renders ComingSoon; HomePage renders null
+  if (siteAccess.maintenanceMode && !isPreviewActive) {
+    return null;
+  }
+
   const [storeDetails, homepageOutfits, dbBrands] = await Promise.all([
     getStoreDetails(),
     listHomepageOutfits(10),

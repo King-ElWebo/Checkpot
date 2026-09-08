@@ -3,6 +3,8 @@ import Link from "next/link";
 import { getDatabase } from "@/db";
 import { outfits, brands, media, collections } from "@/db/schema";
 import { count, eq, desc } from "drizzle-orm";
+import { getSiteAccess } from "@/lib/repositories/site-access";
+import { SiteAccessCard } from "@/components/admin/site-access-card";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard | Checkpot",
@@ -21,6 +23,7 @@ export default async function AdminPage() {
     totalMedia,
     totalCollections,
     recentOutfits,
+    siteAccess,
   ] = await Promise.all([
     database.select({ count: count() }).from(outfits).then((r) => r[0]?.count || 0),
     database
@@ -41,6 +44,7 @@ export default async function AdminPage() {
       orderBy: [desc(outfits.createdAt)],
       with: { media: true },
     }),
+    getSiteAccess(),
   ]);
 
   return (
@@ -53,6 +57,9 @@ export default async function AdminPage() {
           Verwalten Sie Outfits, Marken und Mediathek für das Modegeschäft in Wien Hietzing.
         </p>
       </section>
+
+      {/* Website Status & Lock Control */}
+      <SiteAccessCard initialSiteAccess={siteAccess} />
 
       {/* Quick Action Cards */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
