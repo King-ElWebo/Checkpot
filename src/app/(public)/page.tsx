@@ -44,7 +44,7 @@ export default async function HomePage() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: storeDetails.name,
-    image: new URL("/customer/store-christa-counter.jpg", siteUrl).toString(),
+    image: new URL("/customer/christa-boutique-portrait.jpg", siteUrl).toString(),
     telephone: storeDetails.phone,
     address: {
       "@type": "PostalAddress",
@@ -81,12 +81,12 @@ export default async function HomePage() {
             {/* Controlled soft transition gradient */}
             <div className="absolute left-0 top-0 bottom-0 w-10 lg:w-16 xl:w-20 2xl:w-24 bg-gradient-to-r from-[#F9F9F8] to-transparent z-10" />
             <Image
-              src="/customer/store-christa-counter.jpg"
-              alt="Persönliche Beratung und Damenmode in der Checkpot Boutique Hietzing"
+              src="/customer/christa-boutique-portrait.jpg"
+              alt="Christa Hausmair in der Checkpot Boutique Hietzing"
               fill
               priority
               sizes="(min-width: 1536px) 52vw, (min-width: 1280px) 53vw, 51vw"
-              className="object-cover object-[center_28%] 2xl:object-[center_26%]"
+              className="object-cover object-[center_18%] 2xl:object-[center_16%]"
             />
           </div>
 
@@ -145,12 +145,12 @@ export default async function HomePage() {
             {/* Top Anchor: Christa Consultation Photography */}
             <div className="relative aspect-[4/3.8] sm:aspect-[16/10] w-full max-h-[420px] overflow-hidden rounded-sm bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_8px_24px_rgba(0,0,0,0.03)]">
               <Image
-                src="/customer/store-christa-counter.jpg"
-                alt="Persönliche Beratung und Damenmode in der Checkpot Boutique Hietzing"
+                src="/customer/christa-boutique-portrait.jpg"
+                alt="Christa Hausmair in der Checkpot Boutique Hietzing"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 0px"
-                className="object-cover object-[center_24%]"
+                className="object-cover object-[center_15%]"
               />
             </div>
 
