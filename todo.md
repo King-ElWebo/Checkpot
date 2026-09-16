@@ -1,0 +1,6 @@
+- Adresse muss dynamisch werden
+- Auf der Index schreiben der creator fand das bild süß
+- Bild aus downloads ornder tauschen
+- auf fair trade seite erstes bild tauschen
+- Bei Fair trade seite unter den zertifizierungen die marken löschen (madness)
+- markenbilder hinzufügen

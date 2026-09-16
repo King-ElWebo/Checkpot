@@ -63,11 +63,11 @@ export default async function UeberUnsPage() {
             </h1>
 
             <p className="text-[15.5px] sm:text-[19px] 2xl:text-[21px] text-[#1A1A1A] font-normal sm:font-medium leading-relaxed mb-2 sm:mb-3 max-w-xl">
-              Bei Checkpot geht es nicht darum, Ihnen einfach etwas zu verkaufen. Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen.
+              Bei Checkpot geht es nicht darum, Ihnen einfach etwas zu verkaufen. Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen und die Ihre Persönlichkeit unterstreichen.
             </p>
 
             <p className="text-[14px] sm:text-[17px] text-[#5A6578] leading-relaxed max-w-lg">
-              Persönlich, ehrlich und mit viel Gespür für das, was zu Ihnen passt.
+              Persönlich, ehrlich und "hoffentlich" mit viel Gespür für das, was zu Ihnen passt.
             </p>
           </FadeIn>
 
@@ -275,7 +275,7 @@ export default async function UeberUnsPage() {
                   Checkpot Hietzing gibt es seit 2009. Christa Hausmair führt die Boutique mit einem klaren Anspruch: Mode soll nicht beliebig sein, sondern zur Frau passen, die sie trägt.
                 </p>
                 <p>
-                  Für Christa steht deshalb nicht der schnelle Verkauf im Mittelpunkt, sondern die Frage, womit sich eine Kundin wirklich wohlfühlt und was zu ihrer Garderobe passt.
+                  Für Christa steht deshalb nicht der schnelle Verkauf im Mittelpunkt, sondern die Frage, womit  fühlt sich die Kundin wohl und was passt zu ihr.
                 </p>
               </div>
             </div>

@@ -220,11 +220,11 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                 Boutique Wien-Hietzing
               </span>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] 2xl:text-[48px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A]">
-                Ausgesuchte Mode<br />mit Persönlichkeit
+                Ausgesuchte Mode<br />
               </h2>
               <p className="mt-1.5 2xl:mt-2.5 text-[13.5px] sm:text-[15px] 2xl:text-lg leading-relaxed text-[#4A5568]">
-                Wir kuratieren Kollektionen, die Ihre Ausstrahlung unterstreichen.
-                Entdecken Sie unerwartete Kombinationen in einer entspannten Umgebung.
+                Welche in der persönlichen auf Sie, Stil und Typ gerecht abgestimmt wird.
+                Entdecken Sie unerwarterte Kombinationen in einer entspannten Umgebung.
               </p>
             </div>
 
@@ -308,11 +308,6 @@ export function OutfitsHorizontalGallery({ outfits }: OutfitsHorizontalGalleryPr
                       {outfit.title}
                     </h3>
                   </Link>
-                  {outfit.availabilityNote && (
-                    <span className="mt-0.5 text-[11px] 2xl:text-[11.5px] font-normal tracking-normal text-[#8B1E1F]/85">
-                      {outfit.availabilityNote}
-                    </span>
-                  )}
                 </div>
               </div>
             ))}

@@ -362,13 +362,6 @@ export function OutfitsLookbook({
                       </p>
                     )}
 
-                    {/* 4. Availability Note */}
-                    {outfit.availabilityNote && (
-                      <span className="text-[11px] sm:text-[12.5px] font-medium text-[#8B1E1F]/90 mt-0.5 sm:mt-1 block line-clamp-1">
-                        {outfit.availabilityNote}
-                      </span>
-                    )}
-
                     {/* 5. Brands */}
                     {outfit.brands.length > 0 && (
                       <div className="mt-1 sm:mt-2.5 flex flex-wrap items-center gap-x-1.5 sm:gap-x-2 gap-y-0.5 text-[10.5px] sm:text-[11.5px] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.12em] text-[#718096] truncate">

@@ -121,11 +121,11 @@ export default async function ModePage() {
             </div>
 
             <h1 className="font-display text-3xl sm:text-5xl lg:text-[48px] 2xl:text-[56px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A] mb-3 sm:mb-4">
-              Mode mit Persönlichkeit.
+              Ausgesuchte Mode mit Persönlichkeit.
             </h1>
 
             <p className="text-[15.5px] sm:text-[18px] 2xl:text-[19.5px] text-[#4A5568] leading-relaxed max-w-lg">
-              Farben, Muster und Schnitte, die nicht beliebig wirken – sondern zu Ihnen und Ihrem persönlichen Stil passen.
+              Ausgesuchte Mode, die in der persönlichen Beratung stil- und typgerecht auf Sie abgestimmt wird. Entdecken Sie unerwartete Kombinationen.
             </p>
           </FadeIn>
 
@@ -361,11 +361,6 @@ export default async function ModePage() {
                   <h3 className="mt-2 font-display text-[15.5px] font-medium text-[#1A1A1A] line-clamp-1">
                     {highlight.title}
                   </h3>
-                  {highlight.availabilityNote && (
-                    <span className="text-[11px] text-[#8B1E1F]/85 mt-0.5">
-                      {highlight.availabilityNote}
-                    </span>
-                  )}
                 </div>
               ))}
             </div>
@@ -392,11 +387,6 @@ export default async function ModePage() {
                   <h3 className="mt-3 font-display text-[16.5px] font-medium text-[#1A1A1A]">
                     {highlight.title}
                   </h3>
-                  {highlight.availabilityNote && (
-                    <span className="text-[11.5px] text-[#8B1E1F]/85 mt-0.5">
-                      {highlight.availabilityNote}
-                    </span>
-                  )}
                 </div>
               ))}
             </div>

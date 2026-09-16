@@ -100,14 +100,17 @@ export default async function HomePage() {
                   </span>
                 </div>
 
-                <h1 className="mb-6 font-display lg:text-[66px] xl:text-[76px] 2xl:text-[84px] font-normal leading-[1.05] 2xl:leading-[1.04] tracking-tight text-[#1A1A1A]">
-                  <span>Besondere Mode.</span>
+                <h1 className="mb-6 font-display lg:text-[48px] xl:text-[56px] 2xl:text-[64px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A]">
+                  <span>Besondere Mode.
+</span>
                   <br />
-                  <span className="text-[#C01718] block mt-1">Persönlich beraten.</span>
+                  <span className="text-[#C01718] block mt-1">
+Persönlich beraten.
+                  </span>
                 </h1>
 
                 <p className="mb-8 lg:mb-10 max-w-[480px] 2xl:max-w-[530px] text-lg sm:text-xl 2xl:text-[21px] leading-relaxed text-[#4A5568]">
-                  Ausgewählte Damenmode für Frauen, die ihren eigenen Stil tragen möchten – mit ehrlicher Beratung direkt in Wien-Hietzing.
+                  Ausgewählte Fair- und Slow Fashion, für alle, die lieber ihren eigenen Stil als Einheitsbrei tragen.
                 </p>
 
                 <div className="flex items-center gap-8 w-auto">
@@ -134,7 +137,7 @@ export default async function HomePage() {
               <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
               <span>Seit 2009</span>
               <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
-              <span>Persönliche Beratung</span>
+              <span>Inhabergeführt</span>
             </div>
           </div>
 
@@ -165,10 +168,12 @@ export default async function HomePage() {
               </div>
 
               {/* Expressive H1 */}
-              <h1 className="mb-3 sm:mb-4 font-display text-[32px] sm:text-[40px] font-normal leading-[1.08] tracking-tight text-[#1A1A1A]">
-                <span>Besondere Mode.</span>
+              <h1 className="mb-3 sm:mb-4 font-display text-[26px] sm:text-[32px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A]">
+                <span>Individuelle Fair- und Slow Fashion</span>
                 <br />
-                <span className="text-[#C01718] block mt-0.5">Persönlich beraten.</span>
+                <span className="text-[#C01718] block mt-0.5">
+                  für alle, die lieber ihren eigenen Stil als Einheitsbrei tragen.
+                </span>
               </h1>
 
               {/* Supporting Copy */}
@@ -198,7 +203,7 @@ export default async function HomePage() {
                 <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
                 <span>Seit 2009</span>
                 <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
-                <span>Persönliche Beratung</span>
+                <span>Inhabergeführt</span>
               </div>
             </div>
           </div>
@@ -342,15 +347,11 @@ export default async function HomePage() {
 
                   {/* Body Copy */}
                   <p className="mb-4 sm:mb-6 lg:mb-7 text-[15px] sm:text-[16.5px] 2xl:text-[18px] leading-relaxed text-[#4A5568] relative z-10 max-w-lg">
-                    Mode ist für mich mehr als Kleidung. Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen – entspannt, ehrlich und mit Zeit für Sie.
+                    Mode ist für mich mehr als Kleidung. Gemeinsam finden wir Farben, Schnitte und Kombinationen, in denen Sie sich wirklich wohlfühlen und die Ihre Persönlichkeit unterstreichen – entspannt, ehrlich und mit Zeit für Sie.
                   </p>
 
-                  {/* Personal Sign-Off & Quiet Link */}
-                  <div className="pt-3 sm:pt-4 border-t border-[#ECEAE4] flex flex-row items-center justify-between gap-3 sm:gap-4 relative z-10">
-                    <span className="font-display text-lg sm:text-xl 2xl:text-2xl font-medium text-[#C01718]">
-                      Ihre Christa
-                    </span>
-
+                  {/* Quiet Link */}
+                  <div className="pt-3 sm:pt-4 border-t border-[#ECEAE4] flex flex-row items-center justify-start relative z-10">
                     <Link
                       href="/ueber-uns"
                       className="group inline-flex items-center text-[12.5px] 2xl:text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/35 hover:border-[#C01718] pb-0.5 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718]"
