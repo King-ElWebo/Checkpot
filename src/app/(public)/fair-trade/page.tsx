@@ -154,25 +154,8 @@ export default async function FairTradePage() {
             </p>
           </div>
 
-          {/* Standards Accordion (Mobile: Accordion with 1 open | Desktop: 2-Column Comparison) */}
+          {/* Standards & Certifications */}
           <StandardsAccordion />
-
-          {/* Compact Brand Bridge */}
-          <div className="mt-8 pt-5 border-t border-[#EDEAE4] flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-            <p className="text-[13.5px] sm:text-[14.5px] text-[#5A6578]">
-              Weitere geprüfte Angaben finden Sie direkt bei den jeweiligen Marken.
-            </p>
-            <Link
-              href={"/marken" as Route}
-              className="group inline-flex items-center text-[12px] sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors"
-            >
-              Zu unseren Marken{" "}
-              <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
-                →
-              </span>
-            </Link>
-          </div>
-
         </div>
       </section>
 
@@ -184,12 +167,12 @@ export default async function FairTradePage() {
             {/* Left: Christa / Consultation Visual */}
             <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] max-h-[280px] sm:max-h-[380px] 2xl:max-h-[420px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
               <Image
-                src={imagery.hero.src}
-                alt="Persönliche Modeberatung im Checkpot Geschäft in Wien Hietzing."
+                src={imagery.fairTradeConsultation.src}
+                alt={imagery.fairTradeConsultation.alt}
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"
-                style={{ objectPosition: imagery.hero.objectPosition }}
+                style={{ objectPosition: imagery.fairTradeConsultation.objectPosition }}
               />
             </div>
 

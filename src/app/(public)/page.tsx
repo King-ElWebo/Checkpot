@@ -133,7 +133,7 @@ Persönlich beraten.
 
           <div className="hidden lg:block mx-auto w-full max-w-[1400px] 2xl:max-w-[1600px] px-8 2xl:px-12 pt-12 2xl:pt-14 relative z-10">
             <div className="flex items-center gap-3 text-[13px] 2xl:text-[13.5px] font-medium uppercase tracking-[0.16em] text-[#2D3748]">
-              <span>1130 Wien</span>
+              <span>{storeDetails.address.postalCode} {storeDetails.address.city}</span>
               <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
               <span>Seit 2009</span>
               <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
@@ -199,7 +199,7 @@ Persönlich beraten.
 
               {/* Compact Meta Row */}
               <div className="w-full mt-4 pt-3.5 border-t border-[#ECEAE4] flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[0.12em] text-[#718096]">
-                <span>1130 Wien</span>
+                <span>{storeDetails.address.postalCode} {storeDetails.address.city}</span>
                 <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
                 <span>Seit 2009</span>
                 <span className="text-[#C01718] font-bold" aria-hidden="true">·</span>
@@ -238,7 +238,7 @@ Persönlich beraten.
 
               <div className="lg:col-span-5 flex flex-col items-start lg:items-end justify-end pb-0.5">
                 <span className="text-[11.5px] font-mono font-medium tracking-[0.12em] text-[#718096] uppercase mb-2.5 sm:mb-3">
-                  1130 Wien · Hietzinger Hauptstraße 10–16
+                  {storeDetails.address.postalCode} {storeDetails.address.city} · {storeDetails.address.street}
                 </span>
                 <Link
                   href="/ueber-uns"
@@ -281,12 +281,12 @@ Persönlich beraten.
                 {/* Storefront / Physical Context Image */}
                 <div className="relative aspect-[4/3] lg:aspect-[16/10] xl:aspect-[4/3] w-full h-auto lg:h-[210px] xl:h-[220px] 2xl:h-[230px] rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
                   <Image
-                    src="/customer/store/20260825_125300.jpg"
-                    alt="Eingangsbereich und Schaufenster der Checkpot Boutique in der Hietzinger Hauptstraße"
+                    src="https://hgrtkumqrh0cwc66.public.blob.vercel-storage.com/store/checkpot-storefront-entrance.jpg"
+                    alt="Eingangsbereich und Schaufenster der Checkpot Boutique in Wien-Hietzing"
                     fill
                     sizes="(min-width: 1024px) 30vw, 50vw"
                     className="object-cover"
-                    style={{ objectPosition: "50% 25%" }}
+                    style={{ objectPosition: "50% 35%" }}
                   />
                 </div>
               </div>
@@ -319,6 +319,9 @@ Persönlich beraten.
                     className="object-cover object-[50%_18%] transition-transform duration-700 hover:scale-[1.02]"
                   />
                 </FadeIn>
+                <p className="mt-2 sm:mt-2.5 text-[11px] sm:text-[11.5px] text-[#8C867D] italic text-center lg:text-left select-none">
+                  *(Bleibt eigentlich nur auf der Website, weil der Creator – sprich ich – das Foto einfach viel zu süß fand.)
+                </p>
               </div>
 
               {/* Right: Editorial Consultation Message (Clean unboxed flow on mobile, card on desktop) */}

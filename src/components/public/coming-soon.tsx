@@ -77,7 +77,9 @@ export function ComingSoon({ storeDetails }: ComingSoonProps) {
                       <br />
                       {storeDetails.address.postalCode} {storeDetails.address.city}
                       <br />
-                      <span className="text-xs text-[#718096]">Wien · Österreich</span>
+                      <span className="text-xs text-[#718096]">
+                        {storeDetails.address.country === "AT" ? "Österreich" : storeDetails.address.country}
+                      </span>
                     </address>
                   </div>
 
@@ -145,7 +147,7 @@ export function ComingSoon({ storeDetails }: ComingSoonProps) {
       {/* Connected Quiet Footer */}
       <footer className="border-t border-[#E8E5DF] py-6 px-6 sm:px-8 lg:px-12 xl:px-16 bg-[#FAF9F6] text-xs text-[#718096]">
         <div className="mx-auto flex max-w-[1520px] flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© {currentYear} Checkpot Hietzing Boutique · Christa Hausmair</p>
+          <p>© {currentYear} {storeDetails.name} · {storeDetails.owner}</p>
           <div className="flex items-center gap-5">
             <Link
               href={"/impressum" as Route}

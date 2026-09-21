@@ -115,7 +115,7 @@ export default async function DatenschutzPage() {
                   <p>
                     <strong className="text-[#1A1A1A]">Adresse:</strong><br />
                     {storeDetails.address.street}<br />
-                    {storeDetails.address.postalCode} {storeDetails.address.city}, Österreich
+                    {storeDetails.address.postalCode} {storeDetails.address.city}, {storeDetails.address.country === "AT" ? "Österreich" : storeDetails.address.country}
                   </p>
                 </div>
               </div>
@@ -225,20 +225,23 @@ export default async function DatenschutzPage() {
               </div>
             </div>
 
-            {/* 5. Google Analytics 4 */}
+            {/* 5. Webanalyse & Performance (Google Analytics 4 & Vercel Analytics) */}
             <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
                 Abschnitt 05
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
-                Webanalyse (Google Analytics 4)
+                Webanalyse & Performance-Messung
               </h3>
               <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
                 <p>
-                  Ausschließlich bei Erteilung Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) nutzen wir Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Vor Ihrer Zustimmung werden keinerlei Analyseskripte, Tags oder Cookies geladen und keine Daten an Google übertragen (Basic Consent Mode).
+                  <strong>Google Analytics 4:</strong> Ausschließlich bei Erteilung Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) nutzen wir Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Vor Ihrer Zustimmung werden keinerlei Analyseskripte, Tags oder Cookies geladen und keine Daten an Google übertragen (Basic Consent Mode). Die IP-Anonymisierung ist standardmäßig aktiviert. Werbefunktionen, Google Signals und Remarketing sind dauerhaft deaktiviert.
                 </p>
                 <p>
-                  Die IP-Anonymisierung ist standardmäßig aktiviert. Werbefunktionen, Google Signals und Remarketing sind dauerhaft deaktiviert. Widerrufen Sie Ihre Einwilligung über die <em>„Cookie-Einstellungen“</em>, wird die Erfassung gestoppt und vorhandene First-Party-Analyse-Cookies werden im Rahmen der browserseitigen Möglichkeiten bestmöglich bereinigt.
+                  <strong>Vercel Web Analytics & Speed Insights:</strong> Sofern Sie in die Kategorie „Statistik“ eingewilligt haben (Art. 6 Abs. 1 lit. a DSGVO), nutzen wir zudem die Analyse- und Performance-Dienste unseres Hosting-Dienstleisters Vercel Inc. (440 N Barranca Ave #4133, Covina, CA 91723, USA). Vercel Web Analytics erfasst aggregierte, pseudonymisierte Nutzungsstatistiken ohne das Setzen persistenter Werbe- oder Tracking-Cookies. Vercel Speed Insights misst technische Ladezeiten und Web-Vitals-Kennzahlen (wie First Input Delay, Cumulative Layout Shift), um die technische Stabilität und Performance der Website zu überwachen und zu verbessern.
+                </p>
+                <p>
+                  <strong>Widerruf:</strong> Sie können Ihre Analyse-Einwilligung jederzeit mit Wirkung für die Zukunft über den Link <em>„Cookie-Einstellungen“</em> im Footer widerrufen. Bei Widerruf werden die Analyse-Dienste sofort deaktiviert und vorhandene First-Party-Analyse-Cookies im Rahmen der browserseitigen Möglichkeiten bestmöglich bereinigt.
                 </p>
               </div>
             </div>

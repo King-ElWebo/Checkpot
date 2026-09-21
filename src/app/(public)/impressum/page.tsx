@@ -77,12 +77,12 @@ export default async function ImpressumPage() {
                 
                 <div className="space-y-2.5 text-[#4A5568] text-[15px] leading-relaxed">
                   <p>
-                    <strong className="text-[#1A1A1A]">Geschäftsbezeichnung:</strong> Checkpot Hietzing Boutique
+                    <strong className="text-[#1A1A1A]">Geschäftsbezeichnung:</strong> {storeDetails.name}
                   </p>
                   <p>
                     <strong className="text-[#1A1A1A]">Standort / Anschrift:</strong><br />
                     {storeDetails.address.street}<br />
-                    {storeDetails.address.postalCode} {storeDetails.address.city}, Österreich
+                    {storeDetails.address.postalCode} {storeDetails.address.city}, {storeDetails.address.country === "AT" ? "Österreich" : storeDetails.address.country}
                   </p>
                   <p>
                     <strong className="text-[#1A1A1A]">UID-Nummer:</strong> ATU64656223

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { Route } from "next";
+import type { StoreDetails } from "@/lib/contracts/public";
 
 interface LegalMaintenanceShellProps {
   children: React.ReactNode;
+  storeDetails?: StoreDetails;
 }
 
-export function LegalMaintenanceShell({ children }: LegalMaintenanceShellProps) {
+export function LegalMaintenanceShell({ children, storeDetails }: LegalMaintenanceShellProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -50,7 +52,7 @@ export function LegalMaintenanceShell({ children }: LegalMaintenanceShellProps) 
       {/* Isolated Quiet Footer — NO public navigation links */}
       <footer className="border-t border-[#E8E5DF] py-6 px-6 sm:px-8 lg:px-12 bg-[#FAF9F6] text-xs text-[#718096]">
         <div className="mx-auto flex max-w-[1200px] flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© {currentYear} Checkpot Hietzing Boutique · Christa Hausmair</p>
+          <p>© {currentYear} {storeDetails?.name || "Checkpot"} · {storeDetails?.owner || "Christa Hausmair"}</p>
           <div className="flex items-center gap-5">
             <Link
               href={"/impressum" as Route}

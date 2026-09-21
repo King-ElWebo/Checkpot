@@ -176,10 +176,10 @@ export function Footer({ storeDetails }: { storeDetails: StoreDetails }) {
         {/* Bottom Meta Row */}
         <div className="mt-8 sm:mt-12 lg:mt-14 pt-4 sm:pt-6 border-t border-[#E5E2DC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[13px] text-[#718096]">
           <p>
-            &copy; {currentYear} {storeDetails.name} Hietzing
+            &copy; {currentYear} {storeDetails.name}
           </p>
           <p>
-            1130 Wien · Hietzinger Hauptstraße 10–16
+            {storeDetails.address.postalCode} {storeDetails.address.city} · {storeDetails.address.street}
           </p>
         </div>
 

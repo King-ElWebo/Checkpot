@@ -67,7 +67,7 @@ export default async function UeberUnsPage() {
             </p>
 
             <p className="text-[14px] sm:text-[17px] text-[#5A6578] leading-relaxed max-w-lg">
-              Persönlich, ehrlich und "hoffentlich" mit viel Gespür für das, was zu Ihnen passt.
+              Persönlich, ehrlich und &quot;hoffentlich&quot; mit viel Gespür für das, was zu Ihnen passt.
             </p>
           </FadeIn>
 
@@ -76,7 +76,7 @@ export default async function UeberUnsPage() {
             <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[5/4] max-h-[300px] sm:max-h-[400px] lg:max-h-[460px] 2xl:max-h-[520px] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_12px_32px_rgba(0,0,0,0.03)] sm:shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
               <Image
                 src={imagery.hero.src}
-                alt="Christa Hausmair bei der persönlichen Modeberatung im Checkpot Hietzing."
+                alt={imagery.hero.alt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -134,12 +134,12 @@ export default async function UeberUnsPage() {
 
               <div className="relative aspect-[4/3] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC]">
                 <Image
-                  src="/customer/store/20260820_110543.jpg"
-                  alt="Textilauslage und stilvolle Accessoires in der Checkpot Boutique."
+                  src="https://hgrtkumqrh0cwc66.public.blob.vercel-storage.com/store/checkpot-storefront-entrance.jpg"
+                  alt="Schaufenster und Eingang der Checkpot Boutique in Wien-Hietzing mit Modedisplay und Boutique-Hund."
                   fill
                   sizes="50vw"
                   className="object-cover"
-                  style={{ objectPosition: "50% 50%" }}
+                  style={{ objectPosition: "50% 35%" }}
                 />
               </div>
             </div>
@@ -174,12 +174,12 @@ export default async function UeberUnsPage() {
 
               <div className="relative aspect-[4/3] lg:aspect-[4/3] w-full rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
                 <Image
-                  src="/customer/store/20260820_110543.jpg"
-                  alt="Textilauslage und stilvolle Accessoires in der Checkpot Boutique."
+                  src="https://hgrtkumqrh0cwc66.public.blob.vercel-storage.com/store/checkpot-storefront-entrance.jpg"
+                  alt="Schaufenster und Eingang der Checkpot Boutique in Wien-Hietzing mit Modedisplay und Boutique-Hund."
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover"
-                  style={{ objectPosition: "50% 50%" }}
+                  style={{ objectPosition: "50% 35%" }}
                 />
               </div>
             </div>

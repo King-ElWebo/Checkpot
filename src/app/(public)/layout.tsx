@@ -100,31 +100,25 @@ export default async function PublicLayout({ children }: { children: React.React
   const isLegalRoute = normalizedPath === "/impressum" || normalizedPath === "/datenschutz";
 
   // Server-side enforcement: Locked visitors see Coming Soon unless preview is active or accessing legal info
-  if (siteAccess.maintenanceMode && !isPreviewActive) {
-    if (isLegalRoute) {
-      return (
-        <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
-          <LegalMaintenanceShell>
-            {children}
-          </LegalMaintenanceShell>
-        </div>
-      );
-    }
-
-    return (
-      <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
-        <ComingSoon storeDetails={storeDetails} />
-      </div>
-    );
-  }
-
   return (
     <ConsentManager initialConsent={initialConsent}>
       <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer storeDetails={storeDetails} />
-        {siteAccess.maintenanceMode && isPreviewActive && <PreviewBanner />}
+        {siteAccess.maintenanceMode && !isPreviewActive ? (
+          isLegalRoute ? (
+            <LegalMaintenanceShell storeDetails={storeDetails}>
+              {children}
+            </LegalMaintenanceShell>
+          ) : (
+            <ComingSoon storeDetails={storeDetails} />
+          )
+        ) : (
+          <>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer storeDetails={storeDetails} />
+            {siteAccess.maintenanceMode && isPreviewActive && <PreviewBanner />}
+          </>
+        )}
       </div>
     </ConsentManager>
   );

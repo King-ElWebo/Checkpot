@@ -4,7 +4,7 @@ import type {
   SeoRoute,
 } from "@/lib/contracts/public";
 import { getSiteUrl } from "@/lib/site-config";
-import { DEFAULT_STORE_DETAILS } from "@/lib/contracts/store-defaults";
+import { DEFAULT_STORE_DETAILS, DEFAULT_STORE_SETTINGS_RAW } from "@/lib/contracts/store-defaults";
 
 export const siteUrl = getSiteUrl();
 
@@ -22,10 +22,10 @@ export const storeDetails = DEFAULT_STORE_DETAILS;
 
 export const imagery = {
   hero: {
-    src: "/customer/store-christa-counter.jpg",
-    alt: "Christa Hausmair im Geschäft Checkpot Hietzing bei der persönlichen Beratung.",
+    src: "/customer/christa-boutique-selection.jpg",
+    alt: "Christa Hausmair bei der persönlichen Modeberatung im Checkpot Hietzing.",
     caption: "Persönliche Beratung in Hietzing",
-    objectPosition: "52% 34%",
+    objectPosition: "64% 30%",
   },
   founder: {
     src: "/customer/christa-storefront.jpg",
@@ -33,14 +33,19 @@ export const imagery = {
     objectPosition: "50% 18%",
   },
   sustainabilityShelf: {
-    src: "/customer/store-sustainable-shelf.jpg",
-    alt: "Sorgfältig sortierte Kleidung und textile Details im Geschäft von Checkpot.",
-    objectPosition: "50% 48%",
+    src: "/customer/store/20260820_110653.jpg",
+    alt: "Ausgewählte Damenmode, Strick und Kleider auf Regalen und Ständern im Geschäft Checkpot in Hietzing.",
+    objectPosition: "50% 45%",
   },
   textileDetail: {
     src: "/customer/textile-sorgenfri-detail.jpg",
     alt: "Detailaufnahme eines gemusterten Kleidungsstücks auf einem Bügel.",
     objectPosition: "48% 46%",
+  },
+  fairTradeConsultation: {
+    src: "/customer/christa-boutique-selection.jpg",
+    alt: "Christa Hausmair im Geschäft Checkpot vor ausgewählter Damenmode.",
+    objectPosition: "62% 28%",
   },
   storeDetails: [
     {
@@ -105,8 +110,7 @@ export const seoRoutes: SeoRoute[] = [
   {
     route: "/kontakt",
     title: "Kontakt & Öffnungszeiten",
-    description:
-      "Besuchen Sie uns auf der Hietzinger Hauptstraße 10-16. Hier finden Sie alle Kontaktdaten und Öffnungszeiten.",
+    description: `Besuchen Sie uns auf der ${DEFAULT_STORE_SETTINGS_RAW.address.street}. Hier finden Sie alle Kontaktdaten und Öffnungszeiten.`,
     canonical: "/kontakt",
     index: true,
   },

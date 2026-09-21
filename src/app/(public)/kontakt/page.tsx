@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { seoRoutes, imagery } from "@/content/fixtures/checkpot";
@@ -14,9 +15,14 @@ export async function generateMetadata(): Promise<Metadata> {
     return LOCKED_METADATA;
   }
 
+  const storeDetails = await getStoreDetails();
+  const description = storeDetails.address.street
+    ? `Besuchen Sie uns auf der ${storeDetails.address.street}. Hier finden Sie alle Kontaktdaten und Öffnungszeiten.`
+    : seo.description;
+
   return {
     title: seo.title,
-    description: seo.description,
+    description,
     alternates: {
       canonical: seo.canonical,
     },
@@ -220,6 +226,20 @@ export default async function KontaktPage() {
                         {storeDetails.hoursNote}
                       </p>
                     )}
+                  </div>
+
+                  {/* Storefront Photography Context */}
+                  <div className="pt-2">
+                    <div className="relative aspect-[16/10] w-full max-w-[380px] rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
+                      <Image
+                        src="https://hgrtkumqrh0cwc66.public.blob.vercel-storage.com/store/checkpot-storefront-entrance.jpg"
+                        alt="Eingang und Schaufenster der Checkpot Boutique in Wien-Hietzing"
+                        fill
+                        sizes="(min-width: 1024px) 35vw, 100vw"
+                        className="object-cover"
+                        style={{ objectPosition: "50% 35%" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

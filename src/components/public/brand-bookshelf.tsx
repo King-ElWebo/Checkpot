@@ -64,7 +64,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
 
             {/* Intro text */}
             <p className="text-[14.5px] 2xl:text-[16px] text-[#4A5568] leading-relaxed mb-8 max-w-md">
-              15 ausgewählte europäische Modelabels mit Persönlichkeit, Qualität und Liebe zum Detail – von skandinavischer Lässigkeit bis hin zu zeitlosen Klassikern.
+              {brands.length} ausgewählte europäische Modelabels mit Persönlichkeit, Qualität und Liebe zum Detail – von skandinavischer Lässigkeit bis hin zu zeitlosen Klassikern.
             </p>
 
             {/* Interactive 15-Brand Typographic Index */}
@@ -113,7 +113,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
               href="/marken"
               className="group inline-flex items-center text-[13px] 2xl:text-[14px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 hover:border-[#C01718] pb-0.5"
             >
-              Alle 15 Marken ansehen <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+              Alle {brands.length} Marken ansehen <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -201,7 +201,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
             Unsere Marken entdecken
           </h2>
           <p className="text-[14px] text-[#4A5568] leading-relaxed">
-            15 ausgewählte europäische Modelabels mit Persönlichkeit und Qualität.
+            {brands.length} ausgewählte europäische Modelabels mit Persönlichkeit und Qualität.
           </p>
         </div>
 
@@ -285,7 +285,7 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
             href="/marken"
             className="inline-flex items-center text-[13px] font-medium uppercase tracking-[0.08em] text-[#1A1A1A] hover:text-[#C01718] transition-colors border-b border-[#1A1A1A]/30 pb-0.5"
           >
-            Alle 15 Marken ansehen <span className="ml-1.5" aria-hidden="true">→</span>
+            Alle {brands.length} Marken ansehen <span className="ml-1.5" aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
