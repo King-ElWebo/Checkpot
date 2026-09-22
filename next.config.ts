@@ -3,10 +3,26 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "*.public.blob.vercel-storage.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "media.checkpot.at",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "*.r2.dev",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "*.cloudflarestorage.com",
         port: "",
       },
     ],

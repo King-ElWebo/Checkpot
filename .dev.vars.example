@@ -1,0 +1,30 @@
+# Cloudflare Workers / Wrangler Local Development Environment Variables & Secrets
+# Copy this file to .dev.vars for local testing with `wrangler dev` (Miniflare).
+# WARNING: NEVER commit .dev.vars or actual credentials to version control!
+
+# Neon PostgreSQL connection string (pooled HTTP endpoint recommended)
+# Fail-closed: The application throws if DATABASE_URL is missing.
+DATABASE_URL="postgresql://user:password@ep-example-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require"
+
+# Canonical Site URL (used for canonical links, sitemaps, OpenGraph, JSON-LD)
+SITE_URL="https://checkpot-hietzing.at"
+
+# Admin session JWT signing secret (HMAC-SHA256, minimum 32 characters)
+# Fail-closed: Must be at least 32 characters. Generate with: openssl rand -base64 32
+AUTH_SECRET="change-this-to-a-secure-random-secret-at-least-32-chars-long"
+
+# Single-admin password for /login
+# Fail-closed: If not configured, admin login returns false immediately.
+ADMIN_PASSWORD="replace-with-a-strong-admin-password"
+
+# Resend API key for contact form emails (re_...)
+# Fail-closed: If missing, contact form gracefully rejects submission without email dispatch.
+RESEND_API_KEY="re_dummy_resend_api_key_for_local_development"
+
+# Optional separate secret for rate-limiting HMAC subject hashing (minimum 32 characters)
+# If omitted, AUTH_SECRET is used as fallback.
+RATE_LIMIT_SECRET="change-this-to-a-secure-random-rate-limit-secret-32-chars"
+
+# Google Analytics 4 Measurement ID (public client variable)
+# If not configured, Google Analytics component renders null silently.
+NEXT_PUBLIC_GA_MEASUREMENT_ID="G-LBFJND2204"

@@ -10,6 +10,8 @@ export default defineConfig([
     ".agents/**",
     ".ai-agents/**",
     "drizzle/**",
+    "dist/**",
+    ".vinext/**",
     "next-env.d.ts",
   ]),
 ]);

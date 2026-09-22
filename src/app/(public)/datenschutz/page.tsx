@@ -168,7 +168,7 @@ export default async function DatenschutzPage() {
               </h3>
               <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
                 <p>
-                  <strong>Webhosting:</strong> Diese Website wird über einen Cloud-Hosting-Dienstleister (Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA) bereitgestellt. Zur technischen Auslieferung der aufgerufenen Seiten und zur Gewährleistung der Systemsicherheit verarbeitet der Server Verbindungsdaten (Server-Logfiles wie IP-Adresse, Datum und Uhrzeit des Abrufs, Browsertyp, Betriebssystem und Referrer-URL) auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO).
+                  <strong>Webhosting & CDN:</strong> Diese Website wird über einen Cloud-Hosting- und Content-Delivery-Dienstleister (Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA) bereitgestellt. Zur technischen Auslieferung der aufgerufenen Seiten und zur Gewährleistung der Systemsicherheit verarbeitet der Server Verbindungsdaten (Server-Logfiles wie IP-Adresse, Datum und Uhrzeit des Abrufs, Browsertyp, Betriebssystem und Referrer-URL) auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO).
                 </p>
                 <p>
                   <strong>Schriftarten (Self-Hosted):</strong> Die auf dieser Website genutzten Schriftarten werden über die Build-Optimierung von Next.js lokal vom eigenen Webserver ausgeliefert. Beim Besuch der Website werden keine Verbindungen zu Servern von Schriftdienstleistern (wie Google Fonts) aufgebaut.
@@ -225,23 +225,20 @@ export default async function DatenschutzPage() {
               </div>
             </div>
 
-            {/* 5. Webanalyse & Performance (Google Analytics 4 & Vercel Analytics) */}
+            {/* 5. Webanalyse (Google Analytics 4) */}
             <div className="bg-white border border-[#E5E2DC] rounded-sm p-6 sm:p-8 flex flex-col">
               <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C01718] mb-2">
                 Abschnitt 05
               </span>
               <h3 className="font-display text-xl lg:text-2xl text-[#1A1A1A] font-medium mb-3">
-                Webanalyse & Performance-Messung
+                Webanalyse & Statistik (Google Analytics 4)
               </h3>
               <div className="text-[14px] leading-relaxed text-[#4A5568] space-y-3">
                 <p>
                   <strong>Google Analytics 4:</strong> Ausschließlich bei Erteilung Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) nutzen wir Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Vor Ihrer Zustimmung werden keinerlei Analyseskripte, Tags oder Cookies geladen und keine Daten an Google übertragen (Basic Consent Mode). Die IP-Anonymisierung ist standardmäßig aktiviert. Werbefunktionen, Google Signals und Remarketing sind dauerhaft deaktiviert.
                 </p>
                 <p>
-                  <strong>Vercel Web Analytics & Speed Insights:</strong> Sofern Sie in die Kategorie „Statistik“ eingewilligt haben (Art. 6 Abs. 1 lit. a DSGVO), nutzen wir zudem die Analyse- und Performance-Dienste unseres Hosting-Dienstleisters Vercel Inc. (440 N Barranca Ave #4133, Covina, CA 91723, USA). Vercel Web Analytics erfasst aggregierte, pseudonymisierte Nutzungsstatistiken ohne das Setzen persistenter Werbe- oder Tracking-Cookies. Vercel Speed Insights misst technische Ladezeiten und Web-Vitals-Kennzahlen (wie First Input Delay, Cumulative Layout Shift), um die technische Stabilität und Performance der Website zu überwachen und zu verbessern.
-                </p>
-                <p>
-                  <strong>Widerruf:</strong> Sie können Ihre Analyse-Einwilligung jederzeit mit Wirkung für die Zukunft über den Link <em>„Cookie-Einstellungen“</em> im Footer widerrufen. Bei Widerruf werden die Analyse-Dienste sofort deaktiviert und vorhandene First-Party-Analyse-Cookies im Rahmen der browserseitigen Möglichkeiten bestmöglich bereinigt.
+                  <strong>Widerruf:</strong> Sie können Ihre Analyse-Einwilligung jederzeit mit Wirkung für die Zukunft über den Link <em>„Cookie-Einstellungen“</em> im Footer widerrufen. Bei Widerruf wird der Analyse-Dienst sofort deaktiviert und vorhandene First-Party-Analyse-Cookies im Rahmen der browserseitigen Möglichkeiten bestmöglich bereinigt.
                 </p>
               </div>
             </div>

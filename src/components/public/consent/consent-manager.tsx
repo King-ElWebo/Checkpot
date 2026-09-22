@@ -5,7 +5,6 @@ import { ConsentProvider } from "./consent-context";
 import { ConsentBanner } from "./consent-banner";
 import { ConsentSettingsDialog } from "./consent-settings-dialog";
 import { GoogleAnalytics } from "./google-analytics";
-import { VercelAnalytics } from "./vercel-analytics";
 import { ConsentState } from "@/lib/consent/types";
 
 export function ConsentManager({
@@ -19,7 +18,6 @@ export function ConsentManager({
     <ConsentProvider initialConsent={initialConsent}>
       {children}
       <GoogleAnalytics />
-      <VercelAnalytics />
       <ConsentBanner />
       <ConsentSettingsDialog />
     </ConsentProvider>

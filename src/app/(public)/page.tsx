@@ -10,6 +10,7 @@ import { listPublishedBrands } from "@/lib/repositories/brands";
 import { BrandBookshelf } from "@/components/public/brand-bookshelf";
 import { OutfitsHorizontalGallery } from "@/components/public/outfits-horizontal-gallery";
 import { seoRoutes } from "@/content/fixtures/checkpot";
+import { STOREFRONT_IMAGE_URL } from "@/lib/storage";
 
 const seo = seoRoutes.find((r) => r.route === "/")!;
 
@@ -281,7 +282,7 @@ Persönlich beraten.
                 {/* Storefront / Physical Context Image */}
                 <div className="relative aspect-[4/3] lg:aspect-[16/10] xl:aspect-[4/3] w-full h-auto lg:h-[210px] xl:h-[220px] 2xl:h-[230px] rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
                   <Image
-                    src="https://hgrtkumqrh0cwc66.public.blob.vercel-storage.com/store/checkpot-storefront-entrance.jpg"
+                    src={STOREFRONT_IMAGE_URL}
                     alt="Eingangsbereich und Schaufenster der Checkpot Boutique in Wien-Hietzing"
                     fill
                     sizes="(min-width: 1024px) 30vw, 50vw"

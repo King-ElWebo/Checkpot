@@ -1,8 +1,9 @@
 "use server";
 
-import { put, del } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
+
+import { uploadFile, deleteFile } from "@/lib/storage";
 
 import { getDatabase } from "@/db";
 import { media } from "@/db/schema";
@@ -60,15 +61,19 @@ export async function uploadMediaAction(formData: FormData): Promise<{ success: 
   const originalName = file.name;
   const secureFilename = `${crypto.randomUUID()}.${ext}`;
 
-  // Upload to Vercel Blob
-  const blob = await put(`media/${secureFilename}`, file, {
-    access: "public",
+  const key = `media/${secureFilename}`;
+  const contentType = ext === "jpg" ? "image/jpeg" : ext === "png" ? "image/png" : "image/webp";
+
+  // Upload to Cloudflare R2 storage
+  const { url } = await uploadFile(key, file, {
+    contentType,
+    cacheControl: "public, max-age=31536000, immutable",
   });
 
   // Save to DB
   const database = getDatabase();
   const [newMedia] = await database.insert(media).values({
-    url: blob.url,
+    url,
     alt: data.alt || null,
     title: data.title || originalName, // store original filename in title if empty
     rights: data.rights || null,
@@ -170,11 +175,11 @@ export async function deleteMediaAction(id: string, force = false) {
     columns: { slug: true },
   });
 
-  // Delete from Vercel Blob
+  // Delete from R2 storage
   try {
-    await del(dbMedia.url);
+    await deleteFile(dbMedia.url);
   } catch (err) {
-    console.error("Vercel Blob deletion error:", err);
+    console.error("Storage deletion error:", err);
   }
 
   // Delete from DB

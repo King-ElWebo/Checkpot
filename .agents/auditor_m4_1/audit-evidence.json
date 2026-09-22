@@ -1,0 +1,478 @@
+{
+  "passedCount": 59,
+  "failedCount": 0,
+  "results": [
+    {
+      "key": "media/outfit-summer-pattern-iibaXETsX4Mh06BS7MTrwqUtDWTUAB.jpg",
+      "status": "PASS",
+      "sizeBytes": 666335,
+      "sha256": "a4700ed7298cc6a60707ff7cae36f9c8f3fc2d3c2fd19be59fa28d990e2a5b47",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/outfit-blue-winter-FxLUMNWLPxDDu6HLqyX1StD6m3gprv.jpg",
+      "status": "PASS",
+      "sizeBytes": 686624,
+      "sha256": "bc09730fa8bb66b29733f1a80d06d45463fb49e870238979df0cc3d967f4e929",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/checkpot-logo-50W8fYc6aBPigdFsZi3befoTr5ff3u.svg",
+      "status": "PASS",
+      "sizeBytes": 14582,
+      "sha256": "a6ff6f1dac1722f77b469e78f5844bb218018334d3d44bb19431071566db99ec",
+      "detectedType": "image/svg+xml",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/d496b763-d280-4337-a70d-aaf8601b76ad.jpg",
+      "status": "PASS",
+      "sizeBytes": 64220,
+      "sha256": "5811de63aed7d6067ad1d90dd52f32605ac6c338aaa54162519920d2490d8425",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/118489bd-2ff8-4166-ba97-e3068c7c1e78.jpg",
+      "status": "PASS",
+      "sizeBytes": 61258,
+      "sha256": "68d658297f6127d57bf4f7b12c58752ba25e749555fd93a76898c52e8f5ee17e",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/43f53bb2-8d3b-4a6a-9258-87ba38e3f202.jpg",
+      "status": "PASS",
+      "sizeBytes": 60169,
+      "sha256": "5de8d7509f12983c063b70d948ca6941b295e806985ce151b47c5f3c53b85a70",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/c9546a7d-2087-470d-8f68-b9d681180ccd.jpg",
+      "status": "PASS",
+      "sizeBytes": 65123,
+      "sha256": "3826570a814ce3f1fc82b5878e9fbda22d941f65da7a541ac893c4dd065a9665",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/6a5b8799-9dc1-4c9a-9778-9cf71ce76b06.jpg",
+      "status": "PASS",
+      "sizeBytes": 51524,
+      "sha256": "039fd49bd96ad00251aced653a122e471c88f63782d8c6b9a3e4075f7905cd99",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/7e97eec5-b517-4e99-a433-788fd7d64932.jpg",
+      "status": "PASS",
+      "sizeBytes": 39020,
+      "sha256": "5bdbaaa7c623fbf9d05abbb814500385e62a9912d67036e9112dd4da24863439",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "media/c12bc15c-acae-4cb0-bd15-9d9bfb619c57.jpg",
+      "status": "PASS",
+      "sizeBytes": 74498,
+      "sha256": "ec8577951b3dc7d0c476703cbd4c3aad22934b450c907340ea1a4ea5d602d52f",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/happy-rainy-days-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 77811,
+      "sha256": "7383ae27c547140d2a8a0fe7f4174e598b337ea02f3e65d0ea318eac80d47b82",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_101413-mtg0pxzl.jpg",
+      "status": "PASS",
+      "sizeBytes": 444622,
+      "sha256": "86b2a1adc0cd72ef7416f24b2fdbedc21a25f81308797318c7b137f2f9434c11",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_102255-mtg0q18e.jpg",
+      "status": "PASS",
+      "sizeBytes": 424290,
+      "sha256": "16ac607e7159130ed715bdbe1456ebe9960fc53c536ec0cc4d2415a2ed9edf55",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_103039-mtg0q36b.jpg",
+      "status": "PASS",
+      "sizeBytes": 426279,
+      "sha256": "df1121c00b06538f2d5ba720d027ec00b988f3c07e177074c06bc8b5f6f66ecd",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_103812-mtg0q5ev.jpg",
+      "status": "PASS",
+      "sizeBytes": 439611,
+      "sha256": "74b475101977060767fd037cd1aae8a7c83aa8e58d2a8e680b90fd48a8741197",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_105253-mtg0q7ep.jpg",
+      "status": "PASS",
+      "sizeBytes": 399987,
+      "sha256": "b5d086d07042cec36d2d4bd27d15a315d4781334ee49cb393c3de5c71060e3cb",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_110010-mtg0q9jt.jpg",
+      "status": "PASS",
+      "sizeBytes": 378160,
+      "sha256": "1c320764554d6433216c191c3c84a928884cb1a01d9f0e5ffe9ff625579f24c4",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_111155-mtg0qbn6.jpg",
+      "status": "PASS",
+      "sizeBytes": 482211,
+      "sha256": "aac4bf89e34f13837b975f686f70c5df0fb045b317581814bc2a52c3c0ccab43",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_115108-mtg0qdk8.jpg",
+      "status": "PASS",
+      "sizeBytes": 413829,
+      "sha256": "e31f4dfaf6768f24f02d2e4df2ec45cb352a26c319783720461e366a6ba5c39c",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_120634-mtg0qfet.jpg",
+      "status": "PASS",
+      "sizeBytes": 349460,
+      "sha256": "201b0dc1a3ba490e434e794baee9e029091422d583f862bc1e0f43e1b540cb12",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_120835-mtg0qhml.jpg",
+      "status": "PASS",
+      "sizeBytes": 363351,
+      "sha256": "d585bc8c79dbf1035221df2db072b47f055b254e155ca50f09fd52e76cd382dd",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_121557-mtg0qk2b.jpg",
+      "status": "PASS",
+      "sizeBytes": 383645,
+      "sha256": "ce881ca445d7fd3eb770a62b0525222b5dbdeb22645e9e07028780ccb96e5c5a",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_132935-mtg0qm2r.jpg",
+      "status": "PASS",
+      "sizeBytes": 451897,
+      "sha256": "abcb09dc54877e0356086c6658adf8f7737fb65ba29df8f23e338ecef3c181e8",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_133410-mtg0qoiq.jpg",
+      "status": "PASS",
+      "sizeBytes": 416156,
+      "sha256": "86e8af81c04ce3aabc2692e42fe524ec2970f35db1da195ed944519c7abaa354",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_150127-mtg0qqk9.jpg",
+      "status": "PASS",
+      "sizeBytes": 425041,
+      "sha256": "a0978e31786a716bf1799d0606124e9901d2a2b4b9e1dd994c9c974ee91233a1",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260818_151041-mtg0qsqv.jpg",
+      "status": "PASS",
+      "sizeBytes": 408764,
+      "sha256": "bdcb677bc2fcfb0ed4adce11f443453ed9a903e679d15c99188979ad34ff4942",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_112326-mtg0quux.jpg",
+      "status": "PASS",
+      "sizeBytes": 399470,
+      "sha256": "ad6a10c665efa1c0ed2267031eacf1cf260e06327f26b796ad77f9e28b2ef936",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_113544-mtg0qwt1.jpg",
+      "status": "PASS",
+      "sizeBytes": 389077,
+      "sha256": "5fba19a9cc7d21580600859193d3297fc8e99ede323c37a458f52463c2e85423",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_114834-mtg0qyri.jpg",
+      "status": "PASS",
+      "sizeBytes": 398302,
+      "sha256": "e9736894aced774d5a6e79b002280eca25b8d0555c1cefadde4cb05392e3a009",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_120322-mtg0r0sy.jpg",
+      "status": "PASS",
+      "sizeBytes": 406068,
+      "sha256": "e2baed3d1e7f1645c5eb78c159155d8e67bd5d8199d19b901a5b20b84f1739cc",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_121244-mtg0r2xi.jpg",
+      "status": "PASS",
+      "sizeBytes": 361526,
+      "sha256": "9b3028219b35d5a6571fe01007532b6fdc8ff1a85fc439c73329cdaf5ba15f00",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_121254-mtg0r4pb.jpg",
+      "status": "PASS",
+      "sizeBytes": 374703,
+      "sha256": "bdfe2d2f74d65664d747768782835759fad61f0c853a7632c08bff717682bd10",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_123308-mtg0r6kd.jpg",
+      "status": "PASS",
+      "sizeBytes": 455133,
+      "sha256": "622d6cd5fac879d1cad25119b7586776fedf47cd9bb614802c6de577f34775cc",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_124036-mtg0r8kz.jpg",
+      "status": "PASS",
+      "sizeBytes": 423730,
+      "sha256": "325b04f62170e614f3ec947d51b6baa4253bc018b313f9721f01343e1ea5d929",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_124056-mtg0rak2.jpg",
+      "status": "PASS",
+      "sizeBytes": 575957,
+      "sha256": "d2c21025cf28a5f66f6e4169e76a28ebd55597fdc2b1e8f79f48d420fb9af832",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_135732-mtg0rcf3.jpg",
+      "status": "PASS",
+      "sizeBytes": 408946,
+      "sha256": "7981564557cc7ee5e7f89b95caf842612a51f7c2003432e5cc3e90eccb94320c",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_141405-mtg0reqk.jpg",
+      "status": "PASS",
+      "sizeBytes": 372937,
+      "sha256": "934ff6e9027c2c47f5e7ad340eb6697782df96341130be75bbdb3511e1397de8",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "outfits/20260827_141740-mtg0rgkr.jpg",
+      "status": "PASS",
+      "sizeBytes": 387914,
+      "sha256": "59006e738bf52163454f1b27b935ee5d88afdc39b9018521d42d355937707e43",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/king-louie-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1580006,
+      "sha256": "50c9ea2c56211521adb2fba5715a2a3b48fa28648169ee8d81db524cc75fde93",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/adini-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1354472,
+      "sha256": "6972f4fb3f231080b30dbcd5c4204289e6f41d821538d05f9ebca144c7e2d3e0",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/angels-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1188852,
+      "sha256": "040b9fba947bc1107f46472dcf5b08c5cdd3cc0fa09277af5e2463211fc9d8bd",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/zilch-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1744023,
+      "sha256": "5d45e0dc9620e073157784e9e231bbeb90d0f5461afca49ae8f122e67d44b13c",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/cissi-och-selma-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1315190,
+      "sha256": "50706eea7c16e7a72c8e15b39450d7d7257186752c573c9a9f99efb08770e5ef",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/pretty-vacant-knit-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1388991,
+      "sha256": "8fc3a90033929783ff9eb455d69c127030a2691a7ac2947120f770e536f62b62",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/pretty-vacant-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 883048,
+      "sha256": "5bc073a38c8732283f37cebbd319ae456ff9b21aca18cf01e5aa36eaf69fd634",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/lykka-du-nord-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1042130,
+      "sha256": "c958981f0ae27cefd11cda0e69b5f595a12c4de275979cb20e35ffbe70738c52",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/madness-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1499639,
+      "sha256": "1899abb549b86c9ddaa6db3e99d3555574d65864ac2adba2aad1500973a7606a",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/ich-jane-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1389102,
+      "sha256": "285c319e154473786e5782ce5c8af24cb7a725f232e953a390ed7d55bd9f794d",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/heidekoenigin-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1463759,
+      "sha256": "5913ece0d909cb7a8c59e15f6b95b63550fe4aef4bc31143ac207d82739d7f37",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/seasalt-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1082545,
+      "sha256": "e6a50734616cd086a319fb335c714ff2ae5188b9add31bc216d302b432b5eaa4",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/sorgenfri-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1396981,
+      "sha256": "9fcec85fe1aa328458a53485fe8b0f2d6423bcfcc49d1e631728e6800c6c924c",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/strikkeby-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1038268,
+      "sha256": "ead9dedddbef22b660af33e47b030661d915ab519e27c76515e8165341c3a1fe",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/nomads-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1188562,
+      "sha256": "751a37872d3d8dcb0d252816d6e7896ffd1b932d69365dcd80c84e483958b835",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/circus-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1154118,
+      "sha256": "d5c31e5ad663d188c3bcaf717942e8c1bd0cb6f1c063bd3dc090e29f74db5d02",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/emily-van-den-bergh-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1342450,
+      "sha256": "eda85195d479c6a16ba9e0a71c7b3a7a1c7c59e73701b669dcc01a75988a8d4f",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "brands/moshiki-v2.jpg",
+      "status": "PASS",
+      "sizeBytes": 1132916,
+      "sha256": "2527ea9ee7e3e225a317895994298d1f4717956970f722275a77a9597798b3df",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "store/checkpot-storefront-entrance.jpg",
+      "status": "PASS",
+      "sizeBytes": 1546997,
+      "sha256": "ac4aa6c28e5e0ead3fd5792f2ccf02ec349d2ca9ffddff92b6c803d71dabb5aa",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "store/checkpot-storefront-facade.jpg",
+      "status": "PASS",
+      "sizeBytes": 3579413,
+      "sha256": "b4a651effb5b0eb78b9162c3693f3caf1a4010a8eeb4dcedfd46593631b7c8f7",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    },
+    {
+      "key": "store/checkpot-storefront-portrait.jpg",
+      "status": "PASS",
+      "sizeBytes": 4115864,
+      "sha256": "32ed2307c4a154c6db0696b8dfd449b95ea86e741824b27b0b2002e4de31bc1b",
+      "detectedType": "image/jpeg",
+      "remoteStatus": 200
+    }
+  ]
+}

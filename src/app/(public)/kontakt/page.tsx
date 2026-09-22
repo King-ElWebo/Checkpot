@@ -7,6 +7,7 @@ import { getSiteUrl } from "@/lib/site-config";
 import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 import { ContactForm } from "./contact-form";
 import { ContactMap } from "./contact-map";
+import { STOREFRONT_IMAGE_URL } from "@/lib/storage";
 
 const seo = seoRoutes.find((r) => r.route === "/kontakt")!;
 
@@ -232,7 +233,7 @@ export default async function KontaktPage() {
                   <div className="pt-2">
                     <div className="relative aspect-[16/10] w-full max-w-[380px] rounded-sm overflow-hidden bg-[#EFECE6] border border-[#E5E2DC] shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
                       <Image
-                        src="https://hgrtkumqrh0cwc66.public.blob.vercel-storage.com/store/checkpot-storefront-entrance.jpg"
+                        src={STOREFRONT_IMAGE_URL}
                         alt="Eingang und Schaufenster der Checkpot Boutique in Wien-Hietzing"
                         fill
                         sizes="(min-width: 1024px) 35vw, 100vw"

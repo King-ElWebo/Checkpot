@@ -121,7 +121,7 @@ function SettingsModalContent() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-medium text-[15px] text-[#1A1A1A]">Statistik</h3>
-                <span className="text-[11px] text-[#718096]">Google Analytics 4, Vercel Analytics & Speed Insights</span>
+                <span className="text-[11px] text-[#718096]">Google Analytics 4</span>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
@@ -129,7 +129,7 @@ function SettingsModalContent() {
                   checked={analyticsEnabled}
                   onChange={(e) => setAnalyticsEnabled(e.target.checked)}
                   className="sr-only peer"
-                  aria-label="Statistik (Google Analytics 4, Vercel Analytics & Speed Insights) aktivieren"
+                  aria-label="Statistik (Google Analytics 4) aktivieren"
                 />
                 <div className="w-11 h-6 bg-[#D5D2CA] peer-focus:outline-hidden peer-focus:ring-2 peer-focus:ring-[#C01718] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#C01718]"></div>
               </label>

@@ -25,7 +25,7 @@ export function ConsentBanner() {
           </div>
           <p className="text-[12.5px] leading-[1.55] text-[#4A5568]">
             Wir verwenden technisch notwendige Funktionen für den Betrieb dieser Website. Mit Ihrer
-            Zustimmung verwenden wir zudem Webanalyse- und Performance-Dienste (Google Analytics & Vercel Analytics) und binden bei Bedarf Google Maps ein. Mehr erfahren Sie in unserer{" "}
+            Zustimmung verwenden wir zudem Webanalyse- und Performance-Dienste (Google Analytics) und binden bei Bedarf Google Maps ein. Mehr erfahren Sie in unserer{" "}
             <Link
               href="/datenschutz"
               className="text-[#C01718] underline underline-offset-2 hover:text-[#A01314] focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
