@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "media-staging.checkpot.at",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "*.r2.dev",
         port: "",
       },

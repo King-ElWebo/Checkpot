@@ -18,5 +18,22 @@
       "binding": "MEDIA_BUCKET",
       "bucket_name": "checkpot-media"
     }
-  ]
+  ],
+  "env": {
+    "staging": {
+      "name": "checkpot-staging",
+      "vars": {
+        "SITE_URL": "https://checkpot-staging.workers.dev",
+        "NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-LBFJND2204",
+        "R2_PUBLIC_URL_PREFIX": "https://media-staging.checkpot.at"
+      },
+      "r2_buckets": [
+        {
+          "binding": "MEDIA_BUCKET",
+          "bucket_name": "checkpot-media-staging"
+        }
+      ]
+    }
+  }
 }
+

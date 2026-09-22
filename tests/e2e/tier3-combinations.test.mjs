@@ -224,7 +224,7 @@ suite("Tier 3 - Combo 7: Trailing Slash Normalization + Dynamic Route Resolution
   });
 
   test("410 Gone route /marken/happy-rainy-days-wien/ with trailing slash returns 410", async () => {
-    const res = await request("/marken/happy-rainy-days-wien/");
+    const res = await request("/marken/happy-rainy-days-wien/", { redirect: "follow" });
     assertStatus(res, 410);
   });
 });

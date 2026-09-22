@@ -44,6 +44,12 @@ export async function generateMetadata(): Promise<Metadata> {
         index: false,
         follow: false,
       },
+      openGraph: {
+        title: "Checkpot Hietzing — Wir sind bald für Sie da",
+        description:
+          "Unsere Boutique in Wien-Hietzing ist natürlich weiterhin persönlich für Sie da. Die neue Checkpot Website wird gerade für Sie vorbereitet.",
+        images: ["/customer/og-image.jpg"],
+      },
     };
   }
 

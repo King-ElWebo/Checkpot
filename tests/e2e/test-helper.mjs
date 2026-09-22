@@ -5,8 +5,25 @@
 
 import { performance } from "node:perf_hooks";
 import { createHmac } from "node:crypto";
+import { readFileSync, existsSync } from "node:fs";
 
 export const DEFAULT_TARGET_URL = "http://localhost:3000";
+
+function getAuthSecret() {
+  if (process.env.AUTH_SECRET) return process.env.AUTH_SECRET;
+  for (const file of [".dev.vars", ".env.local", ".env"]) {
+    if (existsSync(file)) {
+      try {
+        const content = readFileSync(file, "utf8");
+        const match = content.match(/^AUTH_SECRET=(.*)$/m);
+        if (match && match[1]) {
+          return match[1].trim().replace(/^["']|["']$/g, "");
+        }
+      } catch {}
+    }
+  }
+  return "checkpot-migration-test-secret-at-least-32-chars-long";
+}
 
 /**
  * Resolve target base URL from environment or CLI
@@ -26,17 +43,38 @@ export async function request(pathOrUrl, options = {}) {
     : `${baseUrl}${pathOrUrl.startsWith("/") ? "" : "/"}${pathOrUrl}`;
 
   const headers = new Headers(options.headers || {});
+  if (!headers.has("x-forwarded-for")) {
+    headers.set("x-forwarded-for", `192.168.1.${Math.floor(Math.random() * 250) + 1}`);
+  }
 
-  // Add cookies if specified
+  const cookieMap = new Map();
+  // Automatically provide preview token unless explicitly opt-out (noPreview: true)
+  if (options.noPreview !== true && !pathOrUrl.startsWith("/admin") && !pathOrUrl.startsWith("/api/")) {
+    try {
+      const previewToken = createTestPreviewToken();
+      cookieMap.set("checkpot_site_preview", previewToken);
+    } catch {}
+  }
+
+  // Add user-specified cookies
   if (options.cookies) {
     if (typeof options.cookies === "string") {
-      headers.set("Cookie", options.cookies);
+      options.cookies.split(";").forEach((pair) => {
+        const [k, ...v] = pair.trim().split("=");
+        if (k) cookieMap.set(k, v.join("="));
+      });
     } else if (typeof options.cookies === "object") {
-      const cookieStr = Object.entries(options.cookies)
-        .map(([k, v]) => `${k}=${v}`)
-        .join("; ");
-      headers.set("Cookie", cookieStr);
+      Object.entries(options.cookies).forEach(([k, v]) => {
+        cookieMap.set(k, v);
+      });
     }
+  }
+
+  if (cookieMap.size > 0) {
+    const cookieStr = Array.from(cookieMap.entries())
+      .map(([k, v]) => `${k}=${v}`)
+      .join("; ");
+    headers.set("Cookie", cookieStr);
   }
 
   const fetchOptions = {
@@ -218,7 +256,7 @@ function base64UrlEncode(str) {
  * header: { alg: "HS256" }
  * payload: { role: "admin", sub: "admin", iss: "customer-site-platform", aud: "customer-site-admin", ... }
  */
-export function createTestAdminToken(secret = "checkpot-migration-test-secret-at-least-32-chars-long") {
+export function createTestAdminToken(secret = getAuthSecret()) {
   const header = { alg: "HS256" };
   const now = Math.floor(Date.now() / 1000);
   const payload = {
@@ -228,6 +266,36 @@ export function createTestAdminToken(secret = "checkpot-migration-test-secret-at
     aud: "customer-site-admin",
     iat: now,
     exp: now + 60 * 60 * 8, // 8 hours
+  };
+
+  const headerB64 = base64UrlEncode(JSON.stringify(header));
+  const payloadB64 = base64UrlEncode(JSON.stringify(payload));
+  const signatureInput = `${headerB64}.${payloadB64}`;
+
+  const hmac = createHmac("sha256", secret);
+  hmac.update(signatureInput);
+  const sigB64 = hmac.digest("base64")
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+
+  return `${signatureInput}.${sigB64}`;
+}
+
+/**
+ * Create a synthetic signed site preview token for testing
+ */
+export function createTestPreviewToken(secret = getAuthSecret()) {
+  const header = { alg: "HS256" };
+  const now = Math.floor(Date.now() / 1000);
+  const payload = {
+    role: "admin",
+    scope: "site_preview",
+    sub: "admin-preview",
+    iss: "customer-site-platform",
+    aud: "customer-site-preview",
+    iat: now,
+    exp: now + 60 * 60 * 2, // 2 hours
   };
 
   const headerB64 = base64UrlEncode(JSON.stringify(header));
