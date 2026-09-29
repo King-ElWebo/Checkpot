@@ -1,5 +1,7 @@
 # Checkpot Brand Content Approval
 
+> Historical import record. Its August 2026 claims are not current production copy. For the September 2026 EmpCo review and live brand wording, see `docs/EMPCO-CLAIM-AUDIT.md` and `docs/EMPCO-DB-CHANGESET.json` and `docs/EMPCO-DB-FOLLOWUP.json` and `docs/EMPCO-DB-CERTIFICATION-SCOPE.json`.
+
 > Stand: 2026-08-30 (Phase 7C CMS Import)  
 > Status: **14 genehmigte Marken-Pakete erfolgreich in Neon PostgreSQL importiert (1 Marke zur Prüfung zurückgestellt)**  
 > *Hinweis: Alle Texte, Claims und SEO-Metadaten entsprechen exakt den auditierten Freigaben.*

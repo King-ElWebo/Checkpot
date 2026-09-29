@@ -13,7 +13,7 @@ export const navigationLinks: PublicLink[] = [
   { href: "/mode", label: "Mode" },
   { href: "/outfits", label: "Outfits" },
   { href: "/marken", label: "Marken" },
-  { href: "/fair-trade", label: "Fair Trade" },
+  { href: "/fair-trade", label: "Qualität & Herkunft" },
   { href: "/ueber-uns", label: "Über uns" },
   { href: "/kontakt", label: "Kontakt" },
 ];
@@ -102,8 +102,8 @@ export const seoRoutes: SeoRoute[] = [
   },
   {
     route: "/fair-trade",
-    title: "Fair Trade & Nachhaltigkeit",
-    description: "Unsere Prinzipien für faire, nachhaltige und langlebige Damenmode.",
+    title: "Qualität, Herkunft & Transparenz",
+    description: "Informationen zu Materialien, Qualität und nachvollziehbaren Markenangaben bei Checkpot Hietzing.",
     canonical: "/fair-trade",
     index: true,
   },

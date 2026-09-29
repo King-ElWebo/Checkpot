@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: "Qualität, Herkunft & Transparenz | Checkpot Wien",
-    description: "Transparenz statt pauschaler Versprechen. Erfahren Sie, worauf wir bei Materialien, Qualität und geprüften Markenstandards achten.",
+    description: "Transparenz statt pauschaler Versprechen. Informationen zu Materialien, Qualität und nachvollziehbaren Markenangaben bei Checkpot Hietzing.",
     alternates: {
       canonical: seo.canonical,
     },

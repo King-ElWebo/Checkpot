@@ -1,0 +1,467 @@
+{
+  "mode": "applied",
+  "appliedAtUtc": "2026-09-29 11:18 UTC",
+  "rows": 18,
+  "changed": [
+    {
+      "table": "brands",
+      "id": "8d8d44d9-58fd-45d6-a968-787b955ed00c",
+      "slug": "lykka-du-nord",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "summary": "Farbenfrohe Leichtigkeit und skandinavisches Glück: Lykka du Nord begeistert mit lebendigen Mustern, natürlichen Tragequalitäten und herrlich femininen Schnittformen.",
+        "description": "Lykka du Nord bringt skandinavische Lebensfreude direkt in den Kleiderschrank. Die Kollektionen zeichnen sich durch ausdrucksstarke Allover-Prints, frische Farbkombinationen und herrlich bequeme Schnitte aus, die im Alltag pure Leichtigkeit versprühen.\r\n\r\nIm Checkpot-Sortiment ist Lykka du Nord die ideale Wahl für Frauen, die Freude an lebendigen Mustern und unkomplizierten Stoffen haben. Der Schwerpunkt liegt auf hautfreundlichen Materialien wie Bio-Baumwolle und weichen Viskosequalitäten, die für ein angenehmes Tragegefühl sorgen.\r\n\r\nOb charmanter Rock oder gemustertes Shirt: Diese Mode bringt Farbe in Ihre Garderobe und lässt sich wunderbar mit schlichten Klassikern kombinieren.",
+        "verified_claims": [
+          "Skandinavisch inspirierte Designs mit ausdrucksstarken Allover-Prints",
+          "Verarbeitung von Bio-Baumwolle und weichen Naturfasermischungen",
+          "Fertigung in europäischen Partnerbetrieben"
+        ]
+      },
+      "next": {
+        "summary": "Farbenfrohe Leichtigkeit und skandinavisches Glück: Lykka du Nord begeistert mit lebendigen Mustern, weichen Stoffen und herrlich femininen Schnittformen.",
+        "description": "Lykka du Nord bringt skandinavische Lebensfreude direkt in den Kleiderschrank. Die Kollektionen zeichnen sich durch ausdrucksstarke Allover-Prints, frische Farbkombinationen und herrlich bequeme Schnitte aus, die im Alltag pure Leichtigkeit versprühen.\r\n\r\nIm Checkpot-Sortiment ist Lykka du Nord die ideale Wahl für Frauen, die Freude an lebendigen Mustern und unkomplizierten Stoffen haben. Die weichen Stoffe sorgen für ein angenehmes Tragegefühl.\r\n\r\nOb charmanter Rock oder gemustertes Shirt: Diese Mode bringt Farbe in Ihre Garderobe und lässt sich wunderbar mit schlichten Klassikern kombinieren.",
+        "verified_claims": [
+          "Skandinavisch inspirierte Designs mit ausdrucksstarken Allover-Prints"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "85550f46-e83a-41b3-bfc7-380704934038",
+      "slug": "seasalt",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "summary": "Zeitlose britische Mode von der Küste Cornwalls: Seasalt verbindet handgezeichnete maritime Designs, handgezeichnete Muster und ein starkes Engagement für Nachhaltigkeit aus.",
+        "description": "Die Entwürfe von Seasalt spiegeln die raue Schönheit und die Farben der englischen Küstenlandschaft wider. Bekannt ist das Label für seine kunstvoll von Hand gezeichneten Drucke, atmungsaktiven Naturtextilien und wetterfesten Jacken, die Wind und Wetter trotzen.\r\n\r\nBei Checkpot empfehlen wir Seasalt Kundinnen, die Wert auf funktionale Qualität, gepflegte Lässigkeit und maritime Frische legen. Die Passformen sind herrlich unkompliziert und bieten durchdachte Details, die vom Spaziergang im Schlosspark Schönbrunn bis zum Wochenendausflug zuverlässig begleiten.\r\n\r\nAls zertifizierte B Corp™ beweist Seasalt zudem, dass stilvolle Mode und ein verantwortungsvoller Umgang mit Natur und Mensch Hand in Hand gehen können.",
+        "verified_claims": [
+          "Zertifizierte B Corp™ für geprüfte soziale und ökologische Standards",
+          "Handgezeichnete florale und maritime Exklusivprints aus Cornwall",
+          "Schwerpunkt auf GOTS-zertifizierter Bio-Baumwolle und langlebigen Naturfasern"
+        ]
+      },
+      "next": {
+        "summary": "Zeitlose britische Mode von der Küste Cornwalls: Seasalt verbindet handgezeichnete maritime Muster mit entspannter Küstenmode.",
+        "description": "Die Entwürfe von Seasalt spiegeln die raue Schönheit und die Farben der englischen Küstenlandschaft wider. Bekannt ist das Label für seine kunstvoll von Hand gezeichneten Drucke, atmungsaktiven Naturtextilien und wetterfesten Jacken, die Wind und Wetter trotzen.\r\n\r\nBei Checkpot empfehlen wir Seasalt Kundinnen, die Wert auf funktionale Qualität, gepflegte Lässigkeit und maritime Frische legen. Die Passformen sind herrlich unkompliziert und bieten durchdachte Details, die vom Spaziergang im Schlosspark Schönbrunn bis zum Wochenendausflug zuverlässig begleiten.\r\n\r\nSeasalt Holdings Limited ist laut B Lab seit Juli 2024 als B Corp zertifiziert.",
+        "verified_claims": [
+          "Seasalt Holdings Limited: B Corp zertifiziert seit Juli 2024",
+          "Handgezeichnete florale und maritime Exklusivprints aus Cornwall",
+          "Seasalt weist ausgewählte Artikel als GOTS-zertifiziert aus"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "b4aad589-adf0-43be-ab09-f14f00bb0468",
+      "slug": "pretty-vacant",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims",
+        "seo_metadata"
+      ],
+      "old": {
+        "summary": "Britischer Vintage-Chic mit moderner Note: Pretty Vacant interpretiert klassische Silhouetten der 1940er bis 1970er Jahre mit GOTS-zertifizierter Bio-Baumwolle.",
+        "description": "In der südenglischen Küstenstadt Brighton entworfen, erweckt Pretty Vacant den Charme vergangener Mode-Epochen zu neuem Leben. Von schwingenden Tellerröcken bis zu eleganten Hemdblusenkleidern: Die Schnitte betonen eine feminine Silhouette und versprühen zeitlosen Retro-Charme.\r\n\r\nFür Checkpot passt Pretty Vacant perfekt in unser Sortiment, weil die Stücke Persönlichkeit und Stilbewusstsein ausstrahlen, ohne verkleidet zu wirken. Die handgezeichneten Muster und lebendigen Farben verleihen jedem Outfit eine unverwechselbare Note.\r\n\r\nBesonders überzeugend: Pretty Vacant fertigt viele Kleidungsstücke aus GOTS-zertifizierter Bio-Baumwolle und setzt konsequent auf natürliche Monofasern.",
+        "verified_claims": [
+          "GOTS-zertifizierte Bio-Baumwolle für geprüfte ökologische Qualität",
+          "Vintage-inspirierte Schnitte aus dem Designstudio in Brighton",
+          "Verwendung natürlicher Monofasern wie Bio-Baumwolle und Viskose"
+        ],
+        "seo_metadata": {
+          "title": "Pretty Vacant in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Pretty Vacant bei Checkpot in Wien-Hietzing: Vintage-inspirierte Damenkleider, britischer Retro-Chic und GOTS-zertifizierte Bio-Baumwolle vor Ort.",
+          "ogDescription": null
+        }
+      },
+      "next": {
+        "summary": "Britischer Vintage-Chic mit moderner Note: Pretty Vacant interpretiert klassische Silhouetten der 1940er bis 1970er Jahre mit ausdrucksstarken Mustern.",
+        "description": "In der südenglischen Küstenstadt Brighton entworfen, erweckt Pretty Vacant den Charme vergangener Mode-Epochen zu neuem Leben. Von schwingenden Tellerröcken bis zu eleganten Hemdblusenkleidern: Die Schnitte betonen eine feminine Silhouette und versprühen zeitlosen Retro-Charme.\r\n\r\nFür Checkpot passt Pretty Vacant perfekt in unser Sortiment, weil die Stücke Persönlichkeit und Stilbewusstsein ausstrahlen, ohne verkleidet zu wirken. Die handgezeichneten Muster und lebendigen Farben verleihen jedem Outfit eine unverwechselbare Note.\r\n\r\nDer Hersteller weist ausgewählte Modelle aus Bio-Baumwolle als GOTS-zertifiziert aus.",
+        "verified_claims": [
+          "Ausgewählte Modelle laut Hersteller GOTS-zertifiziert",
+          "Vintage-inspirierte Schnitte aus dem Designstudio in Brighton"
+        ],
+        "seo_metadata": {
+          "title": "Pretty Vacant in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Pretty Vacant bei Checkpot in Wien-Hietzing: Vintage-inspirierte Damenkleider und britischer Retro-Chic mit persönlicher Beratung.",
+          "ogDescription": null
+        }
+      }
+    },
+    {
+      "table": "brands",
+      "id": "8d2b4b95-3478-4c6d-be7e-aa8c109d34fe",
+      "slug": "cissi-och-selma",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims",
+        "seo_metadata"
+      ],
+      "old": {
+        "summary": "Farbenfrohe schwedische Slow-Fashion aus Stockholm: Cissi och Selma begeistert mit ausdrucksstarken 60er- und 70er-Jahre-Retromustern in europäischer Fertigung.",
+        "description": "Cissi och Selma bringt pure Lebensfreude in die Garderobe. Das schwedische Kultlabel aus Stockholm feiert die Mode der 1950er bis 1970er Jahre mit mutigen geometrischen Formen, farbenprächtigen Blüten und wunderbar bequemen A-Linien-Schnitten.\r\n\r\nIn unserer Hietzinger Boutique ist die Marke ein echter Liebling für Damen, die mit Farben und individuellen Design ein klares Statement setzen möchten. Die Kleider und Röcke bieten hervorragende Bewegungsfreiheit und lassen sich je nach Anlass lässig mit Sneakern oder elegant mit Pumps stylen.\r\n\r\nDesigned in Schweden und gefertigt in ausgewählten europäischen Partnerbetrieben, legt das Label großen Wert auf Bio-Baumwolle und langlebige Textilqualität.",
+        "verified_claims": [
+          "Entworfen im eigenen Designstudio in Stockholm (Södermalm)",
+          "Gefertigt in ausgewählten europäischen Partnerbetrieben",
+          "Fokus auf Bio-Baumwolle und OEKO-TEX®-zertifizierte Stoffe"
+        ],
+        "seo_metadata": {
+          "title": "Cissi och Selma in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Cissi och Selma bei Checkpot in Wien-Hietzing: Farbenfrohe schwedische Retro-Kleider, 70s-Muster und nachhaltige Slow Fashion mit persönlicher Beratung.",
+          "ogDescription": null
+        }
+      },
+      "next": {
+        "summary": "Farbenfrohe schwedische Retro-Mode aus Stockholm: Cissi och Selma begeistert mit ausdrucksstarken 60er- und 70er-Jahre-Retromustern in europäischer Fertigung.",
+        "description": "Cissi och Selma bringt pure Lebensfreude in die Garderobe. Das schwedische Kultlabel aus Stockholm feiert die Mode der 1950er bis 1970er Jahre mit mutigen geometrischen Formen, farbenprächtigen Blüten und wunderbar bequemen A-Linien-Schnitten.\r\n\r\nIn unserer Hietzinger Boutique ist die Marke ein echter Liebling für Damen, die mit Farben und individuellen Design ein klares Statement setzen möchten. Die Kleider und Röcke bieten hervorragende Bewegungsfreiheit und lassen sich je nach Anlass lässig mit Sneakern oder elegant mit Pumps stylen.\r\n\r\nDesigned in Schweden und gefertigt in ausgewählten europäischen Partnerbetrieben, kennzeichnet das Label seine Bio-Baumwollartikel einzeln.",
+        "verified_claims": [
+          "Entworfen im eigenen Designstudio in Stockholm (Södermalm)",
+          "Gefertigt in ausgewählten europäischen Partnerbetrieben",
+          "Ausgewählte Modelle aus Bio-Baumwolle laut Hersteller"
+        ],
+        "seo_metadata": {
+          "title": "Cissi och Selma in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Cissi och Selma bei Checkpot in Wien-Hietzing: Farbenfrohe schwedische Retro-Kleider, 70er-Jahre-Muster mit persönlicher Beratung.",
+          "ogDescription": null
+        }
+      }
+    },
+    {
+      "table": "brands",
+      "id": "dbec85ab-9ccd-4240-9b46-4053932c0eaf",
+      "slug": "lalamour",
+      "fields": [
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "description": "LaLamour feiert die Weiblichkeit mit farbenfrohen, selbstbewussten Entwürfen aus den Niederlanden. Die Kollektionen sind bekannt für raffinierte Schnittdetails wie schmeichelhafte V-Ausschnitte, drapierte Wickeloptiken und exklusive Musterkompositionen, die jedes Stück zu einem Kunstwerk machen.\r\n\r\nFür Checkpot-Kundinnen ist LaLamour eine wunderbare Entdeckung für festliche Gelegenheiten oder besondere Bürotage: Die verwendeten elastischen Bio-Baumwoll- und Viskosestoffe schmiegen sich sanft an und behalten auch nach vielen Tragestunden ihre perfekte Passform.\r\n\r\nMit einem klaren Bekenntnis zu zertifizierten Materialien und langlebiger Slow-Fashion verbindet LaLamour modischen Chic mit verantwortungsvoller Fertigung.",
+        "verified_claims": [
+          "GOTS-zertifizierte Bio-Baumwolle für ausgewählte Kollektionsteile",
+          "Raffinierte Schnittführungen mit femininem Wickel- und Faltenwurf",
+          "Langjährige Kooperationen mit geprüften Fertigungsstätten"
+        ]
+      },
+      "next": {
+        "description": "LaLamour feiert die Weiblichkeit mit farbenfrohen, selbstbewussten Entwürfen aus den Niederlanden. Die Kollektionen sind bekannt für raffinierte Schnittdetails wie schmeichelhafte V-Ausschnitte, drapierte Wickeloptiken und exklusive Musterkompositionen, die jedes Stück zu einem Kunstwerk machen.\r\n\r\nFür Checkpot-Kundinnen ist LaLamour eine wunderbare Entdeckung für festliche Gelegenheiten oder besondere Bürotage: Elastische Stoffe und raffinierte Schnitte sorgen für ein angenehmes Tragegefühl.\r\n\r\nDer Hersteller nennt GOTS-zertifizierte Bio-Baumwolle für ausgewählte Kollektionsteile.",
+        "verified_claims": [
+          "Ausgewählte Kollektionsteile laut Hersteller aus GOTS-zertifizierter Bio-Baumwolle",
+          "Raffinierte Schnittführungen mit femininem Wickel- und Faltenwurf",
+          "Langjährige Zusammenarbeit mit Produktionspartnern in der Türkei laut Hersteller"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "a6b354f9-041f-4bfb-aed8-7ec2f3c480ae",
+      "slug": "nomads",
+      "fields": [
+        "description",
+        "verified_claims",
+        "seo_metadata"
+      ],
+      "old": {
+        "description": "Seit 1989 widmet sich das britische Label Nomads aus Cornwall der achtsamen Modekreation. Im Mittelpunkt stehen weich fließende Stoffe aus GOTS-zertifizierter Bio-Baumwolle und TENCEL™ Lyocell, veredelt mit traditionellen indischen Holzdruck-Mustern (Blockprint) in naturinspirierten Farbpaletten.\r\n\r\nIn unserer Boutique in Hietzing empfehlen wir Nomads Frauen, die einen entspannten, natürlichen Modestil schätzen. Die weiten Kleider, bequemen Hosen und leichten Tuniken bieten herausragenden Klimakomfort und fühlen sich auf der Haut wunderbar seidig an.\r\n\r\nDurch langjährige, faire Partnerschaften mit traditionellen Handwerksbetrieben und den Einsatz umweltfreundlicher, azofreier Farben steht Nomads für echte Werte.",
+        "verified_claims": [
+          "Traditionelle Holzblock-Drucktechniken mit umweltfreundlichen Farben",
+          "Einsatz von GOTS-zertifizierter Bio-Baumwolle und TENCEL™ Lyocell",
+          "Langjährige Kooperationen mit ethischen Fair-Trade-Partnerbetrieben"
+        ],
+        "seo_metadata": {
+          "title": "Nomads in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Nomads bei Checkpot in Wien-Hietzing: Ethische Naturmode aus Cornwall, traditioneller Blockdruck und fließende Bio-Baumwolle mit persönlicher Beratung.",
+          "ogDescription": null
+        }
+      },
+      "next": {
+        "description": "Seit 1989 widmet sich das britische Label Nomads aus Cornwall der farbenfrohen Damenmode. Der Hersteller weist ausgewählte Modelle aus Bio-Baumwolle als GOTS-zertifiziert aus und nennt für andere Artikel Lyocell. Traditionelle indische Holzdruck-Muster prägen viele Dessins.\r\n\r\nIn unserer Boutique in Hietzing empfehlen wir Nomads Frauen, die einen entspannten, natürlichen Modestil schätzen. Die weiten Kleider, bequemen Hosen und leichten Tuniken bieten herausragenden Klimakomfort und fühlen sich auf der Haut wunderbar seidig an.\r\n\r\nNomads beschreibt langjährige Zusammenarbeit mit Partnerbetrieben in Indien und eine eigene Fair-Trade-Policy.",
+        "verified_claims": [
+          "Traditionelle Holzblock-Drucktechniken",
+          "Ausgewählte GOTS-zertifizierte Modelle aus Bio-Baumwolle laut Hersteller",
+          "Zusammenarbeit mit Partnerbetrieben in Indien nach eigener Fair-Trade-Policy"
+        ],
+        "seo_metadata": {
+          "title": "Nomads in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Nomads bei Checkpot in Wien-Hietzing: Mode aus Cornwall, traditioneller Blockdruck und farbenfrohe Muster mit persönlicher Beratung.",
+          "ogDescription": null
+        }
+      }
+    },
+    {
+      "table": "brands",
+      "id": "94abb41a-988a-436b-84bc-3b988d55ab25",
+      "slug": "strikkeby",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "summary": "nachhaltige nordisch-skandinavische Strickmode aus 100% Bio-Baumwolle – zeitlos, weich und ökologisch zertifiziert.",
+        "description": "Strikkeby steht für skandinavische Schlichtheit und kompromisslose Naturmaterialien. Gefertigt aus 100% zertifizierter Bio-Baumwolle bieten die Strickmodelle natürlichen Tragekomfort für jede Jahreszeit.",
+        "verified_claims": [
+          "100% Bio-Baumwolle",
+          "Skandinavisches Design",
+          "GOTS-zertifizierte Materialien"
+        ]
+      },
+      "next": {
+        "summary": "Nordisch inspirierte Strickmode mit grafischen Mustern und weichen Qualitäten.",
+        "description": "Strikkeby steht für skandinavisch inspirierte Strickmodelle und grafische Muster. Die weichen Qualitäten lassen sich vielseitig kombinieren.",
+        "verified_claims": [
+          "Skandinavisches Design",
+          "Grafische Strickmuster"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "d185f609-e865-4a85-a1df-9120d70973c9",
+      "slug": "circus",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "summary": "Irischer Modern-Vintage-Stil aus Dublin: Circus interpretiert klassische Schnittsilhouetten der 1940er bis 1960er Jahre mit natürlichen Fasern.",
+        "description": "Circus wurde in Dublin gegründet und bringt den zeitlosen Glamour der Mitte des 20. Jahrhunderts in das moderne Straßenbild. Die Kollektionen bestechen durch klare Linien, akzentuierte Taillen, dezente Kragendetails und eigens kreierte Retro-Musterungen in warmen, leuchtenden Tönen.\r\n\r\nBei Checkpot schätzen wir Circus für seine Vielseitigkeit: Ein Kleid von Circus eignet sich für den Berufsalltag ebenso wie für private Einladungen oder Kulturabende in Wien. Die Schnitte sitzen präzise und vermitteln ein angenehmes Tragegefühl voller Klasse.\r\n\r\nDie Kollektionen setzen konsequent auf reine Naturfasern und werden in einem festen, nach SEDEX-Kriterien auditierten Partnerbetrieb unter fairen Arbeitsbedingungen gefertigt.",
+        "verified_claims": [
+          "Fokus auf reine Naturfasern wie Baumwolle, Viskose und Leinen",
+          "Zeitlose Silhouetten und exklusive Muster aus dem Designstudio in Dublin",
+          "Ethische Fertigung in einem nach SEDEX-Kriterien auditierten Partnerbetrieb"
+        ]
+      },
+      "next": {
+        "summary": "Irischer Modern-Vintage-Stil aus Dublin: Circus interpretiert klassische Schnittsilhouetten der 1940er bis 1960er Jahre mit eigens gestalteten Mustern.",
+        "description": "Circus wurde in Dublin gegründet und bringt den zeitlosen Glamour der Mitte des 20. Jahrhunderts in das moderne Straßenbild. Die Kollektionen bestechen durch klare Linien, akzentuierte Taillen, dezente Kragendetails und eigens kreierte Retro-Musterungen in warmen, leuchtenden Tönen.\r\n\r\nBei Checkpot schätzen wir Circus für seine Vielseitigkeit: Ein Kleid von Circus eignet sich für den Berufsalltag ebenso wie für private Einladungen oder Kulturabende in Wien. Die Schnitte sitzen präzise und vermitteln ein angenehmes Tragegefühl voller Klasse.\r\n\r\nCircus nennt für Teile seiner Kollektion Baumwolle, Viskose und Leinen. Die Marke arbeitet nach eigenen Angaben mit einem langjährigen Produktionspartner in Indien und berichtet über regelmäßige Sozialaudits.",
+        "verified_claims": [
+          "Baumwolle, Viskose und Leinen in Teilen der Kollektion",
+          "Zeitlose Silhouetten und exklusive Muster aus dem Designstudio in Dublin",
+          "Hersteller nennt regelmäßige Sozialaudits bei seinem Produktionspartner in Indien"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "5adf1d4c-5f06-4430-910f-203a869e6443",
+      "slug": "angels",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "summary": "Deutsche Hosen- und Denim-Kompetenz aus dem Schwarzwald: Angels überzeugt seit 1980 mit langlebiger Passformtreue und europäischer Produktion.",
+        "description": "Eine gut sitzende Hose ist das Fundament jeder gelungenen Damengarderobe. Das deutsche Traditionslabel hat sich seit über vier Jahrzehnten ganz der perfekten Passform verschrieben.\r\n\r\nDas Besondere an Angels: Durch hochentwickelte Schnitttechnik und den gezielten Einsatz von nur 2 bis 3 Prozent Elasthan behalten die Hosen dauerhaft ihre Form, ohne nach wenigen Stunden auszuleiern. Ob schlanke Skinny, klassischer Regular Fit oder modische 7/8-Länge – bei Checkpot finden wir gemeinsam mit Ihnen den passenden Angels-Schnitt.",
+        "verified_claims": [
+          "Traditionsmarke seit 1980 mit europäischer Fertigung",
+          "Legendäre Passformsicherheit und dauerhafte Formstabilität"
+        ]
+      },
+      "next": {
+        "summary": "Deutsche Hosen- und Denim-Kompetenz aus dem Schwarzwald: Angels überzeugt seit 1980 mit Passformkompetenz und europäischer Produktion.",
+        "description": "Eine gut sitzende Hose ist das Fundament jeder gelungenen Damengarderobe. Das deutsche Traditionslabel hat sich seit über vier Jahrzehnten ganz der perfekten Passform verschrieben.\r\n\r\nDas Besondere an Angels: Angels legt Wert auf bequeme Schnitte und elastische Hosenstoffe. Ob schlanke Skinny, klassischer Regular Fit oder modische 7/8-Länge – bei Checkpot finden wir gemeinsam mit Ihnen den passenden Angels-Schnitt.",
+        "verified_claims": [
+          "Traditionsmarke seit 1980 mit europäischer Fertigung",
+          "Passformorientierte Schnittentwicklung"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "cfc93d9c-6f2f-46e3-ac76-f49490c7166a",
+      "slug": "stehmann",
+      "fields": [
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "description": "Stehmann aus Fürth hat mit der berühmten Schlupfhose „Ina“ Modegeschichte geschrieben. Die Philosophie des Familienunternehmens ist einfach und wirkungsvoll: Hosen zu kreieren, die absolut bequem sitzen und dennoch jederzeit elegant und angezogen wirken.\r\n\r\nIn der Checkpot-Auswahl sind Stehmann-Hosen geschätzte Begleiter für anspruchsvolle Damen. Dank elastischer Komfortbunde ganz ohne störende Knöpfe oder Reißverschlüsse genießen Sie maximale Bewegungsfreiheit bei gleichzeitig schlanker Silhouette.\r\n\r\nRund 95 % aller Stehmann-Hosen werden in langjährigen europäischen Partnerbetrieben gefertigt. Als amfori BSCI-Mitglied setzt sich das Unternehmen aktiv für faire Produktionsbedingungen und schadstoffgeprüfte Stoffe ein.",
+        "verified_claims": [
+          "Erfinder der legendären elastischen Schlupfhose „Ina“",
+          "Überwiegende Fertigung in langjährigen europäischen Partnerbetrieben",
+          "amfori-BSCI-Mitgliedschaft und OEKO-TEX®-geprüfte Stoffe"
+        ]
+      },
+      "next": {
+        "description": "Stehmann aus Fürth hat mit der berühmten Schlupfhose „Ina“ Modegeschichte geschrieben. Die Philosophie des Familienunternehmens ist einfach und wirkungsvoll: Hosen zu kreieren, die absolut bequem sitzen und dennoch jederzeit elegant und angezogen wirken.\r\n\r\nIn der Checkpot-Auswahl sind Stehmann-Hosen geschätzte Begleiter für anspruchsvolle Damen. Dank elastischer Komfortbunde ganz ohne störende Knöpfe oder Reißverschlüsse genießen Sie maximale Bewegungsfreiheit bei gleichzeitig schlanker Silhouette.\r\n\r\nStehmann berichtet von langjährigen Produktionspartnern und überwiegend europäischen Produktionsstätten.",
+        "verified_claims": [
+          "Erfinder der legendären elastischen Schlupfhose „Ina“",
+          "Produktionspartner laut Hersteller überwiegend in Europa"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "67f11efa-38df-48d9-b507-feea8b005696",
+      "slug": "madness",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims",
+        "seo_metadata"
+      ],
+      "old": {
+        "summary": "Ökologische Naturtextil-Pionierin seit 1994: Madness kreiert entspannte Damenmode aus GOTS-zertifizierter Bio-Baumwolle und kbT-Schurwolle.",
+        "description": "Als einer der frühen Wegbereiter nachhaltiger Textilien setzt das deutsche Label Madness („The Nature Textile Company“) seit über drei Jahrzehnten Maßstäbe. Die Kollektionen überzeugen mit zeitlosen Schnitten, naturnaher Verspieltheit und kompromisslos reinen Naturfasern.\r\n\r\nIm Checkpot-Sortiment ist Madness die perfekte Wahl für Frauen, die Wert auf unverfälschtes Wohlgefühl legen. Von weichen Strickjacken aus kontrolliert biologischer Tierhaltung (kbT) bis zu sommerlichen Leinen- und Baumwollteilen schmeichelt jedes Material der Haut auf natürliche Weise.\r\n\r\nSeit 2012 lückenlos GOTS-zertifiziert und aktives Mitglied der Fair Wear Foundation, garantiert Madness höchste ökologische Standards und faire Arbeitsbedingungen in der gesamten Wertschöpfungskette.",
+        "verified_claims": [
+          "Pionier für ökologische Naturtextilien seit 1994",
+          "Durchgehend GOTS-zertifiziert (Global Organic Textile Standard) seit 2012",
+          "Mitglied der Fair Wear Foundation für nachweislich faire Arbeitsbedingungen",
+          "Einsatz von 100 % Bio-Baumwolle (kbA) und Bio-Schurwolle (kbT)"
+        ],
+        "seo_metadata": {
+          "title": "Madness in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Madness Naturmode bei Checkpot in Wien-Hietzing: GOTS-zertifizierte Bio-Kleidung, Fair-Wear-Standards und reine Naturfasern mit individueller Fachberatung.",
+          "ogDescription": null
+        }
+      },
+      "next": {
+        "summary": "Madness entwirft seit 1994 Damenmode aus Naturfasern. Der Hersteller nennt Bio-Baumwolle und kbT-Schurwolle für Teile seiner Kollektion.",
+        "description": "Madness („The Nature Textile Company“) arbeitet nach eigener Angabe seit 1994 mit Naturfasern. Die Kollektionen überzeugen mit zeitlosen Schnitten, naturnaher Verspieltheit und kompromisslos reinen Naturfasern.\r\n\r\nIm Checkpot-Sortiment ist Madness die perfekte Wahl für Frauen, die Wert auf unverfälschtes Wohlgefühl legen. Von weichen Strickjacken aus kontrolliert biologischer Tierhaltung (kbT) bis zu sommerlichen Leinen- und Baumwollteilen schmeichelt jedes Material der Haut auf natürliche Weise.\r\n\r\nMadness nennt eine GOTS-Zertifizierung seit 2012 und eine Mitgliedschaft bei Fair Wear. Angaben zu einzelnen Kleidungsstücken sind anhand ihrer Kennzeichnung zu prüfen.",
+        "verified_claims": [
+          "Naturtextilmarke seit 1994 laut Hersteller",
+          "GOTS-Zertifizierung der Marke seit 2012 laut Hersteller",
+          "Fair-Wear-Mitgliedschaft laut aktueller Markenwebsite",
+          "Bio-Baumwolle und kbT-Schurwolle in Teilen der Kollektion"
+        ],
+        "seo_metadata": {
+          "title": "Madness in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Madness Naturmode bei Checkpot in Wien-Hietzing: Naturfasermode, Angaben zu GOTS und Fair-Wear-Mitgliedschaft mit individueller Beratung.",
+          "ogDescription": null
+        }
+      }
+    },
+    {
+      "table": "brands",
+      "id": "ad97ec5c-58a7-4b13-961e-f9ee14a260b8",
+      "slug": "heidekoenigin",
+      "fields": [
+        "description",
+        "verified_claims",
+        "seo_metadata"
+      ],
+      "old": {
+        "description": "Heidekönigin bringt die Farbenfreude norddeutscher Naturlandschaften direkt in Ihren Kleiderschrank. Unter dem Markenmotto „besonders.anders“ entstehen Kollektionen, die sich durch fröhliche florale Dessins, bequeme Wohlfühlschnitte und spürbare Langlebigkeit auszeichnen.\r\n\r\nBei Checkpot lieben unsere Kundinnen die natürliche Ausstrahlung dieser Marke. Die Kleider, Röcke und Shirts sitzen entspannt, machen jede Alltagsbewegung mit und sind aus hochwertigen Naturfasern wie Bio-Baumwolle und Leinen gefertigt.\r\n\r\nDas Label fertigt seine gesamte Kollektion ausnahmslos in europäischen Partnerbetrieben und setzt konsequent auf GOTS-zertifizierte Materialien für einen schonenden Umgang mit unserer Umwelt.",
+        "verified_claims": [
+          "Sämtliche Kollektionen werden ausschließlich in Europa produziert",
+          "Verwendung von GOTS-zertifizierter Bio-Baumwolle und natürlichen Fasern",
+          "Fröhliche, naturnahe Allover-Prints und bequeme Passformen"
+        ],
+        "seo_metadata": {
+          "title": "Heidekönigin in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Heidekönigin Mode bei Checkpot in Wien-Hietzing: Farbenfrohe Kleider aus europäischer Fertigung, Bio-Baumwolle und persönliche Beratung im Geschäft.",
+          "ogDescription": null
+        }
+      },
+      "next": {
+        "description": "Heidekönigin bringt die Farbenfreude norddeutscher Naturlandschaften direkt in Ihren Kleiderschrank. Unter dem Markenmotto „besonders.anders“ entstehen Kollektionen, die sich durch fröhliche florale Dessins, bequeme Wohlfühlschnitte auszeichnen.\r\n\r\nBei Checkpot lieben unsere Kundinnen die natürliche Ausstrahlung dieser Marke. Die Kleider, Röcke und Shirts sitzen entspannt, machen jede Alltagsbewegung mit und sind aus hochwertigen Naturfasern wie Bio-Baumwolle und Leinen gefertigt.\r\n\r\nLaut Hersteller wird die Kollektion in Europa gefertigt und die Marke ist GOTS-zertifiziert. Ob ein einzelner Artikel zertifiziert ist, zeigt seine Produktkennzeichnung.",
+        "verified_claims": [
+          "Fertigung der Kollektion in Europa laut Hersteller",
+          "Marke laut Hersteller GOTS-zertifiziert; Artikelkennzeichnung ist maßgeblich",
+          "Fröhliche, naturnahe Allover-Prints und bequeme Passformen"
+        ],
+        "seo_metadata": {
+          "title": "Heidekönigin in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "Heidekönigin Mode bei Checkpot in Wien-Hietzing: Farbenfrohe Kleider, Angaben zur europäischen Fertigung und persönliche Beratung im Geschäft.",
+          "ogDescription": null
+        }
+      }
+    },
+    {
+      "table": "brands",
+      "id": "1075f205-96ca-4f9e-afd1-464e4a47b687",
+      "slug": "king-louie",
+      "fields": [
+        "summary",
+        "description",
+        "verified_claims",
+        "seo_metadata"
+      ],
+      "old": {
+        "summary": "Amsterdamer Vintage-Kultmarke mit ikonischen Mustern: King Louie steht für zeitlose Retro-Kleider, kräftige Farben und GOTS-zertifizierte Bio-Baumwolle.",
+        "description": "King Louie aus Amsterdam ist eine echte Institution für alle Liebhaberinnen stilvoller Vintage-Mode. Das Label ist berühmt für seine farbenfrohen, grafisch ausgefeilten Dessins, die vom Geist der 1960er und 70er Jahre inspiriert sind und überall für bewundernde Blicke sorgen.\r\n\r\nIn unserer Boutique in Hietzing gehört King Louie zu den absoluten Highlights: Ob klassisches Wickelkleid, bequemes Jerseykleid oder feiner Cardigan mit Retro-Knöpfen – die Stücke sitzen feminin, knittern kaum und begleiten Sie mit Stil durch den Tag.\r\n\r\nNachhaltigkeit wird bei King Louie großgeschrieben: Mit GOTS-zertifizierter Bio-Baumwolle, amfori BSCI-geprüften Produktionsstätten und digitaler Lieferkettentransparenz setzt die Marke klare Zeichen.",
+        "verified_claims": [
+          "GOTS-zertifiziert für Bio-Baumwolle seit 2017",
+          "Fokus auf zertifizierte Materialien wie GOTS-Bio-Baumwolle und LENZING™ ECOVERO™",
+          "Digitale Lieferkettentransparenz und Fertigung nach amfori-BSCI-Sozialstandards"
+        ],
+        "seo_metadata": {
+          "title": "King Louie in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "King Louie bei Checkpot in Wien-Hietzing entdecken: Ikonische Vintage-Kleider aus Amsterdam, farbenfrohe Retro-Prints und nachhaltige Bio-Baumwolle.",
+          "ogDescription": null
+        }
+      },
+      "next": {
+        "summary": "Amsterdamer Vintage-Kultmarke mit ikonischen Mustern: King Louie steht für Retro-Kleider und kräftige Farben.",
+        "description": "King Louie aus Amsterdam ist eine echte Institution für alle Liebhaberinnen stilvoller Vintage-Mode. Das Label ist berühmt für seine farbenfrohen, grafisch ausgefeilten Dessins, die vom Geist der 1960er und 70er Jahre inspiriert sind und überall für bewundernde Blicke sorgen.\r\n\r\nIn unserer Boutique in Hietzing gehört King Louie zu den absoluten Highlights: Ob klassisches Wickelkleid, bequemes Jerseykleid oder feiner Cardigan mit Retro-Knöpfen – die Stücke sitzen feminin, knittern kaum und begleiten Sie mit Stil durch den Tag.\r\n\r\nDer Hersteller weist ausgewählte Artikel aus Bio-Baumwolle als GOTS-zertifiziert aus. Welche Materialien ein Stück enthält, ist jeweils der Produktangabe zu entnehmen.",
+        "verified_claims": [
+          "Ausgewählte GOTS-zertifizierte Bio-Baumwollartikel laut Hersteller"
+        ],
+        "seo_metadata": {
+          "title": "King Louie in Wien | Checkpot Hietzing",
+          "ogTitle": null,
+          "description": "King Louie bei Checkpot in Wien-Hietzing entdecken: Ikonische Vintage-Kleider aus Amsterdam und farbenfrohe Retro-Prints.",
+          "ogDescription": null
+        }
+      }
+    },
+    {
+      "table": "outfits",
+      "id": "33dcd90f-0340-4241-b40b-cb27b8f1b023",
+      "title": "Salbeigrüner Strick-Pullunder mit Cord-Midirock",
+      "field": "availability_note",
+      "old": "Lieblings-Herbstkombination aus Naturfasern",
+      "next": "Lieblings-Herbstkombination"
+    },
+    {
+      "table": "outfits",
+      "id": "03a35bda-0660-455c-9f58-af3daf9a92f2",
+      "title": "Floral-Jacquard Strickweste in Rot & Marine",
+      "field": "availability_note",
+      "old": "Naturmaterialien in langlebiger Qualität",
+      "next": "Materialdetails im Geschäft erfragen"
+    },
+    {
+      "table": "media",
+      "id": "664ed0d2-227c-469b-920c-26896d7319c0",
+      "field": "alt",
+      "old": "Madness Fair Fashion bei Checkpot Wien-Hietzing",
+      "next": "Madness Damenmode bei Checkpot Wien-Hietzing"
+    },
+    {
+      "table": "media",
+      "id": "f3e1a9d3-1661-4d77-bc74-804454de949d",
+      "field": "alt",
+      "old": "Strikkeby Bio-Strickmode bei Checkpot Wien-Hietzing",
+      "next": "Strikkeby Strickmode bei Checkpot Wien-Hietzing"
+    },
+    {
+      "table": "media",
+      "id": "31cdb9c4-d29c-47fc-9956-a725c482a3f9",
+      "field": "alt",
+      "old": "Nomads Fair Fashion bei Checkpot Wien-Hietzing",
+      "next": "Nomads Damenmode bei Checkpot Wien-Hietzing"
+    }
+  ]
+}

@@ -137,7 +137,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               id="summary"
               name="summary"
               defaultValue={brand?.summary || ""}
-              placeholder="z.B. Nachhaltige feminine Vintage-Kleider aus Amsterdam"
+              placeholder="z.B. Feminine Vintage-Kleider aus Amsterdam"
             />
           </div>
 
@@ -169,7 +169,7 @@ export default async function BrandEditPage({ params }: { params: Promise<{ id: 
               id="verifiedClaims"
               name="verifiedClaims"
               defaultValue={(brand?.verifiedClaims || []).join("\n")}
-              placeholder={"z.B. Faire Produktion in Portugal\nz.B. Zertifizierte Bio-Baumwolle (GOTS)\nz.B. Zertifiziertes Mitglied der Fair Wear Foundation"}
+              placeholder={"z.B. Entworfen in Amsterdam\nz.B. Materialangabe für konkret belegte Artikel\nz.B. Aktuelle Mitgliedschaft einer Marke"}
               rows={4}
               className="w-full border border-[#d6d3d1] focus:border-[#1c1917] rounded-xl p-3.5 bg-white text-sm text-[#1c1917] focus:outline-hidden transition-colors"
             />

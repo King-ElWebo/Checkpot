@@ -1,0 +1,58 @@
+{
+  "mode": "applied",
+  "rows": 2,
+  "changed": [
+    {
+      "table": "brands",
+      "id": "67f11efa-38df-48d9-b507-feea8b005696",
+      "slug": "madness",
+      "fields": [
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "description": "Madness („The Nature Textile Company“) arbeitet nach eigener Angabe seit 1994 mit Naturfasern. Die Kollektionen überzeugen mit zeitlosen Schnitten, naturnaher Verspieltheit und ausgewählten Materialien.\r\n\r\nIm Checkpot-Sortiment ist Madness die perfekte Wahl für Frauen, die Wert auf unverfälschtes Wohlgefühl legen. Von weichen Strickjacken bis zu sommerlichen Kleidern finden Kundinnen unterschiedliche Tragequalitäten.\r\n\r\nMadness nennt eine GOTS-Zertifizierung seit 2012 und eine Mitgliedschaft bei Fair Wear. Angaben zu einzelnen Kleidungsstücken sind anhand ihrer Kennzeichnung zu prüfen.",
+        "verified_claims": [
+          "Naturtextilmarke seit 1994 laut Hersteller",
+          "GOTS-Zertifizierung der Marke seit 2012 laut Hersteller",
+          "Fair-Wear-Mitgliedschaft laut aktueller Markenwebsite",
+          "Bio-Baumwolle und kbT-Schurwolle in Teilen der Kollektion"
+        ]
+      },
+      "next": {
+        "description": "Madness („The Nature Textile Company“) arbeitet nach eigener Angabe seit 1994 mit Naturfasern. Die Kollektionen überzeugen mit zeitlosen Schnitten, naturnaher Verspieltheit und ausgewählten Materialien.\r\n\r\nIm Checkpot-Sortiment ist Madness die perfekte Wahl für Frauen, die Wert auf unverfälschtes Wohlgefühl legen. Von weichen Strickjacken bis zu sommerlichen Kleidern finden Kundinnen unterschiedliche Tragequalitäten.\r\n\r\nMadness nennt eine GOTS-Zertifizierung des Unternehmens seit 2012 und eine Mitgliedschaft bei Fair Wear. Angaben zu einzelnen Kleidungsstücken sind anhand ihrer Kennzeichnung zu prüfen.",
+        "verified_claims": [
+          "Naturtextilmarke seit 1994 laut Hersteller",
+          "GOTS-Zertifizierung des Unternehmens seit 2012 laut Hersteller",
+          "Fair-Wear-Mitgliedschaft laut aktueller Markenwebsite",
+          "Bio-Baumwolle und kbT-Schurwolle in Teilen der Kollektion"
+        ]
+      }
+    },
+    {
+      "table": "brands",
+      "id": "ad97ec5c-58a7-4b13-961e-f9ee14a260b8",
+      "slug": "heidekoenigin",
+      "fields": [
+        "description",
+        "verified_claims"
+      ],
+      "old": {
+        "description": "Heidekönigin bringt die Farbenfreude norddeutscher Naturlandschaften direkt in Ihren Kleiderschrank. Unter dem Markenmotto „besonders.anders“ entstehen Kollektionen, die sich durch fröhliche florale Dessins, bequeme Wohlfühlschnitte auszeichnen.\r\n\r\nBei Checkpot lieben unsere Kundinnen die natürliche Ausstrahlung dieser Marke. Die Kleider, Röcke und Shirts sitzen entspannt und machen jede Alltagsbewegung mit. Der Hersteller nennt Bio-Baumwolle und Leinen für Teile seiner Kollektion.\r\n\r\nLaut Hersteller wird die Kollektion in Europa gefertigt und die Marke ist GOTS-zertifiziert. Ob ein einzelner Artikel zertifiziert ist, zeigt seine Produktkennzeichnung.",
+        "verified_claims": [
+          "Fertigung der Kollektion in Europa laut Hersteller",
+          "Marke laut Hersteller GOTS-zertifiziert; Artikelkennzeichnung ist maßgeblich",
+          "Fröhliche, naturnahe Allover-Prints und bequeme Passformen"
+        ]
+      },
+      "next": {
+        "description": "Heidekönigin bringt die Farbenfreude norddeutscher Naturlandschaften direkt in Ihren Kleiderschrank. Unter dem Markenmotto „besonders.anders“ entstehen Kollektionen, die sich durch fröhliche florale Dessins, bequeme Wohlfühlschnitte auszeichnen.\r\n\r\nBei Checkpot lieben unsere Kundinnen die natürliche Ausstrahlung dieser Marke. Die Kleider, Röcke und Shirts sitzen entspannt und machen jede Alltagsbewegung mit. Der Hersteller nennt Bio-Baumwolle und Leinen für Teile seiner Kollektion.\r\n\r\nLaut Hersteller wird die Kollektion in Europa gefertigt. Er nennt eine eigene GOTS-Zertifizierung. Ob ein einzelner Artikel zertifiziert ist, zeigt seine Produktkennzeichnung.",
+        "verified_claims": [
+          "Fertigung der Kollektion in Europa laut Hersteller",
+          "Hersteller nennt eine eigene GOTS-Zertifizierung; Artikelkennzeichnung ist maßgeblich",
+          "Fröhliche, naturnahe Allover-Prints und bequeme Passformen"
+        ]
+      }
+    }
+  ]
+}
