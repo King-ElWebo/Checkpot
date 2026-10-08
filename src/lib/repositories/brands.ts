@@ -1,5 +1,5 @@
 import { and, asc, eq } from "drizzle-orm";
-import { getDatabase } from "@/db";
+import { getDatabase, isDatabaseConfigured } from "@/db";
 import { brands } from "@/db/schema";
 import type { BrandSeoMetadata } from "@/lib/validations/admin";
 
@@ -28,6 +28,7 @@ export interface BrandDto {
 }
 
 export async function listPublishedBrands() {
+  if (!isDatabaseConfigured()) return [];
   const db = getDatabase();
   const rows = await db.query.brands.findMany({
     where: eq(brands.active, true),
@@ -42,6 +43,7 @@ export async function listPublishedBrands() {
 }
 
 export async function getPublishedBrandBySlug(slug: string) {
+  if (!isDatabaseConfigured()) return null;
   const db = getDatabase();
   const row = await db.query.brands.findFirst({
     where: and(eq(brands.slug, slug), eq(brands.active, true)),
@@ -55,6 +57,7 @@ export async function getPublishedBrandBySlug(slug: string) {
 }
 
 export async function listAllBrands() {
+  if (!isDatabaseConfigured()) return [];
   const db = getDatabase();
   return db.query.brands.findMany({
     orderBy: [asc(brands.sortOrder)],

@@ -1,8 +1,9 @@
 import { and, asc, desc, eq, inArray } from "drizzle-orm";
-import { getDatabase } from "@/db";
+import { getDatabase, isDatabaseConfigured } from "@/db";
 import { outfits, outfitBrands } from "@/db/schema";
 
 export async function listPublishedOutfits() {
+  if (!isDatabaseConfigured()) return [];
   const db = getDatabase();
   const rows = await db.query.outfits.findMany({
     where: eq(outfits.active, true),
@@ -54,6 +55,7 @@ export async function listPublishedOutfits() {
 }
 
 export async function listFeaturedOutfits() {
+  if (!isDatabaseConfigured()) return [];
   const db = getDatabase();
   return db.query.outfits.findMany({
     where: and(eq(outfits.featured, true), eq(outfits.active, true)),
@@ -65,6 +67,7 @@ export async function listFeaturedOutfits() {
 }
 
 export async function listHomepageOutfits(limit = 10) {
+  if (!isDatabaseConfigured()) return [];
   const db = getDatabase();
   return db.query.outfits.findMany({
     where: eq(outfits.active, true),
@@ -77,6 +80,7 @@ export async function listHomepageOutfits(limit = 10) {
 }
 
 export async function getOutfitsByBrandId(brandId: string) {
+  if (!isDatabaseConfigured()) return [];
   const db = getDatabase();
   
   const brandOutfits = await db.query.outfitBrands.findMany({
