@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
 
 import "./public.css";
 import { cookies, headers } from "next/headers";
@@ -14,18 +13,6 @@ import { ConsentManager } from "@/components/public/consent/consent-manager";
 import { ComingSoon } from "@/components/public/coming-soon";
 import { PreviewBanner } from "@/components/public/preview-banner";
 import { LegalMaintenanceShell } from "@/components/public/legal-maintenance-shell";
-
-const fontHeading = Outfit({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const fontBody = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -108,7 +95,7 @@ export default async function PublicLayout({ children }: { children: React.React
   // Server-side enforcement: Locked visitors see Coming Soon unless preview is active or accessing legal info
   return (
     <ConsentManager initialConsent={initialConsent}>
-      <div className={`public-site ${fontHeading.variable} ${fontBody.variable} flex min-h-screen flex-col antialiased`}>
+      <div className="public-site flex min-h-screen flex-col antialiased">
         {siteAccess.maintenanceMode && !isPreviewActive ? (
           isLegalRoute ? (
             <LegalMaintenanceShell storeDetails={storeDetails}>
