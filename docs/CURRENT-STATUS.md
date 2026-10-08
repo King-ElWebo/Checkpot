@@ -1,10 +1,10 @@
 # Checkpot Current Technical Status
 
 ## Last audited & updated
-- Date: 2026-09-08 (Pre-Launch Repository & Documentation Hygiene Pass)
-- Status: **PRE-LAUNCH / FRONTEND FROZEN FOR LAUNCH**
+- Date: 2026-10-08 (Instagram/Facebook touchpoints integrated & Cloudflare Workers deployment staged)
+- Status: **PRE-LAUNCH / CLOUDFLARE WORKERS STAGING**
 - Database: Neon PostgreSQL (12 tables, 15 active partner brands, 27 active outfits, 43 media assets)
-- Baseline: Technical Pre-Launch Passes 1 & 2 complete; frontend visual polish complete & design frozen
+- Baseline: Cloudflare Workers edge runtime (`vinext` + `@cloudflare/vite-plugin`), R2 storage bindings, social media touchpoints live in admin
 
 ---
 
