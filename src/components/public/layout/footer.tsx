@@ -148,7 +148,7 @@ export function Footer({ storeDetails }: { storeDetails: StoreDetails }) {
                       href={"/fair-trade" as Route}
                       className="hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
                     >
-                      Fair Trade
+                      Qualität & Herkunft
                     </Link>
                   </li>
                 </ul>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Checkpot Hietzing",
   },
   description:
-    "Hochwertige feminine Damenmode und persönliche Stilberatung in Wien Hietzing. Nachhaltige Kollektionen und ausgewählte Marken.",
+    "Hochwertige feminine Damenmode und persönliche Stilberatung in Wien Hietzing. Entdecken Sie ausgewählte Marken.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

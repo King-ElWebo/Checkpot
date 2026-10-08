@@ -11,7 +11,7 @@ This file is the customer-specific SEO contract for Open Design, backend integra
 - Primary market and locations: Wien (besonders Hietzing) und Umgebung
 - Languages and default locale: Deutsch / Österreich (`de-AT`)
 - Existing website and migration source: `https://checkpot-hietzing.at`
-- Keyword or search-intent research: Checkpot Hietzing, Boutique Hietzing, nachhaltige Mode Wien, Damenmode Hietzing
+- Keyword or search-intent research: Checkpot Hietzing, Boutique Hietzing, Damenmode Hietzing, Qualität und Herkunft
 - Legal and compliance constraints: Impressum, Datenschutz (inkl. Consent-Management) erforderlich.
 
 ## Global settings
@@ -19,7 +19,7 @@ This file is the customer-specific SEO contract for Open Design, backend integra
 - Production origin (`SITE_URL`): `https://checkpot-hietzing.at`
 - Site/organization name: Checkpot Hietzing
 - Default title template: `%s | Checkpot Hietzing`
-- Default description: Hochwertige feminine Damenmode und persönliche Stilberatung in Wien Hietzing. Nachhaltige Kollektionen und ausgewählte Marken.
+- Default description: Hochwertige feminine Damenmode und persönliche Stilberatung in Wien Hietzing. Entdecken Sie ausgewählte Marken.
 - Default social image and alt text: `/customer/og-image.jpg` (Checkpot Hietzing Store Außenansicht)
 - Twitter/X card: `summary_large_image`
 - Indexing default: `index, follow`
@@ -40,13 +40,13 @@ This file is the customer-specific SEO contract for Open Design, backend integra
 
 | Route | Search intent | Primary topic | Title | Description | Canonical | OG image | Structured data | Index/follow |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/` | Store finden / informieren | Boutique Hietzing, Checkpot Damenmoden | Damenmode & Stilberatung in Wien | Entdecken Sie hochwertige, feminine Damenmode bei Checkpot Hietzing. Persönliche Beratung und nachhaltige Marken in Wien. | `/` | Default | `LocalBusiness` | `index, follow` |
+| `/` | Store finden / informieren | Boutique Hietzing, Checkpot Damenmoden | Damenmode & Stilberatung in Wien | Entdecken Sie hochwertige, feminine Damenmode bei Checkpot Hietzing. Persönliche Beratung und ausgewählte Marken in Wien. | `/` | Default | `LocalBusiness` | `index, follow` |
 | `/ueber-uns` | Team / Vertrauen | Christa Hausmair, Boutique Geschichte | Über Checkpot & Christa | Seit 2009 Ihre Anlaufstelle für persönliche Modeberatung in Hietzing. Lernen Sie Christa Hausmair kennen. | `/ueber-uns` | Default | `BreadcrumbList` | `index, follow` |
 | `/mode` | Aktuelle Kollektionen ansehen | Damenmode Kollektionen, neue Trends | Aktuelle Mode & Kollektionen | Die neuesten Trends und handverlesene Stücke für diese Saison. | `/mode` | Default | `BreadcrumbList` | `index, follow` |
 | `/outfits` | Inspiration / Styling | Outfit-Inspirationen, Kombinationen | Outfit Inspirationen | Entdecken Sie komplette Looks und wie neue Stücke perfekt kombiniert werden. | `/outfits` | Default | `BreadcrumbList` | `index, follow` |
-| `/marken` | Markenübersicht | Marken Hietzing (King Louie, Zilch, etc.) | Unsere Marken | Ausgewählte, faire und nachhaltige Modemarken bei Checkpot Hietzing. | `/marken` | Default | `BreadcrumbList` | `index, follow` |
+| `/marken` | Markenübersicht | Marken Hietzing (King Louie, Zilch, etc.) | Unsere Marken | Ausgewählte Modemarken bei Checkpot in Wien Hietzing entdecken. | `/marken` | Default | `BreadcrumbList` | `index, follow` |
 | `/marken/[slug]` | Spezifische Marken in Wien suchen | [Markenname] Wien Hietzing | [Markenname] Kollektion | Aktuelle Kollektion von [Markenname] bei Checkpot in Wien Hietzing entdecken. | `/marken/[slug]` | Default | `BreadcrumbList` | `index, follow` |
-| `/fair-trade` | Nachhaltigkeit / Faire Produktion | Nachhaltige Mode Wien, Fair Trade | Fair Trade & Nachhaltigkeit | Unsere Prinzipien für faire, nachhaltige und ökologische Damenmode. | `/fair-trade` | Default | `BreadcrumbList` | `index, follow` |
+| `/fair-trade` | Qualität / Herkunft / Transparenz | Materialien, Qualität, Markenangaben | Qualität, Herkunft & Transparenz \| Checkpot Wien | Transparenz statt pauschaler Versprechen. Informationen zu Materialien, Qualität und nachvollziehbaren Markenangaben bei Checkpot Hietzing. | `/fair-trade` | Default | `BreadcrumbList` | `index, follow` |
 | `/kontakt` | Kontakt aufnehmen / Anfahrt | Adresse Checkpot, Öffnungszeiten, Telefon | Kontakt & Öffnungszeiten | Besuchen Sie uns auf der Hietzinger Hauptstraße 10-16. Hier finden Sie alle Kontaktdaten und Öffnungszeiten. | `/kontakt` | Default | `LocalBusiness`, `BreadcrumbList` | `index, follow` |
 | `/impressum` | Rechtliche Informationen | Impressum | Impressum | Rechtliche Angaben zum Unternehmen Checkpot. | `/impressum` | None | `BreadcrumbList` | `noindex, follow` |
 | `/datenschutz` | Rechtliche Informationen | Datenschutz | Datenschutz | Datenschutzerklärung von Checkpot Hietzing. | `/datenschutz` | None | `BreadcrumbList` | `noindex, follow` |
@@ -55,13 +55,13 @@ This file is the customer-specific SEO contract for Open Design, backend integra
 
 | Route | H1 | Required supporting topics | Primary internal links | Content owner | Status |
 | --- | --- | --- | --- | --- | --- |
-| `/` | Willkommen bei Checkpot Hietzing | Nachhaltigkeit, Beratung, Marken | `/marken`, `/outfits`, `/ueber-uns`, `/kontakt` | Customer | Approved |
+| `/` | Willkommen bei Checkpot Hietzing | Beratung, Marken, Mode | `/marken`, `/outfits`, `/ueber-uns`, `/kontakt` | Customer | Approved |
 | `/ueber-uns` | Über Checkpot & Christa | Geschichte seit 2009, persönliche Beratung, Geschäft | `/`, `/mode`, `/kontakt` | Customer | Approved |
 | `/mode` | Aktuelle Mode & Kollektionen | Saison, ausgewählte Stücke, Verfügbarkeit im Geschäft | `/outfits`, `/marken`, `/kontakt` | Customer | Approved |
 | `/outfits` | Outfit-Inspirationen | Komplette Looks, Styling, Verfügbarkeit im Geschäft | `/mode`, `/marken`, `/kontakt` | Customer | Approved |
 | `/marken` | Unsere Marken | Aktuell geführte Marken, belegte Besonderheiten | `/marken/[slug]`, `/outfits`, `/kontakt` | Customer | Approved |
 | `/marken/[slug]` | `[Markenname] bei Checkpot` | Marke, aktuelle Verfügbarkeit, belegte Eigenschaften | `/marken`, `/kontakt`, passende `/marken/[related-slug]` sofern vorhanden | Customer | Approved |
-| `/fair-trade` | Fair Trade & Nachhaltigkeit | Belegte Standards, Prinzipien, passende Marken | `/marken`, `/kontakt` | Customer | Approved |
+| `/fair-trade` | Qualität & Herkunft | Belegte Standards, Initiativen, Materialien und Herkunft | `/marken`, `/kontakt` | Customer | Approved |
 | `/kontakt` | Kontakt & Öffnungszeiten | Adresse, Öffnungszeiten, Kontaktwege, externer Routenlink | `/`, `/ueber-uns` | Customer | Approved |
 | `/impressum` | Impressum | Freigegebene Anbieterangaben | `/kontakt`, `/datenschutz` | Customer/legal counsel | Approved |
 | `/datenschutz` | Datenschutz | Freigegebene Verarbeitung und Einwilligungsinformationen | `/kontakt`, `/impressum` | Customer/legal counsel | Approved |

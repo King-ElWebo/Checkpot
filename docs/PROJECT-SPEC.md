@@ -15,7 +15,7 @@ der Blocker auf `APPROVED_FOR_DESIGN` gesetzt werden.
   Blog/Magazin. Die Website lädt in das stationäre Geschäft ein, führt in Angebot und Beratung ein
   und zeigt, was Checkpot besonders gut macht und warum sich ein Besuch lohnt.
 - Confirmed business positioning: Hochwertige feminine Damenmode, persönliche typgerechte
-  Stilberatung, ausgewählte Marken sowie fair und/oder nachhaltig produzierte Kollektionen
+  Stilberatung und ausgewählte Marken; Umwelt- und Sozialangaben nur marken- oder artikelspezifisch mit aktuellem Nachweis
 - Business goal: Menschen finden Checkpot über markenbezogene Google-Suchen und besuchen danach das
   stationäre Geschäft; zusätzlich soll der Auftritt informieren, Vertrauen schaffen, die bestehende
   Website modernisieren und das reale Geschäft authentisch widerspiegeln
@@ -57,13 +57,13 @@ content and search-performance data.
 
 | Route | Purpose | Main sections | Primary CTA | Content owner | Interactions | Content status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `/` | Position the boutique and invite a local visit | Hero, value proposition, personal advice, current outfits/collection, brand highlights, fair/sustainable fashion, store/contact facts | Outfits ansehen / Marken entdecken / Geschäft besuchen | Customer | CTA links, subtle motion, external route-planning link | Legacy copy and authentic images available; rewrite needed |
+| `/` | Position the boutique and invite a local visit | Hero, value proposition, personal advice, current outfits/collection, brand highlights, precise quality/origin information, store/contact facts | Outfits ansehen / Marken entdecken / Geschäft besuchen | Customer | CTA links, subtle motion, external route-planning link | Legacy copy and authentic images available; rewrite needed |
 | `/ueber-uns` | Build trust through founder, story and store impressions | Founder portrait, story since 2009, advice philosophy, store gallery | Contact / visit store | Customer | Gallery/lightbox optional | Legacy copy and store photography available; route and naming approved |
 | `/mode` | Present current collections and new pieces without commerce | Current season introduction, curated gallery, availability disclaimer, visit CTA | Outfits ansehen / Geschäft besuchen | Customer | Responsive image-led gallery | Spring/summer 2026 gallery available; admin-managed publishing required |
 | `/outfits` | Show complete coordinated looks and how new pieces are worn | Curated outfit photos, optional short styling notes, store availability, visit CTA | Geschäft besuchen / zum Outfit anfragen | Customer | Image-led editorial gallery; no cart or product checkout | Confirmed; admin-managed upload and publishing required |
-| `/marken` | Explain and browse the currently stocked labels | Brand overview, differentiators, verified sustainability/availability notes | Marke entdecken / Geschäft besuchen | Customer | Brand cards and detail links | Initial brand list confirmed; admin-expandable |
+| `/marken` | Explain and browse the currently stocked labels | Brand overview, differentiators, scoped and verified material/standard notes, availability notes | Marke entdecken / Geschäft besuchen | Customer | Brand cards and detail links | Initial brand list confirmed; admin-expandable |
 | `/marken/[slug]` | Preserve brand search intent and introduce labels stocked at Checkpot | Brand introduction, current availability, relevant collections/outfits, store CTA | Aktuelle Kollektion ansehen / Geschäft besuchen | Customer | Dynamic detail pages | Confirmed in principle; routes generated from published admin records |
-| `/fair-trade` | Substantiate the sustainability position | Store principles, verified certifications/standards, brand examples | View brands / visit store | Customer | Primarily editorial | Legacy FWF/GOTS copy exists; current claims and permissions unverified |
+| `/fair-trade` | Explain quality, origin and transparency | Store principles, accurately distinguished standards and initiatives, brand examples | View brands / visit store | Customer | Primarily editorial | Legacy FWF/GOTS copy exists; current claims and permissions unverified |
 | `/kontakt` | Make store visit and contact effortless | Address, dynamic opening hours, external route link, phone, email and form | Route / call / WhatsApp / Nachricht | Customer | Click-to-call, email, WhatsApp, form and external route-planning link; no embedded map | Address, hours, form recipient, WhatsApp number and route behavior confirmed |
 | `/impressum` | Legal provider disclosure | Approved legal notice | None | Customer/legal counsel | None | Existing text is not approved for reuse |
 | `/datenschutz` | Explain processing and third-party services | Approved privacy notice, analytics/consent details | Consent settings if applicable | Customer/legal counsel | Consent settings link | Existing text is not approved for reuse |
@@ -263,7 +263,7 @@ migration. External services are implemented only when selected in this specific
 
 ### Approved messaging guardrails
 
-- Desired themes include fair trade, GOTS, 100% cotton, sustainable, pattern-rich and colourful.
+- Historical customer themes included fair trade, GOTS, 100% cotton and sustainability. Current public wording follows the scoped claim inventory in `docs/EMPCO-CLAIM-AUDIT.md`; pattern-rich and colourful style remains a customer preference.
 - `GOTS`, `fair trade`, `100% cotton` and comparable objective claims may be shown only for the exact
   brand, collection or garment for which current evidence exists; they are not blanket claims about
   every item in the store.

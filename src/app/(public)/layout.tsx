@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Checkpot Hietzing",
     },
     description:
-      "Hochwertige feminine Damenmode und persönliche Stilberatung in Wien Hietzing. Nachhaltige Kollektionen und ausgewählte Marken.",
+      "Hochwertige feminine Damenmode und persönliche Stilberatung in Wien Hietzing. Entdecken Sie ausgewählte Marken.",
     openGraph: {
       title: "Checkpot Hietzing",
       description:

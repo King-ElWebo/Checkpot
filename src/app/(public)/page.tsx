@@ -117,7 +117,7 @@ Persönlich beraten.
                 </h1>
 
                 <p className="mb-8 lg:mb-10 max-w-[480px] 2xl:max-w-[530px] text-lg sm:text-xl 2xl:text-[21px] leading-relaxed text-[#4A5568]">
-                  Ausgewählte Fair- und Slow Fashion, für alle, die lieber ihren eigenen Stil als Einheitsbrei tragen.
+                  Ausgewählte Mode für alle, die lieber ihren eigenen Stil als Einheitsbrei tragen.
                 </p>
 
                 <div className="flex items-center gap-8 w-auto">
@@ -176,7 +176,7 @@ Persönlich beraten.
 
               {/* Expressive H1 */}
               <h1 className="mb-3 sm:mb-4 font-display text-[26px] sm:text-[32px] font-normal leading-[1.12] tracking-tight text-[#1A1A1A]">
-                <span>Individuelle Fair- und Slow Fashion</span>
+                <span>Individuelle Mode</span>
                 <br />
                 <span className="text-[#C01718] block mt-0.5">
                   für alle, die lieber ihren eigenen Stil als Einheitsbrei tragen.

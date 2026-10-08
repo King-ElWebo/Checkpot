@@ -1,0 +1,73 @@
+{
+  "mode": "applied",
+  "appliedAtUtc": "2026-09-29 11:24 UTC",
+  "rows": 4,
+  "changed": [
+    {
+      "table": "brands",
+      "id": "85550f46-e83a-41b3-bfc7-380704934038",
+      "slug": "seasalt",
+      "fields": [
+        "description"
+      ],
+      "old": {
+        "summary": "Zeitlose britische Mode von der Küste Cornwalls: Seasalt verbindet handgezeichnete maritime Muster mit entspannter Küstenmode.",
+        "description": "Die Entwürfe von Seasalt spiegeln die raue Schönheit und die Farben der englischen Küstenlandschaft wider. Bekannt ist das Label für seine kunstvoll von Hand gezeichneten Drucke, atmungsaktiven Naturtextilien und wetterfesten Jacken, die Wind und Wetter trotzen.\r\n\r\nBei Checkpot empfehlen wir Seasalt Kundinnen, die Wert auf funktionale Qualität, gepflegte Lässigkeit und maritime Frische legen. Die Passformen sind herrlich unkompliziert und bieten durchdachte Details, die vom Spaziergang im Schlosspark Schönbrunn bis zum Wochenendausflug zuverlässig begleiten.\r\n\r\nSeasalt Holdings Limited ist laut B Lab seit Juli 2024 als B Corp zertifiziert."
+      },
+      "next": {
+        "summary": "Zeitlose britische Mode von der Küste Cornwalls: Seasalt verbindet handgezeichnete maritime Muster mit entspannter Küstenmode.",
+        "description": "Die Entwürfe von Seasalt spiegeln die raue Schönheit und die Farben der englischen Küstenlandschaft wider. Bekannt ist das Label für seine kunstvoll von Hand gezeichneten Drucke, angenehme Stoffe und wetterfesten Jacken, die Wind und Wetter trotzen.\r\n\r\nBei Checkpot empfehlen wir Seasalt Kundinnen, die Wert auf funktionale Qualität, gepflegte Lässigkeit und maritime Frische legen. Die Passformen sind herrlich unkompliziert und bieten durchdachte Details, die vom Spaziergang im Schlosspark Schönbrunn bis zum Wochenendausflug zuverlässig begleiten.\r\n\r\nSeasalt Holdings Limited ist laut B Lab seit Juli 2024 als B Corp zertifiziert."
+      }
+    },
+    {
+      "table": "brands",
+      "id": "a6b354f9-041f-4bfb-aed8-7ec2f3c480ae",
+      "slug": "nomads",
+      "fields": [
+        "summary"
+      ],
+      "old": {
+        "summary": "Traditionelles Textilhandwerk aus Cornwall: Nomads begeistert mit handbedruckten Naturfasern, harmonischen Erdtönen und entspannter Bohème-Eleganz.",
+        "description": "Seit 1989 widmet sich das britische Label Nomads aus Cornwall der farbenfrohen Damenmode. Der Hersteller weist ausgewählte Modelle aus Bio-Baumwolle als GOTS-zertifiziert aus und nennt für andere Artikel Lyocell. Traditionelle indische Holzdruck-Muster prägen viele Dessins.\r\n\r\nIn unserer Boutique in Hietzing empfehlen wir Nomads Frauen, die einen entspannten, natürlichen Modestil schätzen. Die weiten Kleider, bequemen Hosen und leichten Tuniken bieten herausragenden Klimakomfort und fühlen sich auf der Haut wunderbar seidig an.\r\n\r\nNomads beschreibt langjährige Zusammenarbeit mit Partnerbetrieben in Indien und eine eigene Fair-Trade-Policy."
+      },
+      "next": {
+        "summary": "Traditionelles Textilhandwerk aus Cornwall: Nomads begeistert mit handbedruckten Stoffen, harmonischen Erdtönen und entspannter Bohème-Eleganz.",
+        "description": "Seit 1989 widmet sich das britische Label Nomads aus Cornwall der farbenfrohen Damenmode. Der Hersteller weist ausgewählte Modelle aus Bio-Baumwolle als GOTS-zertifiziert aus und nennt für andere Artikel Lyocell. Traditionelle indische Holzdruck-Muster prägen viele Dessins.\r\n\r\nIn unserer Boutique in Hietzing empfehlen wir Nomads Frauen, die einen entspannten, natürlichen Modestil schätzen. Die weiten Kleider, bequemen Hosen und leichten Tuniken bieten herausragenden Klimakomfort und fühlen sich auf der Haut wunderbar seidig an.\r\n\r\nNomads beschreibt langjährige Zusammenarbeit mit Partnerbetrieben in Indien und eine eigene Fair-Trade-Policy."
+      }
+    },
+    {
+      "table": "brands",
+      "id": "67f11efa-38df-48d9-b507-feea8b005696",
+      "slug": "madness",
+      "fields": [
+        "summary",
+        "description"
+      ],
+      "old": {
+        "summary": "Madness entwirft seit 1994 Damenmode aus Naturfasern. Der Hersteller nennt Bio-Baumwolle und kbT-Schurwolle für Teile seiner Kollektion.",
+        "description": "Madness („The Nature Textile Company“) arbeitet nach eigener Angabe seit 1994 mit Naturfasern. Die Kollektionen überzeugen mit zeitlosen Schnitten, naturnaher Verspieltheit und kompromisslos reinen Naturfasern.\r\n\r\nIm Checkpot-Sortiment ist Madness die perfekte Wahl für Frauen, die Wert auf unverfälschtes Wohlgefühl legen. Von weichen Strickjacken aus kontrolliert biologischer Tierhaltung (kbT) bis zu sommerlichen Leinen- und Baumwollteilen schmeichelt jedes Material der Haut auf natürliche Weise.\r\n\r\nMadness nennt eine GOTS-Zertifizierung seit 2012 und eine Mitgliedschaft bei Fair Wear. Angaben zu einzelnen Kleidungsstücken sind anhand ihrer Kennzeichnung zu prüfen."
+      },
+      "next": {
+        "summary": "Madness entwirft seit 1994 Damenmode. Der Hersteller nennt Bio-Baumwolle und kbT-Schurwolle für Teile seiner Kollektion.",
+        "description": "Madness („The Nature Textile Company“) arbeitet nach eigener Angabe seit 1994 mit Naturfasern. Die Kollektionen überzeugen mit zeitlosen Schnitten, naturnaher Verspieltheit und ausgewählten Materialien.\r\n\r\nIm Checkpot-Sortiment ist Madness die perfekte Wahl für Frauen, die Wert auf unverfälschtes Wohlgefühl legen. Von weichen Strickjacken bis zu sommerlichen Kleidern finden Kundinnen unterschiedliche Tragequalitäten.\r\n\r\nMadness nennt eine GOTS-Zertifizierung seit 2012 und eine Mitgliedschaft bei Fair Wear. Angaben zu einzelnen Kleidungsstücken sind anhand ihrer Kennzeichnung zu prüfen."
+      }
+    },
+    {
+      "table": "brands",
+      "id": "ad97ec5c-58a7-4b13-961e-f9ee14a260b8",
+      "slug": "heidekoenigin",
+      "fields": [
+        "summary",
+        "description"
+      ],
+      "old": {
+        "summary": "Naturverbundene Mode aus der Lüneburger Heide: Heidekönigin verzaubert unter dem Motto „besonders.anders“ mit bunten Prints und europäischer Fertigung.",
+        "description": "Heidekönigin bringt die Farbenfreude norddeutscher Naturlandschaften direkt in Ihren Kleiderschrank. Unter dem Markenmotto „besonders.anders“ entstehen Kollektionen, die sich durch fröhliche florale Dessins, bequeme Wohlfühlschnitte auszeichnen.\r\n\r\nBei Checkpot lieben unsere Kundinnen die natürliche Ausstrahlung dieser Marke. Die Kleider, Röcke und Shirts sitzen entspannt, machen jede Alltagsbewegung mit und sind aus hochwertigen Naturfasern wie Bio-Baumwolle und Leinen gefertigt.\r\n\r\nLaut Hersteller wird die Kollektion in Europa gefertigt und die Marke ist GOTS-zertifiziert. Ob ein einzelner Artikel zertifiziert ist, zeigt seine Produktkennzeichnung."
+      },
+      "next": {
+        "summary": "Farbenfrohe Mode aus der Lüneburger Heide: Heidekönigin verzaubert unter dem Motto „besonders.anders“ mit bunten Prints und europäischer Fertigung.",
+        "description": "Heidekönigin bringt die Farbenfreude norddeutscher Naturlandschaften direkt in Ihren Kleiderschrank. Unter dem Markenmotto „besonders.anders“ entstehen Kollektionen, die sich durch fröhliche florale Dessins, bequeme Wohlfühlschnitte auszeichnen.\r\n\r\nBei Checkpot lieben unsere Kundinnen die natürliche Ausstrahlung dieser Marke. Die Kleider, Röcke und Shirts sitzen entspannt und machen jede Alltagsbewegung mit. Der Hersteller nennt Bio-Baumwolle und Leinen für Teile seiner Kollektion.\r\n\r\nLaut Hersteller wird die Kollektion in Europa gefertigt und die Marke ist GOTS-zertifiziert. Ob ein einzelner Artikel zertifiziert ist, zeigt seine Produktkennzeichnung."
+      }
+    }
+  ]
+}
