@@ -23,7 +23,7 @@ export function extractStorageKey(keyOrUrl: string): string {
       const url = new URL(trimmed);
       return url.pathname.replace(/^\/+/, "");
     } catch {
-      return trimmed.replace(/^\/+/, "");
+      return trimmed.replace(/^https?:\/\//, "").replace(/^\/+/, "");
     }
   }
   return trimmed.replace(/^\/+/, "");

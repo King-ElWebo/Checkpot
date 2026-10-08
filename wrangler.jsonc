@@ -11,7 +11,8 @@
   },
   "vars": {
     "SITE_URL": "https://checkpot-hietzing.at",
-    "NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-LBFJND2204"
+    "NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-LBFJND2204",
+    "R2_PUBLIC_URL_PREFIX": "https://pub-d104550208504f90bd5895715e62a484.r2.dev"
   },
   "r2_buckets": [
     {
