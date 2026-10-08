@@ -856,3 +856,14 @@ The migration goal is not:
 The migration goal is:
 
 > **The existing Checkpot application operates on Cloudflare with its current functionality preserved and independently verified, while Vercel-specific infrastructure has been replaced where required and a safe production cutover path exists.**
+
+---
+
+## 34. Release Status & Cutover Log
+
+- **Timestamp:** 2026-10-08T16:58:00+02:00
+- **Target Branch:** `main`
+- **Runtime:** Cloudflare Workers (`vinext` + `@cloudflare/vite-plugin`)
+- **Storage:** Cloudflare R2 (`checkpot-media` / `pub-d104550208504f90bd5895715e62a484.r2.dev`)
+- **Status:** Complete media cutover verified in Neon PostgreSQL (59/59 assets on R2). EmpCo compliance and social media integrations fully merged.
+
