@@ -7,6 +7,7 @@ import { imagery, seoRoutes } from "@/content/fixtures/checkpot";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
 import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 import { STOREFRONT_IMAGE_URL } from "@/lib/storage";
+import { InstagramIcon, FacebookIcon } from "@/components/ui/social-icons";
 
 const seo = seoRoutes.find((r) => r.route === "/ueber-uns")!;
 
@@ -369,6 +370,36 @@ export default async function UeberUnsPage() {
               Besuch in Hietzing planen <span className="ml-2" aria-hidden="true">→</span>
             </Link>
           </div>
+
+          {(storeDetails.instagramUrl || storeDetails.facebookUrl) && (
+            <div className="mt-8 pt-6 border-t border-[#EDEAE4] flex flex-wrap justify-center items-center gap-x-6 gap-y-2.5 text-[13.5px] text-[#718096]">
+              <span className="font-medium text-[#1A1A1A]">Online folgen & Einblicke:</span>
+              {storeDetails.instagramUrl && (
+                <a
+                  href={storeDetails.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
+                  aria-label="Checkpot auf Instagram besuchen"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 text-[#E1306C]" />
+                  <span>Instagram ↗</span>
+                </a>
+              )}
+              {storeDetails.facebookUrl && (
+                <a
+                  href={storeDetails.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
+                  aria-label="Checkpot auf Facebook besuchen"
+                >
+                  <FacebookIcon className="w-3.5 h-3.5 text-[#1877F2]" />
+                  <span>Facebook ↗</span>
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </section>
 

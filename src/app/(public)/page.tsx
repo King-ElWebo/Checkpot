@@ -11,6 +11,7 @@ import { BrandBookshelf } from "@/components/public/brand-bookshelf";
 import { OutfitsHorizontalGallery } from "@/components/public/outfits-horizontal-gallery";
 import { seoRoutes } from "@/content/fixtures/checkpot";
 import { STOREFRONT_IMAGE_URL } from "@/lib/storage";
+import { InstagramIcon, FacebookIcon } from "@/components/ui/social-icons";
 
 const seo = seoRoutes.find((r) => r.route === "/")!;
 
@@ -40,8 +41,9 @@ export default async function HomePage() {
 
   const siteUrl = getSiteUrl();
   const featuredBrands = dbBrands; // Use all published brands for robustness
+  const socialProfiles = [storeDetails.instagramUrl, storeDetails.facebookUrl].filter(Boolean) as string[];
 
-  const jsonLd = {
+  const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: storeDetails.name,
@@ -63,6 +65,10 @@ export default async function HomePage() {
         closes: h.closes,
       })),
   };
+
+  if (socialProfiles.length > 0) {
+    jsonLd.sameAs = socialProfiles;
+  }
 
   return (
     <>
@@ -425,8 +431,8 @@ Persönlich beraten.
                   </div>
                 </div>
 
-                {/* Primary Action */}
-                <div className="mt-5 sm:mt-6">
+                {/* Primary Action & Social Links */}
+                <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
                   <a
                     href={storeDetails.routePlanningHref}
                     target="_blank"
@@ -435,6 +441,32 @@ Persönlich beraten.
                   >
                     Route planen <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">↗</span>
                   </a>
+
+                  {storeDetails.instagramUrl && (
+                    <a
+                      href={storeDetails.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-sm border border-white/25 px-5 py-3 2xl:px-6 2xl:py-3.5 text-[12.5px] 2xl:text-[13px] font-medium uppercase tracking-[0.08em] text-white hover:bg-white/10 hover:border-white transition-colors duration-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white min-h-[44px]"
+                      aria-label="Checkpot auf Instagram besuchen"
+                    >
+                      <InstagramIcon className="w-4 h-4 mr-2 text-[#E1306C]" />
+                      <span>Instagram ↗</span>
+                    </a>
+                  )}
+
+                  {storeDetails.facebookUrl && (
+                    <a
+                      href={storeDetails.facebookUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-sm border border-white/25 px-5 py-3 2xl:px-6 2xl:py-3.5 text-[12.5px] 2xl:text-[13px] font-medium uppercase tracking-[0.08em] text-white hover:bg-white/10 hover:border-white transition-colors duration-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white min-h-[44px]"
+                      aria-label="Checkpot auf Facebook besuchen"
+                    >
+                      <FacebookIcon className="w-4 h-4 mr-2 text-[#1877F2]" />
+                      <span>Facebook ↗</span>
+                    </a>
+                  )}
                 </div>
               </FadeIn>
 

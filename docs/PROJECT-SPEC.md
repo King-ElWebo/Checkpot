@@ -206,7 +206,8 @@ Checkpot uses a hybrid data-access model:
   non-essential embedded services must remain blocked until the required consent category is granted.
   No Google Map or other map is embedded. Route planning and WhatsApp are clearly labeled external
   links that transfer the visitor only after an intentional click. Instagram and Facebook links are
-  added by the customer later.
+  managed via the custom admin (/admin/store) and displayed across the Footer, /kontakt, /ueber-uns,
+  the homepage, the coming-soon preview shell, and as sameAs in LocalBusiness JSON-LD.
 - Caching/revalidation expectations: Public content is delivered statically by default or with
   revalidation where editorial freshness requires it. Later backend mutations trigger targeted
   invalidation of the affected routes, records or cache tags. A change to one item must not cause a
@@ -306,7 +307,7 @@ resolved in `docs/SEO-SPEC.md` after route approval.
 
 - Curated asset shortlist and archive policy for historical seasonal galleries
 - Final alt text, crop/focal-point decisions and social-preview imagery
-- Social-media profile URLs; Instagram and Facebook are selected as active/future channels
+- Social-media profile URLs; Instagram and Facebook management is active in /admin/store and populated with standard channels (editable anytime by admin)
 
 ## 11. Acceptance criteria
 

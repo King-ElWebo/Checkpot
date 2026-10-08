@@ -18,6 +18,8 @@ export interface StoreSettingsRaw {
   phone: string;
   whatsapp: string;
   email: string;
+  instagramUrl?: string;
+  facebookUrl?: string;
   hoursMode?: "compact" | "detailed";
   hoursNote?: string;
   hours: {
@@ -44,6 +46,8 @@ export const DEFAULT_STORE_SETTINGS_RAW: StoreSettingsRaw = {
   phone: "+43 1 876 54 32",
   whatsapp: "+43 676 123 45 67",
   email: "christa.hausmair@outlook.at",
+  instagramUrl: "https://www.instagram.com/checkpot_damenmoden",
+  facebookUrl: "https://www.facebook.com/checkpotdamenmoden",
   hoursMode: "compact",
   hoursNote: "",
   hours: {
@@ -99,6 +103,40 @@ export function deriveWhatsappHref(whatsapp: string): string {
  */
 export function deriveEmailHref(email: string): string {
   return `mailto:${email.trim()}`;
+}
+
+/**
+ * Derives an Instagram profile link from input handle or URL.
+ */
+export function deriveInstagramHref(instagram?: string | null): string | undefined {
+  if (!instagram) return undefined;
+  const trimmed = instagram.trim();
+  if (!trimmed) return undefined;
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return trimmed;
+  }
+  if (trimmed.startsWith("instagram.com/") || trimmed.startsWith("www.instagram.com/")) {
+    return `https://${trimmed}`;
+  }
+  const cleanHandle = trimmed.replace(/^@/, "");
+  return `https://www.instagram.com/${cleanHandle}`;
+}
+
+/**
+ * Derives a Facebook profile link from input URL or handle.
+ */
+export function deriveFacebookHref(facebook?: string | null): string | undefined {
+  if (!facebook) return undefined;
+  const trimmed = facebook.trim();
+  if (!trimmed) return undefined;
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return trimmed;
+  }
+  if (trimmed.startsWith("facebook.com/") || trimmed.startsWith("www.facebook.com/")) {
+    return `https://${trimmed}`;
+  }
+  const cleanHandle = trimmed.replace(/^@/, "");
+  return `https://www.facebook.com/${cleanHandle}`;
 }
 
 /**
@@ -298,6 +336,13 @@ export function mapRawToStoreDetails(raw: unknown): StoreDetails {
   const whatsapp = typeof data.whatsapp === "string" && data.whatsapp.trim() ? data.whatsapp.trim() : DEFAULT_STORE_SETTINGS_RAW.whatsapp;
   const email = typeof data.email === "string" && data.email.trim() ? data.email.trim() : DEFAULT_STORE_SETTINGS_RAW.email;
 
+  const instagramUrl = deriveInstagramHref(
+    data.instagramUrl !== undefined ? data.instagramUrl : DEFAULT_STORE_SETTINGS_RAW.instagramUrl
+  );
+  const facebookUrl = deriveFacebookHref(
+    data.facebookUrl !== undefined ? data.facebookUrl : DEFAULT_STORE_SETTINGS_RAW.facebookUrl
+  );
+
   const hoursMode = data.hoursMode === "detailed" ? "detailed" : "compact";
   const hoursNote = typeof data.hoursNote === "string" ? data.hoursNote.trim() : undefined;
 
@@ -321,6 +366,8 @@ export function mapRawToStoreDetails(raw: unknown): StoreDetails {
     whatsappHref: deriveWhatsappHref(whatsapp),
     email,
     emailHref: deriveEmailHref(email),
+    instagramUrl,
+    facebookUrl,
     routePlanningHref: deriveRoutePlanningHref({ street, postalCode, city }),
     hours: hoursArray,
     hoursNote: hoursNote || undefined,

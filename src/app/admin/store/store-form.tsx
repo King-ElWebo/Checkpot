@@ -398,12 +398,12 @@ export function StoreForm({ initialData }: StoreFormProps) {
         </div>
       </section>
 
-      {/* 3. Kontaktwege */}
+      {/* 3. Kontaktwege & Social Media */}
       <section className="admin-panel p-6 sm:p-8 flex flex-col gap-6">
         <div>
-          <h2 className="text-lg font-bold text-[#1c1917]">3. Kontaktdaten</h2>
+          <h2 className="text-lg font-bold text-[#1c1917]">3. Kontaktdaten & Social Media</h2>
           <p className="text-xs text-[#78716c] mt-0.5">
-            Direkte Erreichbarkeit per Telefon, WhatsApp und E-Mail für Kunden und Lieferanten.
+            Direkte Erreichbarkeit per Telefon, WhatsApp, E-Mail und Online-Präsenzen auf Instagram und Facebook.
           </p>
         </div>
 
@@ -442,6 +442,42 @@ export function StoreForm({ initialData }: StoreFormProps) {
               placeholder="z.B. christa.hausmair@outlook.at"
               required
             />
+          </div>
+        </div>
+
+        <div className="pt-4 border-t border-[#f5f5f4]">
+          <h3 className="text-sm font-semibold text-[#1c1917] mb-1">Social Media Präsenz</h3>
+          <p className="text-xs text-[#78716c] mb-4">
+            Wird im Footer, auf der Kontaktseite und auf der Vorschauseite verlinkt. Leer lassen, um den jeweiligen Kanal auszublenden.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="field-group">
+              <label htmlFor="instagramUrl">Instagram (URL oder @Handle)</label>
+              <input
+                type="text"
+                id="instagramUrl"
+                name="instagramUrl"
+                defaultValue={initialData.instagramUrl || ""}
+                placeholder="z.B. https://www.instagram.com/checkpot_damenmoden oder @checkpot_damenmoden"
+              />
+              <span className="text-[11px] text-[#a8a29e] mt-1">
+                Eingabe mit oder ohne https:// möglich
+              </span>
+            </div>
+
+            <div className="field-group">
+              <label htmlFor="facebookUrl">Facebook (URL oder Profil)</label>
+              <input
+                type="text"
+                id="facebookUrl"
+                name="facebookUrl"
+                defaultValue={initialData.facebookUrl || ""}
+                placeholder="z.B. https://www.facebook.com/checkpotdamenmoden"
+              />
+              <span className="text-[11px] text-[#a8a29e] mt-1">
+                Eingabe mit oder ohne https:// möglich
+              </span>
+            </div>
           </div>
         </div>
       </section>

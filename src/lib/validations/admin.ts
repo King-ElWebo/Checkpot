@@ -148,6 +148,8 @@ export const storeSettingsSchema = z.object({
   phone: z.string().trim().min(3, "Telefonnummer ist erforderlich").max(50, "Telefonnummer zu lang"),
   whatsapp: z.string().trim().min(3, "WhatsApp-Nummer ist erforderlich").max(50, "WhatsApp-Nummer zu lang"),
   email: z.string().trim().email("Ungültige E-Mail-Adresse").max(100, "E-Mail zu lang"),
+  instagramUrl: z.string().trim().max(200, "Instagram-Link darf maximal 200 Zeichen lang sein").nullable().optional().transform((v) => v || ""),
+  facebookUrl: z.string().trim().max(200, "Facebook-Link darf maximal 200 Zeichen lang sein").nullable().optional().transform((v) => v || ""),
   hoursMode: z.enum(["compact", "detailed"]).default("compact"),
   hoursNote: z.string().trim().max(300, "Hinweis darf maximal 300 Zeichen lang sein").nullable().optional().transform((v) => v || null),
 

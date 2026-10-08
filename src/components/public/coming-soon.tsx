@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import type { StoreDetails } from "@/lib/contracts/public";
+import { InstagramIcon, FacebookIcon } from "@/components/ui/social-icons";
 
 interface ComingSoonProps {
   storeDetails: StoreDetails;
@@ -100,24 +101,66 @@ export function ComingSoon({ storeDetails }: ComingSoonProps) {
                 </div>
 
                 {/* Direct Contact Bar */}
-                {(storeDetails.phone || storeDetails.email) && (
+                {(storeDetails.phone || storeDetails.email || storeDetails.whatsapp) && (
                   <div className="pt-5 border-t border-[#EFECE6] flex flex-wrap items-center gap-x-8 gap-y-2.5 text-[14px] sm:text-[14.5px]">
                     {storeDetails.phone && (
                       <a
-                        href={`tel:${storeDetails.phone.replace(/\s+/g, "")}`}
+                        href={storeDetails.phoneHref}
                         className="inline-flex items-center gap-2 font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] rounded-xs"
                       >
                         <span className="text-xs uppercase tracking-wider text-[#718096]">Telefon:</span>
                         <span>{storeDetails.phone}</span>
                       </a>
                     )}
+                    {storeDetails.whatsapp && (
+                      <a
+                        href={storeDetails.whatsappHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-[#4A5568] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] rounded-xs"
+                      >
+                        <span className="text-xs uppercase tracking-wider text-[#718096]">WhatsApp:</span>
+                        <span>Nachricht ↗</span>
+                      </a>
+                    )}
                     {storeDetails.email && (
                       <a
-                        href={`mailto:${storeDetails.email}`}
+                        href={storeDetails.emailHref}
                         className="inline-flex items-center gap-2 text-[#4A5568] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] rounded-xs"
                       >
                         <span className="text-xs uppercase tracking-wider text-[#718096]">E-Mail:</span>
                         <span>{storeDetails.email}</span>
+                      </a>
+                    )}
+                  </div>
+                )}
+
+                {/* Social Media Presence */}
+                {(storeDetails.instagramUrl || storeDetails.facebookUrl) && (
+                  <div className="pt-4 mt-4 border-t border-[#EFECE6] flex flex-wrap items-center gap-x-6 gap-y-2.5 text-[13.5px] sm:text-[14px]">
+                    <span className="text-xs uppercase tracking-wider text-[#718096]">Aktuell auf Social Media:</span>
+                    {storeDetails.instagramUrl && (
+                      <a
+                        href={storeDetails.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] rounded-xs"
+                        aria-label="Checkpot auf Instagram besuchen (öffnet neues Fenster)"
+                      >
+                        <InstagramIcon className="w-4 h-4 text-[#E1306C]" />
+                        <span>Instagram ↗</span>
+                      </a>
+                    )}
+                    {storeDetails.facebookUrl && (
+                      <a
+                        href={storeDetails.facebookUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#C01718] rounded-xs"
+                        aria-label="Checkpot auf Facebook besuchen (öffnet neues Fenster)"
+                      >
+                        <FacebookIcon className="w-4 h-4 text-[#1877F2]" />
+                        <span>Facebook ↗</span>
                       </a>
                     )}
                   </div>

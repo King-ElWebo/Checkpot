@@ -9,7 +9,7 @@ Dieses Dokument bildet die bereinigte inhaltliche Struktur, Taxonomie-Hierarchie
 
 ## 1. Outfit-Taxonomie
 
-Die Taxonomie ist in drei Gruppen gegliedert. Filter innerhalb derselben Gruppe werden als **ODER**, Filter über verschiedene Gruppen hinweg als **UND** ausgewertet. Kategorien ohne aktive Outfits (`Ganzjährig`, `Retro`, `Pastell`) bleiben in der Datenbank für die Admin-Verwaltung erhalten, werden im öffentlichen Lookbook jedoch erst sichtbar, sobald mindestens ein aktives Outfit zugeordnet ist.
+Die Taxonomie ist in fünf Gruppen gegliedert (Saison, Stil, Farbwelt, Farbtyp, Material). Filter innerhalb derselben Gruppe werden als **ODER**, Filter über verschiedene Gruppen hinweg als **UND** ausgewertet. Kategorien ohne aktive Outfits bleiben in der Datenbank für die Admin-Verwaltung erhalten, werden im öffentlichen Lookbook jedoch erst sichtbar, sobald mindestens ein aktives Outfit zugeordnet ist.
 
 | Gruppe (Slug) | Sort | Kategorie (Slug) | Sort | Öffentliche Sichtbarkeit | Zugeordnete aktive Outfits |
 |---|---|---|---|---|---|
@@ -24,6 +24,17 @@ Die Taxonomie ist in drei Gruppen gegliedert. Filter innerhalb derselben Gruppe 
 | | | **Naturtöne** (`naturtoene`) | 20 | Aktiv | 1 (`Outfit 1: Autumn Layer`) |
 | | | **Muster** (`muster`) | 30 | Aktiv | 1 (`Musterkleid Sommer`) |
 | | | **Pastell** (`pastell`) | 40 | *Ausgeblendet (0 aktive Looks)* | 0 |
+| **Farbtyp** (`farbtyp`) | 40 | **Frühlingstyp** (`fruehlingstyp`) | 10 | Aktiv | - |
+| | | **Sommertyp** (`sommertyp`) | 20 | Aktiv | - |
+| | | **Herbsttyp** (`herbsttyp`) | 30 | Aktiv | - |
+| | | **Wintertyp** (`wintertyp`) | 40 | Aktiv | - |
+| **Material** (`material`) | 50 | **Baumwolle** (`baumwolle`) | 10 | Aktiv | - |
+| | | **Viscose** (`viscose`) | 20 | Aktiv | - |
+| | | **Baumwolle mit Elastan** (`baumwolle-mit-elastan`) | 30 | Aktiv | - |
+| | | **Wolle** (`wolle`) | 40 | Aktiv | - |
+| | | **Merinowolle** (`merinowolle`) | 50 | Aktiv | - |
+| | | **Wolle gemischt** (`wolle-gemischt`) | 60 | Aktiv | - |
+| | | **Modal** (`modal`) | 70 | Aktiv | - |
 
 ---
 

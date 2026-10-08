@@ -49,6 +49,8 @@ export type StoreDetails = {
   whatsappHref: string;
   email: string;
   emailHref: string;
+  instagramUrl?: string;
+  facebookUrl?: string;
   routePlanningHref: string;
   hours: StoreHours[];
   hoursNote?: string;

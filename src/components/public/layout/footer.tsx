@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Route } from "next";
 import type { StoreDetails } from "@/lib/contracts/public";
 import { ConsentReopenButton } from "@/components/public/consent/consent-reopen-button";
+import { InstagramIcon, FacebookIcon } from "@/components/ui/social-icons";
 
 export function Footer({ storeDetails }: { storeDetails: StoreDetails }) {
   const currentYear = new Date().getFullYear();
@@ -76,6 +77,34 @@ export function Footer({ storeDetails }: { storeDetails: StoreDetails }) {
                       className="hover:text-[#C01718] transition-colors break-all focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
                     >
                       {storeDetails.email}
+                    </a>
+                  </li>
+                )}
+                {storeDetails.instagramUrl && (
+                  <li>
+                    <a
+                      href={storeDetails.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
+                      aria-label="Checkpot auf Instagram besuchen"
+                    >
+                      <InstagramIcon className="w-3.5 h-3.5 shrink-0" />
+                      <span>Instagram ↗</span>
+                    </a>
+                  </li>
+                )}
+                {storeDetails.facebookUrl && (
+                  <li>
+                    <a
+                      href={storeDetails.facebookUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
+                      aria-label="Checkpot auf Facebook besuchen"
+                    >
+                      <FacebookIcon className="w-3.5 h-3.5 shrink-0" />
+                      <span>Facebook ↗</span>
                     </a>
                   </li>
                 )}

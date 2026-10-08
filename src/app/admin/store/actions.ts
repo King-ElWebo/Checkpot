@@ -21,6 +21,8 @@ export async function saveStoreSettingsAction(formData: FormData) {
     phone: formData.get("phone"),
     whatsapp: formData.get("whatsapp"),
     email: formData.get("email"),
+    instagramUrl: formData.get("instagramUrl"),
+    facebookUrl: formData.get("facebookUrl"),
     hoursMode: formData.get("hoursMode") || "compact",
     hoursNote: formData.get("hoursNote"),
 
@@ -78,6 +80,8 @@ export async function saveStoreSettingsAction(formData: FormData) {
     phone: data.phone,
     whatsapp: data.whatsapp,
     email: data.email,
+    instagramUrl: data.instagramUrl,
+    facebookUrl: data.facebookUrl,
     hoursMode: data.hoursMode,
     hoursNote: data.hoursNote || undefined,
     hours: {

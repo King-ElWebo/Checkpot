@@ -164,6 +164,8 @@ export async function getRawStoreSettings(): Promise<StoreSettingsRaw> {
       phone: val.phone || DEFAULT_STORE_SETTINGS_RAW.phone,
       whatsapp: val.whatsapp || DEFAULT_STORE_SETTINGS_RAW.whatsapp,
       email: val.email || DEFAULT_STORE_SETTINGS_RAW.email,
+      instagramUrl: typeof val.instagramUrl === "string" ? val.instagramUrl : (DEFAULT_STORE_SETTINGS_RAW.instagramUrl || ""),
+      facebookUrl: typeof val.facebookUrl === "string" ? val.facebookUrl : (DEFAULT_STORE_SETTINGS_RAW.facebookUrl || ""),
       hoursMode: val.hoursMode === "detailed" ? "detailed" : "compact",
       hoursNote: typeof val.hoursNote === "string" ? val.hoursNote : "",
       hours: extractHoursForForm(val.hours),

@@ -8,6 +8,7 @@ import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site
 import { ContactForm } from "./contact-form";
 import { ContactMap } from "./contact-map";
 import { STOREFRONT_IMAGE_URL } from "@/lib/storage";
+import { InstagramIcon, FacebookIcon } from "@/components/ui/social-icons";
 
 const seo = seoRoutes.find((r) => r.route === "/kontakt")!;
 
@@ -41,7 +42,9 @@ export default async function KontaktPage() {
   const storeDetails = await getStoreDetails();
   const siteUrl = getSiteUrl();
 
-  const jsonLd = {
+  const socialProfiles = [storeDetails.instagramUrl, storeDetails.facebookUrl].filter(Boolean) as string[];
+
+  const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: storeDetails.name,
@@ -64,6 +67,10 @@ export default async function KontaktPage() {
         closes: h.closes,
       })),
   };
+
+  if (socialProfiles.length > 0) {
+    jsonLd.sameAs = socialProfiles;
+  }
 
   return (
     <div className="flex flex-col bg-[#F9F9F8] min-h-[85vh]">
@@ -151,6 +158,43 @@ export default async function KontaktPage() {
                     <span>WhatsApp schreiben</span>
                     <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
                   </a>
+                </div>
+              )}
+
+              {/* Social Media (Instagram & Facebook) */}
+              {(storeDetails.instagramUrl || storeDetails.facebookUrl) && (
+                <div className="pt-4 border-t border-[#EDEAE4] flex flex-col space-y-2.5">
+                  <span className="block text-[11px] 2xl:text-[11.5px] font-semibold uppercase tracking-[0.16em] text-[#718096]">
+                    Social Media & Einblicke
+                  </span>
+                  <div className="flex flex-wrap gap-x-6 gap-y-3 items-center">
+                    {storeDetails.instagramUrl && (
+                      <a
+                        href={storeDetails.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center text-[13.5px] font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
+                        aria-label="Checkpot auf Instagram entdecken (öffnet neues Fenster)"
+                      >
+                        <InstagramIcon className="w-4 h-4 mr-2 text-[#E1306C] transition-transform duration-200 group-hover:scale-110" />
+                        <span className="border-b border-[#1A1A1A]/35 group-hover:border-[#C01718] pb-0.5">Instagram folgen</span>
+                        <span className="ml-1 inline-block text-xs transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">↗</span>
+                      </a>
+                    )}
+                    {storeDetails.facebookUrl && (
+                      <a
+                        href={storeDetails.facebookUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center text-[13.5px] font-medium text-[#1A1A1A] hover:text-[#C01718] transition-colors focus:outline-hidden focus-visible:ring-1 focus-visible:ring-[#C01718]"
+                        aria-label="Checkpot auf Facebook besuchen (öffnet neues Fenster)"
+                      >
+                        <FacebookIcon className="w-4 h-4 mr-2 text-[#1877F2] transition-transform duration-200 group-hover:scale-110" />
+                        <span className="border-b border-[#1A1A1A]/35 group-hover:border-[#C01718] pb-0.5">Facebook besuchen</span>
+                        <span className="ml-1 inline-block text-xs transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">↗</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
