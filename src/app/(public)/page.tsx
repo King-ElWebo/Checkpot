@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
+
 
 export default async function HomePage() {
   if (!await isPublicContentAllowed()) {
@@ -327,7 +327,7 @@ Persönlich beraten.
                   />
                 </FadeIn>
                 <p className="mt-2 sm:mt-2.5 text-[11px] sm:text-[11.5px] text-[#8C867D] italic text-center lg:text-left select-none">
-                  *(Bleibt eigentlich nur auf der Website, weil der Creator – sprich ich – das Foto einfach viel zu süß fand.)
+                  *(Bleibt eigentlich nur auf der Website, weil der Creator – Benjamin Wilk – das Foto einfach viel zu süß fand.)
                 </p>
               </div>
 
@@ -473,8 +473,8 @@ Persönlich beraten.
               {/* Right Column: Controlled High-Presence Store Image (Hidden on Mobile) */}
               <FadeIn delay={120} duration={600} translateY={16} className="hidden lg:block relative aspect-[1.3/1] xl:aspect-[1.35/1] 2xl:aspect-[1.38/1] w-full max-h-[480px] xl:max-h-[520px] 2xl:max-h-[580px] overflow-hidden rounded-sm bg-[#262626] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                 <Image
-                  src="/customer/store-sustainable-shelf.jpg"
-                  alt="Atmosphäre und Kollektionen in der Checkpot Boutique in Wien-Hietzing"
+                  src="/customer/store/20260820_110703.jpg"
+                  alt="Heller Innenraum und aktuelle Kollektionen in der Checkpot Boutique in Wien-Hietzing"
                   fill
                   sizes="(min-width: 1536px) 48vw, (min-width: 1024px) 50vw, 0px"
                   className="object-cover transition-transform duration-700 hover:scale-[1.02]"

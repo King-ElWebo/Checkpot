@@ -2,6 +2,7 @@ import { and, asc, eq } from "drizzle-orm";
 import { getDatabase, isDatabaseConfigured } from "@/db";
 import { brands } from "@/db/schema";
 import type { BrandSeoMetadata } from "@/lib/validations/admin";
+import { getOrSetCached, invalidateCache } from "@/lib/cache";
 
 export interface BrandDto {
   id: string;
@@ -27,23 +28,47 @@ export interface BrandDto {
   seoMetadata: BrandSeoMetadata | null;
 }
 
-export async function listPublishedBrands() {
-  if (!isDatabaseConfigured()) return [];
-  const db = getDatabase();
-  const rows = await db.query.brands.findMany({
-    where: eq(brands.active, true),
-    orderBy: [asc(brands.sortOrder)],
-    with: {
-      logo: true,
-      image: true,
-    },
-  });
+const BRANDS_PUBLISHED_CACHE_KEY = "brands:published";
+const BRANDS_ALL_CACHE_KEY = "brands:all";
+const BRANDS_TTL_SECONDS = 120; // 2 minutes
 
-  return rows as unknown as BrandDto[];
+export function invalidateBrandsCache() {
+  invalidateCache("brands");
 }
 
-export async function getPublishedBrandBySlug(slug: string) {
+export async function listPublishedBrands(): Promise<BrandDto[]> {
+  if (!isDatabaseConfigured()) return [];
+
+  return await getOrSetCached(
+    BRANDS_PUBLISHED_CACHE_KEY,
+    async () => {
+      const db = getDatabase();
+      const rows = await db.query.brands.findMany({
+        where: eq(brands.active, true),
+        orderBy: [asc(brands.sortOrder)],
+        with: {
+          logo: true,
+          image: true,
+        },
+      });
+
+      return rows as unknown as BrandDto[];
+    },
+    BRANDS_TTL_SECONDS
+  );
+}
+
+export async function getPublishedBrandBySlug(slug: string): Promise<BrandDto | null> {
   if (!isDatabaseConfigured()) return null;
+
+  // Use the cached published brands list to avoid a redundant SQL query
+  const allPublished = await listPublishedBrands();
+  const matched = allPublished.find((b) => b.slug === slug);
+  if (matched) {
+    return matched;
+  }
+
+  // Fallback to direct query if not in published list (e.g. edge-case active brand just inserted)
   const db = getDatabase();
   const row = await db.query.brands.findFirst({
     where: and(eq(brands.slug, slug), eq(brands.active, true)),
@@ -58,10 +83,17 @@ export async function getPublishedBrandBySlug(slug: string) {
 
 export async function listAllBrands() {
   if (!isDatabaseConfigured()) return [];
-  const db = getDatabase();
-  return db.query.brands.findMany({
-    orderBy: [asc(brands.sortOrder)],
-  });
+
+  return await getOrSetCached(
+    BRANDS_ALL_CACHE_KEY,
+    async () => {
+      const db = getDatabase();
+      return db.query.brands.findMany({
+        orderBy: [asc(brands.sortOrder)],
+      });
+    },
+    BRANDS_TTL_SECONDS
+  );
 }
 
 /**

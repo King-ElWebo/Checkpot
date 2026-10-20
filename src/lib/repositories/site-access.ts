@@ -7,6 +7,7 @@ import { eq } from "drizzle-orm";
 import { getDatabase, isDatabaseConfigured } from "@/db";
 import { systemSettings, auditLogs } from "@/db/schema";
 import { PREVIEW_COOKIE_NAME, verifySitePreviewToken } from "@/lib/auth/preview";
+import { getOrSetCached, invalidateCache } from "@/lib/cache";
 
 export interface SiteAccessSettings {
   maintenanceMode: boolean;
@@ -57,13 +58,32 @@ async function readSiteAccessFromDatabase(): Promise<SiteAccessSettings> {
   }
 }
 
+const SITE_ACCESS_CACHE_KEY = "site_access";
+const SITE_ACCESS_TTL_SECONDS = 60;
+
+export function invalidateSiteAccessCache() {
+  invalidateCache(SITE_ACCESS_CACHE_KEY);
+}
+
+/**
+ * Direct database read for admin operations and dashboard cards.
+ * Bypasses in-memory cache to guarantee zero cross-isolate stale state.
+ */
+export async function getSiteAccessDirect(): Promise<SiteAccessSettings> {
+  return readSiteAccessFromDatabase();
+}
+
 /**
  * Single source of truth for site access (maintenance mode) status.
- * Deduplicated per-request via React cache().
+ * Deduplicated per-request via React cache() and edge-cached in memory for 60 seconds.
  * Fail-safe: returns maintenanceMode = false on any DB failure or missing setting.
  */
 export const getSiteAccess = cache(async (): Promise<SiteAccessSettings> => {
-  return await readSiteAccessFromDatabase();
+  return await getOrSetCached(
+    SITE_ACCESS_CACHE_KEY,
+    () => readSiteAccessFromDatabase(),
+    SITE_ACCESS_TTL_SECONDS
+  );
 });
 
 /**
@@ -141,6 +161,9 @@ export async function updateSiteAccess(
   } catch (auditError) {
     console.error("Failed to record site_access audit log entry:", auditError);
   }
+
+  // Invalidate local in-memory cache immediately
+  invalidateSiteAccessCache();
 
   // Revalidate public layouts and metadata routes
   revalidatePath("/", "layout");

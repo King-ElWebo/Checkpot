@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getDatabase } from "@/db";
 import { outfits, brands, media, collections } from "@/db/schema";
-import { count, eq, desc } from "drizzle-orm";
-import { getSiteAccess } from "@/lib/repositories/site-access";
+import { count, eq, desc, sql } from "drizzle-orm";
+import { getSiteAccessDirect } from "@/lib/repositories/site-access";
 import { SiteAccessCard } from "@/components/admin/site-access-card";
 
 export const metadata: Metadata = {
@@ -15,37 +15,31 @@ export const dynamic = "force-dynamic";
 export default async function AdminPage() {
   const database = getDatabase();
 
-  const [
-    totalOutfits,
-    activeOutfits,
-    totalBrands,
-    activeBrands,
-    totalMedia,
-    totalCollections,
-    recentOutfits,
-    siteAccess,
-  ] = await Promise.all([
-    database.select({ count: count() }).from(outfits).then((r) => r[0]?.count || 0),
-    database
-      .select({ count: count() })
-      .from(outfits)
-      .where(eq(outfits.active, true))
-      .then((r) => r[0]?.count || 0),
-    database.select({ count: count() }).from(brands).then((r) => r[0]?.count || 0),
-    database
-      .select({ count: count() })
-      .from(brands)
-      .where(eq(brands.active, true))
-      .then((r) => r[0]?.count || 0),
-    database.select({ count: count() }).from(media).then((r) => r[0]?.count || 0),
-    database.select({ count: count() }).from(collections).then((r) => r[0]?.count || 0),
+  const [countsResult, recentOutfits, siteAccess] = await Promise.all([
+    database.execute(sql`
+      SELECT
+        (SELECT count(*)::int FROM outfits) AS "totalOutfits",
+        (SELECT count(*)::int FROM outfits WHERE active = true) AS "activeOutfits",
+        (SELECT count(*)::int FROM brands) AS "totalBrands",
+        (SELECT count(*)::int FROM brands WHERE active = true) AS "activeBrands",
+        (SELECT count(*)::int FROM media) AS "totalMedia",
+        (SELECT count(*)::int FROM collections) AS "totalCollections"
+    `),
     database.query.outfits.findMany({
       limit: 4,
       orderBy: [desc(outfits.createdAt)],
       with: { media: true },
     }),
-    getSiteAccess(),
+    getSiteAccessDirect(),
   ]);
+
+  const countsRow = ((countsResult as { rows?: Record<string, number>[] }).rows?.[0] || {}) as Record<string, number>;
+  const totalOutfits = countsRow.totalOutfits ?? 0;
+  const activeOutfits = countsRow.activeOutfits ?? 0;
+  const totalBrands = countsRow.totalBrands ?? 0;
+  const activeBrands = countsRow.activeBrands ?? 0;
+  const totalMedia = countsRow.totalMedia ?? 0;
+  const totalCollections = countsRow.totalCollections ?? 0;
 
   return (
     <div className="dashboard-stack">

@@ -6,6 +6,7 @@ import { getDatabase } from "@/db";
 import { outfits, outfitBrands, brands } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { saveOutfitAtomic } from "@/lib/services/outfits";
+import { invalidateOutfitsCache } from "@/lib/repositories/outfits";
 
 import { outfitSchema } from "@/lib/validations/admin";
 
@@ -44,6 +45,7 @@ export async function saveOutfitAction(id: string | null, formData: FormData) {
   };
 
   await saveOutfitAtomic(id, outfitData, brandIds, categoryIds);
+  invalidateOutfitsCache();
 
   const database = getDatabase();
 
@@ -76,6 +78,7 @@ export async function deleteOutfitAction(id: string) {
 
   // cascade deletion takes care of outfit_brands
   await database.delete(outfits).where(eq(outfits.id, id));
+  invalidateOutfitsCache();
   
   revalidatePath("/admin/outfits");
   revalidatePath("/outfits");

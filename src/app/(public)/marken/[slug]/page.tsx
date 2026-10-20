@@ -8,8 +8,8 @@ import { getPublishedBrandBySlug, listPublishedBrands, getAdditionalPublishedBra
 import { getOutfitsByBrandId } from "@/lib/repositories/outfits";
 import { isPublicContentAllowed, LOCKED_METADATA } from "@/lib/repositories/site-access";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
+
 
 export async function generateStaticParams() {
   const brands = await listPublishedBrands();

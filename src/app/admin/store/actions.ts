@@ -6,7 +6,7 @@ import { getDatabase } from "@/db";
 import { systemSettings } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { storeSettingsSchema } from "@/lib/validations/admin";
-import type { StoreSettingsRaw } from "@/lib/repositories/store-settings";
+import { invalidateStoreDetailsCache, type StoreSettingsRaw } from "@/lib/repositories/store-settings";
 
 export async function saveStoreSettingsAction(formData: FormData) {
   await requireAdmin();
@@ -148,6 +148,9 @@ export async function saveStoreSettingsAction(formData: FormData) {
       value: rawData,
     });
   }
+
+  // Invalidate in-memory cache
+  invalidateStoreDetailsCache();
 
   // Targeted revalidations
   revalidatePath("/admin/store");

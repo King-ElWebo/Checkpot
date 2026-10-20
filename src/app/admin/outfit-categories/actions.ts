@@ -5,6 +5,7 @@ import { eq, and } from "drizzle-orm";
 import { getDatabase } from "@/db";
 import { outfitCategoryGroups, outfitCategories, outfitCategoryAssignments } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth/require-admin";
+import { invalidateTaxonomyCache } from "@/lib/repositories/taxonomy";
 import { outfitCategoryGroupSchema, outfitCategorySchema } from "@/lib/validations/admin";
 import crypto from "crypto";
 
@@ -39,6 +40,7 @@ export async function saveGroupAction(id: string | null, formData: FormData) {
     await database.insert(outfitCategoryGroups).values({ id: crypto.randomUUID(), ...data });
   }
 
+  invalidateTaxonomyCache();
   revalidatePath("/admin/outfit-categories");
   revalidatePath("/outfits");
 }
@@ -56,6 +58,7 @@ export async function deleteGroupAction(id: string) {
   }
 
   await database.delete(outfitCategoryGroups).where(eq(outfitCategoryGroups.id, id));
+  invalidateTaxonomyCache();
   revalidatePath("/admin/outfit-categories");
   revalidatePath("/outfits");
 }
@@ -95,6 +98,7 @@ export async function saveCategoryAction(id: string | null, formData: FormData) 
     await database.insert(outfitCategories).values({ id: crypto.randomUUID(), ...data });
   }
 
+  invalidateTaxonomyCache();
   revalidatePath("/admin/outfit-categories");
   revalidatePath("/outfits");
 }
@@ -112,6 +116,7 @@ export async function deleteCategoryAction(id: string) {
   }
 
   await database.delete(outfitCategories).where(eq(outfitCategories.id, id));
+  invalidateTaxonomyCache();
   revalidatePath("/admin/outfit-categories");
   revalidatePath("/outfits");
 }

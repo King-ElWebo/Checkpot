@@ -9,6 +9,7 @@ import {
   createSitePreviewToken,
   getPreviewCookieOptions,
   PREVIEW_COOKIE_NAME,
+  revokeSitePreviewToken,
 } from "@/lib/auth/preview";
 
 export async function toggleSiteAccessAction(targetState: boolean) {
@@ -38,6 +39,10 @@ export async function startSitePreviewAction() {
 
 export async function endSitePreviewAction() {
   const cookieStore = await cookies();
+  const token = cookieStore.get(PREVIEW_COOKIE_NAME)?.value;
+  if (token) {
+    revokeSitePreviewToken(token);
+  }
   cookieStore.delete(PREVIEW_COOKIE_NAME);
 
   revalidatePath("/", "layout");

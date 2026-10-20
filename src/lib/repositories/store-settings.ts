@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import { eq } from "drizzle-orm";
+import { getOrSetCached, invalidateCache } from "@/lib/cache";
 import { getDatabase, isDatabaseConfigured } from "@/db";
 import { systemSettings } from "@/db/schema";
 import type { StoreDetails } from "@/lib/contracts/public";
@@ -23,10 +24,14 @@ export {
   type StoreSettingsRaw,
 };
 
-/**
- * Single source of truth for public store facts cached across a single request lifecycle.
- */
-export const getStoreDetails = cache(async (): Promise<StoreDetails> => {
+const STORE_DETAILS_CACHE_KEY = "store_details";
+const STORE_DETAILS_TTL_SECONDS = 300; // 5 minutes
+
+export function invalidateStoreDetailsCache() {
+  invalidateCache(STORE_DETAILS_CACHE_KEY);
+}
+
+async function readStoreDetailsFromDatabase(): Promise<StoreDetails> {
   if (!isDatabaseConfigured()) {
     return DEFAULT_STORE_DETAILS;
   }
@@ -48,6 +53,17 @@ export const getStoreDetails = cache(async (): Promise<StoreDetails> => {
     console.error("Failed to read store details from database, falling back to defaults:", error);
     return DEFAULT_STORE_DETAILS;
   }
+}
+
+/**
+ * Single source of truth for public store facts cached across requests with 300s TTL.
+ */
+export const getStoreDetails = cache(async (): Promise<StoreDetails> => {
+  return await getOrSetCached(
+    STORE_DETAILS_CACHE_KEY,
+    () => readStoreDetailsFromDatabase(),
+    STORE_DETAILS_TTL_SECONDS
+  );
 });
 
 function extractHoursForForm(rawHours: unknown): StoreSettingsRaw["hours"] {

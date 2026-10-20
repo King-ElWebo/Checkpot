@@ -6,7 +6,7 @@ import { Navbar } from "@/components/public/layout/navbar";
 import { Footer } from "@/components/public/layout/footer";
 import { getSiteUrl } from "@/lib/site-config";
 import { getStoreDetails } from "@/lib/repositories/store-settings";
-import { getSiteAccess } from "@/lib/repositories/site-access";
+import { getSiteAccess, getSiteAccessDirect } from "@/lib/repositories/site-access";
 import { PREVIEW_COOKIE_NAME, verifySitePreviewToken } from "@/lib/auth/preview";
 import { CONSENT_COOKIE_NAME, parseConsentCookie } from "@/lib/consent/types";
 import { ConsentManager } from "@/components/public/consent/consent-manager";
@@ -14,8 +14,8 @@ import { ComingSoon } from "@/components/public/coming-soon";
 import { PreviewBanner } from "@/components/public/preview-banner";
 import { LegalMaintenanceShell } from "@/components/public/legal-maintenance-shell";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
+
 
 const siteUrl = getSiteUrl();
 
@@ -75,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  const [storeDetails, siteAccess, cookieStore, headerList] = await Promise.all([
+  const [storeDetails, cachedSiteAccess, cookieStore, headerList] = await Promise.all([
     getStoreDetails(),
     getSiteAccess(),
     cookies(),
@@ -87,6 +87,9 @@ export default async function PublicLayout({ children }: { children: React.React
 
   const previewCookie = cookieStore.get(PREVIEW_COOKIE_NAME)?.value;
   const isPreviewActive = previewCookie ? await verifySitePreviewToken(previewCookie) : false;
+
+  // When admin preview is active, bypass edge memory cache to guarantee ground-truth maintenance status
+  const siteAccess = isPreviewActive ? await getSiteAccessDirect() : cachedSiteAccess;
 
   const pathname = headerList.get("x-pathname") || "/";
   const normalizedPath = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;

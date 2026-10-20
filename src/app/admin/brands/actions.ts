@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { getDatabase } from "@/db";
 import { brands } from "@/db/schema";
 import { requireAdmin } from "@/lib/auth/require-admin";
+import { invalidateBrandsCache } from "@/lib/repositories/brands";
 
 import { brandSchema } from "@/lib/validations/admin";
 
@@ -70,6 +71,9 @@ export async function saveBrandAction(id: string | null, formData: FormData) {
     await database.insert(brands).values(data);
   }
 
+  // Invalidate in-memory cache
+  invalidateBrandsCache();
+
   // Revalidations
   revalidatePath("/admin/brands");
   revalidatePath("/marken");
@@ -91,6 +95,8 @@ export async function deleteBrandAction(id: string) {
   });
 
   await database.delete(brands).where(eq(brands.id, id));
+  
+  invalidateBrandsCache();
   
   revalidatePath("/admin/brands");
   revalidatePath("/marken");

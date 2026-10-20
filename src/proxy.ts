@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE_NAME, verifyAdminSessionToken } from "@/lib/auth/session";
+import { PREVIEW_COOKIE_NAME } from "@/lib/auth/preview";
 
 /**
  * Historical URLs verified from GSC / GA4 exports where content was permanently
@@ -57,9 +58,20 @@ const SECURITY_HEADERS = {
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
 };
 
-function applySecurityHeaders(headers: Headers) {
+function applySecurityHeaders(headers: Headers, request?: NextRequest) {
   for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
     headers.set(key, value);
+  }
+
+  // Cache Isolation:
+  // If request contains preview or session cookies, strictly forbid shared edge/CDN caching
+  // and declare Vary: Cookie so intermediate caches never serve privileged or preview responses.
+  if (
+    request &&
+    (request.cookies.has(PREVIEW_COOKIE_NAME) || request.cookies.has(SESSION_COOKIE_NAME))
+  ) {
+    headers.set("Cache-Control", "private, no-cache, no-store, max-age=0, must-revalidate");
+    headers.append("Vary", "Cookie");
   }
 }
 
@@ -87,7 +99,7 @@ export async function proxy(request: NextRequest) {
     const destination = PERMANENT_REDIRECTS[normalizedPath];
     const redirectUrl = new URL(destination, request.url);
     const response = NextResponse.redirect(redirectUrl, 301);
-    applySecurityHeaders(response.headers);
+    applySecurityHeaders(response.headers, request);
     return response;
   }
 
@@ -96,7 +108,7 @@ export async function proxy(request: NextRequest) {
     const cleanUrl = new URL(normalizedPath, request.url);
     cleanUrl.search = request.nextUrl.search;
     const response = NextResponse.redirect(cleanUrl, 301);
-    applySecurityHeaders(response.headers);
+    applySecurityHeaders(response.headers, request);
     return response;
   }
 
@@ -107,19 +119,19 @@ export async function proxy(request: NextRequest) {
 
     if (isAuthenticated) {
       const response = NextResponse.next();
-      applySecurityHeaders(response.headers);
+      applySecurityHeaders(response.headers, request);
       return response;
     }
 
     if (pathname.startsWith("/api/admin")) {
       const response = NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-      applySecurityHeaders(response.headers);
+      applySecurityHeaders(response.headers, request);
       return response;
     }
 
     const loginUrl = new URL("/login", request.url);
     const response = NextResponse.redirect(loginUrl);
-    applySecurityHeaders(response.headers);
+    applySecurityHeaders(response.headers, request);
     return response;
   }
 
@@ -132,7 +144,7 @@ export async function proxy(request: NextRequest) {
       headers: requestHeaders,
     },
   });
-  applySecurityHeaders(response.headers);
+  applySecurityHeaders(response.headers, request);
 
   return response;
 }
