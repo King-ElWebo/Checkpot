@@ -6,8 +6,21 @@ const BUCKET = "checkpot-media";
 const STAGING_DIR = path.resolve("dist/r2-migration-staging");
 const LEDGER_FILE = path.resolve("media-migration-ledger.json");
 
+function isImmutableKey(key) {
+  const base = key.split("/").pop() || "";
+  // UUID pattern (e.g. 5ff83f98-e70c-4ddc-80ea-3486aeeaa1c6.jpg)
+  if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.[a-z0-9]+$/i.test(base)) {
+    return true;
+  }
+  // High-entropy random alphanumeric suffix of 16+ chars (e.g. checkpot-logo-50W8fYc6aBPigdFsZi3befoTr5ff3u.svg)
+  if (/-[a-zA-Z0-9]{16,}\.[a-z0-9]+$/i.test(base)) {
+    return true;
+  }
+  return false;
+}
+
 async function main() {
-  console.log("=== Checkpot: Uploading Staged Media to Cloudflare R2 ===");
+  console.log("=== Checkpot: Uploading Optimized Media to Cloudflare R2 ===");
   console.log(`Target Bucket: ${BUCKET}`);
   console.log(`Source Directory: ${STAGING_DIR}\n`);
 
@@ -28,12 +41,17 @@ async function main() {
     const contentType = item.contentType || "image/jpeg";
     const objectPath = `${BUCKET}/${item.key}`;
 
+    const immutable = isImmutableKey(item.key);
+    const cacheControl = immutable
+      ? "public, max-age=31536000, immutable"
+      : "public, max-age=86400, stale-while-revalidate=604800";
+
     uploadedCount++;
-    process.stdout.write(`[${uploadedCount}/${items.length}] Uploading ${item.key}... `);
+    process.stdout.write(`[${uploadedCount}/${items.length}] Uploading ${item.key} (${immutable ? "immutable" : "mutable, 1d"})... `);
 
     try {
       execSync(
-        `npx wrangler r2 object put "${objectPath}" --file="${filePath}" --content-type="${contentType}" --remote`,
+        `npx wrangler r2 object put "${objectPath}" --file="${filePath}" --content-type="${contentType}" --cache-control="${cacheControl}" --remote`,
         { stdio: "pipe" }
       );
       console.log("OK");
@@ -44,7 +62,7 @@ async function main() {
     }
   }
 
-  console.log(`\nAll ${uploadedCount} files successfully uploaded to Cloudflare R2 bucket "${BUCKET}"!`);
+  console.log(`\nAll ${uploadedCount} optimized files successfully uploaded to Cloudflare R2 bucket "${BUCKET}" with safe, tailored cache headers!`);
 }
 
 main().catch((err) => {

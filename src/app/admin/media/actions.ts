@@ -67,7 +67,6 @@ export async function uploadMediaAction(formData: FormData): Promise<{ success: 
   // Upload to Cloudflare R2 storage
   const { url } = await uploadFile(key, file, {
     contentType,
-    cacheControl: "public, max-age=31536000, immutable",
   });
 
   // Save to DB

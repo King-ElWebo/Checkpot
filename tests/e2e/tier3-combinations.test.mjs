@@ -250,11 +250,13 @@ suite("Tier 3 - Combo 8: Security Headers + 410 Gone Responses", () => {
 // Combination 9: Site Access Maintenance Mode + Dynamic Sitemap & Robots
 // ============================================================================
 suite("Tier 3 - Combo 9: Site Access Maintenance Mode + Dynamic Sitemap & Robots", () => {
-  test("Sitemap always contains legal pages /impressum and /datenschutz", async () => {
+  test("Sitemap contains canonical indexable pages and excludes noindex legal pages per SEO spec", async () => {
     const res = await request("/sitemap.xml");
     assertStatus(res, 200);
-    assertBodyIncludes(res, "/impressum");
-    assertBodyIncludes(res, "/datenschutz");
+    assertBodyIncludes(res, "/ueber-uns");
+    assertBodyIncludes(res, "/mode");
+    assertBodyExcludes(res, "/impressum");
+    assertBodyExcludes(res, "/datenschutz");
   });
 
   test("Robots.txt references sitemap location correctly", async () => {

@@ -77,7 +77,9 @@ export function getStorefrontImageUrl(): string {
   if (process.env.NEXT_PUBLIC_USE_LEGACY_BLOB === "true") {
     return LEGACY_BLOB_STOREFRONT_IMAGE_URL;
   }
-  return getPublicUrl("store/checkpot-storefront-entrance.jpg");
+  const baseUrl = getPublicUrl("store/checkpot-storefront-entrance.jpg");
+  const version = process.env.NEXT_PUBLIC_STORE_IMAGE_VERSION;
+  return version ? `${baseUrl}?v=${version}` : baseUrl;
 }
 
 export const STOREFRONT_IMAGE_URL = getStorefrontImageUrl();
@@ -120,13 +122,33 @@ async function getMediaBucket(): Promise<R2Bucket | null> {
  * @param file The file data as File, Blob, or Uint8Array.
  * @param options Content-Type and optional Cache-Control headers.
  */
+/**
+ * Determines whether a storage key is content-addressed / hashed (UUID or high-entropy hash)
+ * and therefore safe for immutable 1-year caching.
+ */
+export function isImmutableKey(key: string): boolean {
+  const base = key.split("/").pop() || "";
+  // UUID pattern (e.g. 5ff83f98-e70c-4ddc-80ea-3486aeeaa1c6.jpg)
+  if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.[a-z0-9]+$/i.test(base)) {
+    return true;
+  }
+  // High-entropy random alphanumeric suffix of 16+ chars (e.g. checkpot-logo-50W8fYc6aBPigdFsZi3befoTr5ff3u.svg)
+  if (/-[a-zA-Z0-9]{16,}\.[a-z0-9]+$/i.test(base)) {
+    return true;
+  }
+  return false;
+}
+
 export async function uploadFile(
   key: string,
   file: File | Blob | Uint8Array,
   options: UploadOptions
 ): Promise<UploadResult> {
   const cleanKey = extractStorageKey(key);
-  const cacheControl = options.cacheControl || "public, max-age=31536000, immutable";
+  const defaultCacheControl = isImmutableKey(cleanKey)
+    ? "public, max-age=31536000, immutable"
+    : "public, max-age=86400, stale-while-revalidate=604800";
+  const cacheControl = options.cacheControl || defaultCacheControl;
   const contentType = options.contentType || "application/octet-stream";
 
   const bucket = await getMediaBucket();

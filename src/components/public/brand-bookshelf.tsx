@@ -139,7 +139,6 @@ export function BrandBookshelf({ brands }: BrandBookshelfProps) {
                     src={activeBrand.image.url}
                     alt={activeBrand.image.alt || activeBrand.name}
                     fill
-                    priority={activeIndex === 0}
                     sizes="(min-width: 1536px) 50vw, (min-width: 1024px) 55vw, 100vw"
                     className="object-cover transition-transform duration-500 hover:scale-[1.02]"
                     style={activeBrand.image.focalPoint ? { objectPosition: activeBrand.image.focalPoint } : {}}

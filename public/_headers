@@ -1,0 +1,21 @@
+# Cache content-hashed assets immutably (1 year)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache self-hosted font files immutably (1 year)
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache static customer imagery safely (1 day client cache, 7 days background revalidation)
+/customer/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Cache metadata icons with exact paths (1 day)
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+/icon.png
+  Cache-Control: public, max-age=86400
+
+/apple-icon.png
+  Cache-Control: public, max-age=86400
