@@ -63,6 +63,11 @@ function applySecurityHeaders(headers: Headers, request?: NextRequest) {
     headers.set(key, value);
   }
 
+  // Prevent search engines from ever indexing the staging/workers.dev hostname
+  if (request?.nextUrl.hostname.endsWith(".workers.dev")) {
+    headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
+
   // Cache Isolation:
   // If request contains preview or session cookies, strictly forbid shared edge/CDN caching
   // and declare Vary: Cookie so intermediate caches never serve privileged or preview responses.
@@ -76,7 +81,30 @@ function applySecurityHeaders(headers: Headers, request?: NextRequest) {
 }
 
 export async function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, hostname } = request.nextUrl;
+  const isWorkersDev = hostname.endsWith(".workers.dev");
+
+  // Staging/Internal protection: *.workers.dev is completely password-protected
+  // Only authenticated admins can browse; all others are redirected to /login
+  if (isWorkersDev) {
+    const isLoginRoute = pathname === "/login" || pathname === "/api/auth/login";
+    if (!isLoginRoute) {
+      const token = request.cookies.get(SESSION_COOKIE_NAME)?.value;
+      const isAuthenticated = token ? await verifyAdminSessionToken(token) : false;
+
+      if (!isAuthenticated) {
+        if (pathname.startsWith("/api/")) {
+          const res = NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+          applySecurityHeaders(res.headers, request);
+          return res;
+        }
+        const loginUrl = new URL("/login", request.url);
+        const res = NextResponse.redirect(loginUrl);
+        applySecurityHeaders(res.headers, request);
+        return res;
+      }
+    }
+  }
   const normalizedPath = pathname.length > 1 ? pathname.replace(/\/+$/, "") || "/" : pathname;
 
   // 1. Handle permanent 410 Gone responses for obsolete legacy paths
